@@ -1,0 +1,10 @@
+{
+  "name": "umi-digital",
+  "aliases": {
+    "components": "components",
+    "utils": "utils",
+    "hooks": "hooks",
+    "api": "api",
+    "ui": "ui"
+  }
+}
