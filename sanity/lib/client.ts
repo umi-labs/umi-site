@@ -14,7 +14,7 @@ export const client = createClient({
   apiVersion,
   token: process.env.SANITY_API_TOKEN,
   // If webhook revalidation is setup we want the freshest content, if not then it's best to use the speedy CDN
-  useCdn: revalidateSecret ? false : true,
+  useCdn: !revalidateSecret,
   perspective: 'published',
   stega: {
     studioUrl,
@@ -29,6 +29,6 @@ export const client = createClient({
   },
 });
 
-console.warn(
-  'This template is using stega to embed Content Source Maps, see more information here: https://www.sanity.io/docs/loaders-and-overlays#26cf681fadd4'
-);
+// console.warn(
+//   'This template is using stega to embed Content Source Maps, see more information here: https://www.sanity.io/docs/loaders-and-overlays#26cf681fadd4'
+// );

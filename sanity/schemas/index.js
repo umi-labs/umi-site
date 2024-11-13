@@ -23,6 +23,7 @@ import link from '@/sanity/schemas/objects/navigation/link';
 import favicon from '@/sanity/schemas/objects/favicon';
 import postType from '@/sanity/schemas/documents/post-type';
 import menuItem from '@/sanity/schemas/objects/navigation/menu.item';
+import policies from '@/sanity/schemas/singletons/settings/settings.policies';
 
 export const schema = [
   // Singletons
@@ -56,6 +57,7 @@ export const schema = [
   link,
   favicon,
   hero1,
+  policies,
 ];
 
 export const singletons = [

@@ -7,7 +7,7 @@ import {
   MenuContainer,
   Policies,
 } from '@/app/_components/global/Footer/_components/index';
-import Link from '@/app/_components/global/Links/Link';
+import Link from '@/app/_components/ui/link';
 import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -45,7 +45,7 @@ export default function TopBar({
               {menu.itemsList?.items?.map((item, index) => (
                 <li key={index}>
                   <Link
-                    link={item?.navItemUrl?.internalLink}
+                    link={item}
                     className="text-xs text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700"
                   >
                     {item?.navItemUrl?.internalLink?.title}

@@ -10,8 +10,6 @@ import { CaretDown } from '@phosphor-icons/react';
 const NavItem = ({ item }: { item: MenuType }) => {
   const [open, setOpen] = React.useState(false);
 
-  const parent = item.displayList ? item.title : '';
-
   return item.displayList ? (
     <div
       id="NavItem"
@@ -41,7 +39,7 @@ const NavItem = ({ item }: { item: MenuType }) => {
         onClick={() => setOpen(!open)}
         onMouseEnter={() => setOpen(false)}
       />
-      <Content open={open} setOpen={setOpen} item={item} parent={parent} />
+      <Content open={open} setOpen={setOpen} item={item} />
     </div>
   ) : (
     <NavLink navItem={item.items} title={item.title} />
@@ -52,12 +50,10 @@ const Content = ({
   open = false,
   setOpen,
   item,
-  parent,
 }: {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   item: MenuType;
-  parent: string;
 }) => {
   return (
     <div
@@ -74,7 +70,6 @@ const Content = ({
               key={index}
               navItem={item}
               title={item.name}
-              parent={parent}
               setOpen={setOpen}
             />
           ))}

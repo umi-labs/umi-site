@@ -98,27 +98,7 @@ export default defineType({
     defineField({
       name: 'policies',
       title: 'Policies',
-      type: 'array',
-      description: 'Links to policies that are displayed on the footer.',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          name: 'policy',
-          title: 'Policy',
-          fields: [
-            defineField({
-              type: 'string',
-              name: 'title',
-              title: 'Title',
-            }),
-            defineField({
-              type: 'link',
-              name: 'link',
-              title: 'Link',
-            }),
-          ],
-        }),
-      ],
+      type: 'policies',
       group: 'misc',
     }),
     defineField({

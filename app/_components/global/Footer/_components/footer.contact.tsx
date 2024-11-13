@@ -1,7 +1,7 @@
 import React from 'react';
 import { MenuContainer } from '@/app/_components/global/Footer/_components/footer.menucontainer';
 import { ContactDetails, SocialLinkItem } from '@/types';
-import Link from '@/app/_components/global/Links/Link';
+import Link from '@/app/_components/ui/link';
 import {
   ApplePodcastsLogo,
   FacebookLogo,

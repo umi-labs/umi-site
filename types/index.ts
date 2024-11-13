@@ -42,25 +42,7 @@ export interface NavItem {
   _type: string;
   _key: string;
   name: string;
-  navItemUrl: {
-    _type: string;
-    displayExternal: boolean;
-    externalUrl: string;
-    internalLink?: {
-      _type: string;
-      title: string;
-      slug?: string;
-    };
-  };
-}
-
-export interface SocialLinkItem {
-  _key: string;
-  _type: string;
-  link?: string;
-  socialMedia: string;
-  fillType?: 'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone';
-  title?: string;
+  navItemUrl: Link;
 }
 
 export interface Link {
@@ -72,6 +54,15 @@ export interface Link {
   internalLink: InternalLink;
 }
 
+export interface SocialLinkItem {
+  _key: string;
+  _type: string;
+  link?: string;
+  socialMedia: string;
+  fillType?: 'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone';
+  title?: string;
+}
+
 export interface InternalLink {
   _type: string;
   _key: string;
@@ -80,13 +71,19 @@ export interface InternalLink {
     _type: string;
     current: string;
   };
+  postType?: {
+    title: string;
+    slug: {
+      current: string;
+    };
+  };
 }
 
 export interface Policy {
   _type: string;
   _key: string;
   title: string;
-  link: Link;
+  link: NavItem;
 }
 
 export interface MetaData {
@@ -141,7 +138,7 @@ export interface PagePayload {
 }
 
 export interface SettingsPayload {
-  policies?: Policy[];
+  policies?: NavItem[];
   footerNav?: Nav;
   sponsors?: Sponsor[] | undefined;
   contactDetails?: ContactDetails;

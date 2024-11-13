@@ -41,13 +41,13 @@ export const settingsQuery = groq`
     socialLinks[],
     policies[]{
       ...,
-      link {
+      navItemUrl {
         internalLink->{
           ...,
           "slug": slug.current,
           postType->
         }
-      } 
+      }
     },
     footerNav->{
       ...,

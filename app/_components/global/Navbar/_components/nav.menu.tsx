@@ -3,9 +3,8 @@
 import { CaretRight } from '@phosphor-icons/react';
 import React from 'react';
 
-import Link from '@/app/_components/global/Links/Link';
+import Link from '@/app/_components/ui/link';
 import { cn } from '@/lib/utils';
-import { resolveHref } from '@/sanity/lib/utils';
 import type {
   Menu as MenuType,
   NavItem as NavItemType,
@@ -201,24 +200,9 @@ const MenuLink = ({
   show: boolean;
   setShow: any;
 }) => {
-  if (!navItem) {
-    return null;
-  }
-
-  const href = navItem.navItemUrl?.displayExternal
-    ? navItem.navItemUrl.externalUrl
-    : resolveHref(
-        navItem?.navItemUrl?.internalLink?._type,
-        navItem?.navItemUrl?.internalLink?.slug
-      );
-
-  if (!href) {
-    return null;
-  }
-
   return (
     <Link
-      link={navItem?.navItemUrl?.internalLink}
+      link={navItem}
       className={cn('animate-rotateUpAndIn uppercase text-charcoal')}
       onClick={() => setShow(!show)}
     >
