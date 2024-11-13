@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { HomePage } from '@/app/_components/pages/home/HomePage';
 import { studioUrl } from '@/sanity/lib/api';
 import { loadHomePage } from '@/sanity/loader/loadQuery';
+
 const HomePagePreview = dynamic(
   () => import('@/app/_components/pages/home/HomePagePreview')
 );
@@ -21,7 +22,11 @@ export async function generateMetadata(
   const { data: page } = await loadHomePage();
 
   return {
-    title: page?.metaData?.title ? page?.metaData?.title : page?.title,
+    title: page?.metaData?.title
+      ? page?.metaData?.title
+      : page?.title
+        ? page?.title
+        : 'Home',
     description: page?.metaData?.description
       ? page?.metaData?.description
       : (await parent).description,

@@ -23,7 +23,7 @@ export const pagesBySlugQuery = groq`
       ...,
       inbox->,
     },
-    metaData,
+    metaData->,
     "postType": *[_type=='postType' && references(^._id)]{
       title,
       "slug": slug.current,
