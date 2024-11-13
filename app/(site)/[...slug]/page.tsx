@@ -47,6 +47,7 @@ export default async function PageSlugRoute({ params }) {
   if (draftMode().isEnabled) {
     return <PagePreview params={params} initial={initial} />;
   }
+
   if (!initial.data) {
     notFound();
   }

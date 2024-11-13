@@ -113,9 +113,9 @@ export interface PagePayload {
 }
 
 export interface SettingsPayload {
-  sponsors: Sponsor[] | undefined;
-  contactDetails: ContactDetails;
-  footerText: string;
+  sponsors?: Sponsor[] | undefined;
+  contactDetails?: ContactDetails;
+  footerText?: string;
   name?: string;
   initials?: string;
   socialLinks?: SocialLinkItem[];

@@ -4,7 +4,7 @@ import { ContactDetails, SocialLinkItem } from '@/types';
 import Link from 'next/link';
 
 interface Props {
-  contactDetails: ContactDetails;
+  contactDetails?: ContactDetails;
   socialLinks?: SocialLinkItem[];
 }
 
@@ -37,7 +37,7 @@ export default function Contact({ contactDetails, socialLinks }: Props) {
         )}
         <div className="hidden flex-col gap-y-2 md:flex">
           <p className="sr-only">Addresses</p>
-          {contactDetails.addresses &&
+          {contactDetails?.addresses &&
             contactDetails.addresses.length > 0 &&
             contactDetails.addresses.map((address, index) => {
               const res = `${address.street}, ${address.city}, ${address.state} ${address.zip}`;
@@ -56,7 +56,6 @@ export default function Contact({ contactDetails, socialLinks }: Props) {
         <div className="flex flex-col gap-y-4">
           <p className="sr-only">Social Media</p>
           {socialLinks.map((socialLink, index) => {
-            console.log(socialLink);
             return (
               <Link
                 key={index}
