@@ -10,6 +10,7 @@ import {
 import Link from '@/app/_components/ui/link';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import NextLink from 'next/link';
 
 export default function TopBar({
   data,
@@ -21,15 +22,17 @@ export default function TopBar({
   return (
     <div className="flex flex-row flex-wrap justify-between gap-9 lg:flex-nowrap">
       <Container className="col-span-1 hidden flex-col items-start justify-start gap-y-4 lg:flex">
-        {logo && (
-          <ImageBox
-            imageClasses="w-fit h-16 object-cover object-center"
-            classesWrapper={'flex justify-start items-start'}
-            image={logo}
-            width={800}
-            height={300}
-          />
-        )}
+        <NextLink href={'/'}>
+          {logo && (
+            <ImageBox
+              imageClasses="w-fit h-16 object-cover object-center"
+              classesWrapper={'flex justify-start items-start'}
+              image={logo}
+              width={800}
+              height={300}
+            />
+          )}
+        </NextLink>
         <CopyText text={data?.footerText} name={data?.name} />
         {data?.policies && <Policies policies={data?.policies} />}
       </Container>

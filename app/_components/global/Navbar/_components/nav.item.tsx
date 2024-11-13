@@ -19,7 +19,7 @@ const NavItem = ({ item }: { item: MenuType }) => {
     >
       <button
         id="nav-item__trigger"
-        className="flex items-center text-charcoal"
+        className="hocus:text-gray-900 flex items-center text-xs text-gray-500 transition-all duration-300 ease-in-out"
         onClick={() => setOpen(!open)}
       >
         <span>{item.title}</span>

@@ -13,7 +13,7 @@ export const client = createClient({
   dataset,
   apiVersion,
   token: process.env.SANITY_API_TOKEN,
-  // If webhook revalidation is setup we want the freshest content, if not then it's best to use the speedy CDN
+  // If webhook revalidation is set up we want the freshest content, if not then it's best to use the speedy CDN
   useCdn: !revalidateSecret,
   perspective: 'published',
   stega: {
