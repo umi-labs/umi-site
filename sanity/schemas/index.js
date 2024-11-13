@@ -1,17 +1,14 @@
 // import type { SchemaTypeDefinition } from 'sanity'
 
 // Singletons
-import { blocks, home, seoSettings, siteSettings, themeSettings } from '@/sanity/schemas/singletons';
-
-// Documents
+import { blocks, home, seoSettings, siteSettings, themeSettings } from '@/sanity/schemas/singletons'; // Documents
 import page from '@/sanity/schemas/documents/page';
 import post from '@/sanity/schemas/documents/post';
 import contactForm from '@/sanity/schemas/documents/contact-form';
 import form from '@/sanity/schemas/documents/form';
 import inbox from '@/sanity/schemas/documents/inbox';
 import navigation from '@/sanity/schemas/documents/navigation';
-
-// Objects
+import socialMedia from '@/sanity/schemas/singletons/settings/settings.social-media'; // Objects
 import hero1 from '@/sanity/schemas/objects/hero1';
 import formBuilder from '@/sanity/schemas/objects/form-builder';
 import formFields from '@/sanity/schemas/objects/form-fields';
@@ -43,6 +40,7 @@ export const schema = [
   form,
   inbox,
   navigation,
+  socialMedia,
 
   // Objects
   primaryHero,

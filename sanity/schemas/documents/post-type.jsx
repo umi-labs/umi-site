@@ -47,18 +47,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'children',
-      type: 'array',
-      title: 'Children',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'postType' }, { type: 'page' }, { type: 'post' }],
-        },
-      ],
-      description: 'Add child post types, pages, or posts as needed.',
-    }),
-    defineField({
       name: 'metaData',
       type: 'metaData',
       group: 'seo',

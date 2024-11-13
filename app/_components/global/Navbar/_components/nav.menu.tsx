@@ -1,8 +1,9 @@
 'use client';
 
+import { CaretRight } from '@phosphor-icons/react';
 import React from 'react';
-import Link from 'next/link';
 
+import Link from '@/app/_components/global/Links/Link';
 import { cn } from '@/lib/utils';
 import { resolveHref } from '@/sanity/lib/utils';
 import type {
@@ -10,7 +11,6 @@ import type {
   NavItem as NavItemType,
   SettingsPayload,
 } from '@/types';
-import { CaretRight } from '@phosphor-icons/react';
 
 interface MenuProps {
   show: boolean;
@@ -218,7 +218,7 @@ const MenuLink = ({
 
   return (
     <Link
-      href={href}
+      link={navItem?.navItemUrl?.internalLink}
       className={cn('animate-rotateUpAndIn uppercase text-charcoal')}
       onClick={() => setShow(!show)}
     >

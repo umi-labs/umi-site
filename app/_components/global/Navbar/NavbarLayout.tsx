@@ -24,7 +24,7 @@ export default function NavbarLayout(props: NavbarProps) {
   const [menu, setMenu] = React.useState<boolean>(false);
 
   return data ? (
-    <nav className="fixed top-0 z-[1000] flex w-full items-center justify-between border-b border-[#EEE] bg-white px-8 py-4 lg:pr-12">
+    <nav className="fixed top-0 z-[1000] flex w-full items-center justify-between border-b border-[#EEE] bg-white px-8 py-4 lg:px-10">
       <NavLogo data={data} logo={logo} />
       <Nav menu={data?.mainNav?.menu} />
       <div className="flex items-center justify-center gap-4">

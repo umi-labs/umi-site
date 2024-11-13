@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss';
 
+const plugin = require('tailwindcss/plugin');
+
 const config = {
   darkMode: ['class'],
   content: [
@@ -231,7 +233,15 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+    plugin(function ({ addVariant }) {
+      addVariant('optional', '&:optional');
+      addVariant('hocus', ['&:hover', '&:focus']);
+      addVariant('inverted-colors', '@media (inverted-colors: inverted)');
+    }),
+  ],
 } satisfies Config;
 
 export default config;

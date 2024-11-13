@@ -17,6 +17,7 @@ import {
 } from '@/sanity/loader/loadQuery';
 import { config } from '@/lib/config';
 import NavbarSkeleton from '@/app/_components/global/Navbar/NavbarSkeleton';
+import { cn } from '@/lib/utils';
 
 const LiveVisualEditing = dynamic(
   () => import('@/sanity/loader/LiveVisualEditing')
@@ -61,7 +62,10 @@ export default async function Layout({
   return (
     <>
       <div
-        className={`flex min-h-screen flex-col ${settings?.customCursor ? 'custom-cursor' : ''}`}
+        className={cn(
+          `flex min-h-screen flex-col selection:bg-sky-300 selection:text-sky-900`,
+          settings?.customCursor && 'custom-cursor'
+        )}
       >
         <Suspense fallback={<NavbarSkeleton />}>
           <Navbar />

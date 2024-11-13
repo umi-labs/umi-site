@@ -25,7 +25,7 @@ export interface NavList {
   subMenuName: string;
 }
 
-export interface MainNav {
+export interface Nav {
   id: string;
   _type: string;
   title: string;
@@ -58,7 +58,35 @@ export interface SocialLinkItem {
   _key: string;
   _type: string;
   link?: string;
+  socialMedia: string;
+  fillType?: 'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone';
   title?: string;
+}
+
+export interface Link {
+  _type: string;
+  _key: string;
+  title: string;
+  displayExternal: boolean;
+  externalUrl: string;
+  internalLink: InternalLink;
+}
+
+export interface InternalLink {
+  _type: string;
+  _key: string;
+  title: string;
+  slug: {
+    _type: string;
+    current: string;
+  };
+}
+
+export interface Policy {
+  _type: string;
+  _key: string;
+  title: string;
+  link: Link;
 }
 
 export interface MetaData {
@@ -113,6 +141,8 @@ export interface PagePayload {
 }
 
 export interface SettingsPayload {
+  policies?: Policy[];
+  footerNav?: Nav;
   sponsors?: Sponsor[] | undefined;
   contactDetails?: ContactDetails;
   footerText?: string;
@@ -122,7 +152,7 @@ export interface SettingsPayload {
   customCursor?: boolean;
   footer?: PortableTextBlock[];
   menuItems?: MenuItem[];
-  mainNav?: MainNav;
+  mainNav?: Nav;
   ogImage?: Image;
 }
 

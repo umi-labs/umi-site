@@ -93,6 +93,7 @@ export default defineType({
           ],
         }),
       ],
+      group: 'misc',
     }),
     defineField({
       name: 'policies',
@@ -100,12 +101,25 @@ export default defineType({
       type: 'array',
       description: 'Links to policies that are displayed on the footer.',
       of: [
-        {
-          type: 'link',
-          name: 'link',
-        },
+        defineArrayMember({
+          type: 'object',
+          name: 'policy',
+          title: 'Policy',
+          fields: [
+            defineField({
+              type: 'string',
+              name: 'title',
+              title: 'Title',
+            }),
+            defineField({
+              type: 'link',
+              name: 'link',
+              title: 'Link',
+            }),
+          ],
+        }),
       ],
-      group: 'footer',
+      group: 'misc',
     }),
     defineField({
       name: 'customCursor',
@@ -121,23 +135,11 @@ export default defineType({
       description: 'Social media links associated with the site.',
       type: 'array',
       of: [
-        {
-          type: 'object',
-          name: 'Social Link',
+        defineArrayMember({
+          type: 'socialMedia',
+          name: 'socialLink',
           title: 'Social Link',
-          fields: [
-            { type: 'string', name: 'title', title: 'Title' },
-            {
-              type: 'url',
-              name: 'link',
-              title: 'Link',
-              validation: (rule) =>
-                rule.uri({
-                  scheme: ['http', 'https', 'mailto', 'tel'],
-                }),
-            },
-          ],
-        },
+        }),
       ],
       group: 'social',
     }),
@@ -192,6 +194,7 @@ export default defineType({
           ],
         }),
       ],
+      group: 'misc',
     }),
   ],
 });

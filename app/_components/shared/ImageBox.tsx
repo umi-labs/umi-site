@@ -1,15 +1,17 @@
 import Image from 'next/image';
 
 import { urlForImage } from '@/sanity/lib/utils';
+import React from 'react';
+import { cn } from '@/lib/utils';
 
-interface ImageBoxProps {
+interface ImageBoxProps extends React.ComponentProps<'div'> {
   image?: { asset?: any };
   alt?: string;
   width?: number;
   height?: number;
   size?: string;
-  classesWrapper?: string;
-  imageClasses?: string;
+  classesWrapper?: React.ComponentProps<'div'>['className'];
+  imageClasses?: React.ComponentProps<'img'>['className'];
   'data-sanity'?: string;
 }
 
@@ -29,8 +31,9 @@ export default function ImageBox({
 
   return (
     <div
-      className={`h-full w-full ${classesWrapper}`}
+      className={cn(`h-fit w-auto`, classesWrapper)}
       data-sanity={props['data-sanity']}
+      {...props}
     >
       {imageUrl && (
         <Image

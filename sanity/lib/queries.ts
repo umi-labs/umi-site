@@ -11,6 +11,10 @@ export const homePageQuery = groq`
   }
 `;
 
+// export const getLinkRefResolvedQuery = qroq`
+//
+// `;
+
 export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     _id,
@@ -20,6 +24,10 @@ export const pagesBySlugQuery = groq`
       inbox->,
     },
     metaData,
+    "postType": *[_type=='postType' && references(^._id)]{
+      title,
+      "slug": slug.current,
+    },
     title,
     "slug": slug.current,
   }
@@ -31,6 +39,49 @@ export const settingsQuery = groq`
     name,
     initials,
     socialLinks[],
+    policies[]{
+      ...,
+      link {
+        internalLink->{
+          ...,
+          "slug": slug.current,
+          postType->
+        }
+      } 
+    },
+    footerNav->{
+      ...,
+      menu[] {
+        ...,
+        itemsList {
+          ...,
+          items[] {
+            ...,
+            navItemUrl {
+              ...,
+              internalLink-> {
+                _type,
+                "slug": slug.current,
+                title,
+                postType->
+              }
+            }
+          }
+        },
+        items {
+          ...,
+          navItemUrl {
+            ...,
+            internalLink-> {
+              _type,
+              "slug": slug.current,
+              title,
+              postType->
+            }
+          }
+        },
+      }
+    },
     mainNav->{
       ...,
       menu[] {
@@ -44,7 +95,8 @@ export const settingsQuery = groq`
               internalLink-> {
                 _type,
                 "slug": slug.current,
-                title
+                title,
+                postType->
               }
             }
           }
@@ -56,7 +108,8 @@ export const settingsQuery = groq`
             internalLink-> {
               _type,
               "slug": slug.current,
-              title
+              title,
+              postType->
             }
           }
         },
