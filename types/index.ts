@@ -87,8 +87,8 @@ export interface Policy {
 }
 
 export interface MetaData {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   ogImage?: Image;
   keywords?: string[];
 }
@@ -122,7 +122,7 @@ export interface HomePagePayload {
   blocks?: PortableTextBlock[];
   footer?: PortableTextBlock[];
   overview?: PortableTextBlock[];
-  metaData?: MetaData;
+  metaData: MetaData;
   title?: string;
 }
 

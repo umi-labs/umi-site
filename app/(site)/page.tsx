@@ -21,12 +21,14 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { data: page } = await loadHomePage();
 
+  let title = 'Home';
+
+  if (page && page.metaData?.title) {
+    title = page.metaData?.title;
+  }
+
   return {
-    title: page?.metaData?.title
-      ? page?.metaData?.title
-      : page?.title
-        ? page?.title
-        : 'Home',
+    title: title,
     description: page?.metaData?.description
       ? page?.metaData?.description
       : (await parent).description,
@@ -34,7 +36,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function IndexRoute() {
+export default async function Home() {
   const initial = await loadHomePage();
 
   if (draftMode().isEnabled) {
