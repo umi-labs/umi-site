@@ -9,13 +9,7 @@ import React, { Suspense } from 'react';
 import { Cursor } from '@/app/_components/global/Cursor/Cursor';
 import { Footer } from '@/app/_components/global/Footer';
 import { Navbar } from '@/app/_components/global/Navbar';
-import { urlForOpenGraphImage } from '@/sanity/lib/utils';
-import {
-  loadHomePage,
-  loadSEOSettings,
-  loadSettings,
-} from '@/sanity/loader/loadQuery';
-import { config } from '@/lib/config';
+import { loadSEOSettings, loadSettings } from '@/sanity/loader/loadQuery';
 import NavbarSkeleton from '@/app/_components/global/Navbar/NavbarSkeleton';
 import { cn } from '@/lib/utils';
 
@@ -24,26 +18,20 @@ const LiveVisualEditing = dynamic(
 );
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [{ data: settings }, { data: homePage }, { data: seoSettings }] =
-    await Promise.all([loadSettings(), loadHomePage(), loadSEOSettings()]);
+  const [{ data }] = await Promise.all([loadSEOSettings()]);
 
-  const seo = seoSettings?.metaData;
+  const seo = data?.metaData;
 
-  const ogImage = urlForOpenGraphImage(seo?.ogImage);
+  // const ogImage = urlForOpenGraphImage(seo?.ogImage);
   return {
-    title: seo?.title
-      ? {
-          template: `%s | ${seo.title}`,
-          default: seo.title || config.name,
-        }
-      : {
-          template: `%s | ${settings?.name}`,
-          default: settings?.name || config.name,
-        },
-    description: seo?.description ? seo.description : undefined,
-    openGraph: {
-      images: ogImage ? [ogImage] : [],
+    title: {
+      template: `%s | UMI Digital`,
+      default: 'Home',
     },
+    description: seo?.description ? seo.description : undefined,
+    // openGraph: {
+    //   images: ogImage ? [ogImage] : [],
+    // },
     keywords: seo?.keywords ? seo.keywords : undefined,
   };
 }
@@ -81,7 +69,7 @@ export default async function Layout({
           <Analytics />
         </Suspense>
       </div>
-      {draftMode().isEnabled && <LiveVisualEditing />}
+      {(await draftMode()).isEnabled && <LiveVisualEditing />}
     </>
   );
 }

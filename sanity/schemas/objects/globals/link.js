@@ -1,5 +1,5 @@
 import { defineType } from 'sanity';
-import { Link, ArrowCircleUp } from '@phosphor-icons/react';
+import { ArrowCircleUp, Link } from '@phosphor-icons/react';
 
 export default defineType({
   name: 'link',

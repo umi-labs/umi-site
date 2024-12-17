@@ -36,6 +36,24 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'tag',
+          title: 'Tag',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{ type: 'teamMember' }],
+    }),
+    defineField({
       name: 'coverImage',
       title: 'Cover Image',
       description:
@@ -72,7 +90,7 @@ export default defineType({
           },
           styles: [],
         }),
-        // Custom blocks
+        // Custom components
         defineField({
           type: 'image',
           icon: ImageSquare,
@@ -104,6 +122,26 @@ export default defineType({
         }),
       ],
       group: 'content',
+    }),
+    defineField({
+      name: 'time',
+      title: 'Time',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'timeTaken',
+          title: 'Time Taken',
+          type: 'number',
+        }),
+        defineField({
+          name: 'timeType',
+          title: 'Time Type',
+          type: 'string',
+          options: {
+            list: ['blog', 'podcast'],
+          },
+        }),
+      ],
     }),
     defineField({
       name: 'metaData',

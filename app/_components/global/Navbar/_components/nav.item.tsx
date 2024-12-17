@@ -1,4 +1,4 @@
-import type { Menu as MenuType } from '@/types';
+import type { Menu as MenuType } from '@/types/components/nav';
 import React from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -11,15 +11,10 @@ const NavItem = ({ item }: { item: MenuType }) => {
   const [open, setOpen] = React.useState(false);
 
   return item.displayList ? (
-    <div
-      id="NavItem"
-      className="group"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div id="NavItem" className="group" onMouseEnter={() => setOpen(true)}>
       <button
         id="nav-item__trigger"
-        className="hocus:text-gray-900 flex items-center text-xs text-gray-500 transition-all duration-300 ease-in-out"
+        className="flex items-center text-xs font-medium capitalize text-charcoal transition-all duration-300 ease-in-out hocus:text-gray-900"
         onClick={() => setOpen(!open)}
       >
         <span>{item.title}</span>
@@ -33,7 +28,7 @@ const NavItem = ({ item }: { item: MenuType }) => {
       </button>
       <div
         className={cn(
-          'fixed inset-0 -z-[2] h-screen w-screen bg-black/50 transition-all duration-300 ease-in-out',
+          'fixed inset-0 -z-10 h-screen w-screen bg-black/50 transition-all duration-300 ease-in-out',
           open ? 'opacity-50' : 'hidden opacity-0'
         )}
         onClick={() => setOpen(!open)}
@@ -59,9 +54,10 @@ const Content = ({
     <div
       id="nav-item__content"
       className={cn(
-        'absolute left-0 top-0 -z-[1] w-screen bg-anti-flash px-4 pb-6 pt-20 transition-transform duration-300 ease-default',
+        'absolute left-0 top-0 -z-[1] w-screen bg-anti-flash px-4 pb-6 pt-20 capitalize transition-transform duration-300 ease-default',
         open ? 'animate-navContentDown' : 'animate-navContentUp'
       )}
+      onMouseEnter={() => setOpen(true)}
     >
       <div className="grid grid-cols-4">
         <ul className="col-start-3 flex flex-col gap-y-4">

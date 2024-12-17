@@ -55,7 +55,7 @@ export default defineType({
     }),
     defineField({
       name: 'blocks',
-      description: 'Used to add blocks to the home page',
+      description: 'Used to add components to the home page',
       title: 'Blocks',
       type: 'blocks',
       group: 'content',

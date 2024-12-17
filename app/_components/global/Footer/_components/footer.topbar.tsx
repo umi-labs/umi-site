@@ -20,7 +20,7 @@ export default function TopBar({
   logo: ThemeSettingsPayload['logo'];
 }) {
   return (
-    <div className="flex flex-row flex-wrap justify-between gap-9 lg:flex-nowrap">
+    <div className="mx-auto flex w-full max-w-7xl flex-row flex-wrap justify-between gap-9 lg:flex-nowrap">
       <Container className="col-span-1 hidden flex-col items-start justify-start gap-y-4 lg:flex">
         <NextLink href={'/'}>
           {logo && (
@@ -48,7 +48,7 @@ export default function TopBar({
               {menu.itemsList?.items?.map((item, index) => (
                 <li key={index}>
                   <Link
-                    link={item}
+                    link={item.navItemUrl}
                     className="text-xs text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700"
                   >
                     {item?.navItemUrl?.internalLink?.title}

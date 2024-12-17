@@ -1,6 +1,8 @@
 import { Header } from '@/app/_components/shared/Header';
-import BasicHero from '@/app/_components/shared/Heros/BasicHero';
-import PrimaryHero from '@/app/_components/shared/Heros/PrimaryHero';
+import BasicHero from '@/app/_components/shared/heros/BasicHero';
+import PrimaryHero from '@/app/_components/shared/heros/PrimaryHero';
+import HeroWithMedia from '@/app/_components/shared/heros/heroWithMedia';
+import HeroImageOverlap from '@/app/_components/shared/heros/heroImageOverlap';
 
 export default function HeroSwitcher({
   data,
@@ -20,6 +22,10 @@ export default function HeroSwitcher({
       return <PrimaryHero title={data?.title} />;
     case 'basicHero':
       return <BasicHero heading={data?.heading} />;
+    case 'heroWithMedia':
+      return <HeroWithMedia data={data} />;
+    case 'heroImageOverlap':
+      return <HeroImageOverlap data={data} />;
     default:
       return <Header title={data?.title} description={data?.overview} />;
   }

@@ -1,29 +1,8 @@
 import './globals.css';
 
 import { nunito, poppins, tenorSans } from '@/app/_utils/fonts';
-import localFont from 'next/font/local';
 import { loadThemeSettings } from '@/sanity/loader/loadQuery';
 import React from 'react';
-
-const satoshi = localFont({
-  src: '../public/assets/fonts/Satoshi.woff2',
-  variable: '--font-satoshi',
-});
-
-const satoshiItalic = localFont({
-  src: '../public/assets/fonts/SatoshiItalic.woff2',
-  variable: '--font-satoshi-italic',
-});
-
-const switzer = localFont({
-  src: '../public/assets/fonts/Switzer-Variable.woff2',
-  variable: '--font-switzer',
-});
-
-const switzerItalic = localFont({
-  src: '../public/assets/fonts/Switzer-VariableItalic.woff2',
-  variable: '--font-switzer-italic',
-});
 
 export default async function RootLayout({
   children,

@@ -1,6 +1,7 @@
 'use client';
 
-import type { NavItem as NavItemType } from '@/types';
+import type { NavItem as NavItemType } from '@/types/components/nav';
+import type { Link } from '@/types/generics';
 import React from 'react';
 
 export enum Status {
@@ -14,11 +15,7 @@ export type ResolvedHref = {
   href: string;
 };
 
-const useResolvedHref = ({
-  navItem,
-}: {
-  navItem: NavItemType;
-}): ResolvedHref => {
+const useResolvedHref = ({ link }: { link?: Link }): ResolvedHref => {
   const [internalLink, setInternalLink] =
     React.useState<NavItemType['navItemUrl']['internalLink']>();
   const [resolvedHref, setResolvedHref] = React.useState<{
@@ -30,12 +27,12 @@ const useResolvedHref = ({
   });
 
   React.useEffect(() => {
-    if (!navItem) {
+    if (!link) {
       setResolvedHref({ status: Status.ERROR, href: '' });
     } else {
-      setInternalLink(navItem?.navItemUrl?.internalLink);
+      setInternalLink(link?.internalLink);
     }
-  }, [navItem]);
+  }, [link]);
 
   React.useEffect(() => {
     if (internalLink?.postType) {

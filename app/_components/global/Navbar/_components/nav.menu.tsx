@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils';
 import type {
   Menu as MenuType,
   NavItem as NavItemType,
-  SettingsPayload,
-} from '@/types';
+} from '@/types/components/nav';
+import type { SettingsPayload } from '@/types';
 
 interface MenuProps {
   show: boolean;
@@ -202,6 +202,7 @@ const MenuLink = ({
 }) => {
   return (
     <Link
+      // @ts-ignore
       link={navItem}
       className={cn('animate-rotateUpAndIn uppercase text-charcoal')}
       onClick={() => setShow(!show)}

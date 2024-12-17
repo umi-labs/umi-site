@@ -9,14 +9,6 @@ export default defineType({
       name: 'imageWithText',
       type: 'imageWithText',
     }),
-    defineArrayMember({
-      name: 'formBuilder',
-      type: 'formBuilder',
-    }),
-    defineArrayMember({
-      name: 'hero1',
-      type: 'hero1',
-    }),
     defineField({
       name: 'form',
       title: 'Form',
@@ -26,6 +18,42 @@ export default defineType({
     defineArrayMember({
       name: 'contactFormBlock',
       type: 'contactFormBlock',
+    }),
+    defineArrayMember({
+      name: 'ctaSimple',
+      type: 'ctaSimple',
+    }),
+    defineArrayMember({
+      name: 'ctaTitleImage',
+      type: 'ctaTitleImage',
+    }),
+    defineArrayMember({
+      name: 'ctaWithForm',
+      type: 'ctaWithForm',
+    }),
+    defineArrayMember({
+      name: 'heroWithMedia',
+      type: 'heroWithMedia',
+    }),
+    defineArrayMember({
+      name: 'cardGridSideTitle',
+      type: 'cardGridSideTitle',
+    }),
+    defineArrayMember({
+      name: 'cardGridSideTitleSimple',
+      type: 'cardGridSideTitleSimple',
+    }),
+    defineArrayMember({
+      name: 'testimonialsCarousel',
+      type: 'testimonialsCarousel',
+    }),
+    defineArrayMember({
+      name: 'logoCloud',
+      type: 'logoCloud',
+    }),
+    defineArrayMember({
+      name: 'blogGrid',
+      type: 'blogGrid',
     }),
   ],
 });

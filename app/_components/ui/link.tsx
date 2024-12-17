@@ -1,25 +1,27 @@
 import React from 'react';
 import NextLink from 'next/link';
-import { cva, VariantProps } from 'class-variance-authority';
+import { VariantProps } from 'class-variance-authority';
 import useResolvedHref, {
   ResolvedHref,
   Status,
 } from '@/app/_utils/hooks/useResolvedHref';
-import { NavItem } from '@/types';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/app/_components/ui/button';
+import type { Link as LinkType } from '@/types/generics';
 
 interface LinkProps
   extends React.ComponentPropsWithoutRef<'a'>,
-    VariantProps<typeof LinkStyles> {
+    VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
-  type?: 'internal' | 'internal-interactive' | 'external';
   href?: string;
-  link?: NavItem;
+  link?: LinkType;
   className?: React.ComponentPropsWithoutRef<'a'>['className'];
 }
 
 export default function Link({
   children,
-  type = 'internal',
+  variant = 'link',
+  size = 'link',
   link,
   href,
   className,
@@ -29,7 +31,7 @@ export default function Link({
   let url: string;
 
   if (link) {
-    resolvedHref = useResolvedHref({ navItem: link });
+    resolvedHref = useResolvedHref({ link: link });
   }
 
   url = href
@@ -39,23 +41,14 @@ export default function Link({
       resolvedHref?.status === Status.SUCCESS
       ? resolvedHref?.href
       : '';
+
   return (
-    <NextLink href={url} className={LinkStyles({ type, className })} {...props}>
+    <NextLink
+      href={url}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    >
       {children}
     </NextLink>
   );
 }
-
-const LinkStyles = cva('a', {
-  variants: {
-    type: {
-      internal: [
-        'text-xs text-gray-500 transition-all duration-300 ease-in-out hocus:text-gray-900 hocus:underline underline-offset-4',
-      ],
-      'internal-interactive': [
-        'text-zinc-900 hocus:text-zinc-700 interactable',
-      ],
-      external: ["text-zinc-900 hocus:text-zinc-700 after:content-['_↗']"],
-    },
-  },
-});

@@ -1,4 +1,4 @@
-import type { Menu as MenuType } from '@/types';
+import type { Menu as MenuType } from '@/types/components/nav';
 import React from 'react';
 import NavItem from '@/app/_components/global/Navbar/_components/nav.item';
 

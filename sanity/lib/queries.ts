@@ -4,16 +4,113 @@ export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id,
     overview,
-    hero,
-    blocks,
-    metaData,
+    hero[]{
+      ...,
+      image{
+        ...,
+        asset->
+      },
+      buttons[] {
+        ...,
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      },
+      button {
+        ...,
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      }
+    },
+    blocks[] {
+      ...,
+      image{
+        ...,
+        asset->
+      },
+      buttons[] {
+        ...,
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      },
+      button {
+        ...,
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      },
+      features[] {
+        ...,
+        button {
+          ...,
+          link{
+            ...,
+            internalLink ->{
+              _type,
+              "slug": slug.current,
+              title,
+              postType->
+            }
+          }
+        },
+      },
+      testimonials[] {
+        ...,
+        image{
+          ...,
+          asset->
+        },
+      },
+      logos[] {
+        ...,
+        logo {
+          ...,
+          asset->
+        },
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      }
+    },
+    metaData{
+      ...,
+      title
+    },
     title,
   }
 `;
-
-// export const getLinkRefResolvedQuery = qroq`
-//
-// `;
 
 export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
@@ -22,14 +119,33 @@ export const pagesBySlugQuery = groq`
     blocks[]->{
       ...,
       inbox->,
+      image{
+        ...,
+        asset->
+      }
     },
-    metaData->,
+    metaData,
     "postType": *[_type=='postType' && references(^._id)]{
       title,
       "slug": slug.current,
     },
     title,
     "slug": slug.current,
+  }
+`;
+
+export const recentPostsQuery = groq`
+  *[_type == "post"] {
+    ...,
+    "slug": slug.current,
+    coverImage{
+      ...,
+      asset->
+    },
+    author-> {
+      name,
+      "slug": slug.current
+    }
   }
 `;
 

@@ -13,7 +13,7 @@ export default function BottomBar({
   logo: ThemeSettingsPayload['logo'];
 }) {
   return (
-    <div>
+    <div className="mx-auto w-full max-w-7xl">
       <Container className="flex flex-col items-center justify-center gap-y-4 lg:hidden">
         {logo && (
           <ImageBox
