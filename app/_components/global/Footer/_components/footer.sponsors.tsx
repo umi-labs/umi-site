@@ -1,4 +1,4 @@
-import type { Sponsor } from '@/types';
+import type { Sponsor } from '@/types/generics';
 import ImageBox from '@/app/_components/shared/ImageBox';
 import React from 'react';
 

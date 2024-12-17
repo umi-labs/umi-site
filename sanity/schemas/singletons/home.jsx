@@ -30,20 +30,22 @@ export default defineType({
           name: 'primaryHero',
           type: 'primaryHero',
         }),
+        defineArrayMember({
+          name: 'heroWithMedia',
+          type: 'heroWithMedia',
+        }),
+        defineArrayMember({
+          name: 'heroImageOverlap',
+          type: 'heroImageOverlap',
+        }),
       ],
       validation: (rule) => rule.required().max(1),
     }),
     defineField({
       name: 'blocks',
-      description: 'Used to add blocks to the home page',
+      description: 'Used to add components to the home page',
       title: 'Blocks',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          name: 'imageWithText',
-          type: 'imageWithText',
-        }),
-      ],
+      type: 'blocks',
     }),
     defineField({
       name: 'metaData',

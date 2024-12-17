@@ -9,6 +9,15 @@ import Link from 'next/link';
 import ImageWText from '@/app/_components/shared/blocks/ImageWText';
 import ImageBox from '@/app/_components/shared/ImageBox';
 import { FormBuilderBlock } from '@/app/_components/global/FormBuilder/FormBuilder';
+import CTASimple from '@/app/_components/shared/blocks/CTASimple';
+import CardGridSideTitle from '@/app/_components/shared/blocks/cardGridSideTitle';
+import CardGridSideTitleSimple from '@/app/_components/shared/blocks/cardGridSideTitleSimple';
+import HeroWithMedia from '@/app/_components/shared/heros/heroWithMedia';
+import TestimonialsCarousel from '@/app/_components/shared/blocks/testimonialsCarousel';
+import LogoCloud from '@/app/_components/shared/blocks/logoCloud';
+import CTAWithForm from '@/app/_components/shared/blocks/CTAWithForm';
+import BlogGrid from '@/app/_components/shared/blocks/blogGrid';
+import CTATitleImage from '@/app/_components/shared/blocks/CTATitleImage';
 
 export function CustomPortableText({
   paragraphClasses,
@@ -56,6 +65,33 @@ export function CustomPortableText({
             )}
           </div>
         );
+      },
+      ctaSimple: ({ value }) => {
+        return <CTASimple data={value} />;
+      },
+      ctaTitleImage: ({ value }) => {
+        return <CTATitleImage data={value} />;
+      },
+      ctaWithForm: ({ value }) => {
+        return <CTAWithForm data={value} />;
+      },
+      cardGridSideTitle: ({ value }) => {
+        return <CardGridSideTitle data={value} />;
+      },
+      cardGridSideTitleSimple: ({ value }) => {
+        return <CardGridSideTitleSimple data={value} />;
+      },
+      testimonialsCarousel: ({ value }) => {
+        return <TestimonialsCarousel data={value} />;
+      },
+      heroWithMedia: ({ value }) => {
+        return <HeroWithMedia data={value} />;
+      },
+      logoCloud: ({ value }) => {
+        return <LogoCloud data={value} />;
+      },
+      blogGrid: ({ value }) => {
+        return <BlogGrid data={value} />;
       },
       imageWithText: ({ value }) => {
         const { content, images, title } = value || {};

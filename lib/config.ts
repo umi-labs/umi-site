@@ -1,4 +1,4 @@
 export const config = {
-  name: 'Headless Template',
+  name: 'UMI Digital',
   desc: 'A headless template for Next.js & Sanity',
 };

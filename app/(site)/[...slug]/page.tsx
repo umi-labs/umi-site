@@ -22,7 +22,7 @@ export async function generateMetadata(
   );
 
   return {
-    title: page?.metaData?.title ? page?.metaData?.title : 'UMI Digital',
+    title: 'UMI Digital',
     description: page?.metaData?.description
       ? page?.metaData?.description
       : (await parent).description,
@@ -44,7 +44,7 @@ export default async function PageSlugRoute({ params }) {
     slug.length > 1 ? slug[slug.length - 1] : slug[0]
   );
 
-  if (draftMode().isEnabled) {
+  if ((await draftMode()).isEnabled) {
     return <PagePreview params={params} initial={initial} />;
   }
 

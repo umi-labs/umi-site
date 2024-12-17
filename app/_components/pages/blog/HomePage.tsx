@@ -1,7 +1,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader';
 
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
-import HeroSwitcher from '@/app/_components/shared/Heros/HeroSwitcher';
+import HeroSwitcher from '@/app/_components/shared/heros/HeroSwitcher';
 import type { HomePagePayload } from '@/types';
 
 export interface HomePageProps {
@@ -26,7 +26,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
           />
         ))}
 
-      {/* blocks */}
+      {/* components */}
       {blocks && (
         <CustomPortableText
           paragraphClasses="font-serif max-w-3xl text-gray-600 text-xl"

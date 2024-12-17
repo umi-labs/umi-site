@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
-import HeroSwitcher from '@/app/_components/shared/Heros/HeroSwitcher';
+import HeroSwitcher from '@/app/_components/shared/heros/HeroSwitcher';
 import type { PagePayload } from '@/types';
 
 export interface PageProps {
@@ -25,7 +25,7 @@ function Page({ data }: PageProps) {
             />
           ))}
 
-        {/* blocks */}
+        {/* components */}
         {blocks && (
           <CustomPortableText
             paragraphClasses="font-serif max-w-3xl text-gray-600 text-xl"

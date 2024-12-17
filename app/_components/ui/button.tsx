@@ -5,26 +5,30 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center font-medium justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         default:
-          'bg-charcoal shadow hover:bg-["rgba(88, 99, 112, 1)"] w-fit medium',
+          'bg-primary-foreground border border-primary-foreground text-primary-background shadow hover:bg-primary-background w-fit hover:text-primary-foreground',
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+          'border border-primary-foreground text-primary-foreground bg-primary-background shadow-sm hover:bg-primary-foreground hover:text-primary-background',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+          'bg-primary-background border border-primary-background text-primary-foreground shadow hover:bg-primary-foreground w-fit hover:text-primary-background',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+        link: 'text-xs text-gray-500 transition-all duration-300 ease-in-out hocus:text-gray-900 hocus:underline underline-offset-4',
+        'link-external':
+          "text-zinc-900 hocus:text-zinc-700 after:content-['_↗']",
+        'link-interactive': 'text-zinc-900 hocus:text-zinc-700 interactable',
       },
       size: {
         default: 'px-6 py-3',
         sm: 'h-8 rounded-md px-3 text-xs',
         lg: 'h-10 rounded-md px-8',
         icon: 'h-9 w-9',
+        link: 'w-fit h-fit',
       },
     },
     defaultVariants: {
@@ -52,6 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
+
 Button.displayName = 'Button';
 
 export { Button, buttonVariants };

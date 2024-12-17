@@ -8,9 +8,7 @@ const NavCta = ({ data }: { data: SettingsPayload }) => {
     data?.mainNav?.ctaButton?.text && (
       <div className="flex items-center justify-center">
         <Link href={data?.mainNav?.ctaButton?.url}>
-          <Button className="rounded-md bg-charcoal px-4 py-2 text-white">
-            {data?.mainNav?.ctaButton?.text}
-          </Button>
+          <Button className="">{data?.mainNav?.ctaButton?.text}</Button>
         </Link>
       </div>
     )

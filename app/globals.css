@@ -3,110 +3,114 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+    * {
+        @apply border-border;
+    }
 
-  body {
-    @apply overflow-x-hidden bg-primary-background text-primary-foreground;
-  }
+    body {
+        @apply overflow-x-hidden bg-primary-background text-primary-foreground;
+    }
 
-  body::-webkit-scrollbar {
-    @apply w-2;
-  }
+    body::-webkit-scrollbar {
+        @apply w-2;
+    }
 
-  body::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
+    body::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
 
-  body::-webkit-scrollbar-thumb {
-    @apply rounded-none bg-primary-foreground;
-  }
+    body::-webkit-scrollbar-thumb {
+        @apply rounded-none bg-primary-foreground;
+    }
 
-  body .custom-cursor {
-    @apply lg:cursor-none;
-  }
+    body .custom-cursor {
+        @apply lg:cursor-none;
+    }
 
-  .button,
-  button,
-  button.medium {
-    @apply font-subtitle text-base font-semibold leading-4 text-white;
-  }
+    .flex-center {
+        @apply flex justify-center items-center
+    }
 
-  button .small {
-    @apply text-xs leading-4;
-  }
+    .button,
+    button,
+    button.medium {
+        @apply font-subtitle text-base font-semibold leading-4 text-white;
+    }
 
-  button .large {
-    @apply text-lg leading-4;
-  }
+    button .small {
+        @apply text-xs leading-4;
+    }
 
-  .test-container {
-    @apply flex h-screen w-screen flex-col items-center justify-center p-8;
-  }
+    button .large {
+        @apply text-lg leading-4;
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h6 {
-    @apply font-heading font-semibold tracking-reduced;
-  }
+    .test-container {
+        @apply flex h-screen w-screen flex-col items-center justify-center p-8;
+    }
 
-  h1,
-  h2 {
-    @apply leading-5;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h6 {
+        @apply font-heading font-semibold tracking-reduced;
+    }
 
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply leading-6;
-  }
+    h1,
+    h2 {
+        @apply leading-5;
+    }
 
-  h1 {
-    @apply text-5xl;
-  }
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply leading-6;
+    }
 
-  h2 {
-    @apply text-4xl;
-  }
+    h1 {
+        @apply text-5xl;
+    }
 
-  h3 {
-    @apply text-2xl;
-  }
+    h2 {
+        @apply text-4xl;
+    }
 
-  h4 {
-    @apply text-xl;
-  }
+    h3 {
+        @apply text-2xl;
+    }
 
-  h5 {
-    @apply font-subtitle text-xs font-bold tracking-expanded;
-  }
+    h4 {
+        @apply text-xl;
+    }
 
-  h6 {
-    @apply text-lg tracking-normal;
-  }
+    h5 {
+        @apply font-subtitle text-xs font-bold tracking-expanded;
+    }
 
-  p {
-    @apply font-body text-lg font-medium leading-['160%'] tracking-normal;
-  }
+    h6 {
+        @apply text-lg tracking-normal;
+    }
 
-  p .small {
-    @apply text-base leading-['150%'];
-  }
+    p {
+        @apply font-body text-lg font-medium leading-['160%'] tracking-normal;
+    }
 
-  p .xsmall {
-    @apply text-sm;
-  }
+    p .small {
+        @apply text-base leading-['150%'];
+    }
+
+    p .xsmall {
+        @apply text-sm;
+    }
 }
 
 .inVCpJ,
 .bzuUuj {
-  border-left: 0 !important;
+    border-left: 0 !important;
 }
 
 .btLGWs {
-  padding-left: 0 !important;
+    padding-left: 0 !important;
 }
