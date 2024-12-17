@@ -24,7 +24,6 @@ export default async function RootLayout({
       style={styles}
     >
       <head>
-        <title></title>
         <link
           rel="apple-touch-icon"
           href={themeSettings?.favicon?.appleTouchIcon?.asset?.url}

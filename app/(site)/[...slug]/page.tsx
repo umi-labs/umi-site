@@ -22,7 +22,7 @@ export async function generateMetadata(
   );
 
   return {
-    title: 'UMI Digital',
+    title: page?.title,
     description: page?.metaData?.description
       ? page?.metaData?.description
       : (await parent).description,

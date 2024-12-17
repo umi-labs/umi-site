@@ -16,7 +16,6 @@ function Cursor() {
 
       const keyframes = {
         transform: `translate(${x}px, ${y}px) scale(${interacting ? 4 : 1})`,
-        backgroundColor: interacting ? 'transparent' : '#212529',
       };
 
       trailer.animate(keyframes, {
@@ -35,7 +34,7 @@ function Cursor() {
 
   return (
     <div
-      className="pointer-events-none fixed left-0 top-0 z-[10000] hidden h-3 w-3 items-center justify-center rounded-[20px] border-[0.1em] border-solid border-[#212529] bg-[#212529] mix-blend-difference invert lg:flex"
+      className="pointer-events-none fixed left-0 top-0 z-[10000] hidden h-3 w-3 items-center justify-center rounded-[20px] border-[0.1em] border-solid border-primary-accent bg-primary-accent mix-blend-difference invert lg:flex"
       ref={ref}
     />
   );
