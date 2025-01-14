@@ -37,11 +37,7 @@ export async function generateStaticParams() {
 export default async function PageSlugRoute({ params }) {
   const { slug } = params;
 
-  console.log('service page - slug: ', slug);
-
   const initial = await loadService(slug);
-
-  console.log('service page - initial: ', initial);
 
   if ((await draftMode()).isEnabled) {
     return <PagePreview params={params} initial={initial} />;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs';
-import { loadProject } from '@/sanity/loader/loadQuery';
+import { loadPage } from '@/sanity/loader/loadQuery';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import type { Metadata, ResolvingMetadata } from 'next';
-import Project from '@/app/_components/pages/project/Project';
-import ProjectPreview from '@/app/_components/pages/project/ProjectPreview';
+import PagePreview from '@/app/_components/pages/page/PagePreview';
+import Page from '@/app/_components/pages/page/Page';
 
 type Props = {
   params: { slug: string };
@@ -15,7 +15,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { data: project } = await loadProject(params.slug);
+  const { data: project } = await loadPage(params.slug);
 
   return {
     title: project?.metaData?.title
@@ -31,21 +31,21 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  return await generateStaticSlugs('project');
+  return await generateStaticSlugs('page');
 }
 
 export default async function PageSlugRoute({ params }) {
   const { slug } = params;
 
-  const initial = await loadProject(slug);
+  const initial = await loadPage(slug);
 
   if ((await draftMode()).isEnabled) {
-    return <ProjectPreview params={params} initial={initial} />;
+    return <PagePreview params={params} initial={initial} />;
   }
 
   if (!initial.data) {
     notFound();
   }
 
-  return <Project data={initial.data} />;
+  return <Page data={initial.data} />;
 }

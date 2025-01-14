@@ -62,8 +62,8 @@ export default function MeetTheTeamFilterableBlock() {
 
   React.useEffect(() => {
     if (!rolesQueryResult || rolesQueryResult.length === 0) return;
-    const rolesSet: Set<string> = new Set(
-      rolesQueryResult?.map((role) => role.role).flat()
+    const rolesSet: Set<string | undefined> = new Set(
+      rolesQueryResult.map((role) => role.role).flat()
     );
 
     if (rolesSet.size === 0) return;
@@ -71,6 +71,7 @@ export default function MeetTheTeamFilterableBlock() {
     // Convert the Set to an Array
     const rolesArray = ['All', ...rolesSet];
 
+    // @ts-ignore
     setRoles(rolesArray);
   }, [rolesQueryResult]);
 

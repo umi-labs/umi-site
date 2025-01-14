@@ -3,6 +3,7 @@ import React from 'react';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import HeroSwitcher from '@/app/_components/shared/heros/HeroSwitcher';
 import type { PagePayload } from '@/types';
+import Script from 'next/script';
 
 export interface PageProps {
   data: PagePayload | null;
@@ -11,8 +12,20 @@ export interface PageProps {
 function Page({ data }: PageProps) {
   const { overview, blocks, title, hero } = data ?? {};
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Test',
+    description: 'This is a test desc',
+  };
+
   return (
     <div>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <div className="mb-14">
         {/* Hero */}
         {hero &&

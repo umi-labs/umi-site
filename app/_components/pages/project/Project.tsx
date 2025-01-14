@@ -15,9 +15,7 @@ export interface ProjectProps {
 
 function Project({ data }: ProjectProps) {
   const { body } = data ?? {};
-
-  console.log('data: ', data);
-
+  
   const relatedProjects = {
     separator: true,
     title: 'Related Projects',

@@ -3,8 +3,6 @@ import { client } from '@/sanity/lib/client';
 export async function POST(req: Request) {
   const data = await req.json();
 
-  console.log(data);
-
   // return new Response(JSON.stringify({ _type: 'formBuilder', ...data }), {
   //   status: 200,
   // })
