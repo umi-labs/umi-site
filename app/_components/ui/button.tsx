@@ -10,11 +10,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-primary-foreground border border-primary-foreground text-primary-background shadow hover:bg-primary-background w-fit hover:text-primary-foreground',
+          'bg-primary-foreground border border-primary-foreground text-primary-background shadow hover:bg-transparent w-fit hover:text-primary-foreground',
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
-          'border border-primary-foreground text-primary-foreground bg-primary-background shadow-sm hover:bg-primary-foreground hover:text-primary-background',
+          'border border-primary-foreground text-primary-foreground bg-transparent shadow-sm hover:bg-primary-foreground hover:text-primary-background',
         secondary:
           'bg-primary-background border border-primary-background text-primary-foreground shadow hover:bg-primary-foreground w-fit hover:text-primary-background',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
@@ -22,6 +22,8 @@ const buttonVariants = cva(
         'link-external':
           "text-zinc-900 hocus:text-zinc-700 after:content-['_↗']",
         'link-interactive': 'text-zinc-900 hocus:text-zinc-700 interactable',
+        'link-light':
+          'text-zinc-100 hocus:text-zinc-200 hocus:underline underline-offset-4',
       },
       size: {
         default: 'px-6 py-3',

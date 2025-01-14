@@ -18,6 +18,7 @@ export type ResolvedHref = {
 const useResolvedHref = ({ link }: { link?: Link }): ResolvedHref => {
   const [internalLink, setInternalLink] =
     React.useState<NavItemType['navItemUrl']['internalLink']>();
+  const [externalLink, setExternalLink] = React.useState<Link['externalUrl']>();
   const [resolvedHref, setResolvedHref] = React.useState<{
     status: Status;
     href: string;
@@ -25,6 +26,12 @@ const useResolvedHref = ({ link }: { link?: Link }): ResolvedHref => {
     status: Status.IDLE,
     href: '',
   });
+
+  React.useEffect(() => {
+    if (link?.externalUrl) {
+      setExternalLink(link?.externalUrl);
+    }
+  }, [link]);
 
   React.useEffect(() => {
     if (!link) {
@@ -35,10 +42,20 @@ const useResolvedHref = ({ link }: { link?: Link }): ResolvedHref => {
   }, [link]);
 
   React.useEffect(() => {
-    if (internalLink?.postType) {
+    if (externalLink) {
+      setResolvedHref({
+        status: Status.SUCCESS,
+        href: externalLink,
+      });
+    } else if (internalLink?.postType) {
       setResolvedHref({
         status: Status.SUCCESS,
         href: `/${internalLink?.postType.slug.current}/${internalLink?.slug}`,
+      });
+    } else if (internalLink?._type !== 'page') {
+      setResolvedHref({
+        status: Status.SUCCESS,
+        href: `/${internalLink?._type}/${internalLink?.slug}`,
       });
     } else {
       setResolvedHref({
@@ -46,15 +63,7 @@ const useResolvedHref = ({ link }: { link?: Link }): ResolvedHref => {
         href: `/${internalLink?.slug}`,
       });
     }
-  }, [internalLink]);
-
-  // const href = navItem.navItemUrl?.displayExternal
-  //   ? navItem.navItemUrl.externalUrl
-  //   : resolveHref(internalLink?._type, internalLink?.slug.current);
-  //
-  // if (!href) {
-  //   setResolvedHref({ status: Status.ERROR, href: '' });
-  // }
+  }, [internalLink, externalLink]);
 
   return resolvedHref;
 };

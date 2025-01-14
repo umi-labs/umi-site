@@ -109,7 +109,7 @@ const NavItem = ({
   }, [item]);
 
   return item.displayList ? (
-    <div className="relative h-full w-full">
+    <div className="relative h-full w-full overflow-hidden">
       <button
         className="w-full overflow-hidden uppercase text-charcoal md:w-1/2"
         onClick={() => {

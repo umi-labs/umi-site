@@ -1,5 +1,5 @@
 import { Browser } from '@phosphor-icons/react';
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   type: 'document',
@@ -39,23 +39,12 @@ export default defineType({
     defineField({
       name: 'hero',
       title: 'Hero',
-      type: 'array',
-      validation: (Rule) => Rule.max(1),
-      of: [
-        defineArrayMember({
-          name: 'primaryHero',
-          type: 'primaryHero',
-        }),
-        defineArrayMember({
-          name: 'basicHero',
-          type: 'basicHero',
-        }),
-      ],
+      type: 'heros',
       group: 'content',
     }),
     defineField({
       name: 'blocks',
-      description: 'Used to add components to the home page',
+      description: 'Used to add components to the page',
       title: 'Blocks',
       type: 'blocks',
       group: 'content',

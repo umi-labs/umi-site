@@ -11,9 +11,12 @@ export async function Navbar() {
   const settings = await loadSettings();
   const { data: theme } = await loadThemeSettings();
 
+  console.log(theme);
+
   if (draftMode().isEnabled) {
     return <NavbarPreview initial={settings} />;
   }
 
+  // @ts-ignore
   return <NavbarLayout data={settings.data} logo={theme?.logo} />;
 }

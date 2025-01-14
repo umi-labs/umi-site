@@ -31,20 +31,6 @@
         @apply flex justify-center items-center
     }
 
-    .button,
-    button,
-    button.medium {
-        @apply font-subtitle text-base font-semibold leading-4 text-white;
-    }
-
-    button .small {
-        @apply text-xs leading-4;
-    }
-
-    button .large {
-        @apply text-lg leading-4;
-    }
-
     .test-container {
         @apply flex h-screen w-screen flex-col items-center justify-center p-8;
     }
@@ -106,11 +92,11 @@
     }
 }
 
-.inVCpJ,
-.bzuUuj {
-    border-left: 0 !important;
-}
+/*.inVCpJ,*/
+/*.bzuUuj {*/
+/*    border-left: 0 !important;*/
+/*}*/
 
-.btLGWs {
-    padding-left: 0 !important;
-}
+/*.btLGWs {*/
+/*    padding-left: 0 !important;*/
+/*}*/

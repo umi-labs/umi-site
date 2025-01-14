@@ -5,7 +5,7 @@ import Menu from '@/app/_components/global/Navbar/_components/nav.menu';
 
 const MenuLine = {
   default: cn(
-    'h-[2px] bg-primary-accent transition-all duration-300 ease w-8 lg:first-of-type:w-6 lg:group-hover:first-of-type:w-8 lg:group-hover:last-of-type:w-6'
+    'h-[2px] bg-primary-foreground transition-all duration-300 ease w-8 lg:first-of-type:w-6 lg:group-hover:first-of-type:w-8 lg:group-hover:last-of-type:w-6'
   ),
   open: cn(
     'w-8 lg:first-of-type:w-8 lg:group-hover:last-of-type:w-8 transform first-of-type:rotate-45 first-of-type:translate-y-[200%] last-of-type:-rotate-45 last-of-type:-translate-y-[200%] delay-150'

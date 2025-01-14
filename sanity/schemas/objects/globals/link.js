@@ -20,7 +20,15 @@ export default defineType({
       name: 'internalLink',
       description: 'Select pages for navigation',
       type: 'reference',
-      to: [{ type: 'page' }, { type: 'post' }],
+      to: [
+        { type: 'page' },
+        { type: 'post' },
+        { type: 'project' },
+        { type: 'team' },
+        { type: 'service' },
+        { type: 'review' },
+        { type: 'job' },
+      ],
       // Hide field if checkbox is true
       hidden: ({ parent, value }) => parent?.displayExternal,
     },
@@ -29,6 +37,10 @@ export default defineType({
       title: 'External URL',
       type: 'url',
       description: 'Use fully qualified URLS for external link',
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ['http', 'https', 'mailto', 'tel'],
+        }),
       //
       // Hide field if checkbox is false
       hidden: ({ parent, value }) => !parent?.displayExternal,

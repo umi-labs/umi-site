@@ -10,13 +10,13 @@ export default function CTASimple({ data }: CTASimpleProps) {
   return (
     <section
       className={cn(
-        'flex-center relative size-full min-h-[50svh] bg-primary-foreground text-primary-background',
-        data.topBuffer && 'mt-24',
-        data.bottomBuffer && 'mb-24'
+        'flex-center relative mx-auto size-full min-h-[50svh] max-w-7xl bg-primary-foreground text-primary-background',
+        data.topBuffer && 'mt-32',
+        data.bottomBuffer && 'mb-32'
       )}
     >
-      <TopBuffer visible={data.topBuffer} />
-      <div className="relative mx-auto grid min-h-[50svh] w-screen max-w-7xl grid-cols-1 grid-rows-6 place-items-center gap-x-36 overflow-clip px-8 py-10 md:grid-cols-5 md:grid-rows-1 lg:px-10">
+      <TopBuffer visible={data.topBuffer} className="w-full max-w-7xl" />
+      <div className="relative grid min-h-[50svh] w-screen grid-cols-1 grid-rows-6 place-items-center gap-x-36 overflow-clip px-8 py-10 md:grid-cols-5 md:grid-rows-1 lg:px-10">
         <BackgroundPatternSVG className="absolute -left-1/2 bottom-0 -z-0 h-full w-auto md:left-0 md:h-auto md:w-full" />
         <div className="flex-center row-span-2 size-full md:col-span-2">
           <Image
@@ -42,7 +42,10 @@ export default function CTASimple({ data }: CTASimpleProps) {
           </Link>
         </div>
       </div>
-      <BottomBuffer visible={data.bottomBuffer} />
+      <BottomBuffer
+        visible={data.bottomBuffer}
+        className="h-fit w-full max-w-7xl"
+      />
     </section>
   );
 }

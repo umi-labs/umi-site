@@ -18,6 +18,15 @@ import LogoCloud from '@/app/_components/shared/blocks/logoCloud';
 import CTAWithForm from '@/app/_components/shared/blocks/CTAWithForm';
 import BlogGrid from '@/app/_components/shared/blocks/blogGrid';
 import CTATitleImage from '@/app/_components/shared/blocks/CTATitleImage';
+import PortfolioFullWidth from '@/app/_components/shared/blocks/portfolio-full-width';
+import ArchivesSection from '@/app/_components/shared/blocks/archive/archives-section';
+import AlternatingContent from '@/app/_components/shared/blocks/alternatingContent';
+import FAQs from '@/app/_components/shared/blocks/FAQs';
+import Carousel from '@/app/_components/shared/blocks/carousel';
+import FeatureGrid from '@/app/_components/shared/blocks/feature-grid';
+import JobVacancies from '@/app/_components/shared/blocks/job-vacancies';
+import UmiCultureGrid from '@/app/_components/shared/blocks/umi-culture-grid';
+import MeetTheTeamSection from '@/app/_components/shared/blocks/meet-the-team/meet-the-team-section';
 
 export function CustomPortableText({
   paragraphClasses,
@@ -29,7 +38,7 @@ export function CustomPortableText({
   const components: PortableTextComponents = {
     block: {
       normal: ({ children }) => {
-        return <p className={paragraphClasses}>{children}</p>;
+        return <p className={`${paragraphClasses} prose`}>{children}</p>;
       },
     },
     marks: {
@@ -69,8 +78,32 @@ export function CustomPortableText({
       ctaSimple: ({ value }) => {
         return <CTASimple data={value} />;
       },
+      archiveBlock: ({ value }) => {
+        return <ArchivesSection data={value} />;
+      },
       ctaTitleImage: ({ value }) => {
         return <CTATitleImage data={value} />;
+      },
+      meetTheTeam: ({ value }) => {
+        return <MeetTheTeamSection data={value} />;
+      },
+      alternatingContent: ({ value }) => {
+        return <AlternatingContent data={value} />;
+      },
+      faq: ({ value }) => {
+        return <FAQs data={value} />;
+      },
+      carousel: ({ value }) => {
+        return <Carousel data={value} />;
+      },
+      featureGrid: ({ value }) => {
+        return <FeatureGrid data={value} />;
+      },
+      jobVacancies: ({ value }) => {
+        return <JobVacancies data={value} />;
+      },
+      umiCultureGrid: ({ value }) => {
+        return <UmiCultureGrid data={value} />;
       },
       ctaWithForm: ({ value }) => {
         return <CTAWithForm data={value} />;
@@ -96,6 +129,9 @@ export function CustomPortableText({
       imageWithText: ({ value }) => {
         const { content, images, title } = value || {};
         return <ImageWText content={content} images={images} title={title} />;
+      },
+      portfolioFullWidth: ({ value }) => {
+        return <PortfolioFullWidth data={value} />;
       },
       form: ({ value }) => {
         const { formFields, _key, inbox } = value || {};

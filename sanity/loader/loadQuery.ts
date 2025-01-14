@@ -7,6 +7,7 @@ import { client } from '@/sanity/lib/client';
 import {
   homePageQuery,
   pagesBySlugQuery,
+  projectsBySlugQuery,
   seoSettingsQuery,
   settingsQuery,
   themeSettingsQuery,
@@ -15,10 +16,14 @@ import { token } from '@/sanity/lib/token';
 import {
   HomePagePayload,
   PagePayload,
+  ProjectPayload,
   SEOSettingsPayload,
   SettingsPayload,
+  TeamPayload,
   ThemeSettingsPayload,
 } from '@/types';
+import { servicesBySlugQuery } from '@/sanity/lib/queries/queries.service';
+import { teamBySlugQuery } from '@/sanity/lib/queries/queries.team';
 
 const serverClient = client.withConfig({
   token,
@@ -98,6 +103,30 @@ export function loadHomePage() {
 export function loadPage(slug: string) {
   return loadQuery<PagePayload | null>(
     pagesBySlugQuery,
+    { slug },
+    { next: { tags: [`page:${slug}`] } }
+  );
+}
+
+export function loadProject(slug: string) {
+  return loadQuery<ProjectPayload | null>(
+    projectsBySlugQuery,
+    { slug },
+    { next: { tags: [`page:${slug}`] } }
+  );
+}
+
+export function loadService(slug: string) {
+  return loadQuery<PagePayload | null>(
+    servicesBySlugQuery,
+    { slug },
+    { next: { tags: [`page:${slug}`] } }
+  );
+}
+
+export function loadTeam(slug: string) {
+  return loadQuery<TeamPayload | null>(
+    teamBySlugQuery,
     { slug },
     { next: { tags: [`page:${slug}`] } }
   );

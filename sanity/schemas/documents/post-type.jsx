@@ -1,5 +1,5 @@
 import { Files } from '@phosphor-icons/react';
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'postType',
@@ -47,9 +47,29 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'relations',
+      title: 'Relations',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          name: 'relation',
+          title: 'Relation',
+          to: [{ type: 'postType' }, { type: 'page' }, { type: 'post' }],
+        }),
+      ],
+    }),
+    defineField({
       name: 'metaData',
       type: 'metaData',
       group: 'seo',
     }),
   ],
+  initialValue: {
+    _type: 'postType',
+    title: 'Untitled',
+    slug: { current: 'untitled' },
+    contentType: 'page',
+    metaData: {},
+  },
 });

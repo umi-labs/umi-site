@@ -125,7 +125,17 @@ export interface Button {
 }
 
 export interface Icon {
-  type: 'eye' | 'rocket' | 'clock' | 'headphones' | 'check' | 'check-circle';
+  type:
+    | 'eye'
+    | 'rocket'
+    | 'clock'
+    | 'headphones'
+    | 'check'
+    | 'check-circle'
+    | 'facebook'
+    | 'twitter'
+    | 'instagram'
+    | 'linkedin';
   weight: 'thin' | 'light' | 'regular' | 'bold' | 'duotone' | 'fill';
 }
 

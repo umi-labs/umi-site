@@ -1,15 +1,15 @@
-import { Files } from '@phosphor-icons/react';
-import { defineField, defineType } from 'sanity';
+import { Users } from '@phosphor-icons/react';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: 'teamMember',
-  title: 'Team Member',
+  name: 'team',
+  title: 'Team',
   type: 'document',
-  icon: Files,
+  icon: Users,
   groups: [
     {
-      name: 'content',
-      title: 'Content',
+      name: 'details',
+      title: 'Details',
     },
     {
       name: 'seo',
@@ -43,7 +43,32 @@ export default defineType({
         hotspot: true,
       },
       validation: (rule) => rule.required(),
-      group: 'content',
+      group: 'details',
+    }),
+    defineField({
+      name: 'role',
+      title: 'Role',
+      type: 'string',
+      group: 'details',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      group: 'details',
+    }),
+    defineField({
+      name: 'socialLinks',
+      title: 'Social Links',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'socialLink',
+          title: 'Social Link',
+          type: 'socialMedia',
+        }),
+      ],
+      group: 'details',
     }),
     defineField({
       name: 'metaData',

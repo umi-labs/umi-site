@@ -172,7 +172,7 @@ const SliderContent = React.forwardRef<
   const { sliderRef, orientation } = useSlider();
 
   return (
-    <div ref={sliderRef} className="overflow-hidden">
+    <div ref={sliderRef} className="w-full overflow-hidden">
       <div
         ref={ref}
         className={cn(

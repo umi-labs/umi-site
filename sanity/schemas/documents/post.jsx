@@ -19,7 +19,7 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      description: 'This field is the title of your project.',
+      description: 'This field is the title of your post.',
       title: 'Title',
       type: 'string',
       validation: (rule) => rule.required(),
@@ -35,6 +35,18 @@ export default defineType({
       },
       validation: (rule) => rule.required(),
     }),
+    defineField({ name: 'featured', title: 'Featured', type: 'boolean' }),
+    defineField({
+      name: 'type',
+      title: 'Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Podcast', value: 'podcast' },
+          { title: 'Blog', value: 'blog' },
+        ],
+      },
+    }),
     defineField({
       name: 'tags',
       title: 'Tags',
@@ -48,10 +60,18 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'string',
+      description:
+        'Used for the <meta> description tag for SEO and some cards.',
+      group: 'seo',
+    }),
+    defineField({
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: [{ type: 'teamMember' }],
+      to: [{ type: 'team' }],
     }),
     defineField({
       name: 'coverImage',

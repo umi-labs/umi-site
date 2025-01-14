@@ -20,6 +20,23 @@ export default defineType({
       type: 'contactFormBlock',
     }),
     defineArrayMember({
+      name: 'featureGrid',
+      type: 'featureGrid',
+    }),
+    defineArrayMember({
+      name: 'faq',
+      type: 'faq',
+    }),
+    defineArrayMember({ name: 'jobVacancies', type: 'jobVacancies' }),
+    defineArrayMember({
+      name: 'umiCultureGrid',
+      type: 'umiCultureGrid',
+    }),
+    defineArrayMember({
+      name: 'meetTheTeam',
+      type: 'meetTheTeam',
+    }),
+    defineArrayMember({
       name: 'ctaSimple',
       type: 'ctaSimple',
     }),
@@ -28,12 +45,24 @@ export default defineType({
       type: 'ctaTitleImage',
     }),
     defineArrayMember({
+      name: 'carousel',
+      type: 'carousel',
+    }),
+    defineArrayMember({
       name: 'ctaWithForm',
       type: 'ctaWithForm',
     }),
     defineArrayMember({
       name: 'heroWithMedia',
       type: 'heroWithMedia',
+    }),
+    defineArrayMember({
+      name: 'portfolioFullWidth',
+      type: 'portfolioFullWidth',
+    }),
+    defineArrayMember({
+      name: 'alternatingContent',
+      type: 'alternatingContent',
     }),
     defineArrayMember({
       name: 'cardGridSideTitle',
@@ -54,6 +83,10 @@ export default defineType({
     defineArrayMember({
       name: 'blogGrid',
       type: 'blogGrid',
+    }),
+    defineArrayMember({
+      name: 'archiveBlock',
+      type: 'archiveBlock',
     }),
   ],
 });

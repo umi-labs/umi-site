@@ -1,28 +1,11 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Icon } from '@/app/_components/ui/Icon';
-import type { Icon as IconType } from '@/types/generics';
-import { Button as ButtonType, Image as ImageType } from '@/types/generics';
+import { Icon } from '@/app/_components/ui/icon';
 import Image from 'next/image';
 import React from 'react';
 import Link from '@/app/_components/ui/link';
-
-interface CTATitleImageProps {
-  data: {
-    subtitle: string;
-    title: string;
-    content: string;
-    points?:
-      | {
-          icon: IconType;
-          content: string;
-        }[]
-      | undefined;
-    buttons?: ButtonType[] | undefined;
-    image: ImageType;
-  };
-}
+import { CTATitleImageProps } from '@/types/components/ctaTitleImage';
 
 export default function CTATitleImage({ data }: CTATitleImageProps) {
   return (

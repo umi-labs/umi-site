@@ -1,12 +1,11 @@
 import {
+  Browsers,
   Gear,
   NavigationArrow,
   Palette,
   Sliders,
   Target,
-  Textbox,
 } from '@phosphor-icons/react';
-import { Forms } from '@/sanity/lib/desk/structures/forms';
 
 export const Settings = (S) =>
   S.listItem()
@@ -34,25 +33,15 @@ export const Settings = (S) =>
             .child(
               S.document().schemaType('seoSettings').title('SEO Settings')
             ),
+          S.divider(),
           S.listItem()
             .title('Navigation')
             .icon(NavigationArrow)
             .child(S.document().schemaType('navigation').title('Navigation')),
-          S.divider(),
-          S.listItem()
-            .title('Add Post Type')
-            .icon(Textbox)
-            .child(S.document().schemaType('postType').title('Add Post Type')),
-          S.listItem()
-            .title('Custom Post Types')
-            .icon(Palette)
-            .child(
-              S.documentList()
-                .schemaType('postType')
-                .title('Post Types')
-                .filter('_type == "postType"')
-            ),
-          S.divider(),
-          Forms(S),
-        ])
+          S.documentTypeListItem('postType')
+            .title('Modify Post Types')
+            .icon(Browsers),
+          // Forms(S),
+        ]),
+      S.divider()
     );

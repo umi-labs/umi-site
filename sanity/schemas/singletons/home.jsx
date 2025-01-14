@@ -1,5 +1,5 @@
 import { House } from '@phosphor-icons/react';
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'home',
@@ -24,22 +24,7 @@ export default defineType({
       name: 'hero',
       description: 'This is the hero component for the home page',
       title: 'Hero',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          name: 'primaryHero',
-          type: 'primaryHero',
-        }),
-        defineArrayMember({
-          name: 'heroWithMedia',
-          type: 'heroWithMedia',
-        }),
-        defineArrayMember({
-          name: 'heroImageOverlap',
-          type: 'heroImageOverlap',
-        }),
-      ],
-      validation: (rule) => rule.required().max(1),
+      type: 'heros',
     }),
     defineField({
       name: 'blocks',

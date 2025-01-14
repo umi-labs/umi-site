@@ -9,7 +9,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
   return (
     <section
       className={cn(
-        'relative flex min-h-full w-full items-center justify-center overflow-visible text-black'
+        'relative mx-auto flex min-h-full w-full max-w-7xl items-center justify-center overflow-visible text-black'
       )}
     >
       {data?.background !== 'dark' && (
@@ -17,7 +17,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
       )}
       <div
         className={cn(
-          'relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-y-10 py-10 text-center md:py-32',
+          'relative z-10 flex w-full flex-col items-center justify-center gap-y-10 py-10 text-center md:py-32',
           data?.background === 'light' ? 'text-[#313E4E]' : 'text-white'
         )}
       >
@@ -70,10 +70,10 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
           {data?.mediaType === 'image' ? (
             data?.image && (
               <Image
-                src={data.image.asset.url}
-                alt={data.image.asset.altText || ''}
-                width={data.image.asset.metadata.dimensions.width}
-                height={data.image.asset.metadata.dimensions.height}
+                src={data.image?.asset.url || ''}
+                alt={data.image?.asset.altText || ''}
+                width={data.image?.asset?.metadata?.dimensions?.width}
+                height={data.image?.asset?.metadata?.dimensions?.height}
               />
             )
           ) : (

@@ -12,6 +12,7 @@ import { Navbar } from '@/app/_components/global/Navbar';
 import { loadSEOSettings, loadSettings } from '@/sanity/loader/loadQuery';
 import NavbarSkeleton from '@/app/_components/global/Navbar/NavbarSkeleton';
 import { cn } from '@/lib/utils';
+import Providers from '@/app/_components/providers';
 
 const LiveVisualEditing = dynamic(
   () => import('@/sanity/loader/LiveVisualEditing')
@@ -48,10 +49,10 @@ export default async function Layout({
   const [{ data: settings }] = await Promise.all([loadSettings()]);
 
   return (
-    <>
+    <Providers>
       <div
         className={cn(
-          `flex min-h-screen flex-col selection:bg-sky-300 selection:text-sky-900`,
+          `flex min-h-screen w-screen flex-col selection:bg-primary-accent selection:text-primary-background`,
           settings?.customCursor && 'custom-cursor'
         )}
       >
@@ -70,6 +71,6 @@ export default async function Layout({
         </Suspense>
       </div>
       {(await draftMode()).isEnabled && <LiveVisualEditing />}
-    </>
+    </Providers>
   );
 }

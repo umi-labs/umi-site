@@ -1,11 +1,10 @@
 import type { Metadata, ResolvingMetadata } from 'next';
 import dynamic from 'next/dynamic';
 import { draftMode } from 'next/headers';
-import Link from 'next/link';
 
 import { HomePage } from '@/app/_components/pages/home/HomePage';
-import { studioUrl } from '@/sanity/lib/api';
 import { loadHomePage } from '@/sanity/loader/loadQuery';
+import { notFound } from 'next/navigation';
 
 const HomePagePreview = dynamic(
   () => import('@/app/_components/pages/home/HomePagePreview')
@@ -22,7 +21,7 @@ export async function generateMetadata(
   const { data: page } = await loadHomePage();
 
   return {
-    title: 'Home',
+    title: page?.metaData.title || 'Home',
     description: page?.metaData?.description,
     keywords: page?.metaData?.keywords ? page?.metaData?.keywords : [],
   };
@@ -36,18 +35,7 @@ export default async function Home() {
   }
 
   if (!initial.data) {
-    return (
-      <div className="text-center">
-        You don&rsquo;t have a homepage yet,{' '}
-        <Link
-          href={`${studioUrl}/production/structure/pages;home`}
-          className="underline"
-        >
-          create one now
-        </Link>
-        !
-      </div>
-    );
+    notFound();
   }
 
   return <HomePage data={initial.data} />;

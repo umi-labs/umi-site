@@ -1,6 +1,7 @@
 // Singletons
 import {
   blocks,
+  heros,
   home,
   seoSettings,
   siteSettings,
@@ -9,13 +10,17 @@ import {
 
 // Documents
 import page from '@/sanity/schemas/documents/page';
+import project from '@/sanity/schemas/documents/project';
 import post from '@/sanity/schemas/documents/post';
-import teamMember from '@/sanity/schemas/documents/team-member';
+import team from '@/sanity/schemas/documents/team';
 import contactForm from '@/sanity/schemas/documents/contact-form';
 import form from '@/sanity/schemas/documents/form';
 import inbox from '@/sanity/schemas/documents/inbox';
 import navigation from '@/sanity/schemas/documents/navigation';
 import socialMedia from '@/sanity/schemas/singletons/settings/settings.social-media';
+import service from '@/sanity/schemas/documents/service';
+import review from '@/sanity/schemas/documents/review';
+import job from '@/sanity/schemas/documents/job';
 
 // Objects
 import CTATitleImage from '@/sanity/schemas/objects/CTATitleImage';
@@ -47,6 +52,15 @@ import menuItem from '@/sanity/schemas/objects/navigation/menu.item';
 import policies from '@/sanity/schemas/singletons/settings/settings.policies';
 import button from '@/sanity/schemas/objects/globals/button';
 import icon from '@/sanity/schemas/objects/globals/icon';
+import portfolioFullWidth from '@/sanity/schemas/objects/portfolio-full-width';
+import archiveBlock from '@/sanity/schemas/objects/archive-block';
+import buffers from '@/sanity/schemas/objects/globals/buffers';
+import faq from '@/sanity/schemas/objects/faq';
+import carousel from '@/sanity/schemas/objects/carousel';
+import featureGrid from '@/sanity/schemas/objects/feature-grid';
+import jobVacancies from '@/sanity/schemas/objects/job-vacancies';
+import umiCultureGrid from '@/sanity/schemas/objects/umi-culture-grid';
+import meetTheTeam from '@/sanity/schemas/objects/meet-the-team';
 
 export const schema = [
   // Singletons
@@ -55,17 +69,22 @@ export const schema = [
   themeSettings,
   seoSettings,
   blocks,
+  heros,
 
   // Documents
   page,
   post,
-  teamMember,
+  project,
+  team,
   postType,
   contactForm,
   form,
   inbox,
   navigation,
   socialMedia,
+  service,
+  review,
+  job,
 
   // Objects
   primaryHero,
@@ -79,6 +98,7 @@ export const schema = [
   navList,
   menuItem,
   link,
+  meetTheTeam,
   button,
   favicon,
   icon,
@@ -96,6 +116,14 @@ export const schema = [
   logoCloud,
   blogGrid,
   CTATitleImage,
+  archiveBlock,
+  portfolioFullWidth,
+  buffers,
+  faq,
+  carousel,
+  featureGrid,
+  jobVacancies,
+  umiCultureGrid,
 ];
 
 export const singletons = [

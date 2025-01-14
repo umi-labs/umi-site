@@ -12,24 +12,33 @@ import {
 import { Button } from '@/app/_components/ui/button';
 import Image from 'next/image';
 import type { Image as ImageType } from '@/types/generics';
+import { useQuery } from '@tanstack/react-query';
+import { getReviews } from '@/app/_actions/review';
+
+type Testimonial = {
+  image: ImageType;
+  name: string;
+  position: string;
+  company: string;
+  testimonial: string;
+};
 
 interface TestimonialsCarouselProps {
   data: {
     separator?: boolean;
     title: string;
-    testimonials: {
-      image: ImageType;
-      name: string;
-      position: string;
-      company: string;
-      testimonial: string;
-    }[];
+    testimonials: Testimonial[];
   };
 }
 
 export default function TestimonialsCarousel({
   data,
 }: TestimonialsCarouselProps) {
+  const { data: reviews } = useQuery({
+    queryKey: ['reviews'],
+    queryFn: () => getReviews(),
+  });
+
   return (
     <section
       className={cn(
@@ -47,17 +56,17 @@ export default function TestimonialsCarousel({
         }}
       >
         <SliderContent>
-          {data.testimonials.map((testimonial, index) => (
+          {reviews?.map((testimonial, index) => (
             <SliderItem key={index}>
               <div className="grid grid-flow-row auto-rows-min grid-cols-1 gap-y-9 md:grid-cols-3 md:grid-rows-1 md:gap-x-9">
                 <div className="col-span-1 p-4 md:p-8">
                   <div className="flex flex-col items-center justify-center gap-y-8">
                     <Image
-                      src={testimonial.image.asset.url}
-                      alt={testimonial.image.asset.altText || ''}
-                      width={testimonial.image.asset.metadata.dimensions.width}
+                      src={testimonial.image?.asset.url || ''}
+                      alt={testimonial.image?.asset.altText || ''}
+                      width={testimonial.image?.asset.metadata.dimensions.width}
                       height={
-                        testimonial.image.asset.metadata.dimensions.height
+                        testimonial.image?.asset.metadata.dimensions.height
                       }
                     />
                     <div className="flex flex-col items-center justify-center gap-y-6">
@@ -80,7 +89,7 @@ export default function TestimonialsCarousel({
                     orientation="left"
                     className="absolute left-0 top-0"
                   />
-                  <p>{testimonial.testimonial}</p>
+                  <p>{testimonial.review}</p>
                   <QuotationMark className="absolute bottom-0 right-0" />
                 </div>
               </div>

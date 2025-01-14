@@ -3,6 +3,8 @@ import BasicHero from '@/app/_components/shared/heros/BasicHero';
 import PrimaryHero from '@/app/_components/shared/heros/PrimaryHero';
 import HeroWithMedia from '@/app/_components/shared/heros/heroWithMedia';
 import HeroImageOverlap from '@/app/_components/shared/heros/heroImageOverlap';
+import ArchivesSection from '@/app/_components/shared/blocks/archive/archives-section';
+import MeetTheTeamSection from '@/app/_components/shared/blocks/meet-the-team/meet-the-team-section';
 
 export default function HeroSwitcher({
   data,
@@ -26,6 +28,10 @@ export default function HeroSwitcher({
       return <HeroWithMedia data={data} />;
     case 'heroImageOverlap':
       return <HeroImageOverlap data={data} />;
+    case 'archiveBlock':
+      return <ArchivesSection data={data} />;
+    case 'meetTheTeam':
+      return <MeetTheTeamSection data={data} />;
     default:
       return <Header title={data?.title} description={data?.overview} />;
   }

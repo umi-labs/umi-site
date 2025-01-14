@@ -1,45 +1,81 @@
 import React from 'react';
+import { cn } from '@/app/_utils';
 
 interface Props {
   visible?: boolean;
+  colour?: 'blue' | 'grey';
+  className?: React.HTMLAttributes<HTMLOrSVGElement>['className'];
 }
 
-export function TopBuffer({ visible = true }: Props) {
+export function TopBuffer({
+  visible = true,
+  colour = 'blue',
+  className,
+  ...props
+}: Props) {
   return (
     visible && (
-      <TopWave className="absolute inset-x-0 top-0 flex-shrink -translate-y-full" />
+      <TopWave
+        className={cn(
+          'absolute inset-x-0 top-0 flex w-full max-w-7xl flex-shrink -translate-y-full',
+          className
+        )}
+        colour={colour}
+        {...props}
+      />
     )
   );
 }
 
-export function BottomBuffer({ visible = true }: Props) {
+export function BottomBuffer({
+  visible = true,
+  colour = 'blue',
+  className,
+  ...props
+}: Props) {
   return (
     visible && (
-      <BottomWave className="absolute inset-x-0 bottom-0 flex-shrink translate-y-full" />
+      <BottomWave
+        className={cn(
+          'absolute inset-x-0 bottom-0 flex w-full max-w-7xl flex-shrink translate-y-full',
+          className
+        )}
+        colour={colour}
+        {...props}
+      />
     )
   );
 }
 
-const TopWave = (props: React.HTMLAttributes<HTMLOrSVGElement>) => {
+const COLORS = [
+  { id: 'blue', hex: '#313E4E' },
+  { id: 'grey', hex: '#FAFAFA' },
+];
+
+type WaveProps = React.HTMLAttributes<HTMLOrSVGElement> & {
+  colour?: 'blue' | 'grey';
+};
+
+const TopWave = ({ colour, ...props }: WaveProps) => {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="1440"
-      height="80"
-      viewBox="0 0 1440 80"
+      width="1280"
+      height="100"
+      viewBox="0 0 1280 100"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
-        d="M520.766 0.0367299C390.85 0.842498 119.457 31.0367 0 46.0367V109.037H1440V86.0367C1185.38 80.0209 846.57 -1.98399 520.766 0.0367299Z"
-        fill="#313E4E"
-        className="w-full"
+        d="M520.766 0.0738393C390.85 0.879608 119.457 31.0738 0 46.0738V109.074H1440V86.0738C1185.38 80.058 846.57 -1.94688 520.766 0.0738393Z"
+        fill={COLORS.find((c) => c.id === colour)?.hex}
+        className="h-full w-full"
       />
     </svg>
   );
 };
 
-const BottomWave = (props: React.HTMLAttributes<HTMLOrSVGElement>) => {
+const BottomWave = ({ colour, ...props }: WaveProps) => {
   return (
     <svg
       width="1440"
@@ -50,9 +86,9 @@ const BottomWave = (props: React.HTMLAttributes<HTMLOrSVGElement>) => {
       {...props}
     >
       <path
-        d="M919.234 109.037C1049.15 108.232 1320.54 78.0374 1440 63.0374L1440 0.037117L9.53231e-06 0.0369911L7.52157e-06 23.0372C254.619 29.0531 593.43 111.058 919.234 109.037Z"
-        fill="#313E4E"
-        className="w-full"
+        d="M919.234 109.075C1049.15 108.269 1320.54 78.0746 1440 63.0746L1440 0.0743637L9.53231e-06 0.0742378L7.52157e-06 23.0745C254.619 29.0903 593.43 111.095 919.234 109.075Z"
+        fill={COLORS.find((c) => c.id === colour)?.hex}
+        className="h-full w-full"
       />
     </svg>
   );

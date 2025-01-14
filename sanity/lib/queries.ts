@@ -65,6 +65,14 @@ export const homePageQuery = groq`
           }
         }
       },
+      selectedProjects[]->{
+        ...,
+        "slug": slug.current,
+        coverImage{
+          ...,
+          asset->
+        },
+      },
       features[] {
         ...,
         button {
@@ -115,37 +123,153 @@ export const homePageQuery = groq`
 export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     _id,
-    hero,
-    blocks[]->{
+    title,
+    "slug": slug.current,
+    hero[]{
+      ...,
+      image{
+        ...,
+        asset->
+      },
+    },
+    blocks[] {
       ...,
       inbox->,
       image{
         ...,
         asset->
-      }
+      },
+      imageGrid[]{
+        asset->
+      },
+      cardGrid[]{
+        ...,
+        image{
+          ...,
+          asset->
+        },
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      },
+      content[] {
+        ...,
+        image{
+          ...,
+          asset->
+        }
+      },
+      selectedArchives[]->,
+      "archive": *[_type == ^.postType] | order(_createdAt desc)[0..8]{ 
+        ..., 
+        coverImage {
+          ...,
+          asset->
+        },
+        "slug": slug.current,
+        author->{
+          ...,
+          "slug": slug.current,
+        },
+        time{
+          ...,
+          timeTaken,
+          timeType
+        }
+       }
     },
     metaData,
     "postType": *[_type=='postType' && references(^._id)]{
       title,
       "slug": slug.current,
     },
-    title,
-    "slug": slug.current,
   }
 `;
 
-export const recentPostsQuery = groq`
-  *[_type == "post"] {
-    ...,
+export const projectsBySlugQuery = groq`
+  *[_type == "project" && slug.current == $slug][0] {
+    _id,
+    title,
     "slug": slug.current,
+    tags[],
+    clientName,
+    clientUrl,
+    clientLogo {
+      ...,
+      asset->
+    },
     coverImage{
       ...,
       asset->
     },
-    author-> {
-      name,
-      "slug": slug.current
-    }
+    "caseStudyUrl": caseStudy.asset->url,
+    body,
+    cta{
+      ...,
+      image{
+        ...,
+        asset->
+      },
+      button{
+        ...,
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      },
+    },
+    contactForm{
+      ...,
+      image{
+        ...,
+        asset->
+      },
+      buttons[] {
+        ...,
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      }
+    },
+    relatedProjects[]->{
+      ...,
+      "slug": slug.current,
+      coverImage{
+        ...,
+        asset->
+      },
+      tags,
+      projectName,
+      clientName,
+      clientUrl,
+      clientLogo {
+        ...,
+        asset->
+      },
+      description->,
+      coverImage{
+        ...,
+        asset->
+      }
+    },
+    metaData,
   }
 `;
 

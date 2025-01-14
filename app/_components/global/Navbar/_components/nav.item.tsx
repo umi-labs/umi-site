@@ -14,7 +14,7 @@ const NavItem = ({ item }: { item: MenuType }) => {
     <div id="NavItem" className="group" onMouseEnter={() => setOpen(true)}>
       <button
         id="nav-item__trigger"
-        className="flex items-center text-xs font-medium capitalize text-charcoal transition-all duration-300 ease-in-out hocus:text-gray-900"
+        className="z-10 flex items-center text-xs font-medium capitalize text-charcoal transition-all duration-300 ease-in-out hocus:text-gray-900"
         onClick={() => setOpen(!open)}
       >
         <span>{item.title}</span>
@@ -58,6 +58,7 @@ const Content = ({
         open ? 'animate-navContentDown' : 'animate-navContentUp'
       )}
       onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
     >
       <div className="grid grid-cols-4">
         <ul className="col-start-3 flex flex-col gap-y-4">
