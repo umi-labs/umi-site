@@ -35,10 +35,21 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  const paths = await generateNestedStaticSlugs('postType');
-  return paths.map((path) => ({
-    slug: path.slug, // Convert to an array-based slug format
-  }));
+  return (await generateNestedStaticSlugs('postType'))
+    .map((path) => {
+      if (path.slug.children?.length === 0) {
+        return {
+          slug: path.slug.parent,
+        };
+      } else {
+        return path.slug.children?.map((child) => {
+          return {
+            slug: [path.slug.parent, child],
+          };
+        });
+      }
+    })
+    .flat();
 }
 
 export default async function PageSlugRoute({ params }) {

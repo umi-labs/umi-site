@@ -31,41 +31,43 @@ export async function generateNestedStaticSlugs(type: string) {
   return paths.map((path) => ({ slug: path }));
 }
 
+type NestedSlugs = {
+  parent: string;
+  children?: Array<string>;
+};
+
 // Utility function to recursively generate paths for nested post types
-async function fetchNestedSlugs(type, parentSlug = []) {
-  const data = await client
-    .withConfig({
-      token,
-      perspective: 'published',
-      useCdn: false,
-      stega: false,
-    })
-    .fetch(
-      groq`*[_type == $type && defined(slug.current)]{
-        "slug": slug.current,
-        "children": children[]->{"type": _type, "slug": slug.current}
-      }`,
-      { type }
-    );
+async function fetchNestedSlugs(type = 'page'): Promise<NestedSlugs[]> {
+  const data: Array<{ slug: string; children?: Array<{ slug: string }> }> =
+    await client
+      .withConfig({
+        token,
+        perspective: 'published',
+        useCdn: false,
+        stega: false,
+      })
+      .fetch(
+        groq`*[_type == $type && defined(slug.current)]{
+          "slug": slug.current,
+          "children": *[_type == ^.contentType && postType->slug.current == ^.slug.current]{
+            "slug": slug.current
+          }
+        }`,
+        { type }
+      );
 
-  // Generate paths recursively for each item
-  const paths = [];
-  for (const item of data) {
-    const currentPath = [...parentSlug, item.slug];
+  return data.map(
+    (item: { slug: string; children?: Array<{ slug: string }> }) => {
+      const currentPath: NestedSlugs = {
+        parent: item.slug,
+        children: [],
+      };
 
-    // Add the current item path
-    // @ts-expect-error: Type 'string[]' is not assignable to type 'string'.
-    paths.push(currentPath);
+      item?.children?.map((child) => {
+        currentPath.children?.push(child.slug);
+      });
 
-    // Check for children and fetch their paths recursively
-    if (item.children) {
-      for (const child of item.children) {
-        // Recursively fetch child paths
-        // @ts-expect-error: Type 'string[]' is not assignable to type 'string'.
-        const childPaths = await fetchNestedSlugs(child.type, currentPath);
-        paths.push(...childPaths);
-      }
+      return currentPath;
     }
-  }
-  return paths;
+  );
 }
