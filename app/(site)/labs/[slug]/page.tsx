@@ -31,7 +31,7 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  return await generateStaticSlugs('page');
+  return await generateStaticSlugs('lab');
 }
 
 export default async function PageSlugRoute({ params }) {
