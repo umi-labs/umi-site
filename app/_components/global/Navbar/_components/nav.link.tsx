@@ -31,19 +31,20 @@ const NavLink = ({
 const NestedNavLink = ({
   navItem,
   title,
-  setOpen,
+  setCurrentItem,
 }: {
   navItem: NavItemType;
   title: string;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentItem: React.Dispatch<React.SetStateAction<string | null>>;
 }) => {
   return (
     <Link
       link={navItem.navItemUrl}
       className={cn('button font-heading text-xl capitalize text-charcoal')}
       onClick={() => {
-        if (setOpen) {
-          setOpen(false);
+        if (setCurrentItem) {
+          setCurrentItem(null);
         }
       }}
       variant="link"

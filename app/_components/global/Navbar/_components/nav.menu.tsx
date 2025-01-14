@@ -108,6 +108,8 @@ const NavItem = ({
     setSubMenu({ show: false, currentItem: null });
   }, [item]);
 
+  console.log(subMenu);
+
   return item.displayList ? (
     <div className="relative h-full w-full overflow-hidden">
       <button

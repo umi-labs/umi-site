@@ -7,34 +7,48 @@ import {
 } from '@/app/_components/global/Navbar/_components/nav.link';
 import { CaretDown } from '@phosphor-icons/react';
 
-const NavItem = ({ item }: { item: MenuType }) => {
-  const [open, setOpen] = React.useState(false);
+interface NavItemProps {
+  item: MenuType;
+  setCurrentItem: React.Dispatch<React.SetStateAction<string | null>>;
+  currentItem: string | null;
+}
 
+const NavItem = ({ item, setCurrentItem, currentItem }: NavItemProps) => {
   return item.displayList ? (
-    <div id="NavItem" className="group" onMouseEnter={() => setOpen(true)}>
+    <div id="NavItem" className="group">
       <button
         id="nav-item__trigger"
-        className="z-10 flex items-center text-xs font-medium capitalize text-charcoal transition-all duration-300 ease-in-out hocus:text-gray-900"
-        onClick={() => setOpen(!open)}
+        className="interactable z-10 flex items-center text-xs font-medium capitalize text-charcoal transition-all duration-300 ease-in-out hocus:text-gray-900"
+        onClick={() => setCurrentItem(item._key)}
+        onMouseEnter={() => setCurrentItem(item._key)}
+        onMouseLeave={() => setCurrentItem(null)}
       >
         <span>{item.title}</span>
         <CaretDown
           weight="bold"
           className={cn(
             'ml-2 size-4 transition-transform duration-300 ease-in-out',
-            open && '-rotate-180'
+            currentItem === item._key && '-rotate-180'
           )}
         />
       </button>
+      <Content
+        setCurrentItem={setCurrentItem}
+        currentItem={currentItem}
+        item={item}
+      />
       <div
         className={cn(
-          'fixed inset-0 -z-10 h-screen w-screen bg-black/50 transition-all duration-300 ease-in-out',
-          open ? 'opacity-50' : 'hidden opacity-0'
+          'fixed inset-0 -z-20 h-screen w-screen bg-black/50 transition-all duration-300 ease-in-out',
+          currentItem === item._key ? 'opacity-50' : 'hidden opacity-0'
         )}
-        onClick={() => setOpen(!open)}
-        onMouseEnter={() => setOpen(false)}
+        onClick={() => setCurrentItem(null)}
+        onMouseEnter={() => {
+          setTimeout(() => {
+            if (currentItem !== item._key) setCurrentItem(null);
+          }, 100);
+        }}
       />
-      <Content open={open} setOpen={setOpen} item={item} />
     </div>
   ) : (
     <NavLink navItem={item.items} title={item.title} />
@@ -42,12 +56,12 @@ const NavItem = ({ item }: { item: MenuType }) => {
 };
 
 const Content = ({
-  open = false,
-  setOpen,
+  setCurrentItem,
+  currentItem,
   item,
 }: {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  currentItem: string | null;
+  setCurrentItem: React.Dispatch<React.SetStateAction<string | null>>;
   item: MenuType;
 }) => {
   return (
@@ -55,10 +69,11 @@ const Content = ({
       id="nav-item__content"
       className={cn(
         'absolute left-0 top-0 -z-[1] w-screen bg-anti-flash px-4 pb-6 pt-20 capitalize transition-transform duration-300 ease-default',
-        open ? 'animate-navContentDown' : 'animate-navContentUp'
+        currentItem === item._key
+          ? 'animate-navContentDown'
+          : 'animate-navContentUp'
       )}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={() => setCurrentItem(item._key)}
     >
       <div className="grid grid-cols-4">
         <ul className="col-start-3 flex flex-col gap-y-4">
@@ -67,7 +82,7 @@ const Content = ({
               key={index}
               navItem={item}
               title={item.name}
-              setOpen={setOpen}
+              setCurrentItem={setCurrentItem}
             />
           ))}
         </ul>
