@@ -49,6 +49,7 @@
     "sanity-plugin-media": "^2.2.5",
     "sanity-plugin-tags": "^2.0.2",
     "sanity-plugin-vercel-deploy": "^3.3.4",
+    "schema-dts": "^1.1.2",
     "server-only": "0.0.1",
     "styled-components": "6.1.11",
     "tailwind-merge": "^2.3.0",

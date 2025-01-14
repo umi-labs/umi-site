@@ -31,7 +31,7 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  return await generateStaticSlugs('project');
+  return await generateStaticSlugs('service');
 }
 
 export default async function PageSlugRoute({ params }) {
@@ -46,5 +46,9 @@ export default async function PageSlugRoute({ params }) {
     notFound();
   }
 
-  return <Page data={initial.data} />;
+  return (
+    <>
+      <Page data={initial.data} />
+    </>
+  );
 }

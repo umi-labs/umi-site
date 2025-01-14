@@ -6,6 +6,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata, ResolvingMetadata } from 'next';
 import PagePreview from '@/app/_components/pages/page/PagePreview';
 import Page from '@/app/_components/pages/page/Page';
+import Script from 'next/script';
+import { Service, WithContext } from 'schema-dts';
 
 type Props = {
   params: { slug: string };
@@ -47,5 +49,29 @@ export default async function PageSlugRoute({ params }) {
     notFound();
   }
 
-  return <Page data={initial.data} />;
+  const jsonLd: WithContext<Service> = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: initial.data.title,
+    description: initial.data.metaData?.description,
+    serviceType: initial.data.title,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Umi Digital',
+    },
+    areaServed: {
+      '@type': 'AdministrativeArea',
+      name: 'United Kingdom',
+    },
+  };
+
+  return (
+    <>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Page data={initial.data} />
+    </>
+  );
 }
