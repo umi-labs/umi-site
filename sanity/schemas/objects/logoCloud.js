@@ -53,6 +53,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title,
+        subtitle: 'Logo Cloud',
       };
     },
   },

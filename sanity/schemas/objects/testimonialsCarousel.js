@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'testimonialsCarousel',
@@ -15,45 +15,6 @@ export default defineType({
       title: 'Title',
       type: 'string',
     }),
-    defineField({
-      name: 'testimonials',
-      title: 'Testimonials',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          name: 'testimonial',
-          title: 'Testimonial',
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'name',
-              title: 'Name',
-              type: 'string',
-            }),
-            defineField({
-              name: 'position',
-              title: 'Position',
-              type: 'string',
-            }),
-            defineField({
-              name: 'company',
-              title: 'Company',
-              type: 'string',
-            }),
-            defineField({
-              name: 'testimonial',
-              title: 'Testimonial',
-              type: 'string',
-            }),
-            defineField({
-              name: 'image',
-              title: 'Image',
-              type: 'image',
-            }),
-          ],
-        }),
-      ],
-    }),
   ],
   preview: {
     select: {
@@ -62,6 +23,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title,
+        subtitle: 'Testimonials',
       };
     },
   },

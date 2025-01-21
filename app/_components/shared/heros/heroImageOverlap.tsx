@@ -3,6 +3,7 @@ import React from 'react';
 import { HeroImageOverlapProps } from '@/types/components/heroImageOverlap';
 import Image from 'next/image';
 import Link from '@/app/_components/ui/link';
+import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 
 export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
   return (
@@ -15,7 +16,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
           </h5>
           <h2>{data.title}</h2>
         </div>
-        <p>{data.content}</p>
+        <CustomPortableText value={data.content} />
         <div className="flex w-full items-center justify-center gap-6 md:flex-row md:items-start md:justify-start">
           {data?.buttons?.map((button, i) => (
             <Link

@@ -59,8 +59,11 @@ import faq from '@/sanity/schemas/objects/faq';
 import carousel from '@/sanity/schemas/objects/carousel';
 import featureGrid from '@/sanity/schemas/objects/feature-grid';
 import jobVacancies from '@/sanity/schemas/objects/job-vacancies';
-import umiCultureGrid from '@/sanity/schemas/objects/umi-culture-grid';
+import contentBlock from '@/sanity/schemas/objects/content-block';
 import meetTheTeam from '@/sanity/schemas/objects/meet-the-team';
+import video from '@/sanity/schemas/objects/globals/video';
+import jsonLd from '@/sanity/schemas/objects/globals/json-ld';
+import layout from '@/sanity/schemas/objects/globals/layout';
 
 export const schema = [
   // Singletons
@@ -123,7 +126,10 @@ export const schema = [
   carousel,
   featureGrid,
   jobVacancies,
-  umiCultureGrid,
+  contentBlock,
+  video,
+  jsonLd,
+  layout,
 ];
 
 export const singletons = [

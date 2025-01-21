@@ -1,4 +1,6 @@
 import type { Button, Image } from '@/types/generics';
+import { PortableTextBlock } from 'next-sanity';
+import { VideoProps } from '@/app/_components/ui/video';
 
 export interface HeroWithMediaProps {
   data: {
@@ -6,22 +8,15 @@ export interface HeroWithMediaProps {
     background?: ('light' | 'dark') | undefined;
     subtitle?: string | undefined;
     title: string;
-    content: string;
+    content: PortableTextBlock[];
     buttons?: Button[] | undefined;
     mediaType?: ('image' | 'video') | undefined;
     image: Image | undefined;
-    video?:
-      | {
-          alt: string;
-          src: string;
-          width: number;
-          height: number;
-        }
-      | undefined;
+    video?: VideoProps | undefined;
     bottomContent?:
       | {
           title: string;
-          content: string;
+          content: PortableTextBlock[];
         }
       | undefined;
   };

@@ -9,6 +9,7 @@ export default defineType({
       name: 'separator',
       title: 'Separator',
       type: 'boolean',
+      initialValue: true,
     }),
     defineField({
       name: 'background',
@@ -19,7 +20,7 @@ export default defineType({
           { title: 'Light', value: 'light' },
           { title: 'Dark', value: 'dark' },
         ],
-        layout: 'switch',
+        layout: 'radio',
       },
     }),
     defineField({
@@ -35,7 +36,8 @@ export default defineType({
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'string',
+      type: 'array',
+      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'buttons',
@@ -65,6 +67,16 @@ export default defineType({
       name: 'image',
       title: 'Image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
+      hidden: ({ parent }) => parent?.mediaType !== 'image',
+    }),
+    defineField({
+      name: 'video',
+      title: 'Video',
+      type: 'video',
+      hidden: ({ parent }) => parent?.mediaType !== 'video',
     }),
     defineField({
       name: 'bottomContent',
@@ -79,11 +91,17 @@ export default defineType({
         defineField({
           name: 'content',
           title: 'Content',
-          type: 'string',
+          type: 'array',
+          of: [{ type: 'block' }],
         }),
       ],
     }),
   ],
+  initialValue: {
+    separator: true,
+    background: 'light',
+    mediaType: 'image',
+  },
   preview: {
     select: {
       title: 'title',
@@ -91,6 +109,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title,
+        subtitle: 'Hero With Media',
       };
     },
   },

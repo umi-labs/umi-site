@@ -40,6 +40,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title,
+        subtitle: 'CTA With Form',
       };
     },
   },

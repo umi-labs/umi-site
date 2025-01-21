@@ -10,6 +10,17 @@ export const homePageQuery = groq`
         ...,
         asset->
       },
+      video{
+        ...,
+        video{
+          ..., 
+          asset->
+        },
+        image{
+          ...,
+          asset->
+        },
+      },
       buttons[] {
         ...,
         link{
@@ -40,6 +51,17 @@ export const homePageQuery = groq`
       image{
         ...,
         asset->
+      },
+      video{
+        ...,
+        video{
+          ..., 
+          asset->
+        },
+        image{
+          ...,
+          asset->
+        },
       },
       buttons[] {
         ...,
@@ -131,6 +153,17 @@ export const pagesBySlugQuery = groq`
         ...,
         asset->
       },
+      video{
+        ...,
+        video{
+          ..., 
+          asset->
+        },
+        image{
+          ...,
+          asset->
+        },
+      },
     },
     blocks[] {
       ...,
@@ -141,6 +174,17 @@ export const pagesBySlugQuery = groq`
       },
       imageGrid[]{
         asset->
+      },
+      video{
+        ...,
+        video{
+          ..., 
+          asset->
+        },
+        image{
+          ...,
+          asset->
+        },
       },
       cardGrid[]{
         ...,
@@ -383,5 +427,6 @@ export const themeSettingsQuery = groq`
     background,
     foreground,
     accent,
+    secondaryAccent,
   }
 `;

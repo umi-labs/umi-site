@@ -23,7 +23,8 @@ export default defineType({
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'string',
+      type: 'array',
+      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'image',
@@ -50,6 +51,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title,
+        subtitle: 'Hero Image Overlap',
       };
     },
   },

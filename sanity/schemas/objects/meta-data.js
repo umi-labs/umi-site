@@ -30,6 +30,12 @@ export default defineType({
       validation: (rule) => rule.max(155).required(),
       group: 'basic',
     }),
+    // defineField({
+    //   name: 'jsonLd',
+    //   title: 'JSON-LD',
+    //   type: 'jsonLd',
+    //   group: 'advanced',
+    // }),
     defineField({
       name: 'ogImage',
       title: 'Open Graph Image',

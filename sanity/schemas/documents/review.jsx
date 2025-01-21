@@ -17,7 +17,13 @@ export default defineType({
     defineField({ name: 'featured', title: 'Featured', type: 'boolean' }),
     defineField({ name: 'company', title: 'Company', type: 'string' }),
     defineField({ name: 'position', title: 'Position', type: 'string' }),
-    defineField({ name: 'review', title: 'Review', type: 'text' }),
+    defineField({
+      name: 'review',
+      title: 'Review',
+      type: 'array',
+      of: [{ type: 'block' }],
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       name: 'image',
       title: 'Image',

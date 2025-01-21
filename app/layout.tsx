@@ -15,6 +15,7 @@ export default async function RootLayout({
     '--background-color': themeSettings?.background?.hex,
     '--foreground-color': themeSettings?.foreground?.hex,
     '--accent-color': themeSettings?.accent?.hex,
+    '--secondary-accent-color': themeSettings?.secondaryAccent?.hex,
   } as React.CSSProperties;
 
   return (

@@ -38,18 +38,6 @@ export default defineType({
       title: 'Buffers',
       type: 'buffers',
     }),
-    defineField({
-      name: 'topBuffer',
-      title: 'Top Buffer',
-      type: 'boolean',
-      initialValue: true,
-    }),
-    defineField({
-      name: 'bottomBuffer',
-      title: 'Bottom Buffer',
-      type: 'boolean',
-      initialValue: true,
-    }),
   ],
   preview: {
     select: {
@@ -58,6 +46,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title,
+        subtitle: 'Portfolio Full Width',
       };
     },
   },

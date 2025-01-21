@@ -29,7 +29,7 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
     <section
       className={cn(
         'relative mx-auto flex min-h-full w-full max-w-7xl items-center justify-center overflow-visible bg-[#FAFAFA] py-10 md:py-32',
-        data.topBuffer && 'xl:mt-30 mt-10 md:mt-20 lg:mt-28'
+        data.topBuffer && 'mt-10 md:mt-20 lg:mt-28 xl:mt-36'
       )}
     >
       <TopBuffer colour="grey" visible={data.topBuffer} />

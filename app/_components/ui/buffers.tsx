@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/app/_utils';
 
-interface Props {
+interface BufferProps {
   visible?: boolean;
   colour?: 'blue' | 'grey';
   className?: React.HTMLAttributes<HTMLOrSVGElement>['className'];
@@ -12,7 +12,7 @@ export function TopBuffer({
   colour = 'blue',
   className,
   ...props
-}: Props) {
+}: BufferProps) {
   return (
     visible && (
       <TopWave
@@ -32,7 +32,7 @@ export function BottomBuffer({
   colour = 'blue',
   className,
   ...props
-}: Props) {
+}: BufferProps) {
   return (
     visible && (
       <BottomWave
@@ -59,8 +59,7 @@ type WaveProps = React.HTMLAttributes<HTMLOrSVGElement> & {
 const TopWave = ({ colour, ...props }: WaveProps) => {
   return (
     <svg
-      width="1280"
-      height="100"
+      style={{ height: 'auto', width: '100%' }}
       viewBox="0 0 1280 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -78,9 +77,8 @@ const TopWave = ({ colour, ...props }: WaveProps) => {
 const BottomWave = ({ colour, ...props }: WaveProps) => {
   return (
     <svg
-      width="1440"
-      height="110"
-      viewBox="0 0 1440 110"
+      style={{ height: 'auto', width: '100%' }}
+      viewBox="0 0 1280 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

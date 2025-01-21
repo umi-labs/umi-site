@@ -47,4 +47,17 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      question: 'question',
+      answer: 'answer',
+    },
+    prepare({ question, answer }) {
+      return {
+        title: question,
+        subtitle: 'FAQ',
+        media: answer,
+      };
+    },
+  },
 });

@@ -29,8 +29,8 @@ export default defineType({
     }),
     defineArrayMember({ name: 'jobVacancies', type: 'jobVacancies' }),
     defineArrayMember({
-      name: 'umiCultureGrid',
-      type: 'umiCultureGrid',
+      name: 'contentBlock',
+      type: 'contentBlock',
     }),
     defineArrayMember({
       name: 'meetTheTeam',

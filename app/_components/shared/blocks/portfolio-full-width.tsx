@@ -98,13 +98,13 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
                     />
                     <div className="absolute inset-0 z-[1] h-full w-full bg-gradient-to-b from-black/20 to-black/40" />
                     <div className="z-10 flex flex-col items-center justify-center gap-y-6">
-                      <h2 className="text-2xl font-semibold text-primary-background hover:no-underline">
+                      <h2 className="text-2xl font-semibold text-primary-background group-hover:no-underline">
                         {project.title}
                       </h2>
                       <span className="flex flex-wrap items-center justify-center gap-2 text-xs text-gray-700">
                         {project.tags?.map((tag, i) => (
                           <span
-                            className="rounded-full bg-white px-3 py-2 uppercase hover:no-underline"
+                            className="rounded-full bg-white px-3 py-2 uppercase hocus:no-underline"
                             key={i}
                           >
                             {tag}
@@ -123,7 +123,6 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             </div>
           </Slider>
         )}
-        {/*<PortfolioTabs />*/}
       </div>
       <BottomBuffer
         colour="grey"

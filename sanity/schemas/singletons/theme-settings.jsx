@@ -51,6 +51,12 @@ export default defineType({
       type: 'color',
       group: 'colours',
     }),
+    defineField({
+      name: 'secondaryAccent',
+      title: 'Secondary Accent',
+      type: 'color',
+      group: 'colours',
+    }),
   ],
   preview: {
     prepare() {

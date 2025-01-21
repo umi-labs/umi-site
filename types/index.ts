@@ -109,7 +109,7 @@ export interface ReviewPayload {
   name?: string;
   position?: string;
   company?: string;
-  review?: string;
+  review: PortableTextBlock[];
 }
 
 export interface JobPayload {
@@ -149,4 +149,5 @@ export interface ThemeSettingsPayload {
   background?: Color;
   foreground?: Color;
   accent?: Color;
+  secondaryAccent?: Color;
 }

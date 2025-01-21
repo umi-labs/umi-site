@@ -16,6 +16,25 @@ export interface InternalLink {
   };
 }
 
+export interface Layout {
+  justify?:
+    | 'normal'
+    | 'center'
+    | 'start'
+    | 'end'
+    | 'stretch'
+    | 'between'
+    | 'around'
+    | 'evenly';
+  align?: 'center' | 'start' | 'end' | 'baseline' | 'stretch';
+  colour?: 'light' | 'dark';
+}
+
+export interface Buffers {
+  top?: boolean | undefined;
+  bottom?: boolean | undefined;
+}
+
 export interface Image {
   asset: {
     _type: string;

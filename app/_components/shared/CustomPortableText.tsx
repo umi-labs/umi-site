@@ -25,7 +25,7 @@ import FAQs from '@/app/_components/shared/blocks/FAQs';
 import Carousel from '@/app/_components/shared/blocks/carousel';
 import FeatureGrid from '@/app/_components/shared/blocks/feature-grid';
 import JobVacancies from '@/app/_components/shared/blocks/job-vacancies';
-import UmiCultureGrid from '@/app/_components/shared/blocks/umi-culture-grid';
+import ContentBlock from '@/app/_components/shared/blocks/content-block';
 import MeetTheTeamSection from '@/app/_components/shared/blocks/meet-the-team/meet-the-team-section';
 
 export function CustomPortableText({
@@ -102,8 +102,8 @@ export function CustomPortableText({
       jobVacancies: ({ value }) => {
         return <JobVacancies data={value} />;
       },
-      umiCultureGrid: ({ value }) => {
-        return <UmiCultureGrid data={value} />;
+      contentBlock: ({ value }) => {
+        return <ContentBlock data={value} />;
       },
       ctaWithForm: ({ value }) => {
         return <CTAWithForm data={value} />;

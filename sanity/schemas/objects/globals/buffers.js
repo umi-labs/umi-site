@@ -9,13 +9,15 @@ export default defineType({
       name: 'top',
       title: 'Top',
       type: 'boolean',
-      initialValue: true,
     }),
     defineField({
       name: 'bottom',
       title: 'Bottom',
       type: 'boolean',
-      initialValue: true,
     }),
   ],
+  initialValue: {
+    top: true,
+    bottom: true,
+  },
 });

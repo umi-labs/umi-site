@@ -69,7 +69,7 @@ export default defineType({
     },
     prepare({ title, subtitle }) {
       return {
-        subtitle: subtitle,
+        subtitle: subtitle ? subtitle : 'CTA Title Image',
         title,
       };
     },

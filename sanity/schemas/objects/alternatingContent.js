@@ -67,9 +67,13 @@ export default defineType({
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: 'title',
+    },
+    prepare({ title }) {
       return {
-        title: 'AlternatingContent',
+        title,
+        subtitle: 'AlternatingContent',
       };
     },
   },

@@ -81,6 +81,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title,
+        subtitle: 'Card Grid Side Title Simple',
       };
     },
   },

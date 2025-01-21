@@ -11,23 +11,14 @@ import {
 } from '@/app/_components/ui/slider';
 import { Button } from '@/app/_components/ui/button';
 import Image from 'next/image';
-import type { Image as ImageType } from '@/types/generics';
 import { useQuery } from '@tanstack/react-query';
 import { getReviews } from '@/app/_actions/review';
-
-type Testimonial = {
-  image: ImageType;
-  name: string;
-  position: string;
-  company: string;
-  testimonial: string;
-};
+import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 
 interface TestimonialsCarouselProps {
   data: {
     separator?: boolean;
     title: string;
-    testimonials: Testimonial[];
   };
 }
 
@@ -89,7 +80,7 @@ export default function TestimonialsCarousel({
                     orientation="left"
                     className="absolute left-0 top-0"
                   />
-                  <p>{testimonial.review}</p>
+                  <CustomPortableText value={testimonial.review} />
                   <QuotationMark className="absolute bottom-0 right-0" />
                 </div>
               </div>

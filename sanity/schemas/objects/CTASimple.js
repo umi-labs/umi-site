@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'ctaSimple',
@@ -18,7 +18,8 @@ export default defineType({
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'string',
+      type: 'array',
+      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'image',
@@ -26,22 +27,19 @@ export default defineType({
       type: 'image',
     }),
     defineField({
-      name: 'button',
-      title: 'Button',
-      type: 'button',
+      name: 'buttons',
+      title: 'Buttons',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'button',
+          title: 'Button',
+          type: 'button',
+        }),
+      ],
     }),
-    defineField({
-      name: 'topBuffer',
-      title: 'Top Buffer',
-      type: 'boolean',
-      initialValue: true,
-    }),
-    defineField({
-      name: 'bottomBuffer',
-      title: 'Bottom Buffer',
-      type: 'boolean',
-      initialValue: true,
-    }),
+    defineField({ name: 'buffers', title: 'Buffers', type: 'buffers' }),
+    defineField({ name: 'layout', title: 'Layout', type: 'layout' }),
   ],
   preview: {
     select: {
@@ -50,6 +48,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title,
+        subtitle: 'CTA Simple',
       };
     },
   },
