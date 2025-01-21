@@ -68,7 +68,7 @@ const Content = ({
     <div
       id="nav-item__content"
       className={cn(
-        'absolute left-0 top-0 -z-[1] w-screen bg-anti-flash px-4 pb-6 pt-20 capitalize transition-transform duration-300 ease-default',
+        'bg-primary-secondary-accent absolute left-0 top-0 -z-[1] w-screen px-4 pb-6 pt-20 capitalize transition-transform duration-300 ease-default',
         currentItem === item._key
           ? 'animate-navContentDown'
           : 'animate-navContentUp'

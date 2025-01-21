@@ -19,7 +19,7 @@ interface MenuProps {
 
 const MenuStyles = {
   default: cn(
-    'bg-anti-flash h-[100svh] w-full fixed top-0 right-0 overflow-hidden z-[90] transition-all translate-x-0 shadow-md duration-[800ms] ease-in-out'
+    'bg-primary-secondary-accent h-[100svh] w-full fixed top-0 right-0 overflow-hidden z-[90] transition-all translate-x-0 shadow-md duration-[800ms] ease-in-out'
   ),
   closed: cn('-translate-x-[-100%] shadow-none'),
 };
