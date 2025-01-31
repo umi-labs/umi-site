@@ -27,6 +27,7 @@ import FeatureGrid from '@/app/_components/shared/blocks/feature-grid';
 import JobVacancies from '@/app/_components/shared/blocks/job-vacancies';
 import ContentBlock from '@/app/_components/shared/blocks/content-block';
 import MeetTheTeamSection from '@/app/_components/shared/blocks/meet-the-team/meet-the-team-section';
+import TextBlock from '@/app/_components/shared/blocks/text-block';
 
 export function CustomPortableText({
   paragraphClasses,
@@ -74,6 +75,9 @@ export function CustomPortableText({
             )}
           </div>
         );
+      },
+      textBlock: ({ value }) => {
+        return <TextBlock text={value} />;
       },
       ctaSimple: ({ value }) => {
         return <CTASimple data={value} />;

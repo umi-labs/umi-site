@@ -9,6 +9,10 @@ export default defineType({
       name: 'imageWithText',
       type: 'imageWithText',
     }),
+    defineArrayMember({
+      name: 'textBlock',
+      type: 'textBlock',
+    }),
     defineField({
       name: 'form',
       title: 'Form',

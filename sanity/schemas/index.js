@@ -64,6 +64,7 @@ import meetTheTeam from '@/sanity/schemas/objects/meet-the-team';
 import video from '@/sanity/schemas/objects/globals/video';
 import jsonLd from '@/sanity/schemas/objects/globals/json-ld';
 import layout from '@/sanity/schemas/objects/globals/layout';
+import textBlock from '@/sanity/schemas/objects/text-block';
 
 export const schema = [
   // Singletons
@@ -130,6 +131,7 @@ export const schema = [
   video,
   jsonLd,
   layout,
+  textBlock,
 ];
 
 export const singletons = [
