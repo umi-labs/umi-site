@@ -17,12 +17,13 @@ import {
   DialogTrigger,
 } from '@/app/_components/ui/dialog';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
+import { PortableTextBlock } from 'next-sanity';
 
 interface Props {
   data: {
     separator?: boolean | undefined;
     title: string;
-    description: string;
+    description?: PortableTextBlock[];
   };
 }
 
@@ -37,7 +38,7 @@ export default function JobVacancies({ data }: Props) {
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
-        <p>{data.description}</p>
+        {data.description && <CustomPortableText value={data.description} />}
       </div>
       <div className="grid w-full grid-flow-row grid-cols-1 items-center justify-center gap-9">
         {jobs?.map((job, i) => (

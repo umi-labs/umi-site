@@ -63,7 +63,7 @@ export default function Video({
   return (
     <MediaPlayer
       title="Video Player"
-      src={video.asset.url}
+      src={video.asset?.url}
       playsInline={playsinline}
       muted={muted ? true : autoplay ? true : false}
       loop={loop}
@@ -104,8 +104,8 @@ export default function Video({
         )}
         <Poster
           className="absolute inset-0 block h-full w-full rounded-md bg-black opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
-          src={image.asset.url}
-          alt={image.asset.altText}
+          src={image.asset?.url}
+          alt={image.asset?.altText}
         />
       </MediaProvider>
     </MediaPlayer>

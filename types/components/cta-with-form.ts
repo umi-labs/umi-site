@@ -1,7 +1,7 @@
-import type { Buffers, Button, Image, Layout } from '@/types/generics';
 import { PortableTextBlock } from 'next-sanity';
+import { Buffers, Button, Image } from '@/types/generics';
 
-export interface CTASimpleProps {
+export interface CTAWithFormProps {
   data: {
     subtitle: string;
     title: string;
@@ -9,6 +9,5 @@ export interface CTASimpleProps {
     buttons: Button[];
     image: Image;
     buffers?: Buffers;
-    layout?: Layout;
   };
 }

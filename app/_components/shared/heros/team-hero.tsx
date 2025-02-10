@@ -17,10 +17,10 @@ export default function TeamHero(props: TeamPayload) {
       <div className="relative z-10 flex w-full flex-col items-center justify-center gap-6 md:my-20">
         {props.image && (
           <Image
-            src={props.image.asset.url || ''}
-            alt={props.image.asset.altText || ''}
-            width={props.image.asset.metadata?.dimensions.width}
-            height={props.image.asset.metadata?.dimensions.height}
+            src={props.image.asset?.url || ''}
+            alt={props.image.asset?.altText || ''}
+            width={props.image.asset?.metadata?.dimensions.width}
+            height={props.image.asset?.metadata?.dimensions.height}
             className="aspect-square max-h-44 w-auto object-cover object-center"
           />
         )}

@@ -7,6 +7,7 @@ import { client } from '@/sanity/lib/client';
 import {
   homePageQuery,
   pagesBySlugQuery,
+  postsBySlugQuery,
   projectsBySlugQuery,
   seoSettingsQuery,
   settingsQuery,
@@ -16,6 +17,7 @@ import { token } from '@/sanity/lib/token';
 import {
   HomePagePayload,
   PagePayload,
+  PostPayload,
   ProjectPayload,
   SEOSettingsPayload,
   SettingsPayload,
@@ -103,6 +105,14 @@ export function loadHomePage() {
 export function loadPage(slug: string) {
   return loadQuery<PagePayload | null>(
     pagesBySlugQuery,
+    { slug },
+    { next: { tags: [`page:${slug}`] } }
+  );
+}
+
+export function loadPost(slug: string) {
+  return loadQuery<PostPayload | null>(
+    postsBySlugQuery,
     { slug },
     { next: { tags: [`page:${slug}`] } }
   );

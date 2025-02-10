@@ -1,8 +1,10 @@
 import { client } from '@/sanity/lib/client';
 import {
-  filterTeamByRoleQuery,
+  filterTeamByDepartmentQueryPaginatedInitial,
   relatedTeamBySlugQuery,
   teamQuery,
+  teamQueryPaginated,
+  teamQueryPaginatedInitial,
   teamRolesQuery,
 } from '@/sanity/lib/queries/queries.team';
 import { TeamPayload } from '@/types';
@@ -15,17 +17,27 @@ export async function getTeamRoles(): Promise<TeamPayload[] | undefined> {
   return client.fetch(teamRolesQuery);
 }
 
-export const filterTeamByRole = ({
-  role,
+export async function filterTeamByDepartment({
+  department,
+  lastId,
 }: {
-  role: string;
-}): Promise<TeamPayload[] | undefined> => {
-  if (!role || role === 'All') {
-    return client.fetch(teamQuery);
+  department: TeamPayload['department'];
+  lastId?: string;
+}): Promise<TeamPayload[] | undefined> {
+  const filterQuery = department?.toLowerCase();
+
+  if (!department || filterQuery === 'all') {
+    if (!lastId) return await client.fetch(teamQueryPaginatedInitial);
+    return await client.fetch(teamQueryPaginated, {
+      department: filterQuery,
+      lastId: lastId,
+    });
   } else {
-    return client.fetch(filterTeamByRoleQuery, { role });
+    return client.fetch(filterTeamByDepartmentQueryPaginatedInitial, {
+      department: filterQuery,
+    });
   }
-};
+}
 
 export async function getRelatedTeamMembers({
   slug,

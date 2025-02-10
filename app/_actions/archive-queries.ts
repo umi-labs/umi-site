@@ -48,24 +48,28 @@ export async function getFilteredArchives({
   postType: string;
 }): Promise<PostPayload[] | ProjectPayload[] | undefined> {
   if (postType === 'project') {
-    if (!tag || tag === 'All') {
+    if (!tag || tag.toLowerCase() === 'all') {
       return client.fetch(getProjectsQuery);
     }
 
-    // @ts-ignore
-    return client.fetch(getFilteredProjectsQuery, { tag });
+    return await client.fetch(getFilteredProjectsQuery, {
+      // @ts-ignore
+      tag: tag.toLowerCase(),
+    });
   } else if (postType === 'post') {
-    if ((!tag || tag === 'All') && (!type || type === 'all')) {
+    if ((!tag || tag === 'all') && (!type || type === 'all')) {
       return client.fetch(getPostsQuery);
-    } else if (!tag || tag === 'All') {
+    } else if (!tag || tag === 'all') {
       return client.fetch(getFilteredByTypePostsQuery, { type });
     } else if (!type || type === 'all') {
-      // @ts-ignore
-      return client.fetch(getFilteredByTagPostsQuery, { tag });
+      return client.fetch(getFilteredByTagPostsQuery, {
+        // @ts-ignore
+        tag: reformatTag(tag),
+      });
     } else {
       return client.fetch(getFullyFilteredPostsQuery, {
         // @ts-ignore
-        tag,
+        tag: reformatTag(tag),
         type,
       });
     }

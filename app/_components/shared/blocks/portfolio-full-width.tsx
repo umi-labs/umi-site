@@ -16,12 +16,14 @@ import Image from 'next/image';
 import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 import { getFeaturedProjects } from '@/app/_actions/projects';
 import { useQuery } from '@tanstack/react-query';
+import { PortableTextBlock } from 'next-sanity';
+import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 
 interface PortfolioFullWidthProps {
   data: {
     separator?: boolean | undefined;
     title: string;
-    content: string;
+    content?: PortableTextBlock[];
     buttons?: Button[] | undefined;
     buffers?: {
       top?: boolean | undefined;
@@ -53,7 +55,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
         <div className="flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
           {data.separator && <EyebrowSVG className="" />}
           <h2>{data.title}</h2>
-          <p>{data.content}</p>
+          {data.content && <CustomPortableText value={data.content} />}
           <div className="flex w-full flex-col items-start justify-start gap-6 lg:flex-row lg:items-center">
             {data?.buttons?.map((button, i) => (
               <Link

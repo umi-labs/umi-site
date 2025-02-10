@@ -30,10 +30,10 @@ export default function RelatedProjects({ data }: Props) {
             <div className="absolute inset-0 z-[1] h-full w-full bg-gradient-to-b from-black/20 to-black/40" />
             {project.coverImage && (
               <Image
-                src={project.coverImage.asset.url || ''}
-                alt={project.coverImage.asset.altText || ''}
-                width={project.coverImage.asset.metadata.dimensions.width}
-                height={project.coverImage.asset.metadata.dimensions.height}
+                src={project.coverImage.asset?.url || ''}
+                alt={project.coverImage.asset?.altText || ''}
+                width={project.coverImage.asset?.metadata.dimensions.width}
+                height={project.coverImage.asset?.metadata.dimensions.height}
                 className="absolute inset-0 -z-0 h-full object-cover object-center"
               />
             )}

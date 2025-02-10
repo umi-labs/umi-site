@@ -15,7 +15,7 @@ export interface ProjectProps {
 
 function Project({ data }: ProjectProps) {
   const { body } = data ?? {};
-  
+
   const relatedProjects = {
     separator: true,
     title: 'Related Projects',
@@ -33,10 +33,12 @@ function Project({ data }: ProjectProps) {
 
         {/* Body */}
         {body && (
-          <CustomPortableText
-            paragraphClasses="font-serif max-w-3xl text-gray-600 text-xl mx-auto mt-40 mb-20"
-            value={body}
-          />
+          <div className="mx-auto mb-20 mt-40 max-w-7xl px-6 py-12 md:px-16 lg:px-32">
+            <CustomPortableText
+              paragraphClasses="font-serif max-w-3xl text-gray-600 text-xl mx-auto my-4"
+              value={body}
+            />
+          </div>
         )}
 
         {/* Project Pagination */}

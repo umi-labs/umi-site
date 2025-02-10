@@ -5,6 +5,7 @@ import type { Metadata, Viewport } from 'next';
 import dynamic from 'next/dynamic';
 import { draftMode } from 'next/headers';
 import React, { Suspense } from 'react';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import { Cursor } from '@/app/_components/global/Cursor/Cursor';
 import { Footer } from '@/app/_components/global/Footer';
@@ -50,27 +51,29 @@ export default async function Layout({
 
   return (
     <Providers>
-      <div
-        className={cn(
-          `flex min-h-screen w-screen flex-col selection:bg-primary-accent selection:text-primary-background`,
-          settings?.customCursor && 'custom-cursor'
-        )}
-      >
-        <Suspense fallback={<NavbarSkeleton />}>
-          <Navbar />
-        </Suspense>
-        <div className="flex-grow">
-          <Suspense>{children}</Suspense>
+      <NuqsAdapter>
+        <div
+          className={cn(
+            `flex min-h-screen w-screen flex-col selection:bg-primary-accent selection:text-primary-background`,
+            settings?.customCursor && 'custom-cursor'
+          )}
+        >
+          <Suspense fallback={<NavbarSkeleton />}>
+            <Navbar />
+          </Suspense>
+          <div className="flex-grow">
+            <Suspense>{children}</Suspense>
+          </div>
+          <Suspense>
+            <Footer />
+          </Suspense>
+          <Suspense>{settings?.customCursor && <Cursor />}</Suspense>
+          <Suspense>
+            <Analytics />
+          </Suspense>
         </div>
-        <Suspense>
-          <Footer />
-        </Suspense>
-        <Suspense>{settings?.customCursor && <Cursor />}</Suspense>
-        <Suspense>
-          <Analytics />
-        </Suspense>
-      </div>
-      {(await draftMode()).isEnabled && <LiveVisualEditing />}
+        {(await draftMode()).isEnabled && <LiveVisualEditing />}
+      </NuqsAdapter>
     </Providers>
   );
 }

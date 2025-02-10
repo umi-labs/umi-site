@@ -4,14 +4,13 @@ import { FeaturedArchiveCard } from '@/app/_components/ui/card/archive-card';
 import ArchivesGrid from '@/app/_components/shared/blocks/archive/archives-grid';
 import { PostPayload, ProjectPayload } from '@/types';
 import { cn } from '@/app/_utils';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   getArchiveTagsAndTypes,
   getFilteredArchives,
-  reformatTag,
 } from '@/app/_actions/archive-queries';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Loader from '@/app/_components/ui/loader';
+import { useQueryState } from 'nuqs';
 
 interface Props {
   archives: ProjectPayload[] | PostPayload[] | undefined;
@@ -23,40 +22,15 @@ const tagFormatter = (tag: string) => {
 };
 
 export default function ArchivesFilterableBlock({ postType }: Props) {
-  // Router, Pathname, SearchParams
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
+  const [currentTag, setCurrentTag] = useQueryState('tag', {
+    defaultValue: 'all',
+  });
+  const [currentType, setCurrentType] = useQueryState('type', {
+    defaultValue: 'all',
+  });
 
   // State
-  const [currentTag, setCurrentTag] = React.useState<string>('all');
-  const [currentType, setCurrentType] = React.useState<string>('all');
   const [archives, setArchives] = React.useState<Props['archives']>([]);
-
-  // Getting the current tag and type from the URL
-  React.useEffect(() => {
-    if (searchParams.get('tag')) {
-      setCurrentTag(searchParams.get('tag')!);
-    } else {
-      setCurrentTag('all');
-    }
-  }, [searchParams]);
-
-  React.useEffect(() => {
-    if (searchParams.get('type')) {
-      setCurrentType(searchParams.get('type')!);
-    } else {
-      setCurrentType('all');
-    }
-  }, [searchParams]);
-
-  React.useEffect(() => {
-    if (postType === 'project') {
-      router.push(`${pathname}?tag=all`);
-    } else {
-      router.push(`${pathname}?tag=all&type=all`);
-    }
-  }, []);
 
   // Queries
   const tagsAndTypes = useQuery({
@@ -69,11 +43,11 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
     enabled: !!postType,
   });
 
-  const { data, isLoading, isError, isSuccess } = useQuery({
+  const { data, isLoading, isError, isSuccess, error } = useQuery({
     queryKey: ['archives', currentTag, currentType, postType],
     queryFn: () =>
       getFilteredArchives({
-        tag: reformatTag(currentTag),
+        tag: currentTag,
         type: currentType,
         postType: postType!,
       }),
@@ -128,19 +102,16 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
     <>
       {/* Type */}
       {postType === 'post' && types.length > 0 && (
-        <div className="grid grid-cols-3 gap-y-4 py-6 text-xs text-gray-600">
+        <div className="flex gap-y-4 py-6 text-xs text-gray-600">
           {types.map((type, i) => (
             <span
               key={i}
               className={cn(
-                'interactable border-b-2 border-gray-200 px-5 py-2 text-center text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out',
+                'interactable cursor-pointer border-b-2 border-gray-200 px-5 py-2 text-center text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out',
                 currentType === type && 'border-b-2 border-primary-foreground'
               )}
               onClick={() => {
-                router.replace(
-                  `${pathname}?type=${tagFormatter(type)}&tag=${tagFormatter(currentTag)}`,
-                  { scroll: false }
-                );
+                setCurrentType(tagFormatter(type));
               }}
             >
               {type}
@@ -151,25 +122,24 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
 
       {/* Tags */}
       {tags.length > 0 && (
-        <div className="flex flex-wrap gap-x-2 gap-y-4 py-6 text-xs text-gray-600 lg:py-0">
-          {tags.map((tag, i) => (
-            <span
-              key={i}
-              className={cn(
-                'interactable rounded-full bg-gray-200 px-5 py-2 text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out hocus:bg-primary-foreground hocus:text-primary-background',
-                currentTag === tagFormatter(tag) &&
-                  'bg-primary-foreground text-primary-background'
-              )}
-              onClick={() => {
-                router.replace(
-                  `${pathname}?${postType === 'post' ? `type=${tagFormatter(currentType)}&` : ''}tag=${tagFormatter(tag)}`,
-                  { scroll: false }
-                );
-              }}
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="flex flex-wrap justify-center gap-x-2 gap-y-4 py-6 text-xs text-gray-600 lg:py-0">
+          {tags.map((tag, i) => {
+            return (
+              <span
+                key={i}
+                className={cn(
+                  'interactable cursor-pointer rounded-full bg-gray-200 px-5 py-2 text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out hocus:bg-primary-foreground hocus:text-primary-background',
+                  currentTag === tagFormatter(tag) &&
+                    'bg-primary-foreground text-primary-background'
+                )}
+                onClick={() => {
+                  setCurrentTag(tagFormatter(tag));
+                }}
+              >
+                {tag.split('-').join(' ')}
+              </span>
+            );
+          })}
         </div>
       )}
 

@@ -63,10 +63,10 @@ const PostCard = (props: BlogGridProps['data']['blogs'][0]) => {
   return (
     <div className="grid size-full grid-flow-row auto-rows-auto place-items-center gap-x-10 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:grid-cols-2 lg:grid-rows-1">
       <Image
-        src={props.coverImage.asset.url}
-        alt={props.coverImage.asset.altText || ''}
-        width={props.coverImage.asset.metadata.dimensions.width}
-        height={props.coverImage.asset.metadata.dimensions.height}
+        src={props.coverImage?.asset?.url || ''}
+        alt={props.coverImage?.asset?.altText || ''}
+        width={props.coverImage?.asset?.metadata?.dimensions.width}
+        height={props.coverImage?.asset?.metadata?.dimensions.height}
         className="h-full object-cover object-center"
       />
       <div className="flex w-full flex-col items-start justify-around gap-y-8 px-6 py-6 lg:size-full lg:pl-0">

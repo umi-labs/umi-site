@@ -11,8 +11,8 @@ import type {
 import type { HomeHeroProps } from '@/app/_components/shared/heros/HomeHero';
 import type { PrimaryHeroProps } from '@/app/_components/shared/heros/PrimaryHero';
 import type { MenuItem, Nav, NavItem } from '@/types/components/nav';
-import { CTASimpleProps } from '@/types/components/ctaSimple';
-import { CTATitleImageProps } from '@/types/components/ctaTitleImage';
+import { CTASimpleProps } from '@/types/components/cta-simple';
+import { CTATitleImageProps } from '@/types/components/cta-title-image';
 
 export interface HeroProps {
   HomeHero?: HomeHeroProps[];
@@ -49,6 +49,13 @@ export interface TeamPayload {
   image?: Image;
   description?: string;
   role?: string;
+  department?:
+    | 'all'
+    | 'design'
+    | 'development'
+    | 'marketing'
+    | 'board'
+    | string;
   socialLinks?: SocialLinkItem[];
   metaData?: MetaData;
 }
@@ -79,29 +86,19 @@ export interface PostPayload {
   _updatedAt?: string;
   _createdAt?: string;
   _id?: string;
-  hero?: PortableTextBlock[];
-  blocks?: PortableTextBlock[];
-  body?: PortableTextBlock[];
-  coverImage?: Image;
-  excerpt?: string;
-  featured?: boolean;
+  title?: string;
+  slug?: string;
   tags?: string[];
   type?: 'blog' | 'podcast';
   author?: {
     name: string;
     slug: string;
   };
-  time?:
-    | {
-        timeTaken?: number | undefined;
-        timeType?: ('blog' | 'podcast') | undefined;
-      }
-    | undefined;
-  name?: string;
-  overview?: PortableTextBlock[];
+  coverImage?: Image;
+  excerpt?: string;
+  featured?: boolean;
+  body?: PortableTextBlock[];
   metaData?: MetaData;
-  title?: string;
-  slug?: string;
 }
 
 export interface ReviewPayload {

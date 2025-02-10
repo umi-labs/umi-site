@@ -1,11 +1,11 @@
 import React from 'react';
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs';
-import { loadPage } from '@/sanity/loader/loadQuery';
+import { loadPage, loadPost } from '@/sanity/loader/loadQuery';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import type { Metadata, ResolvingMetadata } from 'next';
 import PagePreview from '@/app/_components/pages/page/PagePreview';
-import Page from '@/app/_components/pages/page/Page';
+import PostPage from '@/app/_components/pages/blog/PostPage';
 
 type Props = {
   params: { slug: string };
@@ -37,7 +37,7 @@ export async function generateStaticParams() {
 export default async function PageSlugRoute({ params }) {
   const { slug } = params;
 
-  const initial = await loadPage(slug);
+  const initial = await loadPost(slug);
 
   if ((await draftMode()).isEnabled) {
     return <PagePreview params={params} initial={initial} />;
@@ -47,5 +47,5 @@ export default async function PageSlugRoute({ params }) {
     notFound();
   }
 
-  return <Page data={initial.data} />;
+  return <PostPage data={initial.data} />;
 }

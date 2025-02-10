@@ -108,12 +108,10 @@ const NavItem = ({
     setSubMenu({ show: false, currentItem: null });
   }, [item]);
 
-  console.log(subMenu);
-
   return item.displayList ? (
     <div className="relative h-full w-full overflow-hidden">
       <button
-        className="w-full overflow-hidden uppercase text-charcoal md:w-1/2"
+        className="text-charcoal w-full overflow-hidden uppercase md:w-1/2"
         onClick={() => {
           setSubMenu({
             currentItem: item._key,
@@ -140,7 +138,7 @@ const NavItem = ({
       </button>
       <div
         className={cn(
-          'absolute bottom-0 right-0 w-full rounded-sm border-0 bg-anti-flash outline-0 ring-0 md:top-0 md:w-1/2',
+          'bg-anti-flash absolute bottom-0 right-0 w-full rounded-sm border-0 outline-0 ring-0 md:top-0 md:w-1/2',
           `transition-transform duration-300 ease-in-out md:transition-none`,
           subMenu.show
             ? 'translate-y-full md:translate-y-0'
@@ -206,7 +204,7 @@ const MenuLink = ({
     <Link
       // @ts-ignore
       link={navItem}
-      className={cn('animate-rotateUpAndIn uppercase text-charcoal')}
+      className={cn('text-charcoal animate-rotateUpAndIn uppercase')}
       onClick={() => setShow(!show)}
     >
       <h2>{title}</h2>

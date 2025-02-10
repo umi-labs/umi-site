@@ -62,7 +62,7 @@ export default defineType({
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
-      type: 'string',
+      type: 'text',
       description:
         'Used for the <meta> description tag for SEO and some cards.',
       group: 'seo',
@@ -86,8 +86,8 @@ export default defineType({
       group: 'content',
     }),
     defineField({
-      name: 'description',
-      title: 'Project Description',
+      name: 'body',
+      title: 'Body',
       type: 'array',
       of: [
         defineArrayMember({
@@ -108,7 +108,6 @@ export default defineType({
               },
             ],
           },
-          styles: [],
         }),
         // Custom components
         defineField({
@@ -140,28 +139,48 @@ export default defineType({
             }),
           ],
         }),
-      ],
-      group: 'content',
-    }),
-    defineField({
-      name: 'time',
-      title: 'Time',
-      type: 'object',
-      fields: [
         defineField({
-          name: 'timeTaken',
-          title: 'Time Taken',
-          type: 'number',
-        }),
-        defineField({
-          name: 'timeType',
-          title: 'Time Type',
-          type: 'string',
+          type: 'imageWithText',
+          name: 'imageWithText',
+          title: 'Image With Text',
           options: {
-            list: ['blog', 'podcast'],
+            hotspot: true,
+          },
+          preview: {
+            select: {
+              imageUrl: 'image.asset.url',
+              title: 'title',
+              description: 'content',
+            },
           },
         }),
+        defineField({
+          type: 'faqBlock',
+          name: 'faqBlock',
+          title: 'FAQ Block',
+        }),
+        defineField({
+          type: 'basicHero',
+          name: 'basicHero',
+          title: 'Basic Hero',
+        }),
+        defineField({
+          type: 'heroWithMedia',
+          name: 'heroWithMedia',
+          title: 'Hero With Media',
+        }),
+        defineField({
+          type: 'logoCloud',
+          name: 'logoCloud',
+          title: 'Logo Cloud',
+        }),
+        defineField({
+          type: 'alternatingContent',
+          name: 'alternatingContent',
+          title: 'Alternating Content',
+        }),
       ],
+      group: 'content',
     }),
     defineField({
       name: 'metaData',

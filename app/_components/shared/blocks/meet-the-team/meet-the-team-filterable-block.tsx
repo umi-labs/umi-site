@@ -1,102 +1,65 @@
 'use client';
 import React from 'react';
-import { TeamPayload } from '@/types';
 import { cn } from '@/app/_utils';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Loader from '@/app/_components/ui/loader';
-import { filterTeamByRole, getTeamRoles } from '@/app/_actions/team';
+import { filterTeamByDepartment } from '@/app/_actions/team';
 import MeetTheTeamGrid from '@/app/_components/shared/blocks/meet-the-team/meet-the-team-grid';
 import { reformatTag } from '@/app/_actions/archive-queries';
-
-const tagFormatter = (tag: string) => {
-  return tag.toLowerCase().split(' ').join('-');
-};
+import { useQueryState } from 'nuqs';
+import { Button } from '@/app/_components/ui/button';
 
 export default function MeetTheTeamFilterableBlock() {
-  // Router, Pathname, SearchParams
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
+  // Departments
+  const departments = ['all', 'design', 'development', 'marketing', 'board'];
+  const prevId = React.useRef<{ prevId: string | null }>(null);
 
-  // State
-  const [currentRole, setCurrentRole] = React.useState<string>('All');
-  const [team, setTeam] = React.useState<TeamPayload[]>([]);
+  const [lastId, setLastId] = React.useState('');
 
-  // Getting the current role from the URL
-  React.useEffect(() => {
-    if (searchParams.get('role')) {
-      setCurrentRole(searchParams.get('role')!);
-    } else {
-      setCurrentRole('All');
+  // Query State
+  const [currentDepartment, setCurrentDepartment] = useQueryState(
+    'department',
+    {
+      defaultValue: 'all',
     }
-  }, [searchParams]);
+  );
 
-  React.useEffect(() => {
-    router.push(`${pathname}?role=all`);
-  }, []);
-
-  // Queries
-  const { data: rolesQueryResult } = useQuery({
-    queryKey: ['roles'],
-    queryFn: () => getTeamRoles(),
-    placeholderData: keepPreviousData,
-  });
-
+  // Query
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['team', currentRole],
+    queryKey: ['team', currentDepartment, lastId],
     queryFn: () =>
-      filterTeamByRole({
-        role: reformatTag(currentRole),
+      filterTeamByDepartment({
+        department: reformatTag(currentDepartment),
+        lastId,
       }),
     placeholderData: keepPreviousData,
-    enabled: !!currentRole,
+    enabled: !!currentDepartment,
   });
-
-  React.useEffect(() => {
-    if (!data) return;
-    setTeam(data);
-  }, [data]);
-
-  const [roles, setRoles] = React.useState<string[]>([]);
-
-  React.useEffect(() => {
-    if (!rolesQueryResult || rolesQueryResult.length === 0) return;
-    const rolesSet: Set<string | undefined> = new Set(
-      rolesQueryResult.map((role) => role.role).flat()
-    );
-
-    if (rolesSet.size === 0) return;
-
-    // Convert the Set to an Array
-    const rolesArray = ['All', ...rolesSet];
-
-    // @ts-ignore
-    setRoles(rolesArray);
-  }, [rolesQueryResult]);
 
   return (
     <>
       {/* Type */}
-      {roles.length > 0 && (
-        <div className="grid grid-cols-3 gap-y-4 py-6 text-xs text-gray-600">
-          {roles.map((role, i) => (
-            <span
-              key={i}
-              className={cn(
-                'interactable border-b-2 border-gray-200 px-5 py-2 text-center text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out',
-                reformatTag(currentRole) === role &&
-                  'border-b-2 border-primary-foreground'
-              )}
-              onClick={() => {
-                router.replace(`${pathname}?role=${tagFormatter(role)}`, {
-                  scroll: false,
-                });
-              }}
-            >
-              {role}
-            </span>
-          ))}
+      {departments.length > 0 && (
+        <div className="flex flex-wrap gap-4 py-6 text-xs text-gray-600">
+          {departments.map((department, i) => {
+            const isActive =
+              reformatTag(currentDepartment).toLowerCase() ===
+              department.toLowerCase();
+            return (
+              <span
+                key={i}
+                className={cn(
+                  'interactable border-b-2 border-gray-200 px-5 py-2 text-center text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out',
+                  isActive && 'border-primary-foreground'
+                )}
+                onClick={() => {
+                  setCurrentDepartment(department);
+                }}
+              >
+                {department}
+              </span>
+            );
+          })}
         </div>
       )}
 
@@ -105,10 +68,10 @@ export default function MeetTheTeamFilterableBlock() {
       ) : isError ? (
         <ErrorMessage />
       ) : isSuccess ? (
-        <MeetTheTeamGrid team={team} />
+        <MeetTheTeamGrid team={data} />
       ) : null}
 
-      {isSuccess && team?.length === 0 && (
+      {isSuccess && data?.length === 0 && (
         <div className="flex size-full flex-col items-center justify-center gap-y-6">
           <h2 className="text-6xl font-semibold italic">
             No Team Members Found
@@ -116,6 +79,37 @@ export default function MeetTheTeamFilterableBlock() {
           <p className="text-wrap text-center md:w-1/2">
             There are no team members to display at this time.
           </p>
+        </div>
+      )}
+
+      {/* Pagination */}
+      {isSuccess && data?.length !== 0 && (
+        <div className="flex w-full justify-between px-6">
+          <Button
+            variant="outline"
+            disabled={!prevId.current?.prevId}
+            className=""
+            onClick={() => {
+              // This will need to be updated to use the actual lastId if we reach 18 people in the team
+              // setLastId(prevId.current?.prevId!); something similar to this but correct :)
+              setLastId('');
+            }}
+          >
+            Prev
+          </Button>
+          <Button
+            variant="outline"
+            className=""
+            onClick={() => {
+              setLastId(data![data!.length - 1]?._id!);
+              // @ts-ignore
+              prevId.current = {
+                prevId: data?.[0]?._id,
+              };
+            }}
+          >
+            Next
+          </Button>
         </div>
       )}
     </>

@@ -3,12 +3,13 @@ import {
   Icon as IconType,
   Image as ImageType,
 } from '@/types/generics';
+import { PortableTextBlock } from 'next-sanity';
 
 export interface CTATitleImageProps {
   data: {
     subtitle: string;
     title: string;
-    content: string;
+    content: PortableTextBlock[];
     points?:
       | {
           icon: IconType;

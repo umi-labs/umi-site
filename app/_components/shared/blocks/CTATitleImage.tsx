@@ -5,7 +5,8 @@ import { Icon } from '@/app/_components/ui/icon';
 import Image from 'next/image';
 import React from 'react';
 import Link from '@/app/_components/ui/link';
-import { CTATitleImageProps } from '@/types/components/ctaTitleImage';
+import { CTATitleImageProps } from '@/types/components/cta-title-image';
+import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 
 export default function CTATitleImage({ data }: CTATitleImageProps) {
   return (
@@ -22,7 +23,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
           <h2>{data.title}</h2>
         </div>
         <div className="flex flex-col gap-y-6">
-          <p>{data.content}</p>
+          <CustomPortableText value={data.content} />
           {data.points && (
             <ul className="flex flex-col items-start justify-start gap-y-2 text-start">
               {data.points.map((point, i) => (
@@ -54,10 +55,10 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
       </div>
       <div className="flex aspect-square h-full w-full items-center justify-center">
         <Image
-          src={data.image.asset.url}
-          alt={data.image.asset.altText || ''}
-          width={data.image.asset.metadata.dimensions.width}
-          height={data.image.asset.metadata.dimensions.height}
+          src={data.image.asset?.url || ''}
+          alt={data.image.asset?.altText || ''}
+          width={data.image.asset?.metadata?.dimensions.width}
+          height={data.image.asset?.metadata?.dimensions.height}
           className="h-full object-cover object-center"
         />
       </div>

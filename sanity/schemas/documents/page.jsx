@@ -27,6 +27,21 @@ export default defineType({
       title: 'Title',
       validation: (rule) => rule.required(),
     }),
+    defineField({ name: 'hasParent', title: 'Has Parent', type: 'boolean' }),
+    defineField({
+      name: 'parent',
+      title: 'Parent',
+      type: 'object',
+      fields: [
+        {
+          name: 'parentSlug',
+          type: 'string',
+          validation: (rule) => rule.regex(/^(?!-)((?:[a-z0-9]+-?)+)(?<!-)$/gm),
+        },
+        { name: 'parentPage', type: 'reference', to: [{ type: 'page' }] },
+      ],
+      hidden: ({ parent }) => !parent.hasParent,
+    }),
     defineField({
       type: 'slug',
       name: 'slug',

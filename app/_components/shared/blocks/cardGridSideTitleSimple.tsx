@@ -7,12 +7,14 @@ import { Button, Icon as IconType } from '@/types/generics';
 import { Icon } from '@/app/_components/ui/icon';
 import { EyebrowSVG, IconBackground } from '@/app/_components/ui/svg-comps';
 import { TopBuffer } from '@/app/_components/ui/buffers';
+import { PortableTextBlock } from 'next-sanity';
+import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 
 interface CardGridSideTitleSimpleProps {
   data: {
     separator?: boolean | undefined;
     title: string;
-    content: string;
+    content: PortableTextBlock[];
     buttons?: Button[] | undefined;
     topBuffer?: boolean | undefined;
     features: {
@@ -39,7 +41,7 @@ export default function CardGridSideTitleSimple({
         <div className="flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
           {data.separator && <EyebrowSVG className="" />}
           <h2>{data.title}</h2>
-          <p>{data.content}</p>
+          <CustomPortableText value={data.content} />
           <div className="flex w-full flex-col items-start justify-start gap-6 lg:flex-row lg:items-center">
             {data?.buttons?.map((button, i) => (
               <Link
