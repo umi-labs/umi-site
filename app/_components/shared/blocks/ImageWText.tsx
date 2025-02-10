@@ -3,10 +3,11 @@ import type { Image as ImageType } from 'sanity';
 
 import ImageBox from '@/app/_components/shared/ImageBox';
 import { Button } from '@/app/_components/ui/button';
+import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 
 interface ImageWTextProps {
   images?: ImageType[];
-  content: PortableTextBlock;
+  content: PortableTextBlock[];
   title?: string;
 }
 
@@ -33,7 +34,7 @@ export default function ImageWText(props: ImageWTextProps) {
       <div className="flex flex-col gap-y-4 lg:gap-y-0 lg:pl-16 lg:pr-12">
         <div className="flex flex-col gap-y-4">
           <h2 className="uppercase">{title}</h2>
-          <p>{content[0]?.children[0]?.text}</p>
+          <CustomPortableText value={content} />
           <Button>Click Me</Button>
         </div>
       </div>

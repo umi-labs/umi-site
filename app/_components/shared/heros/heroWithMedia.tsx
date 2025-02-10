@@ -67,7 +67,8 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
           </div>
           <div>
             {data?.mediaType === 'image' ? (
-              data?.image && (
+              data?.image &&
+              data?.image.asset?.url && (
                 <Image
                   src={data.image?.asset?.url || ''}
                   alt={data.image?.asset?.altText || ''}

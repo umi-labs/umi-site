@@ -5,7 +5,36 @@ export const servicesBySlugQuery = groq`
     _id,
     title,
     "slug": slug.current,
-    hero,
+    hero[]{
+      ...,
+      image{
+        ...,
+        asset->
+      },
+      video{
+        ...,
+        video{
+          ..., 
+          asset->
+        },
+        image{
+          ...,
+          asset->
+        },
+      },
+      buttons[] {
+        ...,
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      },
+    },
     blocks[] {
       ...,
       inbox->,

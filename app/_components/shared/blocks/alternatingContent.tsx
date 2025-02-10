@@ -81,22 +81,24 @@ const Card = ({
         <h3>{title}</h3>
         <CustomPortableText value={description} />
       </div>
-      <div
-        className={cn(
-          'flex aspect-[8/7] h-full w-full items-center justify-center',
-          orientation === 'rtl'
-            ? 'md:col-start-2 md:row-start-1'
-            : 'md:col-start-1 md:row-start-1'
-        )}
-      >
-        <Image
-          src={image.asset?.url || ''}
-          alt={image.asset?.altText || ''}
-          width={image.asset?.metadata?.dimensions?.width || 0}
-          height={image.asset?.metadata?.dimensions?.height || 0}
-          className="aspect-square object-cover object-center"
-        />
-      </div>
+      {image && image.asset && image.asset.url && (
+        <div
+          className={cn(
+            'flex aspect-[8/7] h-full w-full items-center justify-center',
+            orientation === 'rtl'
+              ? 'md:col-start-2 md:row-start-1'
+              : 'md:col-start-1 md:row-start-1'
+          )}
+        >
+          <Image
+            src={image?.asset?.url || ''}
+            alt={image?.asset?.altText || ''}
+            width={image?.asset?.metadata?.dimensions?.width || 0}
+            height={image?.asset?.metadata?.dimensions?.height || 0}
+            className="aspect-square object-cover object-center"
+          />
+        </div>
+      )}
     </div>
   );
 };
