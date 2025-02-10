@@ -34,9 +34,9 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
       <div className="relative flex items-center justify-center md:col-span-3">
         <BackgroundSVG className="absolute inset-0 -z-10 size-full" />
         <Image
-          src={data.image.asset.url}
-          width={data.image.asset.metadata.dimensions.width}
-          height={data.image.asset.metadata.dimensions.height}
+          src={data.image.asset.url || ''}
+          width={data.image.asset.metadata?.dimensions.width}
+          height={data.image.asset.metadata?.dimensions.height}
           alt={data.image.asset.altText ? data.image.asset.altText : ''}
         />
       </div>

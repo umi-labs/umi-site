@@ -55,9 +55,11 @@ export default function TestimonialsCarousel({
                     <Image
                       src={testimonial.image?.asset.url || ''}
                       alt={testimonial.image?.asset.altText || ''}
-                      width={testimonial.image?.asset.metadata.dimensions.width}
+                      width={
+                        testimonial.image?.asset.metadata?.dimensions.width
+                      }
                       height={
-                        testimonial.image?.asset.metadata.dimensions.height
+                        testimonial.image?.asset.metadata?.dimensions.height
                       }
                     />
                     <div className="flex flex-col items-center justify-center gap-y-6">

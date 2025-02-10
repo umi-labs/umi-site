@@ -37,11 +37,11 @@ export default function CTASimple({ data }: CTASimpleProps) {
         {data.image && (
           <div className="flex-center row-span-2 size-full md:col-span-2">
             <Image
-              src={data.image.asset.url}
-              width={data.image.asset.metadata.dimensions.width}
-              height={data.image.asset.metadata.dimensions.height}
+              src={data.image.asset.url || ''}
+              width={data.image.asset.metadata?.dimensions.width}
+              height={data.image.asset.metadata?.dimensions.height}
               alt={data.image.asset.altText || ''}
-              className="object-contain object-center"
+              className="obje ct-center object-contain"
             />
           </div>
         )}
