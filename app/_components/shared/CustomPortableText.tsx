@@ -157,6 +157,9 @@ export function CustomPortableText({
           </div>
         );
       },
+      undefined: () => {
+        return null;
+      },
     },
   };
 

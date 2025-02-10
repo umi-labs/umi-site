@@ -22,12 +22,16 @@ export default function CTABlock({
     cta: { CTA },
   },
 }: Props) {
-  switch (CTA[0]?._type) {
+  const cta = CTA[0];
+
+  if (!cta) return null;
+  
+  switch (cta?._type) {
     case 'ctaSimple':
-      return <CTASimple data={CTA[0]} />;
+      return <CTASimple data={cta} />;
     case 'ctaTitleImage':
-      return <CTATitleImage data={CTA[0]} />;
+      return <CTATitleImage data={cta} />;
     case 'ctaWithForm':
-      return <CTAWithForm data={CTA[0]} />;
+      return <CTAWithForm data={cta} />;
   }
 }
