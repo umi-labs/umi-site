@@ -1,5 +1,4 @@
 import {
-  Browsers,
   Gear,
   NavigationArrow,
   Palette,
@@ -38,9 +37,9 @@ export const Settings = (S) =>
             .title('Navigation')
             .icon(NavigationArrow)
             .child(S.document().schemaType('navigation').title('Navigation')),
-          S.documentTypeListItem('postType')
-            .title('Modify Post Types')
-            .icon(Browsers),
+          // S.documentTypeListItem('postType')
+          //   .title('Modify Post Types')
+          //   .icon(Browsers),
           S.documentTypeListItem('faq').title('FAQs'),
           S.documentTypeListItem('ctas').title('CTAs'),
           // Forms(S),
