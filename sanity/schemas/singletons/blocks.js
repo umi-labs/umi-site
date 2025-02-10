@@ -23,13 +23,15 @@ export default defineType({
       name: 'contactFormBlock',
       type: 'contactFormBlock',
     }),
+    defineArrayMember({ name: 'ctaBlock', type: 'ctaBlock' }),
     defineArrayMember({
       name: 'featureGrid',
       type: 'featureGrid',
     }),
     defineArrayMember({
-      name: 'faq',
-      type: 'faq',
+      name: 'faqBlock',
+      title: 'FAQ Block',
+      type: 'faqBlock',
     }),
     defineArrayMember({ name: 'jobVacancies', type: 'jobVacancies' }),
     defineArrayMember({

@@ -18,19 +18,17 @@ export default defineType({
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'string',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
     }),
     defineField({
-      name: 'topBuffer',
-      title: 'Top Buffer',
-      type: 'boolean',
-      initialValue: true,
-    }),
-    defineField({
-      name: 'bottomBuffer',
-      title: 'Bottom Buffer',
-      type: 'boolean',
-      initialValue: true,
+      name: 'buffers',
+      title: 'Buffers',
+      type: 'buffers',
     }),
   ],
   preview: {

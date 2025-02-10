@@ -17,6 +17,12 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'manual',
+      title: 'Manual',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'logos',
       title: 'Logos',
       type: 'array',

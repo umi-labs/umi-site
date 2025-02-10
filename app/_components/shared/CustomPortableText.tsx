@@ -28,6 +28,8 @@ import JobVacancies from '@/app/_components/shared/blocks/job-vacancies';
 import ContentBlock from '@/app/_components/shared/blocks/content-block';
 import MeetTheTeamSection from '@/app/_components/shared/blocks/meet-the-team/meet-the-team-section';
 import TextBlock from '@/app/_components/shared/blocks/text-block';
+import BasicHero from '@/app/_components/shared/heros/BasicHero';
+import CTABlock from '@/app/_components/shared/blocks/cta-block';
 
 export function CustomPortableText({
   paragraphClasses,
@@ -76,6 +78,12 @@ export function CustomPortableText({
           </div>
         );
       },
+      ctaBlock: ({ value }) => {
+        return <CTABlock data={value} />;
+      },
+      basicHero: ({ value }) => {
+        return <BasicHero {...value} />;
+      },
       textBlock: ({ value }) => {
         return <TextBlock text={value} />;
       },
@@ -94,7 +102,7 @@ export function CustomPortableText({
       alternatingContent: ({ value }) => {
         return <AlternatingContent data={value} />;
       },
-      faq: ({ value }) => {
+      faqBlock: ({ value }) => {
         return <FAQs data={value} />;
       },
       carousel: ({ value }) => {

@@ -172,9 +172,48 @@ export const pagesBySlugQuery = groq`
         ...,
         asset->
       },
+      cta-> {
+        CTA[] {
+          ...,
+          image {
+            ...,
+            asset->
+          },
+          buttons[] {
+            ...,
+            link{
+              ...,
+              internalLink ->{
+                _type,
+                "slug": slug.current,
+                title,
+                postType->
+              }
+            }
+          }
+        },
+      },
       imageGrid[]{
         asset->
       },
+      logos[]{
+        ...,
+        name,
+        logo {
+          ...,
+          asset->
+        },
+        link{
+          ...,
+          internalLink ->{
+            _type,
+            "slug": slug.current,
+            title,
+            postType->
+          }
+        }
+      },
+      faqs[]->,
       video{
         ...,
         video{
@@ -313,6 +352,28 @@ export const projectsBySlugQuery = groq`
         asset->
       }
     },
+    metaData,
+  }
+`;
+
+export const postsBySlugQuery = groq`
+  *[_type == "post" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    featured,
+    type,
+    tags[],
+    excerpt,
+    author->{
+      ...,
+      "slug": slug.current,
+    },
+    coverImage{
+      ...,
+      asset->
+    },
+    body,
     metaData,
   }
 `;

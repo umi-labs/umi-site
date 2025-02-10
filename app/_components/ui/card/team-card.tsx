@@ -1,6 +1,7 @@
 import React from 'react';
 import { TeamPayload } from '@/types';
 import Link from '@/app/_components/ui/link';
+import Image from 'next/image';
 
 interface Props {
   team: TeamPayload;
@@ -13,17 +14,17 @@ export default function TeamCard({ team }: Props) {
       <div className="relative flex h-full w-full flex-col items-center justify-between gap-y-6 p-12">
         <div className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-center">
           {team.image && (
-            <img
+            <Image
               src={team.image.asset.url || ''}
               alt={team.image.asset.altText || ''}
               width={team.image.asset.metadata?.dimensions.width}
               height={team.image.asset.metadata?.dimensions.height}
-              className="h-full object-cover object-center"
+              className="aspect-square h-full w-full object-cover object-center"
             />
           )}
         </div>
         <div className="flex flex-col items-center justify-center gap-y-6">
-          <h3 className="text-2xl">{team.name}</h3>
+          <h3 className="text-center text-2xl">{team.name}</h3>
           <span>{team.role}</span>
         </div>
         <Link

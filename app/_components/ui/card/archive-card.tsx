@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from '@/app/_components/ui/link';
 import { PostPayload, ProjectPayload } from '@/types';
 import { cn } from '@/app/_utils';
-import { Icon } from '@/app/_components/ui/icon';
 import { buttonVariants } from '@/app/_components/ui/button';
 import { format, parseISO } from 'date-fns';
 import { motion } from 'motion/react';
@@ -113,27 +112,9 @@ export function PostCard({ archive, index }: PostCardProps) {
           <div className="flex w-full items-center justify-between">
             {archive.author && (
               <Link href={archive.author.slug} className="text-gray-300">
-                by&nbsp;
+                By&nbsp;
                 <span className="text-black">{archive.author.name}</span>
               </Link>
-            )}
-            {archive.time && (
-              <div className="flex items-center text-sm text-gray-400">
-                <Icon
-                  type={
-                    archive.time.timeType === 'blog'
-                      ? 'clock'
-                      : archive.time.timeType === 'podcast'
-                        ? 'headphones'
-                        : 'clock'
-                  }
-                  weight={'regular'}
-                />
-                &nbsp;
-                <span className="text-black">
-                  {archive.time.timeTaken}&nbsp;mins
-                </span>
-              </div>
             )}
           </div>
           <p className="text-sm text-gray-600">{archive.excerpt}</p>
@@ -143,7 +124,7 @@ export function PostCard({ archive, index }: PostCardProps) {
             className={cn(
               buttonVariants({ variant: 'default', size: 'default' })
             )}
-            href={archive.slug}
+            href={`/blog/${archive.slug}`}
           >
             Read More
           </Link>
@@ -201,7 +182,7 @@ export function FeaturedArchiveCard(props: Props) {
           <Link
             variant="link-light"
             className="text-lg text-primary-accent hocus:text-primary-accent"
-            href={`/our-work/${props.archive.slug || ''}`}
+            href={`/${props.postType === 'post' ? 'blog' : 'our-work'}/${props.archive.slug || ''}`}
           >
             Read More
           </Link>

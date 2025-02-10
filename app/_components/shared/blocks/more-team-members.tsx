@@ -53,7 +53,7 @@ export default function MoreTeamMembers({ currentMember }: Props) {
       >
         <SliderContent>
           {team?.map((member, i) => (
-            <SliderItem key={i}>
+            <SliderItem key={i} className="h-full basis-1/3">
               <div className="flex-center w-fit flex-col gap-16 bg-primary-background px-6 py-10 shadow-lg">
                 <div className="relative flex items-center justify-center gap-y-6 overflow-clip">
                   <div className="flex size-full flex-col items-center justify-between gap-6 p-12 text-center">
@@ -62,7 +62,7 @@ export default function MoreTeamMembers({ currentMember }: Props) {
                       alt={member.image?.asset.altText || ''}
                       width={member.image?.asset.metadata?.dimensions.width}
                       height={member.image?.asset.metadata?.dimensions.height}
-                      className="h-full object-cover object-center"
+                      className="mx-w-[200px] aspect-square h-full object-cover object-center"
                     />
                     <div className="flex flex-col gap-y-3">
                       <span className="uppercase text-primary-accent">

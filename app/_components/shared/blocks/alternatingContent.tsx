@@ -3,6 +3,8 @@ import { cn } from '@/app/_utils';
 import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 import { BottomBuffer, TopBuffer } from '@/app/_components/ui/buffers';
 import Image from 'next/image';
+import { PortableTextBlock } from 'next-sanity';
+import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 
 interface AlternatingContentProps {
   data: {
@@ -15,7 +17,7 @@ interface AlternatingContentProps {
     };
     content: {
       title: string;
-      description: string;
+      description: PortableTextBlock[];
       image: {
         asset?: {
           url: string;
@@ -77,7 +79,7 @@ const Card = ({
         )}
       >
         <h3>{title}</h3>
-        <p>{description}</p>
+        <CustomPortableText value={description} />
       </div>
       <div
         className={cn(

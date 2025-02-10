@@ -41,6 +41,8 @@ export const Settings = (S) =>
           S.documentTypeListItem('postType')
             .title('Modify Post Types')
             .icon(Browsers),
+          S.documentTypeListItem('faq').title('FAQs'),
+          S.documentTypeListItem('ctas').title('CTAs'),
           // Forms(S),
         ]),
       S.divider()

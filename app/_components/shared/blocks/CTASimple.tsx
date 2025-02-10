@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { cn } from '@/app/_utils';
-import type { CTASimpleProps } from '@/types/components/ctaSimple';
+import type { CTASimpleProps } from '@/types/components/cta-simple';
 import Image from 'next/image';
 import { BottomBuffer, TopBuffer } from '@/app/_components/ui/buffers';
 import { BackgroundPatternSVG } from '@/app/_components/ui/svg-comps';
@@ -17,7 +17,7 @@ export default function CTASimple({ data }: CTASimpleProps) {
         data.buffers?.bottom && 'mb-32',
         data.layout?.colour === 'dark'
           ? 'fill-primary-secondary-accent/50 bg-primary-foreground text-primary-background'
-          : 'bg-primary-secondary-accent fill-primary-foreground/50 text-primary-foreground'
+          : 'fill-primary-foreground/50 bg-primary-secondary-accent text-primary-foreground'
       )}
     >
       <TopBuffer

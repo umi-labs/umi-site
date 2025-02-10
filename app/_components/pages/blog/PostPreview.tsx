@@ -2,20 +2,20 @@
 
 import { type QueryResponseInitial } from '@sanity/react-loader';
 
-import { homePageQuery } from '@/sanity/lib/queries';
+import { postsBySlugQuery } from '@/sanity/lib/queries';
 import { useQuery } from '@/sanity/loader/useQuery';
-import { HomePagePayload } from '@/types';
+import { PostPayload } from '@/types';
 
-import HomePage from './HomePage';
+import HomePage from './PostPage';
 
 type Props = {
-  initial: QueryResponseInitial<HomePagePayload | null>;
+  initial: QueryResponseInitial<PostPayload | null>;
 };
 
-export default function HomePagePreview(props: Props) {
+export default function PostPreview(props: Props) {
   const { initial } = props;
-  const { data, encodeDataAttribute } = useQuery<HomePagePayload | null>(
-    homePageQuery,
+  const { data, encodeDataAttribute } = useQuery<PostPayload | null>(
+    postsBySlugQuery,
     {},
     { initial }
   );

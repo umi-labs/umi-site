@@ -49,13 +49,22 @@ export default defineType({
           name: 'tag',
           title: 'Tag',
           type: 'string',
+          options: {
+            list: [
+              { title: 'Advertising', value: 'advertising' },
+              { title: 'Development', value: 'development' },
+              { title: 'Design', value: 'design' },
+              { title: 'Consulting', value: 'consulting' },
+              { title: 'Umi Flow', value: 'umi-flow' },
+            ],
+          },
         }),
       ],
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
-      type: 'string',
+      type: 'text',
       description:
         'Used for the <meta> description tag for SEO and some cards.',
       group: 'seo',
@@ -126,7 +135,6 @@ export default defineType({
               },
             ],
           },
-          styles: [],
         }),
         // Custom components
         defineField({
@@ -159,23 +167,28 @@ export default defineType({
           ],
         }),
         defineField({
+          name: 'faqBlock',
+          type: 'faqBlock',
+          title: 'FAQ Block',
+        }),
+        defineField({
           name: 'portfolioFullWidth',
           title: 'Portfolio Full Width',
           type: 'portfolioFullWidth',
         }),
+        defineField({
+          name: 'cta',
+          title: 'CTA',
+          type: 'ctaSimple',
+          group: 'content',
+        }),
+        defineField({
+          name: 'contactForm',
+          title: 'Contact Form',
+          type: 'ctaTitleImage',
+          group: 'content',
+        }),
       ],
-      group: 'content',
-    }),
-    defineField({
-      name: 'cta',
-      title: 'CTA',
-      type: 'ctaSimple',
-      group: 'content',
-    }),
-    defineField({
-      name: 'contactForm',
-      title: 'Contact Form',
-      type: 'ctaTitleImage',
       group: 'content',
     }),
     defineField({
@@ -190,7 +203,7 @@ export default defineType({
           to: [{ type: 'project' }],
         }),
       ],
-      validation: (Rule) => Rule.required().max(3),
+      validation: (Rule) => Rule.max(3),
     }),
     defineField({
       name: 'review',

@@ -46,6 +46,20 @@ export default defineType({
       group: 'details',
     }),
     defineField({
+      name: 'department',
+      title: 'Department',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'The Board', value: 'board' },
+          { title: 'Marketing', value: 'marketing' },
+          { title: 'Development', value: 'development' },
+          { title: 'Design', value: 'design' },
+        ],
+      },
+      group: 'details',
+    }),
+    defineField({
       name: 'role',
       title: 'Role',
       type: 'string',

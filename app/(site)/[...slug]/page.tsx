@@ -35,11 +35,11 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  return (await generateNestedStaticSlugs('postType'))
+  return (await generateNestedStaticSlugs('page'))
     .map((path) => {
       if (path.slug.children?.length === 0) {
         return {
-          slug: path.slug.parent,
+          slug: [path.slug.parent],
         };
       } else {
         return path.slug.children?.map((child) => {
@@ -52,15 +52,23 @@ export async function generateStaticParams() {
     .flat();
 }
 
-export default async function PageSlugRoute({ params }) {
-  const { slug } = params;
+export default async function PageSlugRoute({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const param = await params;
+
+  if (!param) return null;
+
+  const { slug } = param;
 
   const initial = await loadPage(
     slug.length > 1 ? slug[slug.length - 1] : slug[0]
   );
 
   if ((await draftMode()).isEnabled) {
-    return <PagePreview params={params} initial={initial} />;
+    return <PagePreview params={params!} initial={initial} />;
   }
 
   if (!initial.data) {

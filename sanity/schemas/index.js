@@ -21,6 +21,8 @@ import socialMedia from '@/sanity/schemas/singletons/settings/settings.social-me
 import service from '@/sanity/schemas/documents/service';
 import review from '@/sanity/schemas/documents/review';
 import job from '@/sanity/schemas/documents/job';
+import faq from '@/sanity/schemas/documents/faq';
+import ctas from '@/sanity/schemas/documents/ctas';
 
 // Objects
 import CTATitleImage from '@/sanity/schemas/objects/CTATitleImage';
@@ -55,7 +57,7 @@ import icon from '@/sanity/schemas/objects/globals/icon';
 import portfolioFullWidth from '@/sanity/schemas/objects/portfolio-full-width';
 import archiveBlock from '@/sanity/schemas/objects/archive-block';
 import buffers from '@/sanity/schemas/objects/globals/buffers';
-import faq from '@/sanity/schemas/objects/faq';
+import faqBlock from '@/sanity/schemas/objects/faq-block';
 import carousel from '@/sanity/schemas/objects/carousel';
 import featureGrid from '@/sanity/schemas/objects/feature-grid';
 import jobVacancies from '@/sanity/schemas/objects/job-vacancies';
@@ -65,6 +67,7 @@ import video from '@/sanity/schemas/objects/globals/video';
 import jsonLd from '@/sanity/schemas/objects/globals/json-ld';
 import layout from '@/sanity/schemas/objects/globals/layout';
 import textBlock from '@/sanity/schemas/objects/text-block';
+import ctaBlock from '@/sanity/schemas/objects/cta-block';
 
 export const schema = [
   // Singletons
@@ -89,6 +92,8 @@ export const schema = [
   service,
   review,
   job,
+  faq,
+  ctas,
 
   // Objects
   primaryHero,
@@ -106,6 +111,7 @@ export const schema = [
   button,
   favicon,
   icon,
+  ctaBlock,
   hero1,
   policies,
   alternatingContent,
@@ -123,7 +129,7 @@ export const schema = [
   archiveBlock,
   portfolioFullWidth,
   buffers,
-  faq,
+  faqBlock,
   carousel,
   featureGrid,
   jobVacancies,

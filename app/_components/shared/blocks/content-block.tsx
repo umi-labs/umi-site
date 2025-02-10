@@ -38,7 +38,6 @@ interface ContentBlockProps {
 }
 
 export default function ContentBlock({ data }: ContentBlockProps) {
-  console.log(data);
   return (
     <section className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-12 px-10 py-10 md:py-32 lg:gap-y-24">
       <div
