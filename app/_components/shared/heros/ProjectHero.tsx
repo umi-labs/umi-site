@@ -13,19 +13,19 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
   return (
     <section className="xl:mb-30 relative mx-auto mb-10 mt-20 flex min-h-fit w-full max-w-7xl flex-col items-center justify-start bg-primary-background md:mb-20 lg:mb-28">
       <Image
-        src={project?.coverImage?.asset.url || ''}
-        alt={project?.coverImage?.asset.altText || ''}
-        width={project?.coverImage?.asset.metadata?.dimensions.width}
-        height={project?.coverImage?.asset.metadata?.dimensions.height}
+        src={project?.coverImage?.asset?.url || ''}
+        alt={project?.coverImage?.asset?.altText || ''}
+        width={project?.coverImage?.asset?.metadata?.dimensions.width}
+        height={project?.coverImage?.asset?.metadata?.dimensions.height}
         className="max-h-[650px] w-screen object-cover object-top"
       />
       <div className="grid w-full grid-cols-4 items-center justify-center gap-9 gap-y-10 bg-primary-foreground px-6 py-8 text-primary-background md:px-10">
         <div>
           <Image
-            src={project?.clientLogo?.asset.url || ''}
-            alt={project?.clientLogo?.asset.altText || ''}
-            width={project?.clientLogo?.asset.metadata?.dimensions.width}
-            height={project?.clientLogo?.asset.metadata?.dimensions.height}
+            src={project?.clientLogo?.asset?.url || ''}
+            alt={project?.clientLogo?.asset?.altText || ''}
+            width={project?.clientLogo?.asset?.metadata?.dimensions.width}
+            height={project?.clientLogo?.asset?.metadata?.dimensions.height}
           />
         </div>
         <div className="col-span-2 flex flex-col items-start justify-start gap-y-6">

@@ -92,10 +92,10 @@ export function PostCard({ archive, index }: PostCardProps) {
       }}
     >
       <Image
-        src={archive.coverImage?.asset.url || ''}
-        alt={archive.coverImage?.asset.altText || ''}
-        width={archive.coverImage?.asset.metadata?.dimensions.width}
-        height={archive.coverImage?.asset.metadata?.dimensions.height}
+        src={archive.coverImage?.asset?.url || ''}
+        alt={archive.coverImage?.asset?.altText || ''}
+        width={archive.coverImage?.asset?.metadata?.dimensions.width}
+        height={archive.coverImage?.asset?.metadata?.dimensions.height}
         className="aspect-video h-full object-cover object-center"
       />
       <div className="flex w-full flex-col items-start justify-around gap-y-8 px-6 py-6 lg:size-full">

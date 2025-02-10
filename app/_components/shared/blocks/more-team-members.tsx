@@ -58,10 +58,10 @@ export default function MoreTeamMembers({ currentMember }: Props) {
                 <div className="relative flex items-center justify-center gap-y-6 overflow-clip">
                   <div className="flex size-full flex-col items-center justify-between gap-6 p-12 text-center">
                     <Image
-                      src={member.image?.asset.url || ''}
-                      alt={member.image?.asset.altText || ''}
-                      width={member.image?.asset.metadata?.dimensions.width}
-                      height={member.image?.asset.metadata?.dimensions.height}
+                      src={member.image?.asset?.url || ''}
+                      alt={member.image?.asset?.altText || ''}
+                      width={member.image?.asset?.metadata?.dimensions.width}
+                      height={member.image?.asset?.metadata?.dimensions.height}
                       className="mx-w-[200px] aspect-square h-full object-cover object-center"
                     />
                     <div className="flex flex-col gap-y-3">

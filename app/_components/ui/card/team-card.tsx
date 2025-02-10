@@ -15,10 +15,10 @@ export default function TeamCard({ team }: Props) {
         <div className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-center">
           {team.image && (
             <Image
-              src={team.image.asset.url || ''}
-              alt={team.image.asset.altText || ''}
-              width={team.image.asset.metadata?.dimensions.width}
-              height={team.image.asset.metadata?.dimensions.height}
+              src={team.image.asset?.url || ''}
+              alt={team.image.asset?.altText || ''}
+              width={team.image.asset?.metadata?.dimensions.width}
+              height={team.image.asset?.metadata?.dimensions.height}
               className="aspect-square h-full w-full object-cover object-center"
             />
           )}

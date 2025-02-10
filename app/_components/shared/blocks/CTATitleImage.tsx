@@ -55,10 +55,10 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
       </div>
       <div className="flex aspect-square h-full w-full items-center justify-center">
         <Image
-          src={data.image.asset.url || ''}
-          alt={data.image.asset.altText || ''}
-          width={data.image.asset.metadata?.dimensions.width}
-          height={data.image.asset.metadata?.dimensions.height}
+          src={data.image.asset?.url || ''}
+          alt={data.image.asset?.altText || ''}
+          width={data.image.asset?.metadata?.dimensions.width}
+          height={data.image.asset?.metadata?.dimensions.height}
           className="h-full object-cover object-center"
         />
       </div>

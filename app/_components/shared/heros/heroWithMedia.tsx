@@ -69,8 +69,8 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             {data?.mediaType === 'image' ? (
               data?.image && (
                 <Image
-                  src={data.image?.asset.url || ''}
-                  alt={data.image?.asset.altText || ''}
+                  src={data.image?.asset?.url || ''}
+                  alt={data.image?.asset?.altText || ''}
                   width={data.image?.asset?.metadata?.dimensions?.width}
                   height={data.image?.asset?.metadata?.dimensions?.height}
                 />

@@ -56,10 +56,10 @@ export default function ContentBlock({ data }: ContentBlockProps) {
             >
               {item && (
                 <Image
-                  src={item.asset.url || ''}
-                  alt={item.asset.altText || ''}
-                  width={item.asset.metadata?.dimensions.width}
-                  height={item.asset.metadata?.dimensions.height}
+                  src={item.asset?.url || ''}
+                  alt={item.asset?.altText || ''}
+                  width={item.asset?.metadata?.dimensions.width}
+                  height={item.asset?.metadata?.dimensions.height}
                   className="size-full object-cover object-center"
                 />
               )}
@@ -75,10 +75,10 @@ export default function ContentBlock({ data }: ContentBlockProps) {
       {data.type === 'standardImage' && data.image && (
         <div className="relative aspect-video w-full">
           <Image
-            src={data.image.asset.url || ''}
-            alt={data.image.asset.altText || ''}
-            width={data.image.asset.metadata?.dimensions.width}
-            height={data.image.asset.metadata?.dimensions.height}
+            src={data.image.asset?.url || ''}
+            alt={data.image.asset?.altText || ''}
+            width={data.image.asset?.metadata?.dimensions.width}
+            height={data.image.asset?.metadata?.dimensions.height}
             className="object-cover object-center"
           />
         </div>
@@ -92,10 +92,10 @@ export default function ContentBlock({ data }: ContentBlockProps) {
               className="relative flex flex-col items-center justify-center gap-y-6 bg-primary-background text-center text-primary-foreground shadow-lg"
             >
               <Image
-                src={item.image?.asset.url || ''}
-                alt={item.image?.asset.altText || ''}
-                width={item.image?.asset.metadata?.dimensions.width}
-                height={item.image?.asset.metadata?.dimensions.height}
+                src={item.image?.asset?.url || ''}
+                alt={item.image?.asset?.altText || ''}
+                width={item.image?.asset?.metadata?.dimensions.width}
+                height={item.image?.asset?.metadata?.dimensions.height}
                 className="size-full overflow-clip rounded-full object-cover object-center"
               />
               <div className="z-10 flex size-full flex-col items-center justify-between gap-y-6 p-12 xl:px-20 xl:py-24">

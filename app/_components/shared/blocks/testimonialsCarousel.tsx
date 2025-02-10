@@ -53,13 +53,13 @@ export default function TestimonialsCarousel({
                 <div className="col-span-1 p-4 md:p-8">
                   <div className="flex flex-col items-center justify-center gap-y-8">
                     <Image
-                      src={testimonial.image?.asset.url || ''}
-                      alt={testimonial.image?.asset.altText || ''}
+                      src={testimonial.image?.asset?.url || ''}
+                      alt={testimonial.image?.asset?.altText || ''}
                       width={
-                        testimonial.image?.asset.metadata?.dimensions.width
+                        testimonial.image?.asset?.metadata?.dimensions.width
                       }
                       height={
-                        testimonial.image?.asset.metadata?.dimensions.height
+                        testimonial.image?.asset?.metadata?.dimensions.height
                       }
                     />
                     <div className="flex flex-col items-center justify-center gap-y-6">

@@ -60,10 +60,10 @@ const Logo = (logo: LogoCloudProps['data']['logos'][0]) => {
   return (
     <Link href={logo.link}>
       <Image
-        src={logo.logo.asset.url || ''}
-        alt={logo.logo.asset.altText || ''}
-        width={logo.logo.asset.metadata?.dimensions.width || 200}
-        height={logo.logo.asset.metadata?.dimensions.height || 200}
+        src={logo.logo.asset?.url || ''}
+        alt={logo.logo.asset?.altText || ''}
+        width={logo.logo.asset?.metadata?.dimensions.width || 200}
+        height={logo.logo.asset?.metadata?.dimensions.height || 200}
       />
       <span className="sr-only">{logo.name}</span>
     </Link>
