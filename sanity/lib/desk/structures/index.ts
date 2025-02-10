@@ -5,7 +5,6 @@ import { Blog } from './blog';
 import { Forms } from './forms';
 import { Media } from './media';
 import { Inbox } from './inbox';
-import { PostTypes } from './post-types';
 import { Team } from './team';
 import { Service } from './service';
 import { Review } from './review';
@@ -20,7 +19,6 @@ export {
   Forms,
   Media,
   Inbox,
-  PostTypes,
   Team,
   Service,
   Review,
