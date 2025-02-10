@@ -19,10 +19,10 @@ export const Desk = (S) =>
       Pages(S),
       Projects(S),
       Blog(S),
+      Service(S),
       // PostTypes(S),
       S.divider(),
       Team(S),
-      Service(S),
       Review(S),
       Job(S),
     ]);
