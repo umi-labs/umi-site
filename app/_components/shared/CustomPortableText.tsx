@@ -57,6 +57,16 @@ export function CustomPortableText({
         );
       },
     },
+    list: {
+      bullet: ({ children }) => (
+        <ul className="mt-xl list-disc *:ml-4">{children}</ul>
+      ),
+      number: ({ children }) => (
+        <ol className="mt-lg list-decimal *:ml-5 *:marker:font-bold">
+          {children}
+        </ol>
+      ),
+    },
     types: {
       image: ({
         value,
