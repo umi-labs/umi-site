@@ -139,7 +139,7 @@ export interface Link {
 
 export interface Button {
   title: string;
-  link?: Link;
+  link?: NavItem;
   type: 'link' | 'outline' | 'default' | 'destructive' | 'secondary' | 'ghost';
 }
 

@@ -27,7 +27,6 @@ export default defineType({
       description: 'Used for the <meta> description tag for SEO.',
       title: 'Description',
       type: 'text',
-      validation: (rule) => rule.max(155).required(),
       group: 'basic',
     }),
     // defineField({

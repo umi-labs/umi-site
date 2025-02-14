@@ -7,6 +7,11 @@ export default defineType({
   type: 'object',
   fields: [
     {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
       title: 'External Link?',
       name: 'displayExternal',
       type: 'boolean',
@@ -48,13 +53,13 @@ export default defineType({
   ],
   preview: {
     select: {
+      title: 'title',
       internalLink: 'internalLink.name',
       externalUrl: 'externalUrl',
       displayExternal: 'displayExternal',
     },
     prepare(selection) {
-      const { internalLink, externalUrl, displayExternal } = selection;
-      const title = displayExternal ? externalUrl : internalLink;
+      const { displayExternal, title } = selection;
       return {
         title: title,
         // subtitle: externalUrl,

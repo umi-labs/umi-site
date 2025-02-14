@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { Icon } from '@/app/_components/ui/icon';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Image as ImageType } from '@/types/generics';
@@ -88,24 +87,6 @@ const PostCard = (props: BlogGridProps['data']['blogs'][0]) => {
                 by&nbsp;<span className="text-black">{props.author.name}</span>
               </Link>
             )}
-            {props.time && (
-              <div className="flex items-center text-sm text-gray-400">
-                <Icon
-                  type={
-                    props.time.timeType === 'blog'
-                      ? 'clock'
-                      : props.time.timeType === 'podcast'
-                        ? 'headphones'
-                        : 'clock'
-                  }
-                  weight={'regular'}
-                />
-                &nbsp;
-                <span className="text-black">
-                  {props.time.timeTaken}&nbsp;mins
-                </span>
-              </div>
-            )}
           </div>
         </div>
         <div>
@@ -113,7 +94,7 @@ const PostCard = (props: BlogGridProps['data']['blogs'][0]) => {
             className={cn(
               buttonVariants({ variant: 'default', size: 'default' })
             )}
-            href={props.slug}
+            href={`/blog/${props.slug}`}
           >
             Read More
           </Link>

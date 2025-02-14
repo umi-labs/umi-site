@@ -40,7 +40,7 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
   return (
     <section
       className={cn(
-        'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-24 bg-[#FAFAFA] px-10 py-10 md:py-32',
+        'relative flex min-h-full w-full flex-col items-center justify-center gap-y-24 bg-[#FAFAFA] px-10 py-10 md:py-32',
         data.buffers?.top && 'mt-32',
         data.buffers?.bottom && 'mb-32'
       )}
@@ -49,9 +49,11 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
-        {data.description && <p className="text-center">{data.description}</p>}
+        {data.description && (
+          <p className="max-w-4xl text-center">{data.description}</p>
+        )}
       </div>
-      <div className="flex w-full flex-col items-center justify-center gap-16 md:gap-24">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-16 md:gap-24">
         {data.content.map((item, i) => (
           <Card key={i} item={item} orientation={i % 2 ? 'rtl' : 'ltr'} />
         ))}
@@ -95,7 +97,7 @@ const Card = ({
             alt={image?.asset?.altText || ''}
             width={image?.asset?.metadata?.dimensions?.width || 0}
             height={image?.asset?.metadata?.dimensions?.height || 0}
-            className="aspect-square object-cover object-center"
+            className="aspect-square object-contain object-center"
           />
         </div>
       )}

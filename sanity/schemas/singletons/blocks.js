@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineArrayMember, defineType } from 'sanity';
 
 export default defineType({
   name: 'blocks',
@@ -13,11 +13,9 @@ export default defineType({
       name: 'textBlock',
       type: 'textBlock',
     }),
-    defineField({
-      name: 'form',
-      title: 'Form',
-      type: 'reference',
-      to: [{ type: 'form' }],
+    defineArrayMember({
+      name: 'formBlock',
+      type: 'formBlock',
     }),
     defineArrayMember({
       name: 'contactFormBlock',

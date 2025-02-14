@@ -45,16 +45,17 @@ export default function TopBar({
         {data.footerNav?.menu?.map((menu, index) => (
           <MenuContainer key={index} title={menu.title}>
             <ul className="flex flex-col gap-y-4">
-              {menu.itemsList?.items?.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    link={item.navItemUrl}
-                    className="text-xs text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700"
-                  >
-                    {item?.navItemUrl?.internalLink?.title}
-                  </Link>
-                </li>
-              ))}
+              {menu.subNavigation !== 'none' &&
+                menu.nav.map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      link={item}
+                      className="text-xs text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700"
+                    >
+                      {item?.title}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </MenuContainer>
         ))}

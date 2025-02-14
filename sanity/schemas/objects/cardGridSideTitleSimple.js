@@ -67,7 +67,7 @@ export default defineType({
             defineField({
               name: 'content',
               title: 'Content',
-              type: 'string',
+              type: 'text',
             }),
             defineField({
               name: 'button',

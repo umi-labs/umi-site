@@ -1,19 +1,26 @@
-import { Link } from '@/types/generics';
-
 export interface MenuItem {
   _type: string;
   slug?: string;
   title?: string;
 }
 
-export interface Menu {
-  _type: string;
-  _key: string;
-  title: string;
-  displayList: boolean;
-  itemsList: NavList;
-  items: NavItem;
-}
+export type Menu =
+  | {
+      _type: string;
+      _key: string;
+      title: string;
+      subNavigation: 'none';
+      detailed: boolean;
+      nav: NavItem;
+    }
+  | {
+      _type: string;
+      _key: string;
+      title: string;
+      subNavigation: 'manual' | 'collection';
+      detailed: boolean;
+      nav: NavItem[];
+    };
 
 export interface NavList {
   _type: string;
@@ -36,8 +43,13 @@ export interface Nav {
 }
 
 export interface NavItem {
-  _type: string;
   _key: string;
-  name: string;
-  navItemUrl: Link;
+  displayExternal: boolean;
+  description?: string;
+  url?: string;
+  title: string;
+  slug: string;
+  hasParent: boolean;
+  parentSlug?: string;
+  type: string;
 }

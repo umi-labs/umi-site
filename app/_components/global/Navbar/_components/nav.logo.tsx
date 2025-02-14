@@ -7,19 +7,22 @@ import React from 'react';
 const NavLogo = ({
   logo,
   data,
+  className,
 }: {
   logo?: {
     asset?: {
       _ref: string;
     };
   };
+  className?: string;
   data: SettingsPayload;
 }) => {
   return (
     <Link
       href={'/'}
       className={cn(
-        'interactable flex w-fit items-center justify-center gap-x-3 overflow-x-hidden whitespace-nowrap'
+        'interactable flex w-fit items-center justify-center gap-x-3 overflow-x-hidden whitespace-nowrap',
+        className
       )}
     >
       {logo && (

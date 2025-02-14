@@ -7,17 +7,17 @@ export default defineType({
   type: 'object',
   icon: List,
   fields: [
-    {
-      name: 'detailedSubMenu',
-      title: 'Detailed Sub Menu?',
-      type: 'boolean',
-      description:
-        'Choose this if you want the option of a sub Menu link and sub items to have an image',
-      initialValue: false,
-      options: {
-        layout: 'checkbox',
-      },
-    },
+    // {
+    //   name: 'detailedSubMenu',
+    //   title: 'Detailed Sub Menu?',
+    //   type: 'boolean',
+    //   description:
+    //     'Choose this if you want the option of a sub Menu link and sub items to have an image',
+    //   initialValue: false,
+    //   options: {
+    //     layout: 'checkbox',
+    //   },
+    // },
     {
       name: 'subMenuCaption',
       title: 'Caption',
@@ -34,7 +34,7 @@ export default defineType({
       name: 'items',
       title: 'Nav items',
       type: 'array',
-      of: [{ type: 'navItem' }],
+      of: [{ type: 'link' }],
     },
   ],
 });

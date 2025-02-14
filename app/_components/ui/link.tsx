@@ -7,14 +7,14 @@ import useResolvedHref, {
 } from '@/app/_utils/hooks/useResolvedHref';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/app/_components/ui/button';
-import type { Link as LinkType } from '@/types/generics';
+import { NavItem } from '@/types/components/nav';
 
 interface LinkProps
   extends React.ComponentPropsWithoutRef<'a'>,
     VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
   href?: string;
-  link?: LinkType;
+  link?: NavItem;
   className?: React.ComponentPropsWithoutRef<'a'>['className'];
 }
 

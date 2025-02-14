@@ -43,7 +43,7 @@ export default defineType({
       name: 'footerText',
       title: 'Footer Text',
       description: 'Copyright Text displayed on the footer of your site.',
-      type: 'string',
+      type: 'text',
       group: 'footer',
     }),
     defineField({
@@ -98,7 +98,8 @@ export default defineType({
     defineField({
       name: 'policies',
       title: 'Policies',
-      type: 'policies',
+      type: 'array',
+      of: [{ type: 'link' }],
       group: 'misc',
     }),
     defineField({

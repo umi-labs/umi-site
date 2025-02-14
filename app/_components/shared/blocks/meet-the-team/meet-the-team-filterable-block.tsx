@@ -40,7 +40,7 @@ export default function MeetTheTeamFilterableBlock() {
     <>
       {/* Type */}
       {departments.length > 0 && (
-        <div className="flex flex-wrap gap-4 py-6 text-xs text-gray-600">
+        <div className="flex flex-wrap items-center justify-center gap-4 py-6 text-xs text-gray-600">
           {departments.map((department, i) => {
             const isActive =
               reformatTag(currentDepartment).toLowerCase() ===

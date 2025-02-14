@@ -7,7 +7,7 @@ export default defineType({
   description: 'Links to policies that are displayed on the footer.',
   of: [
     defineField({
-      type: 'navItem',
+      type: 'link',
       name: 'policy',
       title: 'Policy',
     }),

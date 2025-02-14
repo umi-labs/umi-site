@@ -5,11 +5,9 @@ import React from 'react';
 
 import Link from '@/app/_components/ui/link';
 import { cn } from '@/lib/utils';
-import type {
-  Menu as MenuType,
-  NavItem as NavItemType,
-} from '@/types/components/nav';
+import type { Menu as MenuType, NavItem } from '@/types/components/nav';
 import type { SettingsPayload } from '@/types';
+import { CaretLeft } from '@phosphor-icons/react/dist/ssr';
 
 interface MenuProps {
   show: boolean;
@@ -19,7 +17,7 @@ interface MenuProps {
 
 const MenuStyles = {
   default: cn(
-    'bg-primary-secondary-accent h-[100svh] w-full fixed top-0 right-0 overflow-hidden z-[90] transition-all translate-x-0 shadow-md duration-[800ms] ease-in-out'
+    'bg-primary-secondary-accent h-[calc(100vh-80px)] w-full fixed bottom-0 inset-x-0 overflow-hidden z-[90] transition-all translate-x-0 shadow-md duration-[800ms] ease-in-out'
   ),
   closed: cn('-translate-x-[-100%] shadow-none'),
 };
@@ -47,7 +45,10 @@ export default function Menu({ data, show, setShow }: MenuProps) {
     };
   }, [show, setShow]);
 
-  const [subMenu, setSubMenu] = React.useState({
+  const [subMenu, setSubMenu] = React.useState<{
+    show: boolean;
+    currentItem: MenuType | null;
+  }>({
     show: false,
     currentItem: null,
   });
@@ -57,10 +58,7 @@ export default function Menu({ data, show, setShow }: MenuProps) {
       <div className={cn(MenuStyles.default, !show && MenuStyles.closed)}>
         {show && (
           <div className="col-span-3 grid h-full w-full grid-rows-2 items-start p-8 uppercase">
-            <h2 className="mt-4 flex items-end justify-start text-start text-8xl md:mt-0 md:text-[12rem]">
-              Menu
-            </h2>
-            <ul className="ml-0 flex list-none flex-col gap-y-3">
+            <ul className="ml-0 flex list-none flex-col gap-y-3 divide-y">
               {menu &&
                 menu.map((menuItem, key) => {
                   return (
@@ -75,15 +73,19 @@ export default function Menu({ data, show, setShow }: MenuProps) {
                   );
                 })}
             </ul>
+            {data.mainNav?.ctaButton && (
+              <Link
+                href={data.mainNav.ctaButton.url}
+                variant="default"
+                size="default"
+                className="mt-8 w-full"
+              >
+                {data.mainNav.ctaButton.text}
+              </Link>
+            )}
           </div>
         )}
       </div>
-      {show && (
-        <div
-          onClick={() => setShow(!show)}
-          className="absolute left-0 top-0 z-[89] h-screen w-screen overflow-hidden bg-primary-background opacity-30"
-        />
-      )}
     </>
   );
 }
@@ -101,85 +103,87 @@ const NavItem = ({
   setSubMenu: any;
   subMenu: {
     show: boolean;
-    currentItem: any;
+    currentItem: MenuType | null;
   };
 }) => {
   React.useEffect(() => {
     setSubMenu({ show: false, currentItem: null });
   }, [item]);
 
-  return item.displayList ? (
+  return item.subNavigation !== 'none' ? (
     <div className="relative h-full w-full overflow-hidden">
       <button
-        className="text-charcoal w-full overflow-hidden uppercase md:w-1/2"
+        className="text-charcoal w-full overflow-hidden uppercase"
         onClick={() => {
           setSubMenu({
-            currentItem: item._key,
+            currentItem: item,
             show: !subMenu.show,
           });
         }}
       >
         <h2
           className={cn(
-            'flex items-center justify-start',
-            subMenu.show && subMenu.currentItem !== item._key
-              ? 'animate-rotateDownAndOut'
-              : 'animate-rotateUpAndIn'
+            'mt-3 flex items-center justify-between text-xl underline-offset-4 hover:underline md:text-4xl',
+            subMenu.show ? 'animate-rotateDownAndOut' : 'animate-rotateUpAndIn'
           )}
         >
           {item.title}
-          <CaretRight
-            className={cn(
-              'ml-2 h-8 w-8 transition-transform duration-300 ease-in-out',
-              subMenu.show && 'rotate-90'
-            )}
-          />
+          <CaretRight className={cn('ml-2 h-8 w-8')} />
         </h2>
       </button>
       <div
-        className={cn(
-          'bg-anti-flash absolute bottom-0 right-0 w-full rounded-sm border-0 outline-0 ring-0 md:top-0 md:w-1/2',
-          `transition-transform duration-300 ease-in-out md:transition-none`,
-          subMenu.show
-            ? 'translate-y-full md:translate-y-0'
-            : 'translate-y-[200vw] md:translate-y-0'
-        )}
+        className={cn(MenuStyles.default, !subMenu.show && MenuStyles.closed)}
       >
-        <ul className="flex w-full min-w-[100px] flex-col gap-y-4 whitespace-nowrap border-0 text-right first-of-type:mt-6 md:first-of-type:mt-0">
-          {item.itemsList.items.map((item, index) => {
-            let delay = index * 100;
-            return (
-              <div
-                key={index}
-                className={cn(
-                  `duration-300 ease-in-out md:transition-all`,
-                  subMenu.show ? 'md:translate-x-0' : 'md:translate-x-full'
-                )}
-                style={{ transitionDelay: `${delay}ms` }}
-              >
-                <MenuLink
-                  navItem={item}
-                  title={item.name}
-                  setShow={setShow}
-                  show={show}
-                />
-              </div>
-            );
-          })}
-        </ul>
+        <div className="col-span-3 flex h-full w-full flex-col items-start p-8 uppercase">
+          <div
+            className={cn(
+              'flex w-full items-center justify-between border-b pb-3'
+            )}
+          >
+            <CaretLeft
+              className="size-8 hover:cursor-pointer"
+              onClick={() => setSubMenu({ show: false, currentItem: null })}
+            />
+            <h2 className="">{subMenu?.currentItem?.title}</h2>
+            <div />
+          </div>
+          <ul className="ml-0 flex w-full list-none flex-col gap-y-3 divide-y">
+            {subMenu?.currentItem?.subNavigation !== 'none' &&
+              subMenu?.currentItem?.nav?.map((item, index) => {
+                let delay = index * 100;
+                return (
+                  <div
+                    key={index}
+                    className={cn(
+                      `pt-3 duration-300 ease-in-out md:transition-all`,
+                      subMenu.show ? 'md:translate-x-0' : 'md:translate-x-full'
+                    )}
+                    style={{ transitionDelay: `${delay}ms` }}
+                  >
+                    <MenuLink
+                      navItem={item}
+                      title={item.title}
+                      setShow={setShow}
+                      show={show}
+                    />
+                  </div>
+                );
+              })}
+          </ul>
+        </div>
       </div>
     </div>
   ) : (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden pt-3">
       <div
         className={cn(
-          subMenu && subMenu.show && subMenu.currentItem !== item._key
+          subMenu && subMenu.show
             ? 'animate-rotateDownAndOut'
             : 'animate-rotateUpAndIn'
         )}
       >
         <MenuLink
-          navItem={item.items}
+          navItem={item.nav}
           show={show}
           setShow={setShow}
           title={item.title}
@@ -195,7 +199,7 @@ const MenuLink = ({
   show,
   setShow,
 }: {
-  navItem: NavItemType;
+  navItem: NavItem;
   title: string;
   show: boolean;
   setShow: any;
@@ -204,10 +208,12 @@ const MenuLink = ({
     <Link
       // @ts-ignore
       link={navItem}
-      className={cn('text-charcoal animate-rotateUpAndIn uppercase')}
+      className={cn(
+        'text-charcoal animate-rotateUpAndIn uppercase md:text-base'
+      )}
       onClick={() => setShow(!show)}
     >
-      <h2>{title}</h2>
+      <h2 className="text-xl md:text-4xl">{title}</h2>
     </Link>
   );
 };

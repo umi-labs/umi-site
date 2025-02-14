@@ -59,10 +59,10 @@ export function CustomPortableText({
     },
     list: {
       bullet: ({ children }) => (
-        <ul className="mt-xl list-disc *:ml-4">{children}</ul>
+        <ul className="mt-xl mx-4 list-disc *:ml-4">{children}</ul>
       ),
       number: ({ children }) => (
-        <ol className="mt-lg list-decimal *:ml-5 *:marker:font-bold">
+        <ol className="mt-lg ml-4 list-decimal *:ml-5 *:marker:font-bold">
           {children}
         </ol>
       ),
