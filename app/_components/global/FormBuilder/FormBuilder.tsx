@@ -30,6 +30,8 @@ export const FormBuilderBlock = ({ formFields, uid, inbox }) => {
   const onSubmit = async (data: any) => {
     setStatus(STATUS[1]);
 
+    console.log(data);
+
     data = {
       ...data,
       inbox: inbox.id,

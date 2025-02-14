@@ -1,4 +1,4 @@
-import type { Menu as MenuType } from '@/types/components/nav';
+import type { Menu } from '@/types/components/nav';
 import React from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -8,17 +8,17 @@ import {
 import { CaretDown } from '@phosphor-icons/react';
 
 interface NavItemProps {
-  item: MenuType;
+  item: Menu;
   setCurrentItem: React.Dispatch<React.SetStateAction<string | null>>;
   currentItem: string | null;
 }
 
 const NavItem = ({ item, setCurrentItem, currentItem }: NavItemProps) => {
-  return item.displayList ? (
+  return item?.subNavigation !== 'none' ? (
     <div id="NavItem" className="group">
       <button
         id="nav-item__trigger"
-        className="interactable z-10 flex items-center text-xs font-medium capitalize text-charcoal transition-all duration-300 ease-in-out hocus:text-gray-900"
+        className="interactable text-charcoal z-10 flex items-center text-xs font-medium capitalize transition-all duration-300 ease-in-out hocus:text-gray-900"
         onClick={() => setCurrentItem(item._key)}
         onMouseEnter={() => setCurrentItem(item._key)}
         onMouseLeave={() => setCurrentItem(null)}
@@ -51,7 +51,9 @@ const NavItem = ({ item, setCurrentItem, currentItem }: NavItemProps) => {
       />
     </div>
   ) : (
-    <NavLink navItem={item.items} title={item.title} />
+    item?.subNavigation === 'none' && (
+      <NavLink navItem={item.nav} title={item.title} />
+    )
   );
 };
 
@@ -62,13 +64,13 @@ const Content = ({
 }: {
   currentItem: string | null;
   setCurrentItem: React.Dispatch<React.SetStateAction<string | null>>;
-  item: MenuType;
+  item: Menu;
 }) => {
   return (
     <div
       id="nav-item__content"
       className={cn(
-        'bg-primary-secondary-accent absolute left-0 top-0 -z-[1] w-screen px-4 pb-6 pt-20 capitalize transition-transform duration-300 ease-default',
+        'absolute left-0 top-0 -z-[1] w-screen bg-primary-secondary-accent px-4 pb-6 pt-20 capitalize transition-transform duration-300 ease-default',
         currentItem === item._key
           ? 'animate-navContentDown'
           : 'animate-navContentUp'
@@ -77,14 +79,15 @@ const Content = ({
     >
       <div className="grid grid-cols-4">
         <ul className="col-start-3 flex flex-col gap-y-4">
-          {item.itemsList.items.map((item, index) => (
-            <NestedNavLink
-              key={index}
-              navItem={item}
-              title={item.name}
-              setCurrentItem={setCurrentItem}
-            />
-          ))}
+          {item.subNavigation !== 'none' &&
+            item?.nav.map((item, index) => (
+              <NestedNavLink
+                key={index}
+                navItem={item}
+                title={item.title}
+                setCurrentItem={setCurrentItem}
+              />
+            ))}
         </ul>
       </div>
     </div>

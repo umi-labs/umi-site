@@ -16,7 +16,7 @@ const Policies = ({ policies }: { policies: NavItem[] }) => {
                 "gap-x-2 after:pr-2 after:text-xs after:text-gray-500 after:content-['/'] last-of-type:after:pr-0 last-of-type:after:content-['']"
             )}
           >
-            <Link link={policy.navItemUrl}>{policy?.name}</Link>
+            <Link link={policy}>{policy?.title}</Link>
           </div>
         );
       })}

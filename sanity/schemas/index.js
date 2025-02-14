@@ -68,6 +68,7 @@ import jsonLd from '@/sanity/schemas/objects/globals/json-ld';
 import layout from '@/sanity/schemas/objects/globals/layout';
 import textBlock from '@/sanity/schemas/objects/text-block';
 import ctaBlock from '@/sanity/schemas/objects/cta-block';
+import formBlock from '@/sanity/schemas/objects/form-block';
 
 export const schema = [
   // Singletons
@@ -112,6 +113,7 @@ export const schema = [
   favicon,
   icon,
   ctaBlock,
+  formBlock,
   hero1,
   policies,
   alternatingContent,

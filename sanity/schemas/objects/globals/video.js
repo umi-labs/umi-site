@@ -14,7 +14,6 @@ export default defineType({
       options: {
         accept: ['video/mp4', 'video/webm', 'video/mpeg'],
       },
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'image',
@@ -24,7 +23,6 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'autoplay',

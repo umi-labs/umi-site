@@ -54,12 +54,6 @@ export default defineType({
       type: 'metaData',
       group: 'seo',
     }),
-    defineField({
-      name: 'postType',
-      type: 'reference',
-      to: [{ type: 'postType' }],
-      group: 'misc',
-    }),
   ],
   preview: {
     select: {

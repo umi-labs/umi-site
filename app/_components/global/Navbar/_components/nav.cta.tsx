@@ -6,7 +6,7 @@ import React from 'react';
 const NavCta = ({ data }: { data: SettingsPayload }) => {
   return (
     data?.mainNav?.ctaButton?.text && (
-      <div className="flex items-center justify-center">
+      <div className="hidden items-center justify-center md:flex">
         <Link href={data?.mainNav?.ctaButton?.url}>
           <Button className="">{data?.mainNav?.ctaButton?.text}</Button>
         </Link>

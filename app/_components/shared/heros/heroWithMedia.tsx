@@ -6,13 +6,14 @@ import Link from '@/app/_components/ui/link';
 import Image from 'next/image';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import Video from '@/app/_components/ui/video';
-import { BackgroundSVG, EyebrowSVG } from '@/app/_components/ui/svg-comps';
+import { BackgroundSVG, WaveSVG } from '@/app/_components/ui/svg-comps';
 
 export default function HeroWithMedia({ data }: HeroWithMediaProps) {
   return (
     <section
+      id="HeroWithMedia"
       className={cn(
-        'relative mx-auto flex min-h-full w-full max-w-7xl items-center justify-center overflow-visible text-black'
+        'relative mx-auto mb-8 mt-16 flex min-h-full w-full max-w-7xl items-center justify-center overflow-visible text-black md:my-0'
       )}
     >
       <div
@@ -49,7 +50,8 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             'relative flex w-full flex-col items-center justify-center gap-y-10 px-6 md:px-28'
           )}
         >
-          {data?.separator && <EyebrowSVG />}
+          {/* @ts-expect-error - type casting is not defined */}
+          {data?.separator && <WaveSVG />}
           <h2>{data.title}</h2>
           <CustomPortableText value={data.content} />
           <div className="flex w-full items-center justify-center gap-6">

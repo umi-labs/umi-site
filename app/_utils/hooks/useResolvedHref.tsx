@@ -1,7 +1,6 @@
 'use client';
 
-import type { NavItem as NavItemType } from '@/types/components/nav';
-import type { Link } from '@/types/generics';
+import type { NavItem } from '@/types/components/nav';
 import React from 'react';
 
 export enum Status {
@@ -15,10 +14,7 @@ export type ResolvedHref = {
   href: string;
 };
 
-const useResolvedHref = ({ link }: { link?: Link }): ResolvedHref => {
-  const [internalLink, setInternalLink] =
-    React.useState<NavItemType['navItemUrl']['internalLink']>();
-  const [externalLink, setExternalLink] = React.useState<Link['externalUrl']>();
+const useResolvedHref = ({ link }: { link?: NavItem }): ResolvedHref => {
   const [resolvedHref, setResolvedHref] = React.useState<{
     status: Status;
     href: string;
@@ -28,42 +24,28 @@ const useResolvedHref = ({ link }: { link?: Link }): ResolvedHref => {
   });
 
   React.useEffect(() => {
-    if (link?.externalUrl) {
-      setExternalLink(link?.externalUrl);
-    }
-  }, [link]);
-
-  React.useEffect(() => {
-    if (!link) {
-      setResolvedHref({ status: Status.ERROR, href: '' });
-    } else {
-      setInternalLink(link?.internalLink);
-    }
-  }, [link]);
-
-  React.useEffect(() => {
-    if (externalLink) {
+    if (link?.displayExternal && link?.url) {
       setResolvedHref({
         status: Status.SUCCESS,
-        href: externalLink,
+        href: link.url,
       });
-    } else if (internalLink?.postType) {
+    } else if (link?.hasParent) {
       setResolvedHref({
         status: Status.SUCCESS,
-        href: `/${internalLink?.postType.slug.current}/${internalLink?.slug}`,
+        href: `/${link?.parentSlug}/${link?.slug}`,
       });
-    } else if (internalLink?._type !== 'page') {
+    } else if (link?.type !== 'page') {
       setResolvedHref({
         status: Status.SUCCESS,
-        href: `/${internalLink?._type}/${internalLink?.slug}`,
+        href: `/${link?.type}/${link?.slug}`,
       });
     } else {
       setResolvedHref({
         status: Status.SUCCESS,
-        href: `/${internalLink?.slug}`,
+        href: `/${link?.slug}`,
       });
     }
-  }, [internalLink, externalLink]);
+  }, [link]);
 
   return resolvedHref;
 };

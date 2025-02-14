@@ -42,15 +42,16 @@ export default function LogoCloud({ data }: LogoCloudProps) {
   }, [logosArray]);
 
   return (
-    <section className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-14 px-10 py-10 md:py-32">
+    <section
+      id="LogoCloud"
+      className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-14 px-10 py-10 md:py-32"
+    >
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
       </div>
-      <div className="grid w-full grid-cols-2 items-center justify-center gap-6 md:grid-cols-4 lg:grid-cols-5">
-        {logos.map((logo, i) => (
-          <Logo key={i} logo={logo.logo} />
-        ))}
+      <div className="grid w-full grid-cols-2 place-items-center items-center justify-center gap-6 md:grid-cols-4 lg:grid-cols-5">
+        {logos?.map((logo, i) => <Logo key={i} logo={logo.logo} />)}
       </div>
     </section>
   );

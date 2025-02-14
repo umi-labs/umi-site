@@ -19,11 +19,32 @@ export default defineType({
       of: [{ type: 'formFields' }],
     }),
     defineField({
+      name: 'formSubmission',
+      title: 'Form Submission',
+      description:
+        'Choose whether you want to send the form to an inbox or email (there are currently some issues with the submission functionality that is being worked on).',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Inbox', value: 'inbox' },
+          { title: 'Email', value: 'email' },
+        ],
+      },
+      defaultValue: 'inbox',
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      validation: (Rule) => Rule.email(),
+      hidden: ({ parent }) => parent?.formSubmission !== 'email',
+    }),
+    defineField({
       name: 'inbox',
       title: 'Inbox',
       type: 'reference',
       to: [{ type: 'inbox' }],
-      validation: (Rule) => Rule.required(),
+      hidden: ({ parent }) => parent?.formSubmission !== 'inbox',
     }),
   ],
   preview: {

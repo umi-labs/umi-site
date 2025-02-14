@@ -22,27 +22,31 @@ export const homePageQuery = groq`
         },
       },
       buttons[] {
-        ...,
-        link{
-          ...,
-          internalLink ->{
-            _type,
-            "slug": slug.current,
-            title,
-            postType->
-          }
-        }
+        _key,
+        title,
+        type,
+        link {
+         "type": internalLink->_type,
+         "slug": internalLink->slug.current,
+         "title": internalLink->title,
+         "hasParent": internalLink->hasParent,
+         "parentSlug": internalLink->parent.parentSlug,
+         displayExternal,
+         "url": externalUrl
+       }
       },
       button {
-        ...,
-        link{
-          ...,
-          internalLink ->{
-            _type,
-            "slug": slug.current,
-            title,
-            postType->
-          }
+        _key,
+        title,
+        type,
+        link {
+         "type": internalLink->_type,
+         "slug": internalLink->slug.current,
+         "title": internalLink->title,
+         "hasParent": internalLink->hasParent,
+         "parentSlug": internalLink->parent.parentSlug,
+         displayExternal,
+         "url": externalUrl
         }
       }
     },
@@ -64,27 +68,31 @@ export const homePageQuery = groq`
         },
       },
       buttons[] {
-        ...,
-        link{
-          ...,
-          internalLink ->{
-            _type,
-            "slug": slug.current,
-            title,
-            postType->
-          }
+        _key,
+        title,
+        type,
+        link {
+         "type": internalLink->_type,
+         "slug": internalLink->slug.current,
+         "title": internalLink->title,
+         "hasParent": internalLink->hasParent,
+         "parentSlug": internalLink->parent.parentSlug,
+         displayExternal,
+         "url": externalUrl
         }
       },
       button {
-        ...,
-        link{
-          ...,
-          internalLink ->{
-            _type,
-            "slug": slug.current,
-            title,
-            postType->
-          }
+        _key,
+        title,
+        type,
+        link {
+         "type": internalLink->_type,
+         "slug": internalLink->slug.current,
+         "title": internalLink->title,
+         "hasParent": internalLink->hasParent,
+         "parentSlug": internalLink->parent.parentSlug,
+         displayExternal,
+         "url": externalUrl
         }
       },
       selectedProjects[]->{
@@ -98,15 +106,17 @@ export const homePageQuery = groq`
       features[] {
         ...,
         button {
-          ...,
-          link{
-            ...,
-            internalLink ->{
-              _type,
-              "slug": slug.current,
-              title,
-              postType->
-            }
+          _key,
+          title,
+          type,
+          link {
+           "type": internalLink->_type,
+           "slug": internalLink->slug.current,
+           "title": internalLink->title,
+           "hasParent": internalLink->hasParent,
+           "parentSlug": internalLink->parent.parentSlug,
+           displayExternal,
+           "url": externalUrl
           }
         },
       },
@@ -123,14 +133,14 @@ export const homePageQuery = groq`
           ...,
           asset->
         },
-        link{
-          ...,
-          internalLink ->{
-            _type,
-            "slug": slug.current,
-            title,
-            postType->
-          }
+        link {
+         "type": internalLink->_type,
+         "slug": internalLink->slug.current,
+         "title": internalLink->title,
+         "hasParent": internalLink->hasParent,
+         "parentSlug": internalLink->parent.parentSlug,
+         displayExternal,
+         "url": externalUrl
         }
       }
     },
@@ -384,79 +394,131 @@ export const settingsQuery = groq`
     name,
     initials,
     socialLinks[],
-    policies[]{
-      ...,
-      navItemUrl {
-        internalLink->{
-          ...,
-          "slug": slug.current,
-          postType->
-        }
-      }
+    policies[] {
+      _key,
+      displayExternal,
+      "title": internalLink->title,
+      "slug": internalLink->slug.current,
+      "hasParent": internalLink->hasParent,
+      "parentSlug": internalLink->parent.parentSlug,
+      "type": internalLink->_type,
     },
     footerNav->{
-      ...,
       menu[] {
-        ...,
-        itemsList {
-          ...,
-          items[] {
-            ...,
-            navItemUrl {
-              ...,
-              internalLink-> {
-                _type,
-                "slug": slug.current,
-                title,
-                postType->
-              }
-            }
-          }
+        _key,
+        title,
+        subNavigation,
+        "detailed": detailedList,
+        subNavigation == "none" => {
+          "nav": items {
+            _key,
+            displayExternal,
+            "title": internalLink->title,
+            "slug": internalLink->slug.current,
+            "hasParent": internalLink->hasParent,
+            "parentSlug": internalLink->parent.parentSlug,
+            "type": internalLink->_type,
+          } 
         },
-        items {
-          ...,
-          navItemUrl {
-            ...,
-            internalLink-> {
-              _type,
-              "slug": slug.current,
-              title,
-              postType->
-            }
-          }
+        subNavigation == "manual" && detailedList == false => {
+          "nav": itemsList[] {
+            _key,
+            displayExternal,
+            "title": link.internalLink->title,
+            "slug": link.internalLink->slug.current,
+            "hasParent": link.internalLink->hasParent,
+            "parentSlug": link.internalLink->parent.parentSlug,
+            "type": link.internalLink->_type,
+          } 
+        },
+        subNavigation == "manual" && detailedList == true => {
+          "nav": detailedItemsList[] {
+            _key,
+            displayExternal,
+            "description": subItemDescription,
+            "title": link.internalLink->title,
+            "slug": link.internalLink->slug.current,
+            "hasParent": link.internalLink->hasParent,
+            "parentSlug": link.internalLink->parent.parentSlug,
+            "type": link.internalLink->_type,
+          } 
+        },
+        subNavigation == "collection" && detailedList == true => {
+          "nav": *[_type == ^.collection] {
+            _key,
+            "description": hero[0].content[0].children[0].text,
+            "title": title,
+            "slug": slug.current,
+            "type": _type,
+          },
+        },
+        subNavigation == "collection" && detailedList == false => {
+          "nav": *[_type == ^.collection] {
+            _key,
+            "title": title,
+            "slug": slug.current,
+            "type": _type,
+          },
         },
       }
     },
-    mainNav->{
-      ...,
+    mainNav-> {
+      ctaButton,
       menu[] {
-        ...,
-        itemsList {
-          ...,
-          items[] {
-            ...,
-            navItemUrl {
-              ...,
-              internalLink-> {
-                _type,
-                "slug": slug.current,
-                title,
-                postType->
-              }
-            }
-          }
+        _key,
+        title,
+        subNavigation,
+        "detailed": detailedList,
+        subNavigation == "none" => {
+          "nav": items {
+            _key,
+            displayExternal,
+            "title": internalLink->title,
+            "slug": internalLink->slug.current,
+            "hasParent": internalLink->hasParent,
+            "parentSlug": internalLink->parent.parentSlug,
+            "type": internalLink->_type,
+          } 
         },
-        items {
-          ...,
-          navItemUrl {
-            ...,
-            internalLink-> {
-              _type,
-              "slug": slug.current,
-              title,
-              postType->
-            }
-          }
+        subNavigation == "manual" && detailedList == false => {
+          "nav": itemsList[] {
+            _key,
+            displayExternal,
+            "title": link.internalLink->title,
+            "slug": link.internalLink->slug.current,
+            "hasParent": link.internalLink->hasParent,
+            "parentSlug": link.internalLink->parent.parentSlug,
+            "type": link.internalLink->_type,
+          } 
+        },
+        subNavigation == "manual" && detailedList == true => {
+          "nav": detailedItemsList[] {
+            _key,
+            displayExternal,
+            "description": subItemDescription,
+            "title": link.internalLink->title,
+            "slug": link.internalLink->slug.current,
+            "hasParent": link.internalLink->hasParent,
+            "parentSlug": link.internalLink->parent.parentSlug,
+            "type": link.internalLink->_type,
+          } 
+        },
+        subNavigation == "collection" && detailedList == true => {
+          "nav": *[_type == ^.collection] {
+            _key,
+            "description": hero[0].content[0].children[0].text,
+            "title": title,
+            "slug": slug.current,
+            "type": _type,
+          },
+        },
+        subNavigation == "collection" && detailedList == false => {
+          "nav": *[_type == ^.collection] {
+            _key,
+            "title": title,
+            "slug": slug.current,
+            "type": _type,
+          },
         },
       }
     },

@@ -22,10 +22,10 @@ export default function CTABlock({
     cta: { CTA },
   },
 }: Props) {
-  const cta = CTA[0];
+  const cta = CTA ? CTA[0] : null;
 
   if (!cta) return null;
-  
+
   switch (cta?._type) {
     case 'ctaSimple':
       return <CTASimple data={cta} />;
@@ -33,5 +33,7 @@ export default function CTABlock({
       return <CTATitleImage data={cta} />;
     case 'ctaWithForm':
       return <CTAWithForm data={cta} />;
+    case null:
+      return null;
   }
 }

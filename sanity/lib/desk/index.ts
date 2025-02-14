@@ -14,7 +14,7 @@ export const Desk = (S) =>
     .title('Content')
     .items([
       Settings(S),
-      // Inbox(S),
+      // S.documentTypeListItem('inbox').title('Inbox').icon(Mailbox),
       S.divider(),
       Pages(S),
       Projects(S),
