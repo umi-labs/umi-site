@@ -21,6 +21,10 @@ export default defineType({
       name: 'heroImageOverlap',
       type: 'heroImageOverlap',
     }),
+    defineArrayMember({
+      name: 'basicHero',
+      type: 'basicHero',
+    }),
   ],
   validation: (rule) => rule.max(1),
 });

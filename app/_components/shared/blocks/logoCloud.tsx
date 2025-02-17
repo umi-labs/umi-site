@@ -31,12 +31,11 @@ export default function LogoCloud({ data }: LogoCloudProps) {
   const { data: logosArray } = useQuery({
     queryKey: ['logos', logos],
     queryFn: () => getLogos(),
-    enabled: data.manual,
   });
 
   React.useEffect(() => {
     if (!logosArray) return;
-    if (data.manual) {
+    if (!data.manual) {
       setLogos(logosArray!);
     }
   }, [logosArray]);
@@ -50,7 +49,7 @@ export default function LogoCloud({ data }: LogoCloudProps) {
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
       </div>
-      <div className="grid w-full grid-cols-2 place-items-center items-center justify-center gap-6 md:grid-cols-4 lg:grid-cols-5">
+      <div className="grid w-full grid-cols-2 place-items-center items-center justify-center gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {logos?.map((logo, i) => <Logo key={i} logo={logo.logo} />)}
       </div>
     </section>

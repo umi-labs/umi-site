@@ -23,7 +23,7 @@ export default function HeroSwitcher({
     case 'primaryHero':
       return <PrimaryHero title={data?.title} />;
     case 'basicHero':
-      return <BasicHero heading={data?.heading} />;
+      return <BasicHero data={data} />;
     case 'heroWithMedia':
       return <HeroWithMedia data={data} />;
     case 'heroImageOverlap':
