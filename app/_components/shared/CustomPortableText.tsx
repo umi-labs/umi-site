@@ -155,6 +155,18 @@ export function CustomPortableText({
       portfolioFullWidth: ({ value }) => {
         return <PortfolioFullWidth data={value} />;
       },
+      formBlock: ({ value }) => {
+        const { formFields, _key, inbox } = value || {};
+        return (
+          <div className="flex h-screen w-screen items-center justify-center">
+            <FormBuilderBlock
+              formFields={formFields}
+              uid={_key}
+              inbox={inbox}
+            />
+          </div>
+        );
+      },
       form: ({ value }) => {
         const { formFields, _key, inbox } = value || {};
         return (

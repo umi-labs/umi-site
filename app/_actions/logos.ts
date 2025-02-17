@@ -9,5 +9,5 @@ export interface LogosPayload {
 }
 
 export async function getLogos(): Promise<LogosPayload[]> {
-  return client.fetch(getLogosQuery);
+  return await client.fetch(getLogosQuery);
 }
