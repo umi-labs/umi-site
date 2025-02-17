@@ -8,13 +8,14 @@ import Link from 'next/link';
 import CTASimple from '@/app/_components/shared/blocks/CTASimple';
 import RelatedProjects from '@/app/_components/shared/blocks/related-projects';
 import CTATitleImage from '@/app/_components/shared/blocks/CTATitleImage';
+import SchemaMarkup from '@/app/_components/global/SchemaMarkup/Component';
 
 export interface ProjectProps {
   data: ProjectPayload | null;
 }
 
 function Project({ data }: ProjectProps) {
-  const { body } = data ?? {};
+  const { body, metaData } = data ?? {};
 
   const relatedProjects = {
     separator: true,
@@ -26,7 +27,11 @@ function Project({ data }: ProjectProps) {
   };
 
   return (
-    <div>
+    <>
+      {/* SCHEMA MARKUP */}
+      {metaData?.schemaMarkup && (
+        <SchemaMarkup schema={metaData.schemaMarkup} />
+      )}
       <div className="mb-14">
         {/* Hero */}
         {data && <ProjectHero project={data} />}
@@ -78,7 +83,7 @@ function Project({ data }: ProjectProps) {
         {/* @ts-expect-error - issue where type isn't recognising all the types passed down */}
         {data?.contactForm && <CTATitleImage data={data.contactForm} />}
       </div>
-    </div>
+    </>
   );
 }
 

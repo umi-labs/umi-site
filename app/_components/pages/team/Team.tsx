@@ -3,6 +3,7 @@ import type { TeamPayload } from '@/types';
 import TeamHero from '@/app/_components/shared/heros/team-hero';
 import TeamInsightsGrid from '@/app/_components/shared/blocks/team-insights-grid';
 import MoreTeamMembers from '@/app/_components/shared/blocks/more-team-members';
+import SchemaMarkup from '@/app/_components/global/SchemaMarkup/Component';
 
 export interface TeamProps {
   data: TeamPayload | null;
@@ -10,7 +11,12 @@ export interface TeamProps {
 
 function Team({ data }: TeamProps) {
   return (
-    <div>
+    <>
+      {/* SCHEMA MARKUP */}
+      {data?.metaData?.schemaMarkup && (
+        <SchemaMarkup schema={data.metaData.schemaMarkup} />
+      )}
+
       <div className="mb-14">
         {/* Hero */}
         {data && <TeamHero {...data} />}
@@ -21,7 +27,7 @@ function Team({ data }: TeamProps) {
         {/* More Team Members */}
         {data?.slug && <MoreTeamMembers currentMember={data.slug} />}
       </div>
-    </div>
+    </>
   );
 }
 

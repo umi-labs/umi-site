@@ -29,12 +29,12 @@ export default defineType({
       type: 'text',
       group: 'basic',
     }),
-    // defineField({
-    //   name: 'jsonLd',
-    //   title: 'JSON-LD',
-    //   type: 'jsonLd',
-    //   group: 'advanced',
-    // }),
+    defineField({
+      title: 'Schema Markup',
+      name: 'schemaMarkup',
+      type: 'schemaMarkup',
+      group: 'advanced',
+    }),
     defineField({
       name: 'ogImage',
       title: 'Open Graph Image',

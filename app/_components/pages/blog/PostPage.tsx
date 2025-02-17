@@ -1,6 +1,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader';
 import type { PostPayload } from '@/types';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
+import SchemaMarkup from '@/app/_components/global/SchemaMarkup/Component';
 
 export interface PostProps {
   data: PostPayload | null;
@@ -9,10 +10,15 @@ export interface PostProps {
 
 export function Post({ data, encodeDataAttribute }: PostProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { title, body } = data ?? {};
+  const { title, body, metaData } = data ?? {};
 
   return (
     <div className="">
+      {/* SCHEMA MARKUP */}
+      {metaData?.schemaMarkup && (
+        <SchemaMarkup schema={metaData.schemaMarkup} />
+      )}
+
       {body && (
         <CustomPortableText
           value={body}

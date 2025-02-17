@@ -26,6 +26,7 @@ import {
   theme,
 } from '@/sanity/lib';
 import { schema, singletons } from '@/sanity/schemas';
+import { schemaMarkup } from '@operationnation/sanity-plugin-schema-markup';
 
 export interface Config {
   name: string;
@@ -66,6 +67,7 @@ export function configGenerator({
       structureTool({
         structure: Desk,
       }),
+      schemaMarkup(),
       presentationTool({
         resolve,
         previewUrl: {
