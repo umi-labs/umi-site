@@ -1,4 +1,5 @@
 import type { NavItem } from '@/types/components/nav';
+import { Schema } from '@operationnation/sanity-plugin-schema-markup';
 
 export interface InternalLink {
   _type: string;
@@ -161,6 +162,7 @@ export interface Icon {
 export interface MetaData {
   title: string;
   description: string;
+  schemaMarkup?: Schema[];
   ogImage?: Image;
   keywords?: string[];
 }

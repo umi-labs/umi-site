@@ -3,16 +3,22 @@ import React from 'react';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import HeroSwitcher from '@/app/_components/shared/heros/HeroSwitcher';
 import type { PagePayload } from '@/types';
+import SchemaMarkup from '@/app/_components/global/SchemaMarkup/Component';
 
 export interface PageProps {
   data: PagePayload | null;
 }
 
 function Page({ data }: PageProps) {
-  const { overview, blocks, title, hero } = data ?? {};
+  const { overview, blocks, title, hero, metaData } = data ?? {};
 
   return (
-    <div>
+    <>
+      {/* SCHEMA MARKUP */}
+      {metaData?.schemaMarkup && (
+        <SchemaMarkup schema={metaData.schemaMarkup} />
+      )}
+
       <div className="mb-14">
         {/* Hero */}
         {hero &&
@@ -33,7 +39,7 @@ function Page({ data }: PageProps) {
           />
         )}
       </div>
-    </div>
+    </>
   );
 }
 
