@@ -6,26 +6,17 @@ export default defineType({
   type: 'object',
   fields: [
     defineField({
+      name: 'enableIntro',
+      title: 'Enable Intro',
       type: 'boolean',
-      name: 'separator',
-      title: 'Separator',
       initialValue: true,
     }),
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
+      name: 'introContent',
+      title: 'Intro Content',
       type: 'array',
       of: [{ type: 'block' }],
+      hidden: ({ parent }) => !parent?.enableIntro,
     }),
     defineField({
       name: 'form',

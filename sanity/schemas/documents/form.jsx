@@ -6,45 +6,88 @@ export default defineType({
   title: 'Form',
   type: 'document',
   icon: Table,
+  groups: [
+    {
+      name: 'fields',
+      title: 'Fields',
+    },
+    {
+      name: 'submission',
+      title: 'Submission',
+    },
+    {
+      name: 'misc',
+      title: 'MISC',
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+      group: 'misc',
     }),
     defineField({
       name: 'formFields',
       title: 'Form Fields',
       type: 'array',
       of: [{ type: 'formFields' }],
-    }),
-    defineField({
-      name: 'formSubmission',
-      title: 'Form Submission',
-      description:
-        'Choose whether you want to send the form to an inbox or email (there are currently some issues with the submission functionality that is being worked on).',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Inbox', value: 'inbox' },
-          { title: 'Email', value: 'email' },
-        ],
-      },
-      defaultValue: 'inbox',
+      group: 'fields',
     }),
     defineField({
       name: 'email',
       title: 'Email',
+      description:
+        'The email address that the form submissions will be sent to.',
       type: 'string',
       validation: (Rule) => Rule.email(),
-      hidden: ({ parent }) => parent?.formSubmission !== 'email',
+      group: 'submission',
     }),
     defineField({
-      name: 'inbox',
-      title: 'Inbox',
-      type: 'reference',
-      to: [{ type: 'inbox' }],
-      hidden: ({ parent }) => parent?.formSubmission !== 'inbox',
+      name: 'subjectLine',
+      title: 'Subject Line',
+      description: 'The subject line of the email.',
+      type: 'string',
+      group: 'submission',
+    }),
+    defineField({
+      name: 'confirmationType',
+      title: 'Confirmation Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Message', value: 'message' },
+          { title: 'Redirect', value: 'redirect' },
+        ],
+      },
+      defaultValue: 'message',
+      group: 'submission',
+    }),
+    defineField({
+      name: 'confirmationMessage',
+      title: 'Confirmation Message',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description:
+        'The message that will be displayed on submission confirmation.',
+      hidden: ({ parent }) => parent?.confirmationType !== 'message',
+      group: 'submission',
+    }),
+    defineField({
+      name: 'redirect',
+      title: 'Confirmation Redirect',
+      type: 'string',
+      description:
+        'The URL that will be redirected to on submission confirmation.',
+      hidden: ({ parent }) => parent?.confirmationType !== 'redirect',
+      group: 'submission',
+    }),
+    defineField({
+      name: 'submitButtonLabel',
+      title: 'Submit Button Label',
+      type: 'string',
+      description: 'The label that will be displayed on the submit button.',
+      group: 'submission',
     }),
   ],
   preview: {

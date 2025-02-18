@@ -52,6 +52,25 @@ export const homePageQuery = groq`
     },
     blocks[] {
       ...,
+      form-> {
+         _id,
+         title,
+         email,
+         "subject": subjectLine,
+         confirmationType,
+         confirmationMessage,
+         redirect,
+         "fields": formFields[]{
+           _key,
+           "id": id.current,
+           name,
+           placeholder,
+           required,
+           type,
+           enableDescription,
+           description
+         },
+      },
       image{
         ...,
         asset->
@@ -205,6 +224,27 @@ export const pagesBySlugQuery = groq`
     },
     blocks[] {
       ...,
+      form-> {
+         _id,
+         title,
+         email,
+         "subject": subjectLine,
+         confirmationType,
+         confirmationMessage,
+         redirect,
+         "fields": formFields[]{
+           _key,
+           "id": id.current,
+           name,
+           placeholder,
+           required,
+           type,
+           inputType,
+           options,
+           enableDescription,
+           description
+         },
+      },
       inbox->,
       image{
         ...,
