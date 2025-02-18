@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 import ImageWText from '@/app/_components/shared/blocks/ImageWText';
 import ImageBox from '@/app/_components/shared/ImageBox';
-import { FormBuilderBlock } from '@/app/_components/global/FormBuilder/FormBuilder';
+import { FormBuilderBlock } from '@/app/_components/global/FormBuilder/Component';
 import CTASimple from '@/app/_components/shared/blocks/CTASimple';
 import CardGridSideTitle from '@/app/_components/shared/blocks/cardGridSideTitle';
 import CardGridSideTitleSimple from '@/app/_components/shared/blocks/cardGridSideTitleSimple';
@@ -30,6 +30,7 @@ import MeetTheTeamSection from '@/app/_components/shared/blocks/meet-the-team/me
 import TextBlock from '@/app/_components/shared/blocks/text-block';
 import BasicHero from '@/app/_components/shared/heros/BasicHero';
 import CTABlock from '@/app/_components/shared/blocks/cta-block';
+import FormBlock from '@/app/_components/shared/blocks/form-block';
 
 export function CustomPortableText({
   paragraphClasses,
@@ -156,26 +157,13 @@ export function CustomPortableText({
         return <PortfolioFullWidth data={value} />;
       },
       formBlock: ({ value }) => {
-        const { formFields, _key, inbox } = value || {};
-        return (
-          <div className="flex h-screen w-screen items-center justify-center">
-            <FormBuilderBlock
-              formFields={formFields}
-              uid={_key}
-              inbox={inbox}
-            />
-          </div>
-        );
+        return <FormBlock data={value} />;
       },
       form: ({ value }) => {
-        const { formFields, _key, inbox } = value || {};
+        const { form, _key } = value || {};
         return (
           <div className="flex h-screen w-screen items-center justify-center">
-            <FormBuilderBlock
-              formFields={formFields}
-              uid={_key}
-              inbox={inbox}
-            />
+            <FormBuilderBlock form={form} uid={_key} />
           </div>
         );
       },
