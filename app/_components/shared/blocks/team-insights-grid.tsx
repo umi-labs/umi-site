@@ -5,6 +5,7 @@ import { getPostsByAuthor } from '@/app/_actions/archive-queries';
 import { PostCard } from '@/app/_components/ui/card/archive-card';
 import { ErrorMessage } from '@/app/_components/shared/blocks/archive/archives-filterable-block';
 import Loader from '@/app/_components/ui/loader';
+import Container from '@/app/_components/ui/container';
 
 interface Props {
   slug: string;
@@ -25,7 +26,7 @@ export default function TeamInsightsGrid({ slug, name }: Props) {
   });
 
   return (
-    <section className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-y-12 px-10 py-10 md:px-16 lg:px-0">
+    <Container id="TeamInsightsGrid">
       <h2 id={slug}>Insight By:&nbsp;{name}</h2>
       {isLoading ? (
         <Loader />
@@ -38,6 +39,6 @@ export default function TeamInsightsGrid({ slug, name }: Props) {
           ))}
         </div>
       ) : null}
-    </section>
+    </Container>
   );
 }

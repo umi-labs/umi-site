@@ -67,8 +67,8 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
       </div>
       <BottomBuffer
         visible={true}
-        colour={'blue'}
-        className={'w-full max-w-7xl'}
+        colour="accent"
+        className="w-full max-w-7xl"
       />
     </section>
   );

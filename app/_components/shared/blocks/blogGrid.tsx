@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/app/_components/ui/button';
 import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 import { useQuery } from '@tanstack/react-query';
+import Container from '@/app/_components/ui/container';
 
 interface BlogGridProps {
   data: {
@@ -43,7 +44,7 @@ export default function BlogGrid({ data }: BlogGridProps) {
   });
 
   return (
-    <section className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-14 px-10 py-10 md:py-32">
+    <Container id="BlogGrid">
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
@@ -51,7 +52,7 @@ export default function BlogGrid({ data }: BlogGridProps) {
       <div className="grid w-full grid-cols-1 grid-rows-2 items-center justify-center gap-9 md:grid-cols-2 md:grid-rows-1">
         {posts?.map((blog, i) => <PostCard {...blog} key={i} />)}
       </div>
-    </section>
+    </Container>
   );
 }
 

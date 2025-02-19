@@ -15,7 +15,10 @@ export default function ImageWText(props: ImageWTextProps) {
   const { images, content, title } = props;
 
   return (
-    <section className="bg-midnight-green grid grid-cols-1 gap-y-20 px-8 py-12 pr-4 md:grid-cols-2 md:gap-x-16 md:gap-y-32 md:pr-8 lg:gap-x-32 lg:pr-16">
+    <section
+      id="ImageWText"
+      className="bg-midnight-green grid grid-cols-1 gap-y-20 px-8 py-12 pr-4 md:grid-cols-2 md:gap-x-16 md:gap-y-32 md:pr-8 lg:gap-x-32 lg:pr-16"
+    >
       <div className="relative hidden flex-col justify-between gap-y-4 lg:flex lg:py-[7.5rem]">
         {images &&
           images?.map((image, key) => {

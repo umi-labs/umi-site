@@ -40,7 +40,7 @@
     h3,
     h4,
     h6 {
-        @apply font-heading font-semibold tracking-reduced;
+        @apply font-heading font-normal tracking-reduced;
     }
 
     h1,

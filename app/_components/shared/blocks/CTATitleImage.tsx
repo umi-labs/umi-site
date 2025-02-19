@@ -11,6 +11,7 @@ import { CustomPortableText } from '@/app/_components/shared/CustomPortableText'
 export default function CTATitleImage({ data }: CTATitleImageProps) {
   return (
     <section
+      id="CTATitleImage"
       className={cn(
         'relative mx-auto flex size-full max-w-7xl auto-rows-min grid-cols-1 grid-rows-2 flex-col-reverse items-center justify-center gap-10 md:grid md:grid-cols-2 md:grid-rows-1 md:gap-24'
       )}

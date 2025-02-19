@@ -44,6 +44,7 @@ export default defineType({
         list: [
           { title: 'Light', value: 'light' },
           { title: 'Dark', value: 'dark' },
+          { title: 'Accent', value: 'accent' },
         ],
       },
     }),

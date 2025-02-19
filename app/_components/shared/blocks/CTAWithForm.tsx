@@ -8,6 +8,7 @@ import { CTAWithFormProps } from '@/types/components/cta-with-form';
 export default function CTAWithForm({ data }: CTAWithFormProps) {
   return (
     <section
+      id="CTAWithForm"
       className={cn(
         'flex-center relative mx-auto size-full max-h-[571px] min-h-[40svh] max-w-7xl bg-primary-foreground bg-[url("/assets/images/wave-pattern-light-bg.svg")] text-primary-background',
         data.buffers?.top && 'mt-24',

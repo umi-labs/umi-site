@@ -12,8 +12,7 @@ import {
 import { getRelatedTeamMembers } from '@/app/_actions/team';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { BottomBuffer, TopBuffer } from '@/app/_components/ui/buffers';
-import { cn } from '@/app/_utils';
+import Container from '@/app/_components/ui/container';
 
 interface Props {
   currentMember: string;
@@ -28,12 +27,16 @@ export default function MoreTeamMembers({ currentMember }: Props) {
   });
 
   return (
-    <section
-      className={cn(
-        'relative mx-auto my-20 flex min-h-full w-full max-w-7xl flex-col bg-[#FAFAFA] px-12 py-10 md:py-24 lg:gap-y-16'
-      )}
+    <Container
+      id="MoreTeamMembers"
+      options={{
+        colour: 'dark',
+        buffers: {
+          top: true,
+          bottom: true,
+        },
+      }}
     >
-      <TopBuffer visible={true} colour="grey" />
       <div className="flex w-full items-center justify-between gap-6">
         <h2 className="text-5xl font-semibold italic">More Team Members</h2>
         <Link
@@ -95,7 +98,6 @@ export default function MoreTeamMembers({ currentMember }: Props) {
           </>
         )}
       </Slider>
-      <BottomBuffer visible={true} colour="grey" />
-    </section>
+    </Container>
   );
 }

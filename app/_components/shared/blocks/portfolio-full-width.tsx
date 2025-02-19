@@ -1,9 +1,7 @@
 'use client';
 import React from 'react';
 import Link from '@/app/_components/ui/link';
-import { cn } from '@/app/_utils';
 import type { Button } from '@/types/generics';
-import { BottomBuffer, TopBuffer } from '@/app/_components/ui/buffers';
 import {
   Slider,
   SliderContent,
@@ -18,6 +16,7 @@ import { getFeaturedProjects } from '@/app/_actions/projects';
 import { useQuery } from '@tanstack/react-query';
 import { PortableTextBlock } from 'next-sanity';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
+import Container from '@/app/_components/ui/container';
 
 interface PortfolioFullWidthProps {
   data: {
@@ -38,20 +37,20 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
     queryFn: () => getFeaturedProjects(),
   });
 
+  console.log(data.buffers);
+
   return (
-    <section
-      className={cn(
-        'relative mx-auto flex min-h-full w-full max-w-7xl items-center justify-center overflow-visible bg-[#FAFAFA] py-10 md:py-32',
-        data.buffers?.top && 'xl:mt-30 mt-10 md:mt-20 lg:mt-28',
-        data.buffers?.bottom && 'mb-32'
-      )}
+    <Container
+      id="PortfolioFullWidth"
+      options={{
+        colour: 'dark',
+        buffers: {
+          top: data.buffers?.top,
+          bottom: data.buffers?.bottom,
+        },
+      }}
     >
-      <TopBuffer
-        colour="grey"
-        visible={data.buffers?.top}
-        className={'w-full max-w-7xl'}
-      />
-      <div className="relative z-10 flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
         <div className="flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
           {data.separator && <EyebrowSVG className="" />}
           <h2>{data.title}</h2>
@@ -126,11 +125,6 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
           </Slider>
         )}
       </div>
-      <BottomBuffer
-        colour="grey"
-        visible={data.buffers?.bottom}
-        className={'w-full max-w-7xl'}
-      />
-    </section>
+    </Container>
   );
 }

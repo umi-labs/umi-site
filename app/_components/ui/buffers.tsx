@@ -3,13 +3,13 @@ import { cn } from '@/app/_utils';
 
 interface BufferProps {
   visible?: boolean;
-  colour?: 'blue' | 'grey';
+  colour?: WaveProps['colour'];
   className?: React.HTMLAttributes<HTMLOrSVGElement>['className'];
 }
 
 export function TopBuffer({
   visible = true,
-  colour = 'blue',
+  colour = 'accent',
   className,
   ...props
 }: BufferProps) {
@@ -17,7 +17,7 @@ export function TopBuffer({
     visible && (
       <TopWave
         className={cn(
-          'absolute inset-x-0 top-0 flex w-full max-w-7xl flex-shrink -translate-y-full',
+          'absolute inset-x-0 top-0 flex w-full flex-shrink -translate-y-full',
           className
         )}
         colour={colour}
@@ -29,7 +29,7 @@ export function TopBuffer({
 
 export function BottomBuffer({
   visible = true,
-  colour = 'blue',
+  colour = 'accent',
   className,
   ...props
 }: BufferProps) {
@@ -37,7 +37,7 @@ export function BottomBuffer({
     visible && (
       <BottomWave
         className={cn(
-          'absolute inset-x-0 bottom-0 flex w-full max-w-7xl flex-shrink translate-y-full',
+          'absolute inset-x-0 bottom-0 flex w-full flex-shrink translate-y-full',
           className
         )}
         colour={colour}
@@ -48,12 +48,13 @@ export function BottomBuffer({
 }
 
 const COLORS = [
-  { id: 'blue', hex: '#313E4E' },
-  { id: 'grey', hex: '#FAFAFA' },
+  { id: 'accent', hex: '#313E4E' },
+  { id: 'dark', hex: '#FAFAFA' },
+  { id: 'light', hex: '#FFFFFF' },
 ];
 
 type WaveProps = React.HTMLAttributes<HTMLOrSVGElement> & {
-  colour?: 'blue' | 'grey';
+  colour?: 'light' | 'dark' | 'accent';
 };
 
 const TopWave = ({ colour, ...props }: WaveProps) => {

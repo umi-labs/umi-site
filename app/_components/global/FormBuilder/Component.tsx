@@ -153,7 +153,11 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
                               </SelectTrigger>
                               <SelectContent className="bg-white">
                                 {field.options.map((option: string) => (
-                                  <SelectItem key={option} value={option}>
+                                  <SelectItem
+                                    key={option}
+                                    value={option}
+                                    className="transition-colors duration-75 ease-in-out hover:cursor-pointer data-[highlighted]:bg-gray-200 data-[state=checked]:bg-primary-accent data-[state=checked]:text-white"
+                                  >
                                     {option}
                                   </SelectItem>
                                 ))}
@@ -180,17 +184,18 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
                       /* @ts-ignore */
                       name={field.name!}
                       render={({ field: controllerField }) => (
-                        <FormItem className="flex items-center gap-2">
+                        <FormItem className="flex items-center gap-x-2 space-y-0">
                           <FormControl>
                             <Checkbox
                               checked={controllerField.value}
                               onCheckedChange={controllerField.onChange}
+                              className="transition-colors duration-75 ease-in-out hover:cursor-pointer data-[state=checked]:border-primary-accent data-[state=checked]:bg-primary-accent data-[state=checked]:text-white"
                             />
                           </FormControl>
                           {!field?.description ? (
                             <FormLabel>{field.name}</FormLabel>
                           ) : (
-                            <FormDescription>
+                            <FormDescription className="">
                               {field.description}
                             </FormDescription>
                           )}

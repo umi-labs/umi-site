@@ -31,6 +31,7 @@ import TextBlock from '@/app/_components/shared/blocks/text-block';
 import BasicHero from '@/app/_components/shared/heros/BasicHero';
 import CTABlock from '@/app/_components/shared/blocks/cta-block';
 import FormBlock from '@/app/_components/shared/blocks/form-block';
+import CTA from '@/app/_components/shared/blocks/CTA';
 
 export function CustomPortableText({
   paragraphClasses,
@@ -97,6 +98,9 @@ export function CustomPortableText({
       },
       textBlock: ({ value }) => {
         return <TextBlock text={value} />;
+      },
+      cta: ({ value }) => {
+        return <CTA {...value} />;
       },
       ctaSimple: ({ value }) => {
         return <CTASimple data={value} />;

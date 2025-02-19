@@ -17,6 +17,11 @@ export default defineType({
       name: 'formBlock',
       type: 'formBlock',
     }),
+    // TODO: Fix this
+    // defineArrayMember({
+    //   name: 'cta',
+    //   type: 'cta',
+    // }),
     defineArrayMember({
       name: 'contactFormBlock',
       type: 'contactFormBlock',

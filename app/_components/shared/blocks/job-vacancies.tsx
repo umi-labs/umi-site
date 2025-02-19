@@ -18,6 +18,7 @@ import {
 } from '@/app/_components/ui/dialog';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import { PortableTextBlock } from 'next-sanity';
+import Container from '@/app/_components/ui/container';
 
 interface Props {
   data: {
@@ -34,7 +35,7 @@ export default function JobVacancies({ data }: Props) {
   });
 
   return (
-    <section className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-12 px-10 py-10 md:py-24 lg:gap-y-24">
+    <Container id="JobVacancies">
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
@@ -68,7 +69,7 @@ export default function JobVacancies({ data }: Props) {
           </div>
         ))}
       </div>
-    </section>
+    </Container>
   );
 }
 
