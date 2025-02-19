@@ -38,7 +38,7 @@ const Nav = ({ menu }: { menu?: MenuType[] }) => {
                 <NavigationMenu.Trigger className="font-sm group flex select-none items-center justify-between gap-0.5 rounded px-3 py-2 text-xs font-medium leading-none text-black outline-none hover:underline focus:underline focus:shadow-[0_0_0_2px]">
                   {title}&nbsp;
                   <CaretDownIcon
-                    className="text-violet10 duration-[250] relative top-px size-6 transition-transform ease-in group-data-[state=open]:-rotate-180"
+                    className="text-violet10 duration-[250ms] relative top-px size-6 transition-transform ease-in group-data-[state=open]:-rotate-180"
                     aria-hidden
                   />
                 </NavigationMenu.Trigger>
