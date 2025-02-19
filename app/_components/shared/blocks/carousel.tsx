@@ -32,7 +32,6 @@ interface Props {
 }
 
 export default function Carousel({ data }: Props) {
-  console.log(data);
   return (
     <Container
       id="Carousel"

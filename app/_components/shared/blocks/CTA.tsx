@@ -23,10 +23,7 @@ interface Props {
 }
 
 export default function CTA(props: Props) {
-  console.log(props);
   const { columns, layout, buffers } = props;
-
-  console.log(columns);
 
   const colsSpanClasses = {
     full: 'col-span-12',

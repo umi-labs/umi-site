@@ -12,8 +12,6 @@ export default function CTASimple({ data }: CTASimpleProps) {
   const { buffers, layout, image, title, content, buttons, subtitle, _type } =
     data || {};
 
-  console.log(buffers);
-
   return (
     <section
       id="CTASimple"

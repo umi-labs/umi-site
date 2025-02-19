@@ -73,7 +73,6 @@ const Card = ({
   item: AlternatingContentProps['data']['content'][0];
   orientation: 'rtl' | 'ltr';
 }) => {
-  console.log(image);
   const { asset } = image || {};
   const { url, metadata, altText } = image?.asset || {};
   const { dimensions } = metadata || {};
