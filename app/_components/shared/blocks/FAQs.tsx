@@ -11,6 +11,7 @@ import { CustomPortableText } from '@/app/_components/shared/CustomPortableText'
 import type { PortableTextBlock } from 'next-sanity';
 import { useQuery } from '@tanstack/react-query';
 import { FAQPayload, getFAQsByType } from '@/app/_actions/faqs';
+import Container from '@/app/_components/ui/container';
 
 interface Props {
   data: {
@@ -38,7 +39,7 @@ export default function FAQs({ data, tag = 'advertising' }: Props) {
   }, [faqsArray]);
 
   return (
-    <section className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-24 px-10 py-10 md:py-32">
+    <Container id="FAQs">
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
@@ -70,6 +71,6 @@ export default function FAQs({ data, tag = 'advertising' }: Props) {
           ))}
         </Accordion>
       )}
-    </section>
+    </Container>
   );
 }

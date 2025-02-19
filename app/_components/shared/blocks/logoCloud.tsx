@@ -6,6 +6,7 @@ import Link from '@/app/_components/ui/link';
 import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 import { getLogos, LogosPayload } from '@/app/_actions/logos';
 import { useQuery } from '@tanstack/react-query';
+import Container from '@/app/_components/ui/container';
 
 interface LogoCloudProps {
   data: {
@@ -41,9 +42,15 @@ export default function LogoCloud({ data }: LogoCloudProps) {
   }, [logosArray]);
 
   return (
-    <section
+    <Container
       id="LogoCloud"
-      className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-14 px-10 py-10 md:py-32"
+      options={{
+        colour: 'dark',
+        buffers: {
+          top: false,
+          bottom: false,
+        },
+      }}
     >
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
@@ -52,7 +59,7 @@ export default function LogoCloud({ data }: LogoCloudProps) {
       <div className="grid w-full grid-cols-2 place-items-center items-center justify-center gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {logos?.map((logo, i) => <Logo key={i} logo={logo.logo} />)}
       </div>
-    </section>
+    </Container>
   );
 }
 

@@ -3,6 +3,7 @@ import React from 'react';
 import type { Icon as IconType } from '@/types/generics';
 import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 import { Icon } from '@/app/_components/ui/icon';
+import Container from '@/app/_components/ui/container';
 
 interface Props {
   data: {
@@ -20,7 +21,7 @@ interface Props {
 
 export default function FeatureGrid({ data }: Props) {
   return (
-    <section className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-24 px-10 py-10 md:py-32">
+    <Container id="FeatureGrid">
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
@@ -31,7 +32,7 @@ export default function FeatureGrid({ data }: Props) {
           <Feature key={i} feature={feature} />
         ))}
       </div>
-    </section>
+    </Container>
   );
 }
 

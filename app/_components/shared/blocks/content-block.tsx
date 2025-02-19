@@ -6,6 +6,7 @@ import Video, { VideoProps } from '@/app/_components/ui/video';
 import { cn } from '@/app/_utils';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import { PortableTextBlock } from 'next-sanity';
+import Container from '@/app/_components/ui/container';
 
 interface ContentBlockProps {
   data: {
@@ -39,7 +40,7 @@ interface ContentBlockProps {
 
 export default function ContentBlock({ data }: ContentBlockProps) {
   return (
-    <section className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-12 px-10 py-10 md:py-32 lg:gap-y-24">
+    <Container id="ContentBlock">
       <div
         className={cn(
           `items-${data.layout?.align} flex w-full flex-col justify-${data.layout?.justify} gap-6`
@@ -119,6 +120,6 @@ export default function ContentBlock({ data }: ContentBlockProps) {
           ))}
         </div>
       )}
-    </section>
+    </Container>
   );
 }

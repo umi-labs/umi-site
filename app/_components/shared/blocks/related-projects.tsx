@@ -3,6 +3,7 @@ import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 import { ProjectPayload } from '@/types';
 import Link from '@/app/_components/ui/link';
 import Image from 'next/image';
+import Container from '@/app/_components/ui/container';
 
 interface Props {
   data: {
@@ -15,7 +16,7 @@ interface Props {
 
 export default function RelatedProjects({ data }: Props) {
   return (
-    <section className="relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-14 px-10 py-10 md:py-32">
+    <Container id="RelatedProjects">
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
@@ -55,6 +56,6 @@ export default function RelatedProjects({ data }: Props) {
           </div>
         ))}
       </div>
-    </section>
+    </Container>
   );
 }

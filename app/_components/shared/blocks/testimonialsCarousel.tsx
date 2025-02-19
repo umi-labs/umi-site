@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { cn } from '@/lib/utils';
 import {
   Slider,
   SliderContent,
@@ -14,6 +13,7 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import { getReviews } from '@/app/_actions/review';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
+import Container from '@/app/_components/ui/container';
 
 interface TestimonialsCarouselProps {
   data: {
@@ -31,11 +31,7 @@ export default function TestimonialsCarousel({
   });
 
   return (
-    <section
-      className={cn(
-        'relative mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center gap-y-10 px-6 py-32 md:px-10'
-      )}
-    >
+    <Container id="TestimonialsCarousel">
       <div className="flex h-fit w-full flex-col items-center justify-center gap-y-10 place-self-start text-center">
         {data.separator && <EyebrowSVG className="" />}
         <h2>{data.title}</h2>
@@ -93,7 +89,7 @@ export default function TestimonialsCarousel({
         <SliderPrevious className="size-9 border border-[#C5C7C9] bg-[#F9F9FA]" />
         <SliderNext className="size-9 border border-[#C5C7C9] bg-[#F9F9FA]" />
       </Slider>
-    </section>
+    </Container>
   );
 }
 

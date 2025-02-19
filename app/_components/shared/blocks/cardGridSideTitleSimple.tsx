@@ -6,9 +6,9 @@ import { cn } from '@/app/_utils';
 import { Button, Icon as IconType } from '@/types/generics';
 import { Icon } from '@/app/_components/ui/icon';
 import { EyebrowSVG, IconBackground } from '@/app/_components/ui/svg-comps';
-import { TopBuffer } from '@/app/_components/ui/buffers';
 import { PortableTextBlock } from 'next-sanity';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
+import Container from '@/app/_components/ui/container';
 
 interface CardGridSideTitleSimpleProps {
   data: {
@@ -30,14 +30,16 @@ export default function CardGridSideTitleSimple({
   data,
 }: CardGridSideTitleSimpleProps) {
   return (
-    <section
-      className={cn(
-        'relative mx-auto flex min-h-full w-full max-w-7xl items-center justify-center overflow-visible bg-[#FAFAFA] py-10 md:py-32',
-        data.topBuffer && 'xl:mt-30 mt-10 md:mt-20 lg:mt-28'
-      )}
+    <Container
+      id="CardGridSideTitleSimple"
+      options={{
+        colour: 'dark',
+        buffers: {
+          top: data.topBuffer,
+        },
+      }}
     >
-      <TopBuffer colour="grey" visible={data.topBuffer} />
-      <div className="relative z-10 flex w-full flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
         <div className="flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
           {data.separator && <EyebrowSVG className="" />}
           <h2>{data.title}</h2>
@@ -66,7 +68,7 @@ export default function CardGridSideTitleSimple({
           ))}
         </div>
       </div>
-    </section>
+    </Container>
   );
 }
 

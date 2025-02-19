@@ -1,10 +1,10 @@
 import React from 'react';
 import { cn } from '@/app/_utils';
 import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
-import { BottomBuffer, TopBuffer } from '@/app/_components/ui/buffers';
 import Image from 'next/image';
 import { PortableTextBlock } from 'next-sanity';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
+import Container from '@/app/_components/ui/container';
 
 interface AlternatingContentProps {
   data: {
@@ -38,28 +38,31 @@ interface AlternatingContentProps {
 
 export default function AlternatingContent({ data }: AlternatingContentProps) {
   return (
-    <section
-      className={cn(
-        'relative flex min-h-full w-full flex-col items-center justify-center gap-y-24 bg-[#FAFAFA] px-10 py-10 md:py-32',
-        data.buffers?.top && 'mt-32',
-        data.buffers?.bottom && 'mb-32'
-      )}
+    <Container
+      id="AlternatingContent"
+      options={{
+        colour: 'dark',
+        buffers: {
+          top: data.buffers?.top,
+          bottom: data.buffers?.bottom,
+        },
+      }}
     >
-      <TopBuffer colour="grey" visible={data.buffers?.top} />
-      <div className="flex w-full flex-col items-center justify-center gap-6">
-        {data.separator && <EyebrowSVG className="" />}
-        <h2>{data.title}</h2>
-        {data.description && (
-          <p className="max-w-4xl text-center">{data.description}</p>
-        )}
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
+        <div className="mb-10 flex w-full flex-col items-center justify-center gap-6">
+          {data.separator && <EyebrowSVG className="" />}
+          <h2>{data.title}</h2>
+          {data.description && (
+            <p className="max-w-4xl text-center">{data.description}</p>
+          )}
+        </div>
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-16 md:gap-24">
+          {data.content.map((item, i) => (
+            <Card key={i} item={item} orientation={i % 2 ? 'rtl' : 'ltr'} />
+          ))}
+        </div>
       </div>
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-16 md:gap-24">
-        {data.content.map((item, i) => (
-          <Card key={i} item={item} orientation={i % 2 ? 'rtl' : 'ltr'} />
-        ))}
-      </div>
-      <BottomBuffer colour="grey" visible={data.buffers?.bottom} />
-    </section>
+    </Container>
   );
 }
 
@@ -70,6 +73,15 @@ const Card = ({
   item: AlternatingContentProps['data']['content'][0];
   orientation: 'rtl' | 'ltr';
 }) => {
+  const { asset } = image || {};
+  const { url, metadata, altText } = image?.asset || {};
+  const { dimensions } = metadata || {};
+
+  const aspectRatio =
+    dimensions?.width && dimensions?.height
+      ? `${dimensions?.width! / 100}/${dimensions?.height! / 100}`
+      : '8/7';
+
   return (
     <div className="grid grid-cols-1 grid-rows-2 place-items-center gap-16 md:grid-cols-2 md:grid-rows-1 md:gap-32">
       <div
@@ -81,23 +93,26 @@ const Card = ({
         )}
       >
         <h3>{title}</h3>
-        <CustomPortableText value={description} />
+        <CustomPortableText
+          value={description}
+          paragraphClasses={cn('text-left')}
+        />
       </div>
-      {image && image.asset && image.asset.url && (
+      {asset && url && (
         <div
           className={cn(
-            'flex aspect-[8/7] h-full w-full items-center justify-center',
+            `flex aspect-[${aspectRatio}] h-fit w-full items-center justify-center`,
             orientation === 'rtl'
               ? 'md:col-start-2 md:row-start-1'
               : 'md:col-start-1 md:row-start-1'
           )}
         >
           <Image
-            src={image?.asset?.url || ''}
-            alt={image?.asset?.altText || ''}
-            width={image?.asset?.metadata?.dimensions?.width || 0}
-            height={image?.asset?.metadata?.dimensions?.height || 0}
-            className="aspect-square object-contain object-center"
+            src={url || ''}
+            alt={altText || ''}
+            width={dimensions?.width || 0}
+            height={dimensions?.height || 0}
+            className="max-h-[-webkit-fill-available] object-contain object-center"
           />
         </div>
       )}

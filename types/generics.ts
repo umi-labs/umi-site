@@ -28,7 +28,7 @@ export interface Layout {
     | 'around'
     | 'evenly';
   align?: 'center' | 'start' | 'end' | 'baseline' | 'stretch';
-  colour?: 'light' | 'dark';
+  colour?: 'light' | 'dark' | 'accent';
 }
 
 export interface Buffers {

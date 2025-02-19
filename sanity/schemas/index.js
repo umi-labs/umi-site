@@ -69,6 +69,7 @@ import layout from '@/sanity/schemas/objects/globals/layout';
 import textBlock from '@/sanity/schemas/objects/text-block';
 import ctaBlock from '@/sanity/schemas/objects/cta-block';
 import formBlock from '@/sanity/schemas/objects/form-block';
+import cta from '@/sanity/schemas/objects/cta';
 
 export const schema = [
   // Singletons
@@ -105,6 +106,7 @@ export const schema = [
   formFields,
   metaData,
   navItem,
+  cta,
   navList,
   menuItem,
   link,
