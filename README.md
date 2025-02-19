@@ -33,8 +33,8 @@ Commit messages should be in the present tense and should be descriptive.
 
 #### Branching
 
-All commits to the `main` branch are automatically deployed to production. So do not use `main` for development. Create
-a new branch from dev and make your changes there.
+All commits to the `prod` branch are automatically deployed to production. So do not use `prod` for development. Create
+a new branch from `dev` and make your changes there.
 
 Create a new branch from dev and make your changes there.
 
