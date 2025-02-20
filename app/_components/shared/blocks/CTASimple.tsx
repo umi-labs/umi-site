@@ -3,28 +3,23 @@ import React from 'react';
 import { cn } from '@/app/_utils';
 import type { CTASimpleProps } from '@/types/components/cta-simple';
 import Image from 'next/image';
-import { BottomBuffer, TopBuffer } from '@/app/_components/ui/buffers';
 import { BackgroundPatternSVG } from '@/app/_components/ui/svg-comps';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import Link from '@/app/_components/ui/link';
+import Container from '@/app/_components/ui/container';
 
 export default function CTASimple({ data }: CTASimpleProps) {
   const { buffers, layout, image, title, content, buttons, subtitle, _type } =
     data || {};
 
   return (
-    <section
+    <Container
       id="CTASimple"
-      className={cn(
-        'flex-center relative size-full min-h-fit bg-primary-foreground text-primary-background',
-        buffers?.top && 'mt-32',
-        buffers?.bottom && 'mb-32',
-        layout?.colour === 'dark'
-          ? 'fill-primary-secondary-accent/50 bg-primary-foreground text-primary-background'
-          : 'fill-primary-foreground/50 bg-primary-secondary-accent text-primary-foreground'
-      )}
+      options={{
+        colour: layout?.colour,
+        buffers,
+      }}
     >
-      <TopBuffer visible={buffers?.top} colour={layout?.colour} />
       <div className="relative mx-auto grid min-h-[35svh] w-screen max-w-7xl grid-cols-1 grid-rows-6 place-items-center gap-x-36 overflow-clip px-8 py-10 md:grid-cols-5 md:grid-rows-1 lg:px-10">
         <BackgroundPatternSVG
           className={cn(
@@ -50,14 +45,7 @@ export default function CTASimple({ data }: CTASimpleProps) {
             <span>{subtitle}</span>
             <h2>{title}</h2>
           </div>
-          <CustomPortableText
-            paragraphClasses={cn(
-              layout?.colour === 'dark'
-                ? 'text-primary-background'
-                : 'text-primary-foreground'
-            )}
-            value={content}
-          />
+          <CustomPortableText value={content} />
           {image &&
             buttons &&
             buttons.map((button, i) => (
@@ -87,7 +75,6 @@ export default function CTASimple({ data }: CTASimpleProps) {
           </div>
         )}
       </div>
-      <BottomBuffer visible={buffers?.bottom} colour={layout?.colour} />
-    </section>
+    </Container>
   );
 }

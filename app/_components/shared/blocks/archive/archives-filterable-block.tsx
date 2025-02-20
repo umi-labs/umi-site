@@ -18,7 +18,7 @@ interface Props {
 }
 
 const tagFormatter = (tag: string) => {
-  return tag.toLowerCase().split(' ').join('-');
+  return tag?.toLowerCase().split(' ').join('-');
 };
 
 export default function ArchivesFilterableBlock({ postType }: Props) {
@@ -30,10 +30,18 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
   });
 
   // State
-  const [archives, setArchives] = React.useState<Props['archives']>([]);
+  const [featuredArchives, setFeaturedArchives] = React.useState<
+    Props['archives']
+  >([]);
 
   // Queries
-  const tagsAndTypes = useQuery({
+  const {
+    data: filters,
+    isLoading: filtersIsLoading,
+    isError: filtersIsError,
+    isSuccess: filtersIsSuccess,
+    error: filtersError,
+  } = useQuery({
     queryKey: ['TagsAndTypes', postType],
     queryFn: () =>
       getArchiveTagsAndTypes({
@@ -43,7 +51,13 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
     enabled: !!postType,
   });
 
-  const { data, isLoading, isError, isSuccess, error } = useQuery({
+  const {
+    data: archives,
+    isLoading: archivesIsLoading,
+    isError: archivesIsError,
+    isSuccess: archivesIsSuccess,
+    error: archivesError,
+  } = useQuery({
     queryKey: ['archives', currentTag, currentType, postType],
     queryFn: () =>
       getFilteredArchives({
@@ -56,15 +70,6 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
   });
 
   React.useEffect(() => {
-    if (!data) return;
-    setArchives(data);
-  }, [data]);
-
-  const [featuredArchives, setFeaturedArchives] = React.useState<
-    Props['archives']
-  >([]);
-
-  React.useEffect(() => {
     if (!archives || archives.length === 0) return;
     setFeaturedArchives(archives.filter((archive) => archive.featured));
   }, [archives]);
@@ -73,9 +78,9 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
   const [types, setTypes] = React.useState<string[]>([]);
 
   React.useEffect(() => {
-    if (!tagsAndTypes.data || tagsAndTypes.data.length === 0) return;
+    if (filtersIsError || filtersIsLoading || filters.length === 0) return;
     const tagsSet: Set<string> = new Set(
-      tagsAndTypes.data?.map((archive) => archive.tags).flat()
+      filters?.map((archive) => archive.tags).flat()
     );
 
     if (tagsSet.size === 0) return;
@@ -83,11 +88,10 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
     // Convert the Set to an Array
     const tagsArray = ['all', ...tagsSet];
 
-    setTags(tagsArray);
+    setTags(tagsArray.filter((tag) => tag !== null));
 
-    if (!tagsAndTypes.data || tagsAndTypes.data.length === 0) return;
     const typesSet: Set<string> = new Set(
-      tagsAndTypes.data?.map((archive) => archive.type).flat()
+      filters?.map((archive) => archive.type).flat()
     );
 
     if (typesSet.size === 0) return;
@@ -95,8 +99,8 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
     // Convert the Set to an Array
     const typesArray = ['all', ...typesSet];
 
-    setTypes(typesArray);
-  }, [tagsAndTypes.data]);
+    setTypes(typesArray.filter((tag) => tag !== null));
+  }, [filters]);
 
   return (
     <>
@@ -136,7 +140,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
                   setCurrentTag(tagFormatter(tag));
                 }}
               >
-                {tag.split('-').join(' ')}
+                {tag?.split('-').join(' ')}
               </span>
             );
           })}
@@ -160,16 +164,16 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
           </div>
         )}
 
-      {isLoading ? (
+      {archivesIsLoading ? (
         <Loader />
-      ) : isError ? (
-        <ErrorMessage />
-      ) : isSuccess ? (
+      ) : archivesIsError ? (
+        <ErrorMessage error={archivesError} />
+      ) : archivesIsSuccess ? (
         // @ts-expect-error - type conditional is being a pain
         <ArchivesGrid archives={archives} postType={postType} />
       ) : null}
 
-      {isSuccess && archives?.length === 0 && (
+      {archivesIsSuccess && archives?.length === 0 && (
         <div className="flex size-full flex-col items-center justify-center gap-y-6">
           <h2 className="text-6xl font-semibold italic">No Archives Found</h2>
           <p className="text-wrap text-center md:w-1/2">
@@ -181,13 +185,14 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
   );
 }
 
-export function ErrorMessage() {
+export function ErrorMessage({ error }: { error?: Error }) {
   return (
     <div className="flex size-full flex-col items-center justify-center gap-y-6">
       <h2 className="text-6xl font-semibold italic">Error</h2>
       <p className="text-wrap text-center md:w-1/2">
-        There seems to have been a small issue. Please refresh your browser or
-        return home if issue persists.
+        {error
+          ? error.message
+          : 'There seems to have been a small issue. Please refresh your browser or return home if issue persists.'}
       </p>
     </div>
   );
