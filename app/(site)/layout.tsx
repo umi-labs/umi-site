@@ -14,6 +14,7 @@ import { loadSEOSettings, loadSettings } from '@/sanity/loader/loadQuery';
 import NavbarSkeleton from '@/app/_components/global/Navbar/NavbarSkeleton';
 import { cn } from '@/lib/utils';
 import Providers from '@/app/_components/providers';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const LiveVisualEditing = dynamic(
   () => import('@/sanity/loader/LiveVisualEditing')
@@ -51,6 +52,11 @@ export default async function Layout({
 
   return (
     <Providers>
+      {process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID && (
+        <GoogleTagManager
+          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
+        />
+      )}
       <NuqsAdapter>
         <div
           className={cn(
