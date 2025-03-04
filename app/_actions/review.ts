@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client';
 import {
   getFeaturedReviewsQuery,
   getReviewsQuery,
-} from '@/sanity/lib/queries/queries.review';
+} from '@/sanity/lib/queries/actions/queries.review';
 import { ReviewPayload } from '@/types';
 
 export async function getReviews(): Promise<ReviewPayload[]> {

@@ -28,6 +28,7 @@ export interface Layout {
     | 'around'
     | 'evenly';
   align?: 'center' | 'start' | 'end' | 'baseline' | 'stretch';
+  textAlign?: 'center' | 'start' | 'end' | 'justify';
   colour?: 'light' | 'dark' | 'accent';
 }
 

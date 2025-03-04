@@ -1,363 +1,29 @@
 import { groq } from 'next-sanity';
+import { buttons, pageBase, pageBuilder } from '@/sanity/lib/queries/generics';
 
 export const homePageQuery = groq`
-  *[_type == "home"][0]{
-    _id,
-    overview,
-    hero[]{
-      ...,
-      image{
-        ...,
-        asset->
-      },
-      video{
-        ...,
-        video{
-          ..., 
-          asset->
-        },
-        image{
-          ...,
-          asset->
-        },
-      },
-      buttons[] {
-        _key,
-        title,
-        type,
-        link {
-         "type": internalLink->_type,
-         "slug": internalLink->slug.current,
-         "title": internalLink->title,
-         "hasParent": internalLink->hasParent,
-         "parentSlug": internalLink->parent.parentSlug,
-         displayExternal,
-         "url": externalUrl
-       }
-      },
-      button {
-        _key,
-        title,
-        type,
-        link {
-         "type": internalLink->_type,
-         "slug": internalLink->slug.current,
-         "title": internalLink->title,
-         "hasParent": internalLink->hasParent,
-         "parentSlug": internalLink->parent.parentSlug,
-         displayExternal,
-         "url": externalUrl
-        }
+      *[_type == "home"][0]{
+            ...,
+            ${pageBuilder},
+            metaData,
       }
-    },
-    blocks[] {
-      ...,
-      form-> {
-         _id,
-         title,
-         email,
-         "subject": subjectLine,
-         confirmationType,
-         confirmationMessage,
-         redirect,
-         "fields": formFields[]{
-           _key,
-           "id": id.current,
-           name,
-           placeholder,
-           required,
-           type,
-           enableDescription,
-           description
-         },
-      },
-      image{
-        ...,
-        asset->
-      },
-      video{
-        ...,
-        video{
-          ..., 
-          asset->
-        },
-        image{
-          ...,
-          asset->
-        },
-      },
-      buttons[] {
-        _key,
-        title,
-        type,
-        link {
-         "type": internalLink->_type,
-         "slug": internalLink->slug.current,
-         "title": internalLink->title,
-         "hasParent": internalLink->hasParent,
-         "parentSlug": internalLink->parent.parentSlug,
-         displayExternal,
-         "url": externalUrl
-        }
-      },
-      button {
-        _key,
-        title,
-        type,
-        link {
-         "type": internalLink->_type,
-         "slug": internalLink->slug.current,
-         "title": internalLink->title,
-         "hasParent": internalLink->hasParent,
-         "parentSlug": internalLink->parent.parentSlug,
-         displayExternal,
-         "url": externalUrl
-        }
-      },
-      selectedProjects[]->{
-        ...,
-        "slug": slug.current,
-        coverImage{
-          ...,
-          asset->
-        },
-      },
-      features[] {
-        ...,
-        button {
-          _key,
-          title,
-          type,
-          link {
-           "type": internalLink->_type,
-           "slug": internalLink->slug.current,
-           "title": internalLink->title,
-           "hasParent": internalLink->hasParent,
-           "parentSlug": internalLink->parent.parentSlug,
-           displayExternal,
-           "url": externalUrl
-          }
-        },
-      },
-      testimonials[] {
-        ...,
-        image{
-          ...,
-          asset->
-        },
-      },
-      logos[] {
-        ...,
-        logo {
-          ...,
-          asset->
-        },
-        link {
-         "type": internalLink->_type,
-         "slug": internalLink->slug.current,
-         "title": internalLink->title,
-         "hasParent": internalLink->hasParent,
-         "parentSlug": internalLink->parent.parentSlug,
-         displayExternal,
-         "url": externalUrl
-        }
-      }
-    },
-    metaData{
-      ...,
-      title
-    },
-    title,
-  }
 `;
 
 export const pagesBySlugQuery = groq`
-  *[_type == "page" && slug.current == $slug][0] {
-    _id,
-    title,
-    "slug": slug.current,
-    hero[]{
-      ...,
-      image{
-        ...,
-        asset->
-      },
-      video{
-        ...,
-        video{
-          ..., 
-          asset->
-        },
-        image{
-          ...,
-          asset->
-        },
-      },
-      buttons[] {
-        _key,
-        title,
-        type,
-        link {
-          "type": internalLink->_type,
-          "slug": internalLink->slug.current,
-          "title": internalLink->title,
-          "hasParent": internalLink->hasParent,
-          "parentSlug": internalLink->parent.parentSlug,
-          displayExternal,
-          "url": externalUrl
-        }
-      },
-      button {
-        _key,
-        title,
-        type,
-        link {
-          "type": internalLink->_type,
-          "slug": internalLink->slug.current,
-          "title": internalLink->title,
-          "hasParent": internalLink->hasParent,
-          "parentSlug": internalLink->parent.parentSlug,
-          displayExternal,
-          "url": externalUrl
-        }
+      *[_type == "page" && slug.current == $slug][0] {
+            ...,
+            ${pageBuilder},
+            metaData,
+            "postType": *[_type=='postType' && references(^._id)]{
+                  title,
+                  "slug": slug.current,
+            },
       }
-    },
-    blocks[] {
-      ...,
-      form-> {
-         _id,
-         title,
-         email,
-         "subject": subjectLine,
-         confirmationType,
-         confirmationMessage,
-         redirect,
-         "fields": formFields[]{
-           _key,
-           "id": id.current,
-           name,
-           placeholder,
-           required,
-           type,
-           inputType,
-           options,
-           enableDescription,
-           description
-         },
-      },
-      inbox->,
-      image{
-        ...,
-        asset->
-      },
-      cta-> {
-        CTA[] {
-          ...,
-          image {
-            ...,
-            asset->
-          },
-          buttons[] {
-            ...,
-            link{
-              ...,
-              internalLink ->{
-                _type,
-                "slug": slug.current,
-                title,
-                postType->
-              }
-            }
-          }
-        },
-      },
-      imageGrid[]{
-        asset->
-      },
-      logos[]{
-        ...,
-        name,
-        logo {
-          ...,
-          asset->
-        },
-        link{
-          ...,
-          internalLink ->{
-            _type,
-            "slug": slug.current,
-            title,
-            postType->
-          }
-        }
-      },
-      faqs[]->,
-      video{
-        ...,
-        video{
-          ..., 
-          asset->
-        },
-        image{
-          ...,
-          asset->
-        },
-      },
-      cardGrid[]{
-        ...,
-        image{
-          ...,
-          asset->
-        },
-        link{
-          ...,
-          internalLink ->{
-            _type,
-            "slug": slug.current,
-            title,
-            postType->
-          }
-        }
-      },
-      content[] {
-        ...,
-        image{
-          ...,
-          asset->
-        }
-      },
-      selectedArchives[]->,
-      "archive": *[_type == ^.postType] | order(_createdAt desc)[0..8]{ 
-        ..., 
-        coverImage {
-          ...,
-          asset->
-        },
-        "slug": slug.current,
-        author->{
-          ...,
-          "slug": slug.current,
-        },
-        time{
-          ...,
-          timeTaken,
-          timeType
-        }
-       }
-    },
-    metaData,
-    "postType": *[_type=='postType' && references(^._id)]{
-      title,
-      "slug": slug.current,
-    },
-  }
 `;
 
 export const projectsBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
-    _id,
-    title,
-    "slug": slug.current,
+    ${pageBase},
     tags[],
     clientName,
     clientUrl,
@@ -365,7 +31,7 @@ export const projectsBySlugQuery = groq`
       ...,
       asset->
     },
-    coverImage{
+    coverImage{ 
       ...,
       asset->
     },
@@ -396,18 +62,7 @@ export const projectsBySlugQuery = groq`
         ...,
         asset->
       },
-      buttons[] {
-        ...,
-        link{
-          ...,
-          internalLink ->{
-            _type,
-            "slug": slug.current,
-            title,
-            postType->
-          }
-        }
-      }
+      ${buttons},
     },
     relatedProjects[]->{
       ...,
@@ -436,9 +91,7 @@ export const projectsBySlugQuery = groq`
 
 export const postsBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
-    _id,
-    title,
-    "slug": slug.current,
+    ${pageBase},
     featured,
     type,
     tags[],

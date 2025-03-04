@@ -1,5 +1,5 @@
 import { client } from '@/sanity/lib/client';
-import { getFAQsByTypeQuery } from '@/sanity/lib/queries/queries.faqs';
+import { getFAQsByTypeQuery } from '@/sanity/lib/queries/actions/queries.faqs';
 import { PortableTextBlock } from 'next-sanity';
 
 export interface FAQPayload {

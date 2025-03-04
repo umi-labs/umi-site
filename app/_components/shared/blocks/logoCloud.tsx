@@ -71,6 +71,7 @@ const Logo = (logo: LogoCloudProps['data']['logos'][0]) => {
         alt={logo.logo.asset?.altText || ''}
         width={logo.logo.asset?.metadata?.dimensions.width || 200}
         height={logo.logo.asset?.metadata?.dimensions.height || 200}
+        className="p-8"
       />
       <span className="sr-only">{logo.name}</span>
     </Link>

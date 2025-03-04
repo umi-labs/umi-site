@@ -27,6 +27,7 @@ interface CardGridSideTitleProps {
 }
 
 export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
+  console.log(data.buttons);
   return (
     <Container
       id="CardGridSideTitle"

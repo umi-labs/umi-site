@@ -3,7 +3,7 @@ import { JobPayload } from '@/types';
 import {
   getFeaturedJobsQuery,
   getJobsQuery,
-} from '@/sanity/lib/queries/queries.job';
+} from '@/sanity/lib/queries/actions/queries.job';
 
 export async function getJobs(): Promise<JobPayload[]> {
   return client.fetch(getJobsQuery);

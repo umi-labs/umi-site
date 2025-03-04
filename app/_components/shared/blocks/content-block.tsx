@@ -1,5 +1,9 @@
 import React from 'react';
-import type { Image as ImageType, Link as LinkType } from '@/types/generics';
+import type {
+  Image as ImageType,
+  Layout,
+  Link as LinkType,
+} from '@/types/generics';
 import Link from '@/app/_components/ui/link';
 import Image from 'next/image';
 import Video, { VideoProps } from '@/app/_components/ui/video';
@@ -14,18 +18,7 @@ interface ContentBlockProps {
 
     description: PortableTextBlock[];
     type: 'umiCulture' | 'standardVideo' | 'standardImage';
-    layout?: {
-      justify?:
-        | 'normal'
-        | 'center'
-        | 'start'
-        | 'end'
-        | 'stretch'
-        | 'between'
-        | 'around'
-        | 'evenly';
-      align?: 'center' | 'start' | 'end' | 'baseline' | 'stretch';
-    };
+    layout?: Layout;
     imageGrid: ImageType[];
     cardGrid: {
       image: ImageType;

@@ -37,6 +37,19 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'textAlign',
+      title: 'Text Align',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Center', value: 'center' },
+          { title: 'Start', value: 'start' },
+          { title: 'End', value: 'end' },
+          { title: 'Justify', value: 'justify' },
+        ],
+      },
+    }),
+    defineField({
       name: 'colour',
       title: 'Colour',
       type: 'string',

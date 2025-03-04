@@ -1,6 +1,6 @@
 import { client } from '@/sanity/lib/client';
-import { getPaginatedPostsQuery } from '@/sanity/lib/queries/queries.post';
-import { getPaginatedProjectsQuery } from '@/sanity/lib/queries/queries.project';
+import { getPaginatedPostsQuery } from '@/sanity/lib/queries/actions/queries.post';
+import { getPaginatedProjectsQuery } from '@/sanity/lib/queries/actions/queries.project';
 
 export async function getPaginatedProjects({
   lastCreatedAt,

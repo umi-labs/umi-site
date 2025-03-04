@@ -8,12 +8,12 @@ import {
   getPostsByAuthorQuery,
   getPostsQuery,
   getPostTagsAndTypesQuery,
-} from '@/sanity/lib/queries/queries.post';
+} from '@/sanity/lib/queries/actions/queries.post';
 import {
   getFilteredProjectsQuery,
   getProjectsQuery,
   getProjectTagsQuery,
-} from '@/sanity/lib/queries/queries.project';
+} from '@/sanity/lib/queries/actions/queries.project';
 
 export const reformatTag = (tag: string) => {
   const tagArray = tag.split('-');
@@ -22,7 +22,7 @@ export const reformatTag = (tag: string) => {
     return tag.slice(0, 1).toUpperCase() + tag.slice(1).toLowerCase();
   } else {
     return tagArray
-      .map((word, i) => {
+      .map((word) => {
         return word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase();
       })
       .join(' ');

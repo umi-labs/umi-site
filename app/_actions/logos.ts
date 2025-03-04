@@ -1,5 +1,5 @@
 import { client } from '@/sanity/lib/client';
-import { getLogosQuery } from '@/sanity/lib/queries/queries.logo';
+import { getLogosQuery } from '@/sanity/lib/queries/actions/queries.logo';
 import type { Image as ImageType } from '@/types/generics';
 
 export interface LogosPayload {

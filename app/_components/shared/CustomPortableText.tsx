@@ -32,6 +32,7 @@ import BasicHero from '@/app/_components/shared/heros/BasicHero';
 import CTABlock from '@/app/_components/shared/blocks/cta-block';
 import FormBlock from '@/app/_components/shared/blocks/form-block';
 import CTA from '@/app/_components/shared/blocks/CTA';
+import { cn } from '@/app/_utils';
 
 export function CustomPortableText({
   paragraphClasses,
@@ -61,10 +62,19 @@ export function CustomPortableText({
     },
     list: {
       bullet: ({ children }) => (
-        <ul className="mt-xl mx-4 list-disc *:ml-4">{children}</ul>
+        <ul
+          className={cn('mt-xl mx-4 my-4 list-disc *:ml-4', paragraphClasses)}
+        >
+          {children}
+        </ul>
       ),
       number: ({ children }) => (
-        <ol className="mt-lg ml-4 list-decimal *:ml-5 *:marker:font-bold">
+        <ol
+          className={cn(
+            'mt-lg my-4 ml-4 list-decimal *:ml-5 *:marker:font-bold',
+            paragraphClasses
+          )}
+        >
           {children}
         </ol>
       ),
@@ -97,7 +107,7 @@ export function CustomPortableText({
         return <BasicHero {...value} />;
       },
       textBlock: ({ value }) => {
-        return <TextBlock text={value} />;
+        return <TextBlock data={value} />;
       },
       cta: ({ value }) => {
         return <CTA {...value} />;

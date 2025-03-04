@@ -155,7 +155,6 @@ async function fetchNestedSlugs(type = 'page'): Promise<NestedSlugs[]> {
   // );
 }
 
-
 // *[_type == $type && defined(slug.current)]{
 //   "slug": slug.current,
 //     "parent": parent.current,

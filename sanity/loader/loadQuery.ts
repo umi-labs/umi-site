@@ -24,8 +24,8 @@ import {
   TeamPayload,
   ThemeSettingsPayload,
 } from '@/types';
-import { servicesBySlugQuery } from '@/sanity/lib/queries/queries.service';
-import { teamBySlugQuery } from '@/sanity/lib/queries/queries.team';
+import { servicesBySlugQuery } from '@/sanity/lib/queries/actions/queries.service';
+import { teamBySlugQuery } from '@/sanity/lib/queries/actions/queries.team';
 
 const serverClient = client.withConfig({
   token,

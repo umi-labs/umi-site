@@ -6,7 +6,7 @@ import {
   teamQueryPaginated,
   teamQueryPaginatedInitial,
   teamRolesQuery,
-} from '@/sanity/lib/queries/queries.team';
+} from '@/sanity/lib/queries/actions/queries.team';
 import { TeamPayload } from '@/types';
 
 export async function getTeam(): Promise<TeamPayload[] | undefined> {

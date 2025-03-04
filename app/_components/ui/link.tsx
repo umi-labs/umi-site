@@ -2,10 +2,6 @@
 import React from 'react';
 import NextLink from 'next/link';
 import { VariantProps } from 'class-variance-authority';
-import useResolvedHref, {
-  ResolvedHref,
-  Status,
-} from '@/app/_utils/hooks/useResolvedHref';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/app/_components/ui/button';
 import { NavItem } from '@/types/components/nav';
@@ -28,20 +24,15 @@ export default function Link({
   className,
   ...props
 }: LinkProps) {
-  let resolvedHref: ResolvedHref;
-  let url: string;
+  if (!link) return;
 
-  if (link) {
-    resolvedHref = useResolvedHref({ link: link });
-  }
-
-  url = href
-    ? href
-    : // TODO: fix this
-      // @ts-expect-error - resolvedHref is not defined
-      resolvedHref?.status === Status.SUCCESS
-      ? resolvedHref?.href
-      : '';
+  const url = link.displayExternal
+    ? link.url!
+    : link.hasParent
+      ? `/${link.parentSlug}/${link.slug}`
+      : link.type !== 'page'
+        ? `/${link.type}/${link.slug}`
+        : `/${link.slug}`;
 
   return (
     <NextLink

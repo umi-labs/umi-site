@@ -5,7 +5,7 @@ import { useQuery } from '@/sanity/loader/useQuery';
 import { TeamPayload } from '@/types';
 
 import Team from './Team';
-import { teamBySlugQuery } from '@/sanity/lib/queries/queries.team';
+import { teamBySlugQuery } from '@/sanity/lib/queries/actions/queries.team';
 
 type Props = {
   params: { slug: string };

@@ -24,7 +24,12 @@ const useResolvedHref = ({ link }: { link?: NavItem }): ResolvedHref => {
   });
 
   React.useEffect(() => {
-    if (link?.displayExternal && link?.url) {
+    if (!link) {
+      setResolvedHref({
+        status: Status.ERROR,
+        href: '',
+      });
+    } else if (link?.displayExternal && link?.url) {
       setResolvedHref({
         status: Status.SUCCESS,
         href: link.url,
