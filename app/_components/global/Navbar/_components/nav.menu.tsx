@@ -54,39 +54,37 @@ export default function Menu({ data, show, setShow }: MenuProps) {
   });
 
   return (
-    <>
-      <div className={cn(MenuStyles.default, !show && MenuStyles.closed)}>
-        {show && (
-          <div className="col-span-3 grid h-full w-full grid-rows-2 items-start p-8 uppercase">
-            <ul className="ml-0 flex list-none flex-col gap-y-3 divide-y">
-              {menu &&
-                menu.map((menuItem, key) => {
-                  return (
-                    <NavItem
-                      key={key}
-                      show={show}
-                      setShow={setShow}
-                      setSubMenu={setSubMenu}
-                      subMenu={subMenu}
-                      item={menuItem}
-                    />
-                  );
-                })}
-            </ul>
-            {data.mainNav?.ctaButton && (
-              <Link
-                href={data.mainNav.ctaButton.url}
-                variant="default"
-                size="default"
-                className="mt-8 w-full"
-              >
-                {data.mainNav.ctaButton.text}
-              </Link>
-            )}
-          </div>
-        )}
-      </div>
-    </>
+    <div id='mobile-menu' className={cn(MenuStyles.default, !show && MenuStyles.closed)}>
+      {show && (
+        <div className="col-span-3 grid h-full w-full grid-rows-2 items-start p-8 uppercase">
+          <ul className="ml-0 flex list-none flex-col gap-y-3 divide-y">
+            {menu &&
+              menu.map((menuItem, key) => {
+                return (
+                  <NavItem
+                    key={key}
+                    show={show}
+                    setShow={setShow}
+                    setSubMenu={setSubMenu}
+                    subMenu={subMenu}
+                    item={menuItem}
+                  />
+                );
+              })}
+          </ul>
+          {data.mainNav?.ctaButton && (
+            <Link
+              href={data.mainNav.ctaButton.url}
+              variant="default"
+              size="default"
+              className="mt-8 w-full"
+            >
+              {data.mainNav.ctaButton.text}
+            </Link>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -123,7 +121,7 @@ const NavItem = ({
       >
         <h2
           className={cn(
-            'mt-3 flex items-center justify-between text-xl underline-offset-4 hover:underline md:text-4xl',
+            'pt-3 flex max-w-full items-center justify-between text-xl underline-offset-4 hover:underline md:text-4xl my-0',
             subMenu.show ? 'animate-rotateDownAndOut' : 'animate-rotateUpAndIn'
           )}
         >
@@ -144,7 +142,7 @@ const NavItem = ({
               className="size-8 hover:cursor-pointer"
               onClick={() => setSubMenu({ show: false, currentItem: null })}
             />
-            <h2 className="">{subMenu?.currentItem?.title}</h2>
+            <h2 className="mb-0">{subMenu?.currentItem?.title}</h2>
             <div />
           </div>
           <ul className="ml-0 flex w-full list-none flex-col gap-y-3 divide-y">
@@ -174,7 +172,7 @@ const NavItem = ({
       </div>
     </div>
   ) : (
-    <div className="overflow-hidden pt-3">
+    <div className="relative overflow-hidden pt-3">
       <div
         className={cn(
           subMenu && subMenu.show
@@ -206,14 +204,14 @@ const MenuLink = ({
 }) => {
   return (
     <Link
-      // @ts-ignore
       link={navItem}
+      variant="link"
       className={cn(
-        'text-charcoal animate-rotateUpAndIn uppercase md:text-base'
+        'text-charcoal animate-rotateUpAndIn uppercase md:text-base w-full items-start justify-start text-start'
       )}
       onClick={() => setShow(!show)}
     >
-      <h2 className="text-xl md:text-4xl">{title}</h2>
+      <h2 className="text-xl md:text-4xl w-fit mb-0">{title}</h2>
     </Link>
   );
 };

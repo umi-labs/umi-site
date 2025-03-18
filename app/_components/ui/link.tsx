@@ -8,7 +8,7 @@ import { NavItem } from '@/types/components/nav';
 
 interface LinkProps
   extends React.ComponentPropsWithoutRef<'a'>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
   href?: string;
   link?: NavItem;
@@ -26,7 +26,7 @@ export default function Link({
 }: LinkProps) {
   if (!link) return;
 
-  const url = link.displayExternal
+  const url = href ? href : link.displayExternal
     ? link.url!
     : link.hasParent
       ? `/${link.parentSlug}/${link.slug}`

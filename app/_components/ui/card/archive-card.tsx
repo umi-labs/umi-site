@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from '@/app/_components/ui/link';
+import Link from 'next/link';
 import { PostPayload, ProjectPayload } from '@/types';
 import { cn } from '@/app/_utils';
 import { buttonVariants } from '@/app/_components/ui/button';
@@ -57,11 +57,10 @@ export default function StandardArchiveCard(props: Props) {
       )}
       <div className="absolute inset-0 z-[1] h-full w-full bg-gradient-to-b from-black/20 to-black/40" />
       <div className="z-10 flex flex-col items-center justify-center gap-y-6">
-        <h2 className="text-2xl font-semibold text-primary-background hocus:no-underline">
+        <h2 className="text-4xl md:text-3xl font-semibold text-center text-primary-background hocus:no-underline">
           {props.archive.title}
         </h2>
         <Link
-          variant="link-light"
           className="text-lg text-gray-200 hocus:text-gray-100"
           href={slug}
         >
@@ -82,7 +81,8 @@ export function PostCard({ archive, index }: PostCardProps) {
   const formattedDate = format(date, 'MMM d, yyyy'); // Formats the date
   return (
     <motion.div
-      className="grid size-full grid-flow-row auto-rows-auto place-items-center gap-x-10 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:grid-cols-1 lg:grid-rows-2"
+      id='post-card'
+      className="grid size-full grid-flow-row auto-rows-auto place-items-stretch gap-x-10 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:grid-cols-1 lg:grid-rows-2"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{
@@ -92,13 +92,14 @@ export function PostCard({ archive, index }: PostCardProps) {
       }}
     >
       <Image
+        id='post-card__image'
         src={archive.coverImage?.asset?.url || ''}
         alt={archive.coverImage?.asset?.altText || ''}
         width={archive.coverImage?.asset?.metadata?.dimensions.width}
         height={archive.coverImage?.asset?.metadata?.dimensions.height}
-        className="aspect-video h-full object-cover object-center"
+        className="aspect-video h-52 object-cover object-center"
       />
-      <div className="flex w-full flex-col items-start justify-around gap-y-8 px-6 py-6 lg:size-full">
+      <div className="flex w-full flex-col items-start justify-between gap-y-8 px-6 py-6 lg:size-full">
         <div className="flex size-full flex-col items-start justify-center gap-y-3 lg:justify-between">
           <div className="flex w-full items-center justify-between">
             <h6 className="text-xs uppercase text-[#368DB1]">
@@ -111,7 +112,7 @@ export function PostCard({ archive, index }: PostCardProps) {
           <h3 className="font-light">{archive.title}</h3>
           <div className="flex w-full items-center justify-between">
             {archive.author && (
-              <Link href={archive.author.slug} className="text-gray-300">
+              <Link id='post-card__author-link' href={archive.author.slug} className="text-gray-300">
                 By&nbsp;
                 <span className="text-black">{archive.author.name}</span>
               </Link>
@@ -119,16 +120,12 @@ export function PostCard({ archive, index }: PostCardProps) {
           </div>
           <p className="text-sm text-gray-600">{archive.excerpt}</p>
         </div>
-        <div>
-          <Link
-            className={cn(
-              buttonVariants({ variant: 'default', size: 'default' })
-            )}
-            href={`/blog/${archive.slug}`}
-          >
-            Read More
-          </Link>
-        </div>
+        <Link
+          id='post-card__link'
+          href={`/blog/${archive.slug}`}
+        >
+          Read More
+        </Link>
       </div>
     </motion.div>
   );
@@ -164,12 +161,12 @@ export function FeaturedArchiveCard(props: Props) {
       {/* Card */}
       <div
         className={cn(
-          'relative row-span-1 flex h-full w-[-webkit-fill-available] lg:col-span-1 lg:w-auto'
+          'relative row-span-1 flex justify-center h-full w-[-webkit-fill-available] lg:col-span-1 lg:w-auto'
         )}
       >
         <div
           className={cn(
-            'z-10 my-auto flex h-fit flex-col items-start justify-start gap-y-6 bg-primary-background p-10 text-left shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:absolute',
+            'z-10 my-auto flex h-fit w-[calc(100%_-_2rem)] -translate-y-10 flex-col items-start justify-start md:gap-y-6 bg-primary-background p-10 text-left shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:absolute',
             props.index! % 2 === 1
               ? 'lg:inset-y-0 lg:left-0 lg:translate-x-20 lg:translate-y-0'
               : 'lg:inset-y-0 lg:right-0 lg:-translate-x-20 lg:translate-y-0'
@@ -180,7 +177,6 @@ export function FeaturedArchiveCard(props: Props) {
           </h2>
           <p className="text-sm text-gray-800">{props.archive.excerpt}</p>
           <Link
-            variant="link-light"
             className="text-lg text-primary-accent hocus:text-primary-accent"
             href={`/${props.postType === 'post' ? 'blog' : 'our-work'}/${props.archive.slug || ''}`}
           >

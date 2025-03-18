@@ -39,13 +39,14 @@
   h2,
   h3,
   h4,
+  h5,
   h6 {
     @apply mb-4 font-heading font-normal tracking-reduced;
   }
 
   h1,
   h2 {
-    @apply leading-5;
+    @apply leading-5 max-w-[70%];
   }
 
   h3,
