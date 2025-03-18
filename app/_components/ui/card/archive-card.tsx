@@ -82,7 +82,7 @@ export function PostCard({ archive, index }: PostCardProps) {
   return (
     <motion.div
       id='post-card'
-      className="grid size-full grid-flow-row auto-rows-auto place-items-stretch gap-x-10 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:grid-cols-1 lg:grid-rows-2"
+      className="grid size-full grid-flow-row auto-rows-min place-items-stretch gap-x-10 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:grid-cols-1 lg:grid-rows-min"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{
@@ -102,7 +102,7 @@ export function PostCard({ archive, index }: PostCardProps) {
       <div className="flex w-full flex-col items-start justify-between gap-y-8 px-6 py-6 lg:size-full">
         <div className="flex size-full flex-col items-start justify-center gap-y-3 lg:justify-between">
           <div className="flex w-full items-center justify-between">
-            <h6 className="text-xs uppercase text-[#368DB1]">
+            <h6 className="text-xs uppercase text-[#368DB1] mb-0">
               <span className="font-semibold">{archive.type}</span>
             </h6>
             <span className="text-xs uppercase text-gray-600">
@@ -112,7 +112,7 @@ export function PostCard({ archive, index }: PostCardProps) {
           <h3 className="font-light">{archive.title}</h3>
           <div className="flex w-full items-center justify-between">
             {archive.author && (
-              <Link id='post-card__author-link' href={archive.author.slug} className="text-gray-300">
+              <Link id='post-card__author-link' href={archive.author.slug} className="text-gray-400">
                 By&nbsp;
                 <span className="text-black">{archive.author.name}</span>
               </Link>
