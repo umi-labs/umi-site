@@ -52,7 +52,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
         >
           {/* @ts-expect-error - type casting is not defined */}
           {data?.separator && <WaveSVG />}
-          <h2>{data.title}</h2>
+          <h1>{data.title}</h1>
           <CustomPortableText value={data.content} />
           <div className="flex w-full items-center justify-center gap-6">
             {data?.buttons?.map((button, i) => (

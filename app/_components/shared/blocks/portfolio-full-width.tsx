@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import Link from '@/app/_components/ui/link';
 import type { Button } from '@/types/generics';
 import {
   Slider,
@@ -17,6 +16,8 @@ import { useQuery } from '@tanstack/react-query';
 import { PortableTextBlock } from 'next-sanity';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import Container from '@/app/_components/ui/container';
+import Link from 'next/link';
+import { Link as CustomLink } from '@/app/_components/ui/link';
 
 interface PortfolioFullWidthProps {
   data: {
@@ -55,7 +56,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
           {data.content && <CustomPortableText value={data.content} />}
           <div className="flex w-full flex-col items-start justify-start gap-6 lg:flex-row lg:items-center">
             {data?.buttons?.map((button, i) => (
-              <Link
+              <CustomLink
                 key={i}
                 link={button.link}
                 size="default"
@@ -63,7 +64,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
                 className="w-full lg:w-auto"
               >
                 {button.title}
-              </Link>
+              </CustomLink>
             ))}
           </div>
         </div>
@@ -78,11 +79,11 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
               {projects?.map((project, i) => (
                 <SliderItem
                   key={i}
-                  className="relative ml-9 flex aspect-square h-auto max-w-sm basis-3/4 flex-col items-center justify-center gap-y-6 overflow-clip bg-primary-accent md:basis-1/2"
+                  className="relative ml-9 flex aspect-square h-auto max-w-sm basis-3/4 flex-col items-center justify-center gap-y-6 overflow-clip bg-primary-foreground md:basis-1/2"
                 >
                   <Link
                     className="group absolute inset-0 z-20 h-full w-full"
-                    href={`/our-work/${project.slug}`}
+                    href={`/our-work/${project.slug}` || ''}
                   >
                     <Image
                       src={project.coverImage?.asset?.url || ''}
@@ -93,11 +94,11 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
                       height={
                         project.coverImage?.asset?.metadata?.dimensions.height
                       }
-                      className="absolute inset-0 -z-0 h-full object-cover object-center"
+                      className="absolute inset-0 -z-10 h-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 z-[1] h-full w-full bg-gradient-to-b from-black/20 to-black/40" />
-                    <div className="z-10 flex flex-col items-center justify-center gap-y-6">
-                      <h2 className="text-2xl font-semibold text-primary-background group-hover:no-underline">
+                    <div className="absolute inset-0 z-0 h-full w-full bg-gradient-to-b from-black/20 to-black/40" />
+                    <div className="relative z-50 flex h-full flex-col items-center justify-center gap-y-6">
+                      <h2 className="text-2xl font-semibold text-white group-hover:no-underline">
                         {project.title}
                       </h2>
                       <span className="flex flex-wrap items-center justify-center gap-2 text-xs text-gray-700">

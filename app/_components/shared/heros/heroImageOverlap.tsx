@@ -14,7 +14,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
           <h5 className="text-sm uppercase text-primary-accent">
             {data.subtitle}
           </h5>
-          <h2>{data.title}</h2>
+          <h1>{data.title}</h1>
         </div>
         <CustomPortableText value={data.content} />
         <div className="flex w-full items-center justify-center gap-6 md:flex-row md:items-start md:justify-start">

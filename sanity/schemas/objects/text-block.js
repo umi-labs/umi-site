@@ -22,12 +22,7 @@ export default defineType({
       of: [{ type: 'block' }],
       group: 'content',
     },
-    defineField({
-      name: 'layout',
-      title: 'Layout',
-      type: 'layout',
-      group: 'misc',
-    }),
+  
   ],
   preview: {
     prepare() {

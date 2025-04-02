@@ -105,12 +105,6 @@ export default defineType({
       hidden: ({ parent }) => parent?.type !== 'standardImage',
       group: 'content',
     }),
-    defineField({
-      name: 'layout',
-      title: 'Layout',
-      type: 'layout',
-      group: 'misc',
-    }),
   ],
   preview: {
     select: {

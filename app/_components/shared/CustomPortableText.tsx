@@ -14,7 +14,7 @@ import CardGridSideTitle from '@/app/_components/shared/blocks/cardGridSideTitle
 import CardGridSideTitleSimple from '@/app/_components/shared/blocks/cardGridSideTitleSimple';
 import HeroWithMedia from '@/app/_components/shared/heros/heroWithMedia';
 import TestimonialsCarousel from '@/app/_components/shared/blocks/testimonialsCarousel';
-import LogoCloud from '@/app/_components/shared/blocks/logoCloud';
+import LogoCloud from '@/app/_components/shared/blocks/logo-cloud';
 import CTAWithForm from '@/app/_components/shared/blocks/CTAWithForm';
 import BlogGrid from '@/app/_components/shared/blocks/blogGrid';
 import CTATitleImage from '@/app/_components/shared/blocks/CTATitleImage';
@@ -44,14 +44,72 @@ export function CustomPortableText({
   const components: PortableTextComponents = {
     block: {
       normal: ({ children }) => {
-        return <p className={`${paragraphClasses} prose`}>{children}</p>;
+        return (
+          <p
+            className={`${paragraphClasses} prose mb-4 font-normal tracking-reduced`}
+          >
+            {children}
+          </p>
+        );
+      },
+      h1: ({ children }) => (
+        <h1
+          className={`${paragraphClasses} mb-4 font-heading text-5xl font-normal tracking-reduced`}
+        >
+          {children}
+        </h1>
+      ),
+      h2: ({ children }) => {
+        return (
+          <h2
+            className={`${paragraphClasses} prose mb-4 font-heading text-4xl font-normal leading-5 tracking-reduced`}
+          >
+            {children}
+          </h2>
+        );
+      },
+      h3: ({ children }) => {
+        return (
+          <h3
+            className={`${paragraphClasses} prose mb-4 font-heading text-2xl font-normal leading-6 tracking-reduced`}
+          >
+            {children}
+          </h3>
+        );
+      },
+      h4: ({ children }) => {
+        return (
+          <h4
+            className={`${paragraphClasses} prose mb-4 font-heading text-xl font-normal leading-6 tracking-reduced`}
+          >
+            {children}
+          </h4>
+        );
+      },
+      h5: ({ children }) => {
+        return (
+          <h5
+            className={`${paragraphClasses} prose mb-4 font-subtitle text-xs font-bold leading-6 tracking-expanded`}
+          >
+            {children}
+          </h5>
+        );
+      },
+      h6: ({ children }) => {
+        return (
+          <h6
+            className={`${paragraphClasses} prose mb-4 font-heading text-lg font-normal leading-6 tracking-normal`}
+          >
+            {children}
+          </h6>
+        );
       },
     },
     marks: {
       link: ({ children, value }) => {
         return (
           <Link
-            className="underline transition hover:opacity-50"
+            className={'underline transition hover:opacity-50'}
             href={value?.href}
             rel="noreferrer noopener"
           >
