@@ -1,11 +1,12 @@
 import { client } from '@/sanity/lib/client';
 import { getLogosQuery } from '@/sanity/lib/queries/actions/queries.logo';
-import type { Image as ImageType } from '@/types/generics';
+import { NavItem } from '@/types/components/nav';
+import type { Image as ImageType, Link } from '@/types/generics';
 
 export interface LogosPayload {
   logo: ImageType;
   name?: string | undefined;
-  link?: string | undefined;
+  link?: NavItem;
 }
 
 export async function getLogos(): Promise<LogosPayload[]> {

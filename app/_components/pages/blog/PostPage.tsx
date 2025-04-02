@@ -13,7 +13,7 @@ export function Post({ data, encodeDataAttribute }: PostProps) {
   const { title, body, metaData } = data ?? {};
 
   return (
-    <div className="">
+    <div className="my-40">
       {/* SCHEMA MARKUP */}
       {metaData?.schemaMarkup && (
         <SchemaMarkup schema={metaData.schemaMarkup} />
@@ -22,7 +22,7 @@ export function Post({ data, encodeDataAttribute }: PostProps) {
       {body && (
         <CustomPortableText
           value={body}
-          paragraphClasses="max-w-3xl mx-auto my-40 text-center px-6"
+          paragraphClasses="max-w-3xl mx-auto text-center px-6"
         />
       )}
     </div>

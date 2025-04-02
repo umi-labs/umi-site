@@ -137,6 +137,7 @@ export interface Link {
   displayExternal: boolean;
   externalUrl: string;
   internalLink: InternalLink;
+  slug: string;
 }
 
 export interface Button {

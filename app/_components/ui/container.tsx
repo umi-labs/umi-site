@@ -9,6 +9,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
     buffers?: Buffers;
   };
   children?: React.ReactNode;
+  className?: React.ComponentPropsWithoutRef<'section'>['className'];
 }
 
 const DEFAULT_OPTIONS = {
@@ -19,18 +20,24 @@ const DEFAULT_OPTIONS = {
   },
 };
 
-export default function Container({ options, children, ...props }: Props) {
+export default function Container({
+  options,
+  className,
+  children,
+  ...props
+}: Props) {
   const { colour, buffers } = options || DEFAULT_OPTIONS;
   return (
     <section
       className={cn(
-        'relative flex min-h-full w-full flex-col items-center justify-center gap-y-24 px-10 py-10 md:py-32',
+        'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-24 px-10 py-10 md:py-32',
         buffers?.top && 'mt-44',
         buffers?.bottom && 'mb-44',
         !buffers?.top && !buffers?.bottom && 'mx-auto max-w-7xl',
         colour === 'light' && 'bg-primary-background text-primary-foreground',
         colour === 'dark' && 'bg-[#FAFAFA]',
-        colour === 'accent' && 'bg-primary-foreground text-primary-background'
+        colour === 'accent' && 'bg-primary-foreground text-primary-background',
+        className
       )}
       {...props}
     >

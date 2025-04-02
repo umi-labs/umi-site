@@ -38,9 +38,9 @@ function Project({ data }: ProjectProps) {
 
         {/* Body */}
         {body && (
-          <div className="mx-auto mb-20 mt-40 max-w-7xl px-6 py-12 md:px-16 lg:px-32">
+          <div className="mx-auto mb-20 mt-40 max-w-7xl py-12">
             <CustomPortableText
-              paragraphClasses="font-serif max-w-3xl text-gray-600 text-xl mx-auto my-4"
+              paragraphClasses="max-w-3xl text-gray-600 mx-auto my-4"
               value={body}
             />
           </div>

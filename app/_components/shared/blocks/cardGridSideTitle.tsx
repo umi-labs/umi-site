@@ -27,7 +27,6 @@ interface CardGridSideTitleProps {
 }
 
 export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
-  console.log(data.buttons);
   return (
     <Container
       id="CardGridSideTitle"
@@ -38,8 +37,8 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
         },
       }}
     >
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
-        <div className="flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
+      <div className="flex w-full flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
+        <div className="relative flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
           {data.separator && <EyebrowSVG className="" />}
           <h2>{data.title}</h2>
           <CustomPortableText value={data.content} />

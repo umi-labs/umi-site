@@ -34,11 +34,7 @@ interface ContentBlockProps {
 export default function ContentBlock({ data }: ContentBlockProps) {
   return (
     <Container id="ContentBlock">
-      <div
-        className={cn(
-          `items-${data.layout?.align} flex w-full flex-col justify-${data.layout?.justify} gap-6`
-        )}
-      >
+      <div className={cn(`flex w-full flex-col gap-6`)}>
         <h2>{data.title}</h2>
       </div>
       {data.type === 'umiCulture' && (

@@ -15,14 +15,7 @@ interface Props {
 export default function TextBlock({ data }: Props) {
   return (
     <Container id="TextBlock">
-      <div
-        className={cn(
-          'mx-auto my-4 flex max-w-3xl flex-col px-6',
-          `justify-${data.layout?.justify || 'center'}`,
-          `items-${data.layout?.align || 'center'}`,
-          `text-${data.layout?.textAlign || 'center'}`
-        )}
-      >
+      <div className={cn('mx-auto my-4 flex max-w-3xl flex-col px-6')}>
         <CustomPortableText
           value={data.content}
           paragraphClasses="gap-y-4 space-y-4"

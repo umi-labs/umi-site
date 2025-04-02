@@ -23,7 +23,7 @@ export default function BasicHero({ data }: BasicHeroProps) {
     >
       {/* @ts-expect-error - type casting is not defined */}
       {separator && <WaveSVG />}
-      <h2>{heading}</h2>
+      <h1>{heading}</h1>
       {description && (
         <CustomPortableText
           value={description}

@@ -8,14 +8,14 @@ import { NavItem } from '@/types/components/nav';
 
 interface LinkProps
   extends React.ComponentPropsWithoutRef<'a'>,
-  VariantProps<typeof buttonVariants> {
+    VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
   href?: string;
   link?: NavItem;
   className?: React.ComponentPropsWithoutRef<'a'>['className'];
 }
 
-export default function Link({
+export function Link({
   children,
   variant = 'link',
   size = 'link',
@@ -26,13 +26,15 @@ export default function Link({
 }: LinkProps) {
   if (!link) return;
 
-  const url = href ? href : link.displayExternal
-    ? link.url!
-    : link.hasParent
-      ? `/${link.parentSlug}/${link.slug}`
-      : link.type !== 'page'
-        ? `/${link.type}/${link.slug}`
-        : `/${link.slug}`;
+  const url = href
+    ? href
+    : link.displayExternal
+      ? link.url!
+      : link.hasParent
+        ? `/${link.parentSlug}/${link.slug}`
+        : link.type !== 'page'
+          ? `/${link.type}/${link.slug}`
+          : `/${link.slug}`;
 
   return (
     <NextLink
@@ -44,3 +46,5 @@ export default function Link({
     </NextLink>
   );
 }
+
+export default Link;

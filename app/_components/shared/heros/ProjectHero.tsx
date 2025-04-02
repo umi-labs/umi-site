@@ -29,7 +29,7 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
           />
         </div>
         <div className="col-span-2 flex flex-col items-start justify-start gap-y-6">
-          <h2>{project?.clientName}</h2>
+          <h1>{project?.clientName}</h1>
           <span className="flex flex-wrap items-start justify-start gap-2 text-xs text-gray-700">
             {project?.tags?.map((tag, i) => (
               <span

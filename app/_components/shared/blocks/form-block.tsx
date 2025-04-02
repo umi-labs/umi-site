@@ -16,7 +16,7 @@ interface Props {
 export default function FormBlock({ data }: Props) {
   const { enableIntro, introContent, form } = data;
   return (
-    <Container id="FormBlock">
+    <Container id="FormBlock" className="gap-y-4">
       {enableIntro && introContent && (
         <CustomPortableText
           value={introContent}

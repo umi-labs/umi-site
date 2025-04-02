@@ -54,11 +54,7 @@ const Nav = ({ menu }: { menu?: MenuType[] }) => {
                       const desc = useStringLimiter(description, 50);
                       const url = useResolvedHref({ link: item });
 
-                      return (
-                        <ListItem key={i} title={title} href={url.href}>
-                          {detailed && desc && desc}
-                        </ListItem>
-                      );
+                      return <ListItem key={i} title={title} href={url.href} />;
                     })}
                   </ul>
                 </NavigationMenu.Content>
@@ -80,7 +76,7 @@ interface Props extends React.HTMLAttributes<HTMLAnchorElement> {
   className?: React.HTMLAttributes<HTMLAnchorElement>['className'];
   href: string;
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 type Ref = HTMLAnchorElement;
