@@ -38,8 +38,6 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
     queryFn: () => getFeaturedProjects(),
   });
 
-  console.log(projects);
-
   return (
     <Container
       id="PortfolioFullWidth"
