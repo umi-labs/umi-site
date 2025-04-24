@@ -46,7 +46,7 @@
 
   h1,
   h2 {
-    @apply leading-5 max-w-[70%];
+    @apply leading-[110%] max-w-[70%];
   }
 
   h3,
@@ -90,6 +90,15 @@
 
   p .xsmall {
     @apply text-sm;
+  }
+
+  ul li,
+  ol li {
+    @apply font-body;
+  }
+
+  nav .text-xs {
+    @apply text-[0.8rem];
   }
 }
 
