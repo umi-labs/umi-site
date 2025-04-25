@@ -35,9 +35,10 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
         buffers: {
           top: data.topBuffer,
         },
+        maxWidth: true,
       }}
     >
-      <div className="flex w-full flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
+      <div className="flex w-full flex-col items-center justify-center mx-auto max-w-7xl gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
         <div className="relative flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
           {data.separator && <EyebrowSVG className="" />}
           <h2>{data.title}</h2>

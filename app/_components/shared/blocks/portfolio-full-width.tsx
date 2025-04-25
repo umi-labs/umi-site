@@ -47,6 +47,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
           top: data.buffers?.top,
           bottom: data.buffers?.bottom,
         },
+        maxWidth: true,
       }}
     >
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">

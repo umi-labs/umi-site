@@ -46,12 +46,13 @@ export default function LogoCloud({ data }: LogoCloudProps) {
           top: false,
           bottom: false,
         },
+        maxWidth: true,
       }}
       className="gap-y-12"
     >
-      <div className="flex w-full flex-col items-center justify-center gap-6">
+      <div className="flex w-full flex-col items-center justify-center mx-auto max-w-7xl gap-6">
         {data.separator && <EyebrowSVG className="" />}
-        <h2>{data.title}</h2>
+        <h2 className="max-w-full">{data.title}</h2>
       </div>
       {logos && logos.length !== 0 && (
         <div className="grid w-full grid-cols-2 place-items-center items-center justify-center gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
