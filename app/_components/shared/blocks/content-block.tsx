@@ -35,7 +35,7 @@ export default function ContentBlock({ data }: ContentBlockProps) {
   return (
     <Container id="ContentBlock">
       <div className={cn(`flex w-full flex-col gap-6`)}>
-        <h2>{data.title}</h2>
+      <h2 className="max-w-full">{data.title}</h2>
       </div>
       {data.type === 'umiCulture' && (
         <div className="grid w-full grid-flow-row-dense items-center justify-center gap-9 md:grid-cols-4 md:grid-rows-2">

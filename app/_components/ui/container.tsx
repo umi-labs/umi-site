@@ -32,7 +32,7 @@ export default function Container({
   return (
     <section
       className={cn(
-        'relative mx-auto flex min-h-full w-full flex-col items-center justify-center gap-y-24 px-10 py-10 md:py-32',
+        'relative mx-auto flex min-h-full w-full flex-col items-center justify-center gap-y-16 px-10 py-10 md:py-30',
         buffers?.top && 'mt-44',
         buffers?.bottom && 'mb-44',
         !maxWidth && 'mx-auto max-w-7xl',

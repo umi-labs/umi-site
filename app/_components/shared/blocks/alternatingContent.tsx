@@ -46,6 +46,7 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
           top: data.buffers?.top,
           bottom: data.buffers?.bottom,
         },
+        maxWidth: true,
       }}
     >
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
