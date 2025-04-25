@@ -54,9 +54,11 @@ export default function LogoCloud({ data }: LogoCloudProps) {
         {data.separator && <EyebrowSVG className="" />}
         <h2 className="max-w-full">{data.title}</h2>
       </div>
-      {logos && logos.length !== 0 && (
-        <div className="grid w-full grid-cols-2 place-items-center items-center justify-center gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {logos?.map((logo, i) => <Logo key={i} logo={logo} />)}
+      {logos && logos.length > 0 && (
+        <div className="grid w-full grid-cols-2 place-items-center items-center justify-center mx-auto max-w-7xl gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {logos.map((logo, i) => (
+            <Logo key={i} logo={logo} />
+          ))}
         </div>
       )}
     </Container>
@@ -64,16 +66,32 @@ export default function LogoCloud({ data }: LogoCloudProps) {
 }
 
 const Logo = ({ logo }: { logo: LogoCloudProps['data']['logos'][0] }) => {
-  return (
-    <Link link={logo.link}>
-      <Image
-        src={logo.logo.asset?.url || ''}
-        alt={logo.logo.asset?.altText || ''}
-        width={logo.logo.asset?.metadata?.dimensions.width || 150}
-        height={logo.logo.asset?.metadata?.dimensions.height || 150}
-        className="aspect-square max-h-40 w-auto p-8"
-      />
-      <span className="sr-only">{logo.name}</span>
-    </Link>
+  if (!logo?.logo?.asset?.url) {
+    return null;
+  }
+
+  const imageUrl = logo.logo.asset.url;
+  const altText = logo.logo.asset.originalFilename || 'Logo';
+  const width = logo.logo.asset.metadata?.dimensions?.width || 150;
+  const height = logo.logo.asset.metadata?.dimensions?.height || 150;
+
+  const image = (
+    <Image
+      src={imageUrl}
+      alt={altText}
+      width={width}
+      height={height}
+      className="aspect-square max-h-40 w-auto p-8"
+    />
+  );
+
+  return logo.link?.url ? (
+    <a href={logo.link.url} className="flex items-center justify-center">
+      {image}
+    </a>
+  ) : (
+    <div className="flex items-center justify-center">
+      {image}
+    </div>
   );
 };
