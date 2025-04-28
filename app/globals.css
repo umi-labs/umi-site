@@ -46,7 +46,7 @@
 
   h1,
   h2 {
-    @apply leading-[110%] max-w-[70%];
+    @apply leading-[110%];
   }
 
   h3,

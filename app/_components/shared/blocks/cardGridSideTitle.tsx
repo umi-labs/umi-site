@@ -82,7 +82,7 @@ const Card = ({
     <div
       id={`card_${index}`}
       className={cn(
-        'flex h-full w-full flex-col items-center gap-y-10 bg-white p-6 shadow-md',
+        'flex h-full w-full flex-col items-center gap-y-4 bg-white p-6 shadow-md',
         feature.icon ? 'justify-between' : 'justify-center'
       )}
     >
@@ -96,7 +96,7 @@ const Card = ({
           />
         </div>
       )}
-      <h3>{feature.title}</h3>
+      <h3 className="mb-0">{feature.title}</h3>
       {feature.content && <p>{feature.content}</p>}
       {feature.button && (
         <Link

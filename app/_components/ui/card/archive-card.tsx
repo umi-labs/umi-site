@@ -172,10 +172,20 @@ export function FeaturedArchiveCard(props: Props) {
               : 'lg:inset-y-0 lg:right-0 lg:-translate-x-20 lg:translate-y-0'
           )}
         >
-          <h2 className="text-2xl font-semibold text-primary-foreground hocus:no-underline">
+          <h2 className="text-2xl font-semibold text-primary-foreground hocus:no-underline mb-0">
             {props.archive.title}
           </h2>
-          <p className="text-sm text-gray-800">{props.archive.excerpt}</p>
+          {props.archive.excerpt ? (
+            <p className="text-sm text-gray-800">{props.archive.excerpt}</p>
+          ) : props.postType === 'project' && props.archive.tags && props.archive.tags.length > 0 ? (
+            <div className="flex flex-wrap items-start justify-start gap-2">
+              {props.archive.tags.map((tag, index) => (
+                <span key={index} className="rounded-full bg-gray-200 px-3 py-2 text-xs uppercase text-primary-foreground">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : null}
           <Link
             className="text-lg text-primary-accent hocus:text-primary-accent"
             href={`/${props.postType === 'post' ? 'blog' : 'our-work'}/${props.archive.slug || ''}`}

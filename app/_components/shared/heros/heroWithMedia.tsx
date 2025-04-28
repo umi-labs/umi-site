@@ -13,7 +13,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
     <section
       id="HeroWithMedia"
       className={cn(
-        'relative mx-auto mb-8 mt-16 flex min-h-full w-full max-w-7xl items-center justify-center overflow-visible text-black md:my-0'
+        'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible py-10 md:gap-12 md:py-32 lg:gap-y-16'
       )}
     >
       <div
