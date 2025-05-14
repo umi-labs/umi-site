@@ -119,15 +119,15 @@ const NavItem = ({
           });
         }}
       >
-        <h2
+        <p
           className={cn(
-            'pt-3 flex max-w-full items-center justify-between text-xl underline-offset-4 hover:underline md:text-4xl my-0',
+            'capitalize pt-3 flex max-w-full items-center justify-between font-medium prose underline-offset-4 hover:underline my-0',
             subMenu.show ? 'animate-rotateDownAndOut' : 'animate-rotateUpAndIn'
           )}
         >
           {item.title}
-          <CaretRight className={cn('ml-2 h-8 w-8')} />
-        </h2>
+          <CaretRight className={cn('ml-2 h-4 w-4')} />
+        </p>
       </button>
       <div
         className={cn(MenuStyles.default, !subMenu.show && MenuStyles.closed)}
@@ -139,10 +139,10 @@ const NavItem = ({
             )}
           >
             <CaretLeft
-              className="size-8 hover:cursor-pointer"
+              className="size-4 hover:cursor-pointer"
               onClick={() => setSubMenu({ show: false, currentItem: null })}
             />
-            <h2 className="mb-0">{subMenu?.currentItem?.title}</h2>
+            <p className="mb-0 font-medium capitalize text-[21px]">{subMenu?.currentItem?.title}</p>
             <div />
           </div>
           <ul className="ml-0 flex w-full list-none flex-col gap-y-3 divide-y">
@@ -211,7 +211,7 @@ const MenuLink = ({
       )}
       onClick={() => setShow(!show)}
     >
-      <h2 className="text-xl md:text-4xl w-fit mb-0">{title}</h2>
+      <p className="capitalize prose font-medium w-fit mb-0">{title}</p>
     </Link>
   );
 };
