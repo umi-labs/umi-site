@@ -66,7 +66,7 @@ const Nav = ({ menu }: { menu?: MenuType[] }) => {
         {/*</NavigationMenu.Indicator>*/}
       </NavigationMenu.List>
       <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-        <NavigationMenu.Viewport className="data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn relative mt-2.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-xl border border-zinc-500 bg-white shadow-lg transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+        <NavigationMenu.Viewport className="data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn relative mt-2.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-xl bg-white shadow-[0px_3px_8px_rgba(0,0,0,0.10)] transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)]" />
       </div>
     </NavigationMenu.Root>
   );
@@ -94,7 +94,7 @@ const ListItem = React.forwardRef<Ref, Props>(
           {...props}
           ref={forwardedRef}
         >
-          <div className="mb-[5px] font-medium leading-[1.2]">{title}</div>
+          <div className="font-medium leading-[1.2]">{title}</div>
           {children && (
             <p className="text-xs leading-[1.4] text-opacity-60">{children}</p>
           )}
