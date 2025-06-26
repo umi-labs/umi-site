@@ -38,7 +38,7 @@ const NestedNavLink = ({
   setCurrentItem,
 }: {
   navItem: NavItem;
-  title: string;
+  title: string | null;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentItem: React.Dispatch<React.SetStateAction<string | null>>;
 }) => {
