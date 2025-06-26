@@ -88,14 +88,46 @@ export default defineType({
           type: 'object',
           name: 'link',
           title: 'Link',
-          fields: [defineField({ type: 'link', name: 'link', title: 'Link' })],
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+            }),
+            defineField({
+              name: 'linksList',
+              title: 'Links lists',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  type: 'object',
+                  name: 'link',
+                  title: 'Link',
+                  fields: [
+                    defineField({ type: 'link', name: 'link', title: 'Link' }),
+                  ],
+                  preview: {
+                    select: {
+                      link: 'link',
+                    },
+                    prepare({ link }) {
+                      return {
+                        title: link.title,
+                        subtitle: 'Menu Item',
+                      };
+                    },
+                  },
+                }),
+              ],
+            })
+          ],
           preview: {
             select: {
-              link: 'link',
+              title: 'title',
             },
-            prepare({ link }) {
+            prepare({ title }) {
               return {
-                title: link.title,
+                title: title,
                 subtitle: 'Menu Item',
               };
             },
