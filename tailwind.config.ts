@@ -223,6 +223,20 @@ const config = {
         },
       },
       animation: {
+        slideDownAndFade: 'slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideLeftAndFade:
+          'slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideUpAndFade: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideRightAndFade:
+          'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        rotateDownAndOut:
+          'rotateDownAndOut 500ms cubic-bezier(0.7, 0, 0.2, 1) forwards',
+        rotateUpAndIn:
+          'rotateUpAndIn 500ms cubic-bezier(0.7, 0, 0.2, 1) forwards',
+        navContentUp:
+          'navContentUp 500ms cubic-bezier(0.7, 0, 0.2, 1) forwards',
+        navContentDown:
+          'navContentDown 500ms cubic-bezier(0.7, 0, 0.2, 1) forwards',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         scaleIn: 'scaleIn 200ms ease',
