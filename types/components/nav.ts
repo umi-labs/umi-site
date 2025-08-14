@@ -43,10 +43,21 @@ export interface Nav {
 }
 
 export interface NavItem {
+  navLinks?: NavLinks[];
   _key: string;
   displayExternal: boolean;
   description?: string;
   url?: string;
+  title: string | null;
+  slug: string;
+  hasParent: boolean;
+  parentSlug?: string;
+  type: string;
+}
+
+export interface NavLinks {
+  _key: string;
+  displayExternal: boolean;
   title: string;
   slug: string;
   hasParent: boolean;

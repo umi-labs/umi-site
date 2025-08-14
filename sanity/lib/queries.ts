@@ -204,12 +204,16 @@ export const settingsQuery = groq`
         subNavigation == "manual" && detailedList == false => {
           "nav": itemsList[] {
             _key,
-            displayExternal,
-            "title": link.internalLink->title,
-            "slug": link.internalLink->slug.current,
-            "hasParent": link.internalLink->hasParent,
-            "parentSlug": link.internalLink->parent.parentSlug,
-            "type": link.internalLink->_type,
+            "title": title,
+            "navLinks": linksList[] {
+              _key,
+              displayExternal,
+              "title": link.title,
+              "slug": link.internalLink->slug.current,
+              "hasParent": link.internalLink->hasParent,
+              "parentSlug": link.internalLink->parent.parentSlug,
+              "type": link.internalLink->_type,
+            }
           } 
         },
         subNavigation == "manual" && detailedList == true => {

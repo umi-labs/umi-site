@@ -17,9 +17,10 @@ interface MenuProps {
 
 const MenuStyles = {
   default: cn(
-    'bg-primary-secondary-accent h-[calc(100vh-80px)] w-full fixed bottom-0 inset-x-0 overflow-hidden z-[90] transition-all translate-x-0 shadow-md duration-[800ms] ease-in-out'
+    'bg-primary-secondary-accent h-[calc(100vh-80px)] w-full fixed bottom-0 inset-x-0 overflow-hidden z-[90] transition-transform duration-300 ease-in-out'
   ),
-  closed: cn('-translate-x-[-100%] shadow-none'),
+  closed: cn('translate-x-[100%]'),
+  innerClosed: cn('translate-x-[-100%]'),
 };
 
 export default function Menu({ data, show, setShow }: MenuProps) {
@@ -28,6 +29,8 @@ export default function Menu({ data, show, setShow }: MenuProps) {
   }, [show]);
 
   const menu = data?.mainNav?.menu || ([] as MenuType[]);
+
+  const [history, setHistory] = React.useState<any[]>([]);
 
   React.useEffect(() => {
     const keyDownHandler = (event: any) => {
@@ -45,32 +48,45 @@ export default function Menu({ data, show, setShow }: MenuProps) {
     };
   }, [show, setShow]);
 
-  const [subMenu, setSubMenu] = React.useState<{
-    show: boolean;
-    currentItem: MenuType | null;
-  }>({
-    show: false,
-    currentItem: null,
-  });
+  React.useEffect(() => {
+    if (!show) {
+      setHistory([]);
+    }
+  }, [show]);
+
+  const handleDrilldown = (item) => {
+    setHistory([...history, item]);
+  };
+
+  const handleDrillup = () => {
+    setHistory(history.slice(0, -1));
+  };
+
+  const currentMenu = history[history.length - 1];
 
   return (
-    <div id='mobile-menu' className={cn(MenuStyles.default, !show && MenuStyles.closed)}>
-      {show && (
-        <div className="col-span-3 grid h-full w-full grid-rows-2 items-start p-8 uppercase">
+    <div
+      id="mobile-menu"
+      className={cn(MenuStyles.default, !show && MenuStyles.closed)}
+    >
+      <div
+        className={cn(
+          'absolute inset-0 transition-transform duration-300 ease-in-out',
+          {
+            'translate-x-[-100%]': history.length > 0,
+          }
+        )}
+      >
+        <div className="grid h-full grid-rows-[1fr_auto] items-start p-8 uppercase">
           <ul className="ml-0 flex list-none flex-col gap-y-3 divide-y">
-            {menu &&
-              menu.map((menuItem, key) => {
-                return (
-                  <NavItem
-                    key={key}
-                    show={show}
-                    setShow={setShow}
-                    setSubMenu={setSubMenu}
-                    subMenu={subMenu}
-                    item={menuItem}
-                  />
-                );
-              })}
+            {menu.map((item, key) => (
+              <MenuItem
+                key={key}
+                item={item}
+                setShow={setShow}
+                onDrilldown={handleDrilldown}
+              />
+            ))}
           </ul>
           {data.mainNav?.ctaButton && (
             <Link
@@ -83,123 +99,122 @@ export default function Menu({ data, show, setShow }: MenuProps) {
             </Link>
           )}
         </div>
+      </div>
+      {currentMenu && (
+        <div
+          className={cn(
+            'absolute inset-0 bg-primary-secondary-accent transition-transform duration-300 ease-in-out'
+          )}
+        >
+          <SubMenu
+            item={currentMenu}
+            onDrillup={handleDrillup}
+            onDrilldown={handleDrilldown}
+            setShow={setShow}
+            level={history.length}
+          />
+        </div>
       )}
     </div>
   );
 }
 
-const NavItem = ({
-  item,
-  show,
-  setShow,
-  setSubMenu,
-  subMenu,
-}: {
-  item: MenuType;
-  show: boolean;
-  setShow: any;
-  setSubMenu: any;
-  subMenu: {
-    show: boolean;
-    currentItem: MenuType | null;
-  };
-}) => {
-  React.useEffect(() => {
-    setSubMenu({ show: false, currentItem: null });
-  }, [item]);
+const SubMenu = ({ item, onDrillup, onDrilldown, setShow, level }) => {
+  const items = item.nav || item.navLinks || [];
+  const [history, setHistory] = React.useState<any[]>([]);
 
-  return item.subNavigation !== 'none' ? (
-    <div className="relative h-full w-full overflow-hidden">
-      <button
-        className="text-charcoal w-full overflow-hidden uppercase"
-        onClick={() => {
-          setSubMenu({
-            currentItem: item,
-            show: !subMenu.show,
-          });
-        }}
-      >
-        <p
-          className={cn(
-            'capitalize pt-3 flex max-w-full items-center justify-between font-medium prose underline-offset-4 hover:underline my-0',
-            subMenu.show ? 'animate-rotateDownAndOut' : 'animate-rotateUpAndIn'
-          )}
-        >
-          {item.title}
-          <CaretRight className={cn('ml-2 h-4 w-4')} />
-        </p>
-      </button>
-      <div
-        className={cn(MenuStyles.default, !subMenu.show && MenuStyles.closed)}
-      >
-        <div className="col-span-3 flex h-full w-full flex-col items-start p-8 uppercase">
-          <div
-            className={cn(
-              'flex w-full items-center justify-between border-b pb-3'
-            )}
-          >
-            <CaretLeft
-              className="size-4 hover:cursor-pointer"
-              onClick={() => setSubMenu({ show: false, currentItem: null })}
-            />
-            <p className="mb-0 font-medium capitalize text-[21px]">{subMenu?.currentItem?.title}</p>
-            <div />
-          </div>
-          <ul className="ml-0 flex w-full list-none flex-col gap-y-3 divide-y">
-            {subMenu?.currentItem?.subNavigation !== 'none' &&
-              subMenu?.currentItem?.nav?.map((item, index) => {
-                let delay = index * 100;
-                return (
-                  <div
-                    key={index}
-                    className={cn(
-                      `pt-3 duration-300 ease-in-out md:transition-all`,
-                      subMenu.show ? 'md:translate-x-0' : 'md:translate-x-full'
-                    )}
-                    style={{ transitionDelay: `${delay}ms` }}
-                  >
-                    <MenuLink
-                      navItem={item}
-                      title={item.title}
-                      setShow={setShow}
-                      show={show}
-                    />
-                  </div>
-                );
-              })}
-          </ul>
+  const handleDrilldown = (item) => {
+    setHistory([...history, item]);
+  };
+
+  const handleDrillup = () => {
+    setHistory(history.slice(0, -1));
+  };
+  
+  const currentSubMenu = history[history.length - 1];
+
+  if(currentSubMenu) {
+    return (
+        <div className='bg-primary-secondary-accent h-full'>
+             <SubMenu item={currentSubMenu} onDrillup={handleDrillup} onDrilldown={onDrilldown} setShow={setShow} level={level + 1} />
         </div>
-      </div>
-    </div>
-  ) : (
-    <div className="relative overflow-hidden pt-3">
-      <div
-        className={cn(
-          subMenu && subMenu.show
-            ? 'animate-rotateDownAndOut'
-            : 'animate-rotateUpAndIn'
-        )}
-      >
-        <MenuLink
-          navItem={item.nav}
-          show={show}
-          setShow={setShow}
-          title={item.title}
+    )
+  }
+
+  return (
+    <div className='p-8 uppercase h-full grid grid-rows-[auto_1fr]'>
+      <div className="flex w-full items-center justify-between border-b pb-3">
+        <CaretLeft
+          className="size-4 hover:cursor-pointer"
+          onClick={onDrillup}
         />
+        <p className="mb-0 font-medium capitalize text-[21px]">{item.title}</p>
+        <div />
       </div>
+      <ul className="ml-0 flex w-full list-none flex-col gap-y-3 divide-y pt-3">
+        {items.map((subItem, index) => {
+          if (subItem.title && subItem.navLinks) {
+            return (
+              <li key={index} className="pt-3">
+                <button
+                  className="text-charcoal flex w-full items-center justify-between overflow-hidden uppercase"
+                  onClick={() => handleDrilldown(subItem)}
+                >
+                  <p className="capitalize prose font-medium w-fit mb-0">
+                    {subItem.title}
+                  </p>
+                  <CaretRight className={cn('ml-2 h-4 w-4')} />
+                </button>
+              </li>
+            );
+          }
+          const linkItem = subItem.navLinks ? subItem.navLinks[0] : subItem;
+          return (
+            <li key={index} className="pt-3">
+              <MenuLink navItem={linkItem} title={linkItem.title} setShow={setShow} />
+            </li>
+          );
+        })}
+      </ul>
     </div>
+  );
+};
+
+const MenuItem = ({ item, setShow, onDrilldown }) => {
+  if (item.subNavigation !== 'none') {
+    return (
+      <li className="pt-3">
+        <button
+          className="text-charcoal flex w-full items-center justify-between overflow-hidden uppercase"
+          onClick={() => onDrilldown(item)}
+        >
+          <p className="capitalize prose font-medium w-fit mb-0">
+            {item.title}
+          </p>
+          <CaretRight className={cn('ml-2 h-4 w-4')} />
+        </button>
+      </li>
+    );
+  }
+
+  return (
+    <li className="pt-3">
+      <MenuLink
+        navItem={item.nav}
+        title={item.title}
+        setShow={setShow}
+      />
+    </li>
   );
 };
 
 const MenuLink = ({
   navItem,
   title,
-  show,
   setShow,
 }: {
   navItem: NavItem;
   title: string;
-  show: boolean;
   setShow: any;
 }) => {
   return (
@@ -207,9 +222,9 @@ const MenuLink = ({
       link={navItem}
       variant="link"
       className={cn(
-        'text-charcoal animate-rotateUpAndIn uppercase md:text-base w-full items-start justify-start text-start'
+        'text-charcoal uppercase md:text-base w-full items-start justify-start text-start'
       )}
-      onClick={() => setShow(!show)}
+      onClick={() => setShow(false)}
     >
       <p className="capitalize prose font-medium w-fit mb-0">{title}</p>
     </Link>
