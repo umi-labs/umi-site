@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import StandardArchiveCard from '@/app/_components/ui/card/archive-card';
+import StandardArchiveCard, { FeaturedArchiveCard } from '@/app/_components/ui/card/archive-card';
 import { PostPayload, ProjectPayload } from '@/types';
 import { Button } from '@/app/_components/ui/button';
 import { getPaginatedProjects } from '@/app/_actions/paginationQueries';
@@ -53,20 +53,25 @@ export default function ArchivesGrid({
   };
 
   return (
-    <div className="size-full">
+    <div className="w-full">
       {/* Archives */}
-      <div className="grid h-full w-full grid-cols-1 items-center justify-center gap-16 px-6 py-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6 w-full">
         {archives?.map((archive, i) => (
-          <StandardArchiveCard key={i} archive={archive} postType={postType} />
+          <StandardArchiveCard 
+            key={i} 
+            archive={archive} 
+            postType={postType} 
+            index={i} 
+          />
         ))}
       </div>
 
       {/* Pagination */}
       {archives?.length! > 9 && (
-        <div className="my-12 flex w-full justify-center">
+        <div className="mt-16 flex w-full justify-center">
           <Button
             variant="outline"
-            className=""
+            className="px-8 py-3 text-sm font-medium hover:bg-primary-accent hover:text-white transition-colors"
             onClick={() => {
               setPaginationConfig({
                 lastCreatedAt: archives![0]?._createdAt!,
@@ -75,7 +80,7 @@ export default function ArchivesGrid({
               updateArchives();
             }}
           >
-            Load More
+            Load More Projects
           </Button>
         </div>
       )}

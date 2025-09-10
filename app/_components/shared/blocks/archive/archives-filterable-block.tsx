@@ -1,9 +1,8 @@
 'use client';
 import React from 'react';
-import { FeaturedArchiveCard } from '@/app/_components/ui/card/archive-card';
 import ArchivesGrid from '@/app/_components/shared/blocks/archive/archives-grid';
+import ArchiveSidebar from '@/app/_components/shared/blocks/archive/archive-sidebar';
 import { PostPayload, ProjectPayload } from '@/types';
-import { cn } from '@/app/_utils';
 import {
   getArchiveTagsAndTypes,
   getFilteredArchives,
@@ -102,86 +101,147 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
     setTypes(typesArray.filter((tag) => tag !== null));
   }, [filters]);
 
+  const [isFiltersOpen, setIsFiltersOpen] = React.useState(false);
+
+  const tagFormatter = (tag: string) => {
+    return tag?.toLowerCase().split(' ').join('-');
+  };
+
   return (
-    <>
-      {/* Type */}
-      {postType === 'post' && types.length > 0 && (
-        <div className="flex gap-y-4 py-6 text-xs text-gray-600">
-          {types.map((type, i) => (
-            <span
-              key={i}
-              className={cn(
-                'interactable cursor-pointer border-b-2 border-gray-200 px-5 py-2 text-center text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out',
-                currentType === type && 'border-b-2 border-primary-foreground'
+    <div className="w-full max-w-7xl mx-auto px-4 lg:px-0">
+      {/* Mobile Filter Toggle */}
+      <div className="lg:hidden mb-6">
+        <button
+          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+          className="w-full flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm"
+        >
+          <span className="font-medium text-gray-900">Filters</span>
+          <svg
+            className={`w-5 h-5 text-gray-500 transition-transform ${isFiltersOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        
+        {/* Mobile Filters */}
+        {isFiltersOpen && (
+          <div className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+            <div className="space-y-4">
+              {/* Type Filter - Only for posts */}
+              {postType === 'post' && types.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-medium text-gray-700 mb-3">Filter by Type</h4>
+                  <div className="space-y-2">
+                    {types.map((type, i) => (
+                      <button
+                        key={i}
+                        className={`w-full text-left px-3 py-2 text-sm rounded-lg border transition-all duration-200 ${
+                          currentType === type
+                            ? 'bg-primary-accent text-white border-primary-accent'
+                            : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400 hover:bg-gray-50'
+                        }`}
+                        onClick={() => {
+                          setCurrentType(tagFormatter(type));
+                        }}
+                      >
+                        {type === 'all' ? 'All Types' : type}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               )}
-              onClick={() => {
-                setCurrentType(tagFormatter(type));
-              }}
-            >
-              {type}
-            </span>
-          ))}
-        </div>
-      )}
 
-      {/* Tags */}
-      {tags.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-x-2 gap-y-4 py-6 text-xs text-gray-600 lg:py-0">
-          {tags.map((tag, i) => {
-            return (
-              <span
-                key={i}
-                className={cn(
-                  'interactable cursor-pointer rounded-full bg-gray-200 px-5 py-2 text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out hocus:bg-primary-foreground hocus:text-primary-background',
-                  currentTag === tagFormatter(tag) &&
-                    'bg-primary-foreground text-primary-background'
-                )}
-                onClick={() => {
-                  setCurrentTag(tagFormatter(tag));
-                }}
-              >
-                {tag?.split('-').join(' ')}
-              </span>
-            );
-          })}
-        </div>
-      )}
-
-      {/* Featured Archives */}
-      {(postType === 'project' || postType === 'post') &&
-        currentTag === 'all' &&
-        currentType === 'all' &&
-        featuredArchives!.length > 0 && (
-          <div className="grid h-full w-full grid-flow-row grid-cols-1 items-center justify-center gap-8 px-6 py-10 md:gap-12 lg:gap-16">
-            {featuredArchives?.map((archive, i) => (
-              <FeaturedArchiveCard
-                key={i}
-                index={i}
-                archive={archive}
-                postType={postType}
-              />
-            ))}
+              {/* Tags Filter */}
+              {tags.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-medium text-gray-700 mb-3">
+                    {postType === 'project' ? 'Filter by Technology' : 'Filter by Category'}
+                  </h4>
+                  <div className="space-y-2">
+                    {tags.map((tag, i) => (
+                      <button
+                        key={i}
+                        className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
+                          currentTag === tagFormatter(tag)
+                            ? 'bg-primary-accent text-white'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                        onClick={() => {
+                          setCurrentTag(tagFormatter(tag));
+                        }}
+                      >
+                        {tag === 'all' ? 'All' : tag?.split('-').join(' ')}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
+      </div>
 
-      {archivesIsLoading ? (
-        <Loader />
-      ) : archivesIsError ? (
-        <ErrorMessage error={archivesError} />
-      ) : archivesIsSuccess ? (
-        // @ts-expect-error - type conditional is being a pain
-        <ArchivesGrid archives={archives} postType={postType} />
-      ) : null}
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid grid-cols-4 gap-8">
+        {/* Main Content */}
+        <div className="col-span-3">
+          {archivesIsLoading ? (
+            <Loader />
+          ) : archivesIsError ? (
+            <ErrorMessage error={archivesError} />
+          ) : archivesIsSuccess ? (
+            // @ts-expect-error - type conditional is being a pain
+            <ArchivesGrid archives={archives} postType={postType} />
+          ) : null}
 
-      {archivesIsSuccess && archives?.length === 0 && (
-        <div className="flex size-full flex-col items-center justify-center gap-y-6">
-          <h2 className="text-6xl font-semibold italic">No Archives Found</h2>
-          <p className="text-wrap text-center md:w-1/2">
-            There are no archives to display at this time.
-          </p>
+          {archivesIsSuccess && archives?.length === 0 && (
+            <div className="flex size-full flex-col items-center justify-center gap-y-6">
+              <h2 className="text-6xl font-semibold italic">No Archives Found</h2>
+              <p className="text-wrap text-center md:w-1/2">
+                There are no archives to display at this time.
+              </p>
+            </div>
+          )}
         </div>
-      )}
-    </>
+
+        {/* Sidebar */}
+        <div className="col-span-1">
+          <ArchiveSidebar
+            postType={postType}
+            tags={tags}
+            types={types}
+            currentTag={currentTag}
+            currentType={currentType}
+            setCurrentTag={setCurrentTag}
+            setCurrentType={setCurrentType}
+          />
+        </div>
+      </div>
+
+      {/* Mobile Content */}
+      <div className="lg:hidden w-full">
+        {archivesIsLoading ? (
+          <Loader />
+        ) : archivesIsError ? (
+          <ErrorMessage error={archivesError} />
+        ) : archivesIsSuccess ? (
+          // @ts-expect-error - type conditional is being a pain
+          <ArchivesGrid archives={archives} postType={postType} />
+        ) : null}
+
+        {archivesIsSuccess && archives?.length === 0 && (
+          <div className="flex size-full flex-col items-center justify-center gap-y-6">
+            <h2 className="text-4xl font-semibold italic">No Archives Found</h2>
+            <p className="text-wrap text-center">
+              There are no archives to display at this time.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

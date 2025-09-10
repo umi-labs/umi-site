@@ -37,36 +37,76 @@ export default function StandardArchiveCard(props: Props) {
   return (
     <motion.div
       aria-label={`archive-card-${props.archive.title?.toLowerCase() || ''}`}
-      className="flex-center relative aspect-square size-full"
-      initial={{ opacity: 0, y: '100%' }}
-      animate={{ opacity: 1, y: '0%' }}
+      className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-48 md:h-64"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.5,
         ease: 'easeInOut',
-        delay: 0.5 * props.index!,
+        delay: 0.1 * props.index!,
       }}
     >
-      {props.archive.coverImage?.asset?.url && (
-        <Image
-          src={props.archive.coverImage?.asset?.url || ''}
-          alt={props.archive.coverImage?.asset?.altText || ''}
-          width={props.archive.coverImage?.asset?.metadata?.dimensions.width}
-          height={props.archive.coverImage?.asset?.metadata?.dimensions.height}
-          className="absolute inset-0 -z-0 aspect-square size-full object-cover object-center"
-        />
-      )}
-      <div className="absolute inset-0 z-[1] h-full w-full bg-gradient-to-b from-black/20 to-black/40" />
-      <div className="z-10 flex flex-col items-center justify-center gap-y-6">
-        <h2 className="text-4xl md:text-3xl font-semibold text-center text-primary-background hocus:no-underline">
-          {props.archive.title}
-        </h2>
-        <Link
-          className="text-lg text-gray-200 hocus:text-gray-100"
-          href={slug}
-        >
-          Read More
-        </Link>
-      </div>
+      <Link href={slug} className="block h-full">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          {props.archive.coverImage?.asset?.url && (
+            <Image
+              src={props.archive.coverImage?.asset?.url || ''}
+              alt={props.archive.coverImage?.asset?.altText || ''}
+              width={props.archive.coverImage?.asset?.metadata?.dimensions.width}
+              height={props.archive.coverImage?.asset?.metadata?.dimensions.height}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 flex h-full flex-col justify-end p-4">
+          {/* Title */}
+          <h3 className="text-base font-semibold text-white mb-1 line-clamp-2">
+            {props.archive.title}
+          </h3>
+
+          {/* Excerpt */}
+          {props.archive.excerpt && (
+            <p className="text-gray-200 text-xs line-clamp-1 mb-2">
+              {props.archive.excerpt}
+            </p>
+          )}
+
+          {/* Tags */}
+          {props.archive.tags && props.archive.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1 mb-2">
+              {props.archive.tags.slice(0, 2).map((tag, index) => (
+                <span
+                  key={index}
+                  className="inline-block px-2 py-1 text-xs font-medium text-white bg-white/20 backdrop-blur-sm rounded-full uppercase border border-white/30"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Read More Link */}
+          <div className="flex items-center justify-between">
+            <span className="text-white font-medium text-xs">
+              View Project
+            </span>
+            <div className="w-6 h-6 bg-primary-accent rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary-accent transition-all duration-300">
+              <svg 
+                className="w-3 h-3 text-white group-hover:text-primary-accent transition-colors" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </Link>
     </motion.div>
   );
 }
@@ -82,51 +122,81 @@ export function PostCard({ archive, index }: PostCardProps) {
   return (
     <motion.div
       id='post-card'
-      className="grid size-full grid-flow-row auto-rows-min place-items-stretch gap-x-10 shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:grid-cols-1 lg:grid-rows-min"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.5,
         ease: 'easeInOut',
-        delay: 0.5 * index!,
+        delay: 0.1 * index!,
       }}
     >
-      <Image
-        id='post-card__image'
-        src={archive.coverImage?.asset?.url || ''}
-        alt={archive.coverImage?.asset?.altText || ''}
-        width={archive.coverImage?.asset?.metadata?.dimensions.width}
-        height={archive.coverImage?.asset?.metadata?.dimensions.height}
-        className="aspect-video h-52 object-cover object-center"
-      />
-      <div className="flex w-full flex-col items-start justify-between gap-y-8 px-6 py-6 lg:size-full">
-        <div className="flex size-full flex-col items-start justify-center gap-y-3 lg:justify-between">
-          <div className="flex w-full items-center justify-between">
-            <h6 className="text-xs uppercase text-[#368DB1] mb-0">
-              <span className="font-semibold">{archive.type}</span>
-            </h6>
-            <span className="text-xs uppercase text-gray-600">
-              {formattedDate && formattedDate}
+      <Link href={`/blog/${archive.slug}`} className="block h-full flex flex-col">
+        {/* Image Container */}
+        <div className="relative aspect-[3/2] md:aspect-[4/3] overflow-hidden flex-shrink-0">
+          <Image
+            id='post-card__image'
+            src={archive.coverImage?.asset?.url || ''}
+            alt={archive.coverImage?.asset?.altText || ''}
+            width={archive.coverImage?.asset?.metadata?.dimensions.width}
+            height={archive.coverImage?.asset?.metadata?.dimensions.height}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+
+        {/* Content */}
+        <div className="p-3 flex-1 flex flex-col">
+          {/* Meta Info */}
+          <div className="flex items-center justify-between mb-2">
+            <span className="inline-block px-2 py-1 text-xs font-medium text-primary-accent bg-primary-accent/10 rounded-full uppercase">
+              {archive.type}
+            </span>
+            <span className="text-xs text-gray-500">
+              {formattedDate}
             </span>
           </div>
-          <h3 className="font-light">{archive.title}</h3>
-          <div className="flex w-full items-center justify-between">
-            {archive.author && (
-              <Link id='post-card__author-link' href={archive.author.slug} className="text-gray-400">
-                By&nbsp;
-                <span className="text-black">{archive.author.name}</span>
+
+          {/* Title */}
+          <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary-accent transition-colors mb-1 line-clamp-2">
+            {archive.title}
+          </h3>
+
+          {/* Author */}
+          {archive.author && (
+            <div className="mb-1">
+              <Link 
+                id='post-card__author-link' 
+                href={archive.author.slug} 
+                className="text-xs text-gray-600 hover:text-primary-accent transition-colors"
+              >
+                By {archive.author.name}
               </Link>
-            )}
+            </div>
+          )}
+
+          {/* Excerpt */}
+          <p className="text-gray-600 text-xs line-clamp-1 mb-2">
+            {archive.excerpt}
+          </p>
+
+          {/* Read More Link */}
+          <div className="flex items-center justify-between mt-auto">
+            <span className="text-primary-accent font-medium text-xs group-hover:text-primary-accent/80 transition-colors">
+              Read More
+            </span>
+            <svg 
+              className="w-4 h-4 text-gray-400 group-hover:text-primary-accent transition-colors" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </div>
-          <p className="text-sm text-gray-600">{archive.excerpt}</p>
         </div>
-        <Link
-          id='post-card__link'
-          href={`/blog/${archive.slug}`}
-        >
-          Read More
-        </Link>
-      </div>
+      </Link>
     </motion.div>
   );
 }
@@ -134,66 +204,78 @@ export function PostCard({ archive, index }: PostCardProps) {
 export function FeaturedArchiveCard(props: Props) {
   return (
     <div
-      aria-label={`archive-card-${props.archive.title?.toLowerCase() || ''}`}
-      className="flex-center group grid size-full grid-flow-row-dense lg:grid-cols-3 lg:grid-rows-1"
+      aria-label={`featured-archive-card-${props.archive.title?.toLowerCase() || ''}`}
+      className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500"
     >
-      {/* Cover Image */}
-      <div
-        className={cn(
-          'relative row-span-1 flex h-auto w-full overflow-visible lg:col-span-2 lg:aspect-video',
-          props.index! % 2 === 1 && 'lg:col-start-2 lg:row-start-1'
-        )}
+      <Link 
+        href={`/${props.postType === 'post' ? 'blog' : 'our-work'}/${props.archive.slug || ''}`} 
+        className="block h-full"
       >
-        <Image
-          src={props.archive.coverImage?.asset?.url || ''}
-          alt={props.archive.coverImage?.asset?.altText || ''}
-          width={props.archive.coverImage?.asset?.metadata?.dimensions.width}
-          height={props.archive.coverImage?.asset?.metadata?.dimensions.height}
-          className={cn(
-            '-z-0 h-full w-auto object-cover object-center lg:absolute lg:aspect-video lg:h-auto lg:min-h-64 lg:w-[120%] lg:min-w-64',
-            props.index! % 2 === 1
-              ? 'lg:inset-y-0 lg:right-0 lg:-translate-x-20 lg:translate-y-0'
-              : 'lg:inset-y-0 lg:left-0 lg:translate-x-20 lg:translate-y-0'
-          )}
-        />
-      </div>
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src={props.archive.coverImage?.asset?.url || ''}
+            alt={props.archive.coverImage?.asset?.altText || ''}
+            width={props.archive.coverImage?.asset?.metadata?.dimensions.width}
+            height={props.archive.coverImage?.asset?.metadata?.dimensions.height}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70" />
+        </div>
 
-      {/* Card */}
-      <div
-        className={cn(
-          'relative row-span-1 flex justify-center h-full w-[-webkit-fill-available] lg:col-span-1 lg:w-auto'
-        )}
-      >
-        <div
-          className={cn(
-            'z-10 my-auto flex h-fit w-[calc(100%_-_2rem)] -translate-y-10 flex-col items-start justify-start md:gap-y-6 bg-primary-background p-10 text-left shadow-[0px_3px_8px_-1px_rgba(0,0,0,0.10)] lg:absolute',
-            props.index! % 2 === 1
-              ? 'lg:inset-y-0 lg:left-0 lg:translate-x-20 lg:translate-y-0'
-              : 'lg:inset-y-0 lg:right-0 lg:-translate-x-20 lg:translate-y-0'
-          )}
-        >
-          <h2 className="text-2xl font-semibold text-primary-foreground hocus:no-underline mb-0">
+
+        {/* Content */}
+        <div className="relative z-10 flex h-full flex-col justify-end p-4 lg:p-6">
+          {/* Title */}
+          <h2 className="text-xl lg:text-2xl font-bold text-white mb-2 line-clamp-2">
             {props.archive.title}
           </h2>
-          {props.archive.excerpt ? (
-            <p className="text-sm text-gray-800">{props.archive.excerpt}</p>
-          ) : props.postType === 'project' && props.archive.tags && props.archive.tags.length > 0 ? (
-            <div className="flex flex-wrap items-start justify-start gap-2">
-              {props.archive.tags.map((tag, index) => (
-                <span key={index} className="rounded-full bg-gray-200 px-3 py-2 text-xs uppercase text-primary-foreground">
+
+          {/* Excerpt */}
+          {props.archive.excerpt && (
+            <p className="text-gray-200 text-xs line-clamp-1 mb-3 max-w-2xl">
+              {props.archive.excerpt}
+            </p>
+          )}
+
+          {/* Tags */}
+          {props.postType === 'project' && props.archive.tags && props.archive.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1 mb-4">
+              {props.archive.tags.slice(0, 2).map((tag, index) => (
+                <span 
+                  key={index} 
+                  className="inline-block px-2 py-1 text-xs font-medium text-white bg-white/20 backdrop-blur-sm rounded-full uppercase border border-white/30"
+                >
                   {tag}
                 </span>
               ))}
             </div>
-          ) : null}
-          <Link
-            className="text-lg text-primary-accent hocus:text-primary-accent"
-            href={`/${props.postType === 'post' ? 'blog' : 'our-work'}/${props.archive.slug || ''}`}
-          >
-            Read More
-          </Link>
+          )}
+
+          {/* CTA Button */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-white font-semibold text-xs">
+                {props.postType === 'post' ? 'Read Article' : 'View Project'}
+              </span>
+              <div className="w-8 h-8 bg-primary-accent rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary-accent transition-all duration-300">
+                <svg 
+                  className="w-4 h-4 text-white group-hover:text-primary-accent transition-colors" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-primary-accent/20 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12 group-hover:scale-125 transition-transform duration-700"></div>
+      </Link>
     </div>
   );
 }

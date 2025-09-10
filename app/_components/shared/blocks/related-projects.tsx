@@ -17,82 +17,43 @@ interface Props {
 export default function RelatedProjects({ data }: Props) {
   return (
     <Container id="RelatedProjects">
-      <div className="text-center mb-12">
-        {data.separator && <EyebrowSVG className="mx-auto mb-6" />}
-        <h2 className="text-3xl font-bold mb-4">{data.title}</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">{data.body}</p>
+      <div className="flex w-full flex-col items-center justify-center gap-6">
+        {data.separator && <EyebrowSVG className="" />}
+        <h2>{data.title}</h2>
+        <p>{data.body}</p>
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid w-full grid-cols-3 items-center justify-center gap-16 md:gap-24">
         {data.projects?.map((project, index) => (
-          <Link
+          <div
             key={index}
-            href={project.slug || '#'}
-            className="group block bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-300"
+            className="flex-center relative aspect-square flex-col gap-y-6"
           >
-            {/* Project Image */}
+            <div className="absolute inset-0 z-[1] h-full w-full bg-gradient-to-b from-black/20 to-black/40" />
             {project.coverImage && (
-              <div className="aspect-video overflow-hidden">
-                <Image
-                  src={project.coverImage.asset?.url || ''}
-                  alt={project.coverImage.asset?.altText || project.title || 'Project image'}
-                  width={project.coverImage.asset?.metadata.dimensions.width}
-                  height={project.coverImage.asset?.metadata.dimensions.height}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+              <Image
+                src={project.coverImage.asset?.url || ''}
+                alt={project.coverImage.asset?.altText || ''}
+                width={project.coverImage.asset?.metadata.dimensions.width}
+                height={project.coverImage.asset?.metadata.dimensions.height}
+                className="absolute inset-0 -z-0 h-full object-cover object-center"
+              />
             )}
-            
-            {/* Project Content */}
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-3">
-                {/* Client Logo */}
-                {project.clientLogo?.asset?.url && (
-                  <Image
-                    src={project.clientLogo.asset.url}
-                    alt={project.clientLogo.asset.altText || 'Client logo'}
-                    width={32}
-                    height={32}
-                    className="h-8 w-auto object-contain"
-                  />
-                )}
-                
-                {/* Arrow Icon */}
-                <svg 
-                  className="w-5 h-5 text-gray-400 group-hover:text-primary-accent transition-colors" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+            <div className="flex-center z-10 size-full flex-col gap-y-6 text-primary-background">
+              <div className="flex flex-col gap-y-6">
+                <h3 className="text-2xl font-semibold">{project.title}</h3>
               </div>
-              
-              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary-accent mb-2">
-                {project.clientName || project.title}
-              </h3>
-              
-              {project.excerpt && (
-                <p className="text-sm text-gray-600 line-clamp-2">
-                  {project.excerpt}
-                </p>
-              )}
-              
-              {/* Tags */}
-              {project.tags && project.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-3">
-                  {project.tags.slice(0, 3).map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="inline-block px-2 py-1 text-xs font-medium text-gray-500 bg-gray-100 rounded-full uppercase"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
+              <div className="flex items-center justify-center gap-x-6">
+                <Link
+                  variant="secondary"
+                  size="default"
+                  href={project.slug}
+                  className="hover:bg-transparent"
+                >
+                  Read More
+                </Link>
+              </div>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </Container>

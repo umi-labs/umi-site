@@ -44,10 +44,12 @@ export default async function ArchivesSection({ data }: Props) {
           <p>{data.description}</p>
         </div>
 
-        <ArchivesFilterableBlock
-          archives={data.archive}
-          postType={data.postType}
-        />
+        <div className="w-full">
+          <ArchivesFilterableBlock
+            archives={data.archive}
+            postType={data.postType}
+          />
+        </div>
       </section>
     </HydrationBoundary>
   );
