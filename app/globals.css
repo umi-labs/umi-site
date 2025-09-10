@@ -57,7 +57,7 @@
   }
 
   h1 {
-    @apply text-5xl;
+    @apply text-5xl md:text-6xl;
   }
 
   h2 {
@@ -65,11 +65,11 @@
   }
 
   h3 {
-    @apply text-2xl;
+    @apply text-3xl;
   }
 
   h4 {
-    @apply text-xl;
+    @apply text-2xl;
   }
 
   h5 {
@@ -81,11 +81,11 @@
   }
 
   p {
-    @apply font-body text-lg font-medium leading-['160%'] tracking-normal;
+    @apply font-body text-lg font-medium leading-[160%] tracking-normal;
   }
 
   p .small {
-    @apply text-base leading-['150%'];
+    @apply text-base leading-[150%];
   }
 
   p .xsmall {
@@ -94,7 +94,7 @@
 
   ul li,
   ol li {
-    @apply font-body;
+    @apply font-body text-lg font-medium leading-[160%] tracking-normal;
   }
 
   nav .text-xs {

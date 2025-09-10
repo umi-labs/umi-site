@@ -93,10 +93,19 @@ export interface PostPayload {
   author?: {
     name: string;
     slug: string;
+    image?: Image;
+    role?: string;
+    description?: string;
+    socialLinks?: Array<{
+      title: string;
+      socialMedia: string;
+      link: string;
+    }>;
   };
   coverImage?: Image;
   excerpt?: string;
   featured?: boolean;
+  categories?: Array<{ title: string } | string>;
   body?: PortableTextBlock[];
   metaData?: MetaData;
 }

@@ -13,7 +13,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
     <section
       id="HeroWithMedia"
       className={cn(
-        'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible py-10 md:gap-12 md:py-32 lg:gap-y-16'
+        'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible pt-20 pb-10 md:gap-12 md:pt-32 md:pb-16 lg:gap-y-16'
       )}
     >
       <div
@@ -87,7 +87,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
           )}
         </div>
         {data?.bottomContent && (
-          <div className="flex flex-col items-center justify-center gap-y-10 px-6 text-primary-foreground md:px-28">
+          <div className="flex flex-col items-center justify-center gap-y-4 px-6 text-primary-foreground md:px-28">
             <h2>{data.bottomContent.title}</h2>
             <CustomPortableText value={data.bottomContent.content} />
           </div>

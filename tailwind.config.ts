@@ -41,7 +41,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        heading: ['var(--font-tenor-sans)'],
+        heading: ['var(--font-cormorant-garamond)'],
         subtitle: ['var(--font-poppins)'],
         body: ['var(--font-nunito)'],
         switzer: ['var(--font-switzer)'],
@@ -221,6 +221,42 @@ const config = {
           from: { opacity: '1', transform: 'translateX(0)' },
           to: { opacity: '0', transform: 'translateX(200px)' },
         },
+        'fade-in-0': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        'slide-in-from-top-2': {
+          from: { transform: 'translateY(-8px)' },
+          to: { transform: 'translateY(0)' },
+        },
+        'slide-in-from-left-2': {
+          from: { transform: 'translateX(-8px)' },
+          to: { transform: 'translateX(0)' },
+        },
+        'slide-in-from-bottom-4': {
+          from: { transform: 'translateY(16px)' },
+          to: { transform: 'translateY(0)' },
+        },
+        slideInFromRight: {
+          from: { 
+            opacity: '0',
+            transform: 'translateX(16px)'
+          },
+          to: { 
+            opacity: '1',
+            transform: 'translateX(0)'
+          },
+        },
+        slideInFromBottom: {
+          from: { 
+            opacity: '0',
+            transform: 'translateY(16px)'
+          },
+          to: { 
+            opacity: '1',
+            transform: 'translateY(0)'
+          },
+        },
       },
       animation: {
         slideDownAndFade: 'slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -247,6 +283,10 @@ const config = {
         enterFromRight: 'enterFromRight 250ms ease',
         exitToLeft: 'exitToLeft 250ms ease',
         exitToRight: 'exitToRight 250ms ease',
+        'fade-in-0': 'fade-in-0 200ms ease',
+        'slide-in-from-top-2': 'slide-in-from-top-2 200ms ease',
+        'slide-in-from-left-2': 'slide-in-from-left-2 200ms ease',
+        'slide-in-from-bottom-4': 'slide-in-from-bottom-4 300ms ease',
       },
     },
   },

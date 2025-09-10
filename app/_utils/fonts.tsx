@@ -1,4 +1,4 @@
-import { Nunito, Poppins, Tenor_Sans } from 'next/font/google';
+import { Cormorant_Garamond, Nunito, Poppins, Tenor_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 
 export const tenorSans = Tenor_Sans({
@@ -42,4 +42,12 @@ export const switzer = localFont({
 export const switzerItalic = localFont({
   src: '../../public/assets/fonts/Switzer-VariableItalic.woff2',
   variable: '--font-switzer-italic',
+});
+
+export const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-cormorant-garamond',
+  adjustFontFallback: false,
 });

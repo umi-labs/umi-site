@@ -7,7 +7,7 @@ export default function HomeHero(props: HomeHeroProps) {
   return (
     <section
       id="HomeHero"
-      className="bg-cadet-gray flex h-screen w-screen flex-col items-center justify-between p-8 pt-0"
+      className="bg-cadet-gray flex h-screen w-screen flex-col items-center justify-between p-8 pt-20"
     >
       <div />
       <div className="w-1/2">

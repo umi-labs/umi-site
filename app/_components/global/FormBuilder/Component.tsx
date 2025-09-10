@@ -126,7 +126,7 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
           onSubmit={handleSubmit(onSubmit)}
           className={cn('mx-auto w-full')}
         >
-          <div className="mb-4 space-y-4 last:mb-0">
+          <div className="mb-6 space-y-6 last:mb-0">
             {fields &&
               fields?.map((field, i) => {
                 if (field.type === 'select') {

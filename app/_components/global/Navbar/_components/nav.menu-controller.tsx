@@ -5,10 +5,10 @@ import Menu from '@/app/_components/global/Navbar/_components/nav.menu';
 
 const MenuLine = {
   default: cn(
-    'h-[2px] bg-primary-foreground transition-all duration-300 ease w-8 lg:first-of-type:w-6 lg:group-hover:first-of-type:w-8 lg:group-hover:last-of-type:w-6'
+    'h-[2px] bg-primary-foreground transition-all duration-500 ease-out w-8 lg:first-of-type:w-6 lg:group-hover:first-of-type:w-8 lg:group-hover:last-of-type:w-6'
   ),
   open: cn(
-    'w-8 lg:first-of-type:w-8 lg:group-hover:last-of-type:w-8 transform first-of-type:rotate-45 first-of-type:translate-y-[200%] last-of-type:-rotate-45 last-of-type:-translate-y-[200%] delay-150'
+    'w-8 lg:first-of-type:w-8 lg:group-hover:last-of-type:w-8 transform first-of-type:rotate-45 first-of-type:translate-y-[200%] last-of-type:-rotate-45 last-of-type:-translate-y-[200%] delay-200'
   ),
 };
 
@@ -29,7 +29,7 @@ const NavMenuController = ({
             aria-label="menu-button"
             onClick={() => setMenu(!menu)}
             className={cn(
-              'interactable ease group z-[100] flex w-8 flex-col items-center justify-center gap-[4px] bg-transparent p-4 transition-all duration-300 lg:items-start lg:justify-start',
+              'interactable ease group z-[100] flex w-8 flex-col items-center justify-center gap-[4px] bg-transparent p-4 transition-all duration-500 ease-out lg:items-start lg:justify-start hover:scale-110',
               menu
                 ? 'open gap-[6px] lg:items-center lg:justify-center'
                 : 'closed'

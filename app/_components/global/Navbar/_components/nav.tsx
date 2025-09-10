@@ -1,13 +1,14 @@
 'use client';
 
 import type { Menu as MenuType } from '@/types/components/nav';
-import React from 'react';
+import React, { useState } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import useResolvedHref from '@/app/_utils/hooks/useResolvedHref';
 import { CaretDownIcon } from '@radix-ui/react-icons';
 import { cn } from '@/app/_utils';
 import Link from 'next/link';
 import useStringLimiter from '@/app/_utils/hooks/useStringLimiter';
+import { CaretRightIcon } from '@radix-ui/react-icons';
 
 const NavListItem = ({ navTitle, navItemsArray }) => {
   const isAbout = navTitle === "About";
@@ -16,7 +17,7 @@ const NavListItem = ({ navTitle, navItemsArray }) => {
     <div className="sm:w-auto sm:min-w-[200px]">
       <ul className={cn('m-0 grid list-none gap-4 px-4 py-3 ')}>
         {navItemsArray.map((item, i) =>
-          item.navLinks.map((element, index) => {
+          item.navLinks?.map((element, index) => {
             const { title, description } = element;
             const desc = useStringLimiter(description, 50);
             const url = useResolvedHref({ link: element });
@@ -42,7 +43,7 @@ const NavListItem = ({ navTitle, navItemsArray }) => {
             {item.title}
           </h4>
           <ul className="py-3">
-            {item.navLinks.map((element, index) => {
+            {item.navLinks?.map((element, index) => {
               const { title, description } = element;
               const desc = useStringLimiter(description, 50);
               const url = useResolvedHref({ link: element });
@@ -55,6 +56,88 @@ const NavListItem = ({ navTitle, navItemsArray }) => {
         </li>
       ))}
     </ul>
+  );
+};
+
+// Enhanced dropdown component for 3-level navigation
+const EnhancedNavListItem = ({ navTitle, navItemsArray }) => {
+  // Check if we have multiple categories (need columns) or just one
+  const hasMultipleCategories = navItemsArray.length > 1;
+  const gridCols = hasMultipleCategories ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1";
+  const containerWidth = hasMultipleCategories ? "w-[800px]" : "w-[400px]";
+
+  return (
+    <div className={`${containerWidth} max-w-[90vw] p-6 animate-in fade-in-0 slide-in-from-top-2 duration-200`}>
+      <div className={`grid ${gridCols} gap-8`}>
+        {navItemsArray.map((item, i) => {
+          // Check if this is a 2-level navigation (no navLinks, just direct links)
+          const isTwoLevel = !item.navLinks || item.navLinks.length === 0;
+          
+          return (
+            <div key={i} className="space-y-4">
+              <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-2 group-hover:border-primary-accent/30 transition-colors duration-200">
+                {item.title}
+              </h4>
+              <ul className="space-y-2">
+                {isTwoLevel ? (
+                  // 2-level navigation - render direct links
+                  item.nav?.map((element, index) => {
+                    const { title, description } = element;
+                    const desc = useStringLimiter(description, 80);
+                    const url = useResolvedHref({ link: element });
+
+                    return (
+                      <li key={index}>
+                        <Link
+                          href={url.href}
+                          className="group block p-2 rounded-lg hover:bg-primary-accent/5 transition-all duration-200"
+                        >
+                          <div className="flex items-center gap-2">
+                            <div className="w-1 h-1 rounded-full bg-transparent group-hover:bg-primary-accent group-hover:scale-125 transition-all duration-200"></div>
+                            <div className="text-sm font-medium text-gray-900 group-hover:text-primary-accent group-hover:translate-x-1 transition-all duration-200">
+                              {title}
+                            </div>
+                          </div>
+                          {description && (
+                            <p className="text-xs text-gray-500 mt-1 group-hover:text-gray-600 transition-colors duration-200 ml-3">{desc}</p>
+                          )}
+                        </Link>
+                      </li>
+                    );
+                  })
+                ) : (
+                  // 3-level navigation - render navLinks
+                  item.navLinks?.map((element, index) => {
+                    const { title, description } = element;
+                    const desc = useStringLimiter(description, 80);
+                    const url = useResolvedHref({ link: element });
+
+                    return (
+                      <li key={index}>
+                        <Link
+                          href={url.href}
+                          className="group block p-2 rounded-lg hover:bg-primary-accent/5 transition-all duration-200"
+                        >
+                          <div className="flex items-center gap-2">
+                            <div className="w-1 h-1 rounded-full bg-transparent group-hover:bg-primary-accent group-hover:scale-125 transition-all duration-200"></div>
+                            <div className="text-sm font-medium text-gray-900 group-hover:text-primary-accent group-hover:translate-x-1 transition-all duration-200">
+                              {title}
+                            </div>
+                          </div>
+                          {description && (
+                            <p className="text-xs text-gray-500 mt-1 group-hover:text-gray-600 transition-colors duration-200 ml-3">{desc}</p>
+                          )}
+                        </Link>
+                      </li>
+                    );
+                  })
+                )}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 
@@ -82,7 +165,7 @@ const Nav = ({ menu }) => {
             return subNavigation === 'none' ? (
               <NavigationMenu.Item
                 key={i}
-                className="group flex select-none items-center justify-between px-3 py-2 text-xs font-medium leading-none text-black underline-offset-4 outline-none hover:underline focus:underline focus:shadow-[0_0_0_2px]"
+                className="group flex select-none items-center justify-between px-4 py-2 text-xs font-medium leading-none text-black rounded-lg transition-all duration-200 hover:bg-primary-accent/10 hover:text-primary-accent"
               >
                 <NavigationMenu.Link
                   href={
@@ -92,28 +175,26 @@ const Nav = ({ menu }) => {
                         ? `/${nav.type}/${nav.slug}`
                         : `/${nav.slug}`
                   }
+                  className="transition-colors duration-200"
                 >
                   {title}
                 </NavigationMenu.Link>
               </NavigationMenu.Item>
             ) : (
               <NavigationMenu.Item key={i} value={title}>
-                <NavigationMenu.Trigger className="font-sm group flex select-none items-center justify-between gap-0.5 rounded px-3 py-2 text-xs font-medium leading-none text-black outline-none hover:underline focus:underline focus:shadow-[0_0_0_2px]">
-                  {title}&nbsp;
+                <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-1 rounded-lg px-4 py-2 text-xs font-medium leading-none text-black outline-none transition-all duration-200 hover:bg-primary-accent/10 hover:text-primary-accent focus:bg-primary-accent/10 focus:text-primary-accent">
+                  <span className="transition-colors duration-200">{title}</span>
                   <CaretDownIcon
-                    className="text-violet10 duration-[250ms] relative top-[-1px] size-6 transition-transform ease-in group-data-[state=open]:-rotate-180"
+                    className="text-gray-400 duration-200 relative top-[-1px] size-4 transition-all ease-in group-data-[state=open]:-rotate-180 group-hover:text-primary-accent"
                     aria-hidden
                   />
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="absolute top-0 left-0 w-full sm:w-auto">
-                  <NavListItem navTitle={title} navItemsArray={nav} />
+                  <EnhancedNavListItem navTitle={title} navItemsArray={nav} />
                 </NavigationMenu.Content>
               </NavigationMenu.Item>
             );
           })}
-        {/*<NavigationMenu.Indicator className="data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn top-full z-[1000] flex h-2.5 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]">*/}
-        {/*  <div className="z-90 relative top-[70%] size-2.5 rotate-45 rounded-tl-sm bg-black" />*/}
-        {/*</NavigationMenu.Indicator>*/}
       </NavigationMenu.List>
       <div
         className={cn(
@@ -124,7 +205,7 @@ const Nav = ({ menu }) => {
             : 'left-1/2 w-auto -translate-x-1/2',
         )}
       >
-        <NavigationMenu.Viewport className="data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn relative mt-2.5 h-[var(--radix-navigation-menu-viewport-height)] origin-[top_center] overflow-hidden rounded-xl bg-white shadow-[0px_3px_8px_rgba(0,0,0,0.10)] transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+        <NavigationMenu.Viewport className="data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] origin-[top_center] overflow-hidden rounded-2xl bg-white shadow-[0px_8px_32px_rgba(0,0,0,0.12)] border border-gray-100 transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)]" />
       </div>
     </NavigationMenu.Root>
   );
