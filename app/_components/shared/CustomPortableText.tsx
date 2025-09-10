@@ -134,7 +134,7 @@ export function CustomPortableText({
       number: ({ children }) => (
         <ol
           className={cn(
-            'mt-lg my-4 ml-2 list-decimal *:ml-3 *:marker:font-bold',
+            'mt-lg my-4 mx-2 list-decimal *:ml-3 *:marker:font-bold',
             paragraphClasses
           )}
         >

@@ -64,21 +64,40 @@ export const recentPostsQuery = groq`
 
 export const getPostsQuery = groq`
   *[_type == "post"] | order(_createdAt desc) [0..8]{
-    ...,
-    coverImage{
-      ...,
-      asset->
-    },
+    _id,
+    _createdAt,
+    _updatedAt,
+    title,
+    excerpt,
+    featured,
+    tags,
+    type,
+    categories,
     "slug": slug.current,
-    author->{
-          ...,
-          "slug": slug.current,
-        },
-        time{
-          ...,
-          timeTaken,
-          timeType
+    coverImage{
+      asset->{
+        _id,
+        url,
+        metadata{
+          dimensions
         }
+      },
+      altText
+    },
+    author->{
+      name,
+      "slug": slug.current,
+      image{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    time{
+      timeTaken,
+      timeType
+    }
   }
 `;
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import StandardArchiveCard, { FeaturedArchiveCard } from '@/app/_components/ui/card/archive-card';
 import { PostPayload, ProjectPayload } from '@/types';
 import { Button } from '@/app/_components/ui/button';
@@ -19,7 +19,7 @@ type Props = {
   index?: number;
 } & (ProjectProps | PostProps);
 
-export default function ArchivesGrid({
+const ArchivesGrid = memo(function ArchivesGrid({
   archives: archiveArray,
   postType,
 }: Props) {
@@ -35,7 +35,7 @@ export default function ArchivesGrid({
     lastId: '',
   });
 
-  const updateArchives = async () => {
+  const updateArchives = useCallback(async () => {
     const { lastCreatedAt, lastId } = paginationConfig;
     const newArchives = await getPaginatedProjects({
       lastCreatedAt: lastCreatedAt,
@@ -50,7 +50,7 @@ export default function ArchivesGrid({
     );
 
     setArchives(allArchives);
-  };
+  }, [archives, paginationConfig]);
 
   return (
     <div className="w-full">
@@ -58,7 +58,7 @@ export default function ArchivesGrid({
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6 w-full">
         {archives?.map((archive, i) => (
           <StandardArchiveCard 
-            key={i} 
+            key={archive._id || i} 
             archive={archive} 
             postType={postType} 
             index={i} 
@@ -86,4 +86,6 @@ export default function ArchivesGrid({
       )}
     </div>
   );
-}
+});
+
+export default ArchivesGrid;

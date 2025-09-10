@@ -34,7 +34,7 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'UMI Culture', value: 'umiCulture' },
+          { title: 'Umi Culture', value: 'umiCulture' },
           { title: 'Standard Video', value: 'standardVideo' },
           { title: 'Standard Image', value: 'standardImage' },
         ],

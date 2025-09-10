@@ -24,12 +24,25 @@ export const getFeaturedProjectsQuery = groq`
 
 export const getProjectsQuery = groq`
   *[_type == "project"] | order(_createdAt desc) [0..8]{
-    ...,
-    coverImage{
-      ...,
-      asset->
-    },
+    _id,
+    _createdAt,
+    _updatedAt,
+    title,
+    excerpt,
+    featured,
+    tags,
+    clientName,
     "slug": slug.current,
+    coverImage{
+      asset->{
+        _id,
+        url,
+        metadata{
+          dimensions
+        }
+      },
+      altText
+    }
   }
 `;
 

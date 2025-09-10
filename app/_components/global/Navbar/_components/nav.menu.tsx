@@ -96,7 +96,7 @@ export default function Menu({ data, show, setShow }: MenuProps) {
           }
         )}
       >
-        <div className="grid h-full grid-rows-[1fr_auto] items-start p-8 uppercase animate-in fade-in-0 duration-300">
+        <div className="grid h-full grid-rows-[1fr_auto] items-start px-8 pt-16 pb-8 uppercase animate-in fade-in-0 duration-300">
           <ul className="ml-0 flex list-none flex-col gap-y-2 divide-y divide-gray-200/50">
             {menu.map((item, key) => (
               <div
@@ -196,7 +196,7 @@ const SubMenu = ({ item, onDrillup, onDrilldown, setShow, level }) => {
   }
 
   return (
-    <div className='p-8 uppercase h-full grid grid-rows-[auto_1fr]'>
+    <div className='px-8 pt-16 pb-8 uppercase h-full grid grid-rows-[auto_1fr]'>
       <div className="flex w-full items-center justify-start pb-3 animate-in slide-in-from-top-2 fade-in-0">
         <button
           className="p-2 rounded-lg hover:bg-white/10 transition-all duration-300 hover:translate-x-[-4px]"

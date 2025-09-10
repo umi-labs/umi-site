@@ -26,7 +26,7 @@ export async function generateMetadata(
       ? page.metaData.title
       : page?.title
         ? page.title
-        : 'UMI',
+        : 'Umi',
     description: page?.metaData?.description
       ? page?.metaData?.description
       : (await parent).description,

@@ -66,7 +66,7 @@ export const EmailTemplate = ({ emailBody }: EmailTemplateProps) => {
 
           <Section>
             <Text className="mb-12 text-left text-[12px] leading-4 text-gray-500">
-              ©2025 Umi Digital, LTD.
+              © 2025 Umi Digital Solutions Ltd.
               <br />
               All rights reserved.
             </Text>
@@ -79,7 +79,7 @@ export const EmailTemplate = ({ emailBody }: EmailTemplateProps) => {
 
 const json = {
   name: 'Umi Digital',
-  email: 'hello@umi-digital.com',
+  email: 'hello@umidigital.co.uk',
 };
 
 EmailTemplate.PreviewProps = {
