@@ -11,65 +11,86 @@ interface ProjectHeroProps {
 
 export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
   return (
-    <section className="xl:mb-30 relative mx-auto mb-10 mt-20 flex min-h-fit w-full max-w-7xl flex-col items-center justify-start bg-primary-background md:mb-20 lg:mb-28">
-      <Image
-        src={project?.coverImage?.asset?.url || ''}
-        alt={project?.coverImage?.asset?.altText || ''}
-        width={project?.coverImage?.asset?.metadata?.dimensions.width}
-        height={project?.coverImage?.asset?.metadata?.dimensions.height}
-        className="max-h-[650px] w-screen object-cover object-top"
-      />
-      <div className="grid w-full grid-cols-4 items-center justify-center gap-9 gap-y-10 bg-primary-foreground px-6 py-8 text-primary-background md:px-10">
-        <div>
-          <Image
-            src={project?.clientLogo?.asset?.url || ''}
-            alt={project?.clientLogo?.asset?.altText || ''}
-            width={project?.clientLogo?.asset?.metadata?.dimensions.width}
-            height={project?.clientLogo?.asset?.metadata?.dimensions.height}
-          />
-        </div>
-        <div className="col-span-2 flex flex-col items-start justify-start gap-y-6">
-          <h1>{project?.clientName}</h1>
-          <span className="flex flex-wrap items-start justify-start gap-2 text-xs text-gray-700">
-            {project?.tags?.map((tag, i) => (
-              <span
-                className="rounded-full bg-white px-3 py-2 uppercase hover:no-underline"
-                key={i}
-              >
-                {tag}
-              </span>
-            ))}
-          </span>
-        </div>
-        <div className="font-regular flex flex-col items-center justify-center gap-y-6 uppercase">
-          {project.clientUrl && (
-            <Link
-              variant="secondary"
-              size="default"
-              className="w-full"
-              href={project.clientUrl}
-            >
-              Visit Website
-            </Link>
-          )}
-          {project.caseStudyUrl && (
-            <Link
-              variant="outline"
-              size="default"
-              className="w-full border border-primary-background text-primary-background hover:bg-primary-background hover:text-primary-foreground"
-              href={project.caseStudyUrl}
-            >
-              <Download weight="fill" className="mr-2 size-4" /> Download Case
-              Study
-            </Link>
-          )}
+    <section className="relative h-[50vh] min-h-[400px] bg-gray-900">
+      {/* Hero Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={project?.coverImage?.asset?.url || ''}
+          alt={project?.coverImage?.asset?.altText || ''}
+          width={project?.coverImage?.asset?.metadata?.dimensions.width}
+          height={project?.coverImage?.asset?.metadata?.dimensions.height}
+          className="h-full w-full object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex h-full items-center">
+        <div className="mx-auto w-full max-w-5xl px-6 py-20 md:px-8">
+          <div className="grid gap-8 md:grid-cols-2 md:items-center">
+            {/* Left Column - Project Info */}
+            <div className="space-y-6">
+              {project?.clientLogo && (
+                <div className="mb-6">
+                  <Image
+                    src={project.clientLogo.asset?.url || ''}
+                    alt={project.clientLogo.asset?.altText || ''}
+                    width={project.clientLogo.asset?.metadata?.dimensions.width}
+                    height={project.clientLogo.asset?.metadata?.dimensions.height}
+                    className="h-12 w-auto object-contain"
+                  />
+                </div>
+              )}
+              
+              <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+                {project?.clientName || project?.title}
+              </h1>
+              
+              {project?.excerpt && (
+                <p className="text-xl text-gray-200 leading-relaxed">
+                  {project.excerpt}
+                </p>
+              )}
+
+              {project?.tags && project.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="rounded-full bg-white/20 px-4 py-2 text-sm text-white backdrop-blur-sm uppercase"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Right Column - Actions */}
+            <div className="flex flex-col gap-4 md:items-end">
+              {project?.clientUrl && (
+                <Link
+                  href={project.clientUrl}
+                  className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-lg font-semibold text-gray-900 transition-all hover:bg-gray-100 hover:shadow-lg"
+                >
+                  Visit Website
+                </Link>
+              )}
+              {project?.caseStudyUrl && (
+                <Link
+                  href={project.caseStudyUrl}
+                  className="inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-3 text-lg font-semibold text-white transition-all hover:bg-white hover:text-gray-900"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Download Case Study
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-      <BottomBuffer
-        visible={true}
-        colour="accent"
-        className="w-full max-w-7xl"
-      />
+
     </section>
   );
 }

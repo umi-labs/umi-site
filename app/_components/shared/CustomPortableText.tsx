@@ -37,9 +37,11 @@ import { cn } from '@/app/_utils';
 export function CustomPortableText({
   paragraphClasses,
   value,
+  headingLevel = "h1",
 }: {
   paragraphClasses?: string;
   value: PortableTextBlock[];
+  headingLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }) {
   const components: PortableTextComponents = {
     block: {
@@ -52,13 +54,16 @@ export function CustomPortableText({
           </p>
         );
       },
-      h1: ({ children }) => (
-        <h1
-          className={`${paragraphClasses} mb-4 font-heading text-5xl font-normal tracking-reduced`}
-        >
-          {children}
-        </h1>
-      ),
+      h1: ({ children }) => {
+        const HeadingTag = headingLevel as keyof JSX.IntrinsicElements;
+        return (
+          <HeadingTag
+            className={`${paragraphClasses} mb-4 font-heading text-3xl md:text-5xl font-normal tracking-reduced`}
+          >
+            {children}
+          </HeadingTag>
+        );
+      },
       h2: ({ children }) => {
         return (
           <h2

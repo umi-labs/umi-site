@@ -41,8 +41,8 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
       <div className="flex w-full flex-col items-center justify-center mx-auto max-w-7xl gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
         <div className="relative flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
           {data.separator && <EyebrowSVG className="" />}
-          <h2>{data.title}</h2>
-          <CustomPortableText value={data.content} />
+          <h2 className="text-3xl leading-tight">{data.title}</h2>
+          <CustomPortableText value={data.content} paragraphClasses="text-sm leading-relaxed" />
           <div className="flex w-full flex-col items-start justify-start gap-6 lg:flex-row lg:items-center">
             {data?.buttons?.map((button, i) => (
               <Link
@@ -96,8 +96,8 @@ const Card = ({
           />
         </div>
       )}
-      <h3 className="mb-0">{feature.title}</h3>
-      {feature.content && <p>{feature.content}</p>}
+      <h3 className="mb-0 text-lg leading-tight">{feature.title}</h3>
+      {feature.content && <p className="text-sm leading-relaxed">{feature.content}</p>}
       {feature.button && (
         <Link
           link={feature.button.link}

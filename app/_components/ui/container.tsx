@@ -33,7 +33,7 @@ export default function Container({
     <section
       className={cn(
         'relative mx-auto flex min-h-full w-full flex-col items-center justify-center gap-y-16 px-10 py-10 md:py-30',
-        buffers?.top && 'mt-44',
+        buffers?.top && 'mt-20 md:mt-44',
         buffers?.bottom && 'mb-44',
         !maxWidth && 'mx-auto max-w-7xl',
         colour === 'light' && 'bg-primary-background text-primary-foreground',

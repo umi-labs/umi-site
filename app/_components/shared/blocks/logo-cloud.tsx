@@ -81,7 +81,7 @@ const Logo = ({ logo }: { logo: LogoCloudProps['data']['logos'][0] }) => {
       alt={altText}
       width={width}
       height={height}
-      className="aspect-square max-h-40 w-auto p-8"
+      className="aspect-square max-h-40 w-auto p-4"
     />
   );
 
