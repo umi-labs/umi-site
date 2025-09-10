@@ -197,13 +197,16 @@ const SubMenu = ({ item, onDrillup, onDrilldown, setShow, level }) => {
 
   return (
     <div className='px-8 pt-16 pb-8 uppercase h-full grid grid-rows-[auto_1fr]'>
-      <div className="flex w-full items-center justify-start pb-3 animate-in slide-in-from-top-2 fade-in-0">
+      <div className="flex w-full items-center justify-start gap-3 pb-3 animate-in slide-in-from-top-2 fade-in-0">
         <button
           className="p-2 rounded-lg hover:bg-white/10 transition-all duration-300 hover:translate-x-[-4px]"
           onClick={onDrillup}
         >
           <CaretLeft className="size-4 hover:cursor-pointer" />
         </button>
+        <span className="text-sm font-medium text-gray-700 capitalize">
+          {item.title}
+        </span>
       </div>
       <ul className="ml-0 flex w-full list-none flex-col gap-y-2 pt-3">
         {items.map((subItem, index) => {
