@@ -41,7 +41,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        heading: ['var(--font-tenor-sans)'],
+        heading: ['var(--font-cormorant-garamond)'],
         subtitle: ['var(--font-poppins)'],
         body: ['var(--font-nunito)'],
         switzer: ['var(--font-switzer)'],

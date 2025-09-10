@@ -96,7 +96,7 @@ const Card = ({
           />
         </div>
       )}
-      <h3 className="mb-0 text-lg leading-tight">{feature.title}</h3>
+      <h3 className="mb-0 leading-tight">{feature.title}</h3>
       {feature.content && <p className="text-sm leading-relaxed">{feature.content}</p>}
       {feature.button && (
         <Link

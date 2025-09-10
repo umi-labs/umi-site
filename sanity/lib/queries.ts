@@ -99,6 +99,17 @@ export const postsBySlugQuery = groq`
     author->{
       ...,
       "slug": slug.current,
+      image{
+        ...,
+        asset->
+      },
+      role,
+      description,
+      socialLinks[]{
+        title,
+        socialMedia,
+        link
+      }
     },
     coverImage{
       ...,

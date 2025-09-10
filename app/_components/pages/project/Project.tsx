@@ -51,9 +51,9 @@ function Project({ data }: ProjectProps) {
               )}
               
               {body && (
-                <div className="prose prose-lg max-w-none">
+                <div className="prose max-w-none">
                   <CustomPortableText
-                    paragraphClasses="text-gray-600 leading-relaxed"
+                    paragraphClasses="text-gray-600"
                     value={body}
                     headingLevel="h2"
                   />
@@ -70,13 +70,13 @@ function Project({ data }: ProjectProps) {
                   
                   <div className="space-y-4">
                     <div>
-                      <h4 className="mb-1 text-sm font-medium text-gray-500">Client</h4>
+                      <h4 className="mb-1 text-sm font-medium text-gray-500">Client Name</h4>
                       <p className="text-lg font-semibold text-gray-900">{data?.clientName}</p>
                     </div>
                     
                     {data?.tags && data.tags.length > 0 && (
                       <div>
-                        <h4 className="mb-2 text-sm font-medium text-gray-500">Technologies</h4>
+                        <h4 className="mb-2 text-sm font-medium text-gray-500">Services</h4>
                         <div className="flex flex-wrap gap-2">
                           {data.tags.map((tag, i) => (
                             <span
@@ -163,7 +163,6 @@ function Project({ data }: ProjectProps) {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Case Study CTA */}

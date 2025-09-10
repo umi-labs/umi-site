@@ -9,15 +9,14 @@ import {
   SliderNext,
   SliderPrevious,
 } from '@/app/_components/ui/slider';
-import Image from 'next/image';
 import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 import { getFeaturedProjects } from '@/app/_actions/projects';
 import { useQuery } from '@tanstack/react-query';
 import { PortableTextBlock } from 'next-sanity';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import Container from '@/app/_components/ui/container';
-import Link from 'next/link';
 import { Link as CustomLink } from '@/app/_components/ui/link';
+import StandardArchiveCard from '@/app/_components/ui/card/archive-card';
 
 interface PortfolioFullWidthProps {
   data: {
@@ -50,8 +49,8 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
         maxWidth: true,
       }}
     >
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
-        <div className="flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-10 place-self-start text-center md:items-start md:justify-start md:text-start">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-8 px-4 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
+        <div className="flex h-fit w-full grid-flow-row-dense flex-col items-start justify-center gap-y-6 place-self-start text-left md:items-start md:justify-start md:text-start md:gap-y-10">
           {data.separator && <EyebrowSVG className="" />}
           <h2>{data.title}</h2>
           {data.content && <CustomPortableText value={data.content} />}
@@ -74,46 +73,19 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             opts={{
               loop: true,
             }}
-            className="relative col-span-2 mb-10 w-full md:mb-0"
+            className="relative col-span-2 mb-6 w-full md:mb-0"
           >
-            <SliderContent className="-ml-10">
+            <SliderContent className="-ml-4 md:-ml-10">
               {projects?.map((project, i) => (
                 <SliderItem
                   key={i}
-                  className="relative ml-9 flex aspect-square h-auto max-w-sm basis-3/4 flex-col items-center justify-center gap-y-6 overflow-clip bg-primary-foreground md:basis-1/2"
+                  className="relative ml-4 md:ml-9"
                 >
-                  <Link
-                    className="group absolute inset-0 z-20 h-full w-full"
-                    href={`/our-work/${project.slug}` || ''}
-                  >
-                    <Image
-                      src={project.coverImage?.asset?.url || ''}
-                      alt={project.coverImage?.asset?.altText || ''}
-                      width={
-                        project.coverImage?.asset?.metadata?.dimensions.width
-                      }
-                      height={
-                        project.coverImage?.asset?.metadata?.dimensions.height
-                      }
-                      className="absolute inset-0 -z-10 h-full object-cover object-center"
-                    />
-                    <div className="absolute inset-0 z-0 h-full w-full bg-gradient-to-b from-black/20 to-black/40" />
-                    <div className="relative z-50 flex h-full flex-col items-center justify-center gap-y-6">
-                      <h2 className="text-2xl font-semibold text-white group-hover:no-underline">
-                        {project.title}
-                      </h2>
-                      <span className="flex flex-wrap items-center justify-center gap-2 text-xs text-gray-700">
-                        {project.tags?.map((tag, i) => (
-                          <span
-                            className="rounded-full bg-white px-3 py-2 uppercase hocus:no-underline"
-                            key={i}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </span>
-                    </div>
-                  </Link>
+                  <StandardArchiveCard
+                    archive={project}
+                    index={i}
+                    postType="project"
+                  />
                 </SliderItem>
               ))}
             </SliderContent>

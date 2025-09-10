@@ -37,7 +37,7 @@ export default function StandardArchiveCard(props: Props) {
   return (
     <motion.div
       aria-label={`archive-card-${props.archive.title?.toLowerCase() || ''}`}
-      className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-48 md:h-64"
+      className="group relative bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-48 md:h-64"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -64,7 +64,7 @@ export default function StandardArchiveCard(props: Props) {
         {/* Content */}
         <div className="relative z-10 flex h-full flex-col justify-end p-4">
           {/* Title */}
-          <h3 className="text-base font-semibold text-white mb-1 line-clamp-2">
+          <h3 className="text-xl font-semibold text-white mb-1 line-clamp-2">
             {props.archive.title}
           </h3>
 
@@ -122,7 +122,7 @@ export function PostCard({ archive, index }: PostCardProps) {
   return (
     <motion.div
       id='post-card'
-      className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+      className="group relative bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -144,22 +144,20 @@ export function PostCard({ archive, index }: PostCardProps) {
           />
           {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          
+          {/* Date Tag */}
+          <div className="absolute top-3 right-3">
+            <span className="inline-block px-2 py-1 text-xs font-medium text-white bg-black/60 backdrop-blur-sm rounded-full">
+              {formattedDate}
+            </span>
+          </div>
         </div>
 
         {/* Content */}
         <div className="p-3 flex-1 flex flex-col">
-          {/* Meta Info */}
-          <div className="flex items-center justify-between mb-2">
-            <span className="inline-block px-2 py-1 text-xs font-medium text-primary-accent bg-primary-accent/10 rounded-full uppercase">
-              {archive.type}
-            </span>
-            <span className="text-xs text-gray-500">
-              {formattedDate}
-            </span>
-          </div>
 
           {/* Title */}
-          <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary-accent transition-colors mb-1 line-clamp-2">
+          <h3 className="text-xl font-semibold text-gray-900 group-hover:text-primary-accent transition-colors mb-1 line-clamp-2">
             {archive.title}
           </h3>
 
@@ -176,10 +174,6 @@ export function PostCard({ archive, index }: PostCardProps) {
             </div>
           )}
 
-          {/* Excerpt */}
-          <p className="text-gray-600 text-xs line-clamp-1 mb-2">
-            {archive.excerpt}
-          </p>
 
           {/* Read More Link */}
           <div className="flex items-center justify-between mt-auto">
@@ -205,7 +199,7 @@ export function FeaturedArchiveCard(props: Props) {
   return (
     <div
       aria-label={`featured-archive-card-${props.archive.title?.toLowerCase() || ''}`}
-      className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500"
+      className="group relative bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500"
     >
       <Link 
         href={`/${props.postType === 'post' ? 'blog' : 'our-work'}/${props.archive.slug || ''}`} 
@@ -227,7 +221,7 @@ export function FeaturedArchiveCard(props: Props) {
         {/* Content */}
         <div className="relative z-10 flex h-full flex-col justify-end p-4 lg:p-6">
           {/* Title */}
-          <h2 className="text-xl lg:text-2xl font-bold text-white mb-2 line-clamp-2">
+          <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2 line-clamp-2">
             {props.archive.title}
           </h2>
 
@@ -258,7 +252,7 @@ export function FeaturedArchiveCard(props: Props) {
               <span className="text-white font-semibold text-xs">
                 {props.postType === 'post' ? 'Read Article' : 'View Project'}
               </span>
-              <div className="w-8 h-8 bg-primary-accent rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary-accent transition-all duration-300">
+              <div className="w-8 h-8 bg-primary-accent flex items-center justify-center group-hover:bg-white group-hover:text-primary-accent transition-all duration-300">
                 <svg 
                   className="w-4 h-4 text-white group-hover:text-primary-accent transition-colors" 
                   fill="none" 

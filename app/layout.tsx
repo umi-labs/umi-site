@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { nunito, poppins, tenorSans } from '@/app/_utils/fonts';
+import { cormorantGaramond, nunito, poppins, tenorSans } from '@/app/_utils/fonts';
 import { loadThemeSettings } from '@/sanity/loader/loadQuery';
 import React from 'react';
 
@@ -21,7 +21,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${nunito.variable} ${tenorSans.variable} font-sans`}
+      className={`${poppins.variable} ${nunito.variable} ${tenorSans.variable} ${cormorantGaramond.variable} font-sans`}
       style={styles}
     >
       <head>

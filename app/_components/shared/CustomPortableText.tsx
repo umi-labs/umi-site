@@ -48,7 +48,7 @@ export function CustomPortableText({
       normal: ({ children }) => {
         return (
           <p
-            className={`${paragraphClasses} prose mb-4 font-normal tracking-reduced`}
+            className={`${paragraphClasses} mb-4 font-normal tracking-reduced`}
           >
             {children}
           </p>
@@ -67,7 +67,7 @@ export function CustomPortableText({
       h2: ({ children }) => {
         return (
           <h2
-            className={`${paragraphClasses} prose mb-4 font-heading text-4xl font-normal leading-[110%] tracking-reduced`}
+            className={`${paragraphClasses} mb-4 font-heading text-4xl font-normal leading-[110%] tracking-reduced`}
           >
             {children}
           </h2>
@@ -76,7 +76,7 @@ export function CustomPortableText({
       h3: ({ children }) => {
         return (
           <h3
-            className={`${paragraphClasses} prose mb-4 font-heading text-2xl font-normal leading-6 tracking-reduced`}
+            className={`${paragraphClasses} mb-4 font-heading text-2xl font-normal leading-6 tracking-reduced`}
           >
             {children}
           </h3>
@@ -85,7 +85,7 @@ export function CustomPortableText({
       h4: ({ children }) => {
         return (
           <h4
-            className={`${paragraphClasses} prose mb-4 font-heading text-xl font-normal leading-6 tracking-reduced`}
+            className={`${paragraphClasses} mb-4 font-heading text-xl font-normal leading-6 tracking-reduced`}
           >
             {children}
           </h4>
@@ -94,7 +94,7 @@ export function CustomPortableText({
       h5: ({ children }) => {
         return (
           <h5
-            className={`${paragraphClasses} prose mb-4 font-subtitle text-xs font-bold leading-6 tracking-expanded`}
+            className={`${paragraphClasses} mb-4 font-subtitle text-xs font-bold leading-6 tracking-expanded`}
           >
             {children}
           </h5>
@@ -103,7 +103,7 @@ export function CustomPortableText({
       h6: ({ children }) => {
         return (
           <h6
-            className={`${paragraphClasses} prose mb-4 font-heading text-lg font-normal leading-6 tracking-normal`}
+            className={`${paragraphClasses} mb-4 font-heading text-lg font-normal leading-6 tracking-normal`}
           >
             {children}
           </h6>
@@ -126,7 +126,7 @@ export function CustomPortableText({
     list: {
       bullet: ({ children }) => (
         <ul
-          className={cn('mt-xl mx-4 my-4 list-disc *:ml-4 [&>li]:font-body', paragraphClasses)}
+          className={cn('mt-xl mx-2 my-4 list-disc *:ml-2', paragraphClasses)}
         >
           {children}
         </ul>
@@ -134,7 +134,7 @@ export function CustomPortableText({
       number: ({ children }) => (
         <ol
           className={cn(
-            'mt-lg my-4 ml-4 list-decimal *:ml-5 *:marker:font-bold',
+            'mt-lg my-4 ml-2 list-decimal *:ml-3 *:marker:font-bold',
             paragraphClasses
           )}
         >
