@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import type { ProjectPayload } from '@/types';
 import ProjectHero from '@/app/_components/shared/heros/ProjectHero';
-import { CaretRight } from '@phosphor-icons/react/dist/ssr';
+import { CaretRight, Download } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import CTASimple from '@/app/_components/shared/blocks/CTASimple';
 import CTATitleImage from '@/app/_components/shared/blocks/CTATitleImage';
@@ -169,7 +169,7 @@ function Project({ data }: ProjectProps) {
         {data?.cta && (
           <div className="bg-gray-50 py-16">
             <div className="mx-auto max-w-6xl px-6 md:px-8">
-              <CTASimple data={data.cta} />
+              <CTASimple data={data.cta as any} />
             </div>
           </div>
         )}
@@ -179,7 +179,7 @@ function Project({ data }: ProjectProps) {
         {data?.contactForm && (
           <div className="bg-primary-background py-16">
             <div className="mx-auto max-w-6xl px-6 md:px-8">
-              <CTATitleImage data={data.contactForm} />
+              <CTATitleImage data={data.contactForm as any} />
             </div>
           </div>
         )}

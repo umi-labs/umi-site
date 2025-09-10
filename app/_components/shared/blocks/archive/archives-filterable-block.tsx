@@ -158,7 +158,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
               {tags.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-gray-700 mb-3">
-                    {postType === 'project' ? 'Filter by Technology' : 'Filter by Category'}
+                    {postType === 'project' ? 'Filter by Service' : 'Filter by Category'}
                   </h4>
                   <div className="space-y-2">
                     {tags.map((tag, i) => (

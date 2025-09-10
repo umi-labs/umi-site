@@ -105,6 +105,7 @@ export interface PostPayload {
   coverImage?: Image;
   excerpt?: string;
   featured?: boolean;
+  categories?: Array<{ title: string } | string>;
   body?: PortableTextBlock[];
   metaData?: MetaData;
 }
