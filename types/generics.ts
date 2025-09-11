@@ -29,7 +29,7 @@ export interface Layout {
     | 'evenly';
   align?: 'center' | 'start' | 'end' | 'baseline' | 'stretch';
   textAlign?: 'center' | 'start' | 'end' | 'justify';
-  colour?: 'light' | 'dark' | 'accent';
+  colour?: 'light' | 'dark' | 'accent' | 'transparent';
 }
 
 export interface Buffers {

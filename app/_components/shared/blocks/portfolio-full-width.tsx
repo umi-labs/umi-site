@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import type { Button } from '@/types/generics';
 import {
   Slider,
@@ -17,6 +17,7 @@ import { CustomPortableText } from '@/app/_components/shared/CustomPortableText'
 import Container from '@/app/_components/ui/container';
 import { Link as CustomLink } from '@/app/_components/ui/link';
 import StandardArchiveCard from '@/app/_components/ui/card/archive-card';
+import { motion, useInView } from 'motion/react';
 
 interface PortfolioFullWidthProps {
   data: {
@@ -32,6 +33,9 @@ interface PortfolioFullWidthProps {
 }
 
 export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
   const { data: projects } = useQuery({
     queryKey: ['projects'],
     queryFn: () => getFeaturedProjects(),
@@ -41,60 +45,146 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
     <Container
       id="PortfolioFullWidth"
       options={{
-        colour: 'dark',
+        colour: 'light',
         buffers: {
           top: data.buffers?.top,
-          bottom: data.buffers?.bottom,
+          bottom: false,
         },
         maxWidth: true,
       }}
+      className="relative overflow-hidden py-20 md:py-32"
     >
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-8 px-4 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">
-        <div className="flex h-fit w-full grid-flow-row-dense flex-col items-start justify-center gap-y-6 place-self-start text-left md:items-start md:justify-start md:text-start md:gap-y-10">
-          {data.separator && <EyebrowSVG className="" />}
-          <h2>{data.title}</h2>
-          {data.content && <CustomPortableText value={data.content} />}
-          <div className="flex w-full flex-col items-start justify-start gap-6 lg:flex-row lg:items-center">
-            {data?.buttons?.map((button, i) => (
-              <CustomLink
-                key={i}
-                link={button.link}
-                size="default"
-                variant={button.type}
-                className="w-full lg:w-auto"
-              >
-                {button.title}
-              </CustomLink>
-            ))}
-          </div>
-        </div>
-        {projects && (
-          <Slider
-            opts={{
-              loop: true,
-            }}
-            className="relative col-span-2 mb-6 w-full md:mb-0"
+      {/* Custom gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#313E4E] via-[#368DB1] to-[#B0DEE6] opacity-95" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#FFE48C]/20 via-transparent to-[#ECCD7F]/30" />
+      
+      {/* Subtle pattern overlay */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#B0DEE6]/30 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-[#FFE48C]/30 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-[#368DB1]/20 to-[#B0DEE6]/20 rounded-full blur-2xl" />
+      </div>
+
+      <div ref={containerRef} className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-16 px-6 text-center lg:grid lg:grid-cols-3 lg:grid-rows-1 lg:gap-20 lg:px-10">
+        <motion.div 
+          className="flex h-fit w-full flex-col items-center justify-center gap-y-12 place-self-start text-center lg:items-start lg:justify-start lg:text-start"
+          initial={{ opacity: 0, x: -50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {data.separator && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            >
+              <EyebrowSVG className="" />
+            </motion.div>
+          )}
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            <SliderContent className="-ml-4 md:-ml-10">
-              {projects?.map((project, i) => (
-                <SliderItem
+            {data.title}
+          </motion.h2>
+          {data.content && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            >
+              <CustomPortableText 
+                value={data.content} 
+                paragraphClasses="text-lg md:text-xl text-white/90 leading-relaxed" 
+              />
+            </motion.div>
+          )}
+          <motion.div 
+            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          >
+            {data?.buttons?.map((button, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.8, delay: 0.6 + i * 0.1, ease: "easeOut" }}
+              >
+                <CustomLink
+                  link={button.link}
+                  size="default"
+                  variant={button.type}
+                  className="w-full lg:w-auto"
+                >
+                  {button.title}
+                </CustomLink>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+        
+        {projects && (
+          <motion.div
+            className="col-span-2 w-full"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+          >
+            {/* Desktop: Show multiple cards in a grid */}
+            <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              {projects?.slice(0, 6).map((project, i) => (
+                <motion.div
                   key={i}
-                  className="relative ml-4 md:ml-9"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.6, delay: 0.8 + i * 0.1, ease: "easeOut" }}
+                  whileHover={{ scale: 1.02 }}
                 >
                   <StandardArchiveCard
                     archive={project}
                     index={i}
                     postType="project"
                   />
-                </SliderItem>
+                </motion.div>
               ))}
-            </SliderContent>
-            <SliderIndicators className="space-x-8" />
-            <div className="absolute -bottom-8 left-8 flex items-start justify-center">
-              <SliderPrevious className="size-9 border border-[#C5C7C9] bg-[#F9F9FA]" />
-              <SliderNext className="size-9 border border-[#C5C7C9] bg-[#F9F9FA]" />
             </div>
-          </Slider>
+
+            {/* Mobile/Tablet: Use slider */}
+            <div className="lg:hidden">
+              <Slider
+                opts={{
+                  loop: true,
+                  align: "start",
+                  slidesToScroll: 1,
+                }}
+                className="relative w-full"
+              >
+                <SliderContent className="-ml-4">
+                  {projects?.map((project, i) => (
+                    <SliderItem
+                      key={i}
+                      className="relative ml-4"
+                    >
+                      <StandardArchiveCard
+                        archive={project}
+                        index={i}
+                        postType="project"
+                      />
+                    </SliderItem>
+                  ))}
+                </SliderContent>
+                <SliderIndicators className="space-x-8" />
+                <div className="absolute -bottom-12 left-6 flex items-center justify-center gap-4">
+                  <SliderPrevious className="size-10 border border-white/30 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300" />
+                  <SliderNext className="size-10 border border-white/30 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300" />
+                </div>
+              </Slider>
+            </div>
+          </motion.div>
         )}
       </div>
     </Container>

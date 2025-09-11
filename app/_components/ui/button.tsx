@@ -5,31 +5,52 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex interactable items-center font-medium justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex interactable items-center font-medium justify-center whitespace-nowrap rounded-xl text-sm font-semibold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#368DB1]/50 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden group',
   {
     variants: {
       variant: {
         default:
-          'bg-primary-foreground border border-primary-foreground text-primary-background shadow hover:bg-transparent w-fit hover:text-primary-foreground',
+          'bg-gradient-to-r from-[#368DB1] to-[#368DB1] text-white border border-[#368DB1] shadow-lg hover:from-[#313E4E] hover:to-[#368DB1] hover:scale-105 hover:shadow-xl active:scale-95 w-fit',
         destructive:
-          'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+          'bg-destructive text-destructive-foreground shadow-lg hover:bg-destructive/90 hover:scale-105 hover:shadow-xl active:scale-95',
         outline:
-          'border border-primary-foreground text-primary-foreground bg-transparent shadow-sm hover:bg-primary-foreground hover:text-primary-background',
+          'border-2 border-[#368DB1] text-[#368DB1] bg-transparent shadow-sm hover:bg-[#368DB1] hover:text-white hover:scale-105 hover:shadow-lg active:scale-95',
         secondary:
-          'bg-primary-background border border-primary-background text-primary-foreground shadow hover:bg-primary-foreground w-fit hover:text-primary-background',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-xs text-gray-500 transition-all duration-300 ease-in-out hocus:text-gray-900 hocus:underline underline-offset-4',
+          'bg-gradient-to-r from-[#313E4E] to-[#313E4E] text-white border border-[#313E4E] shadow-lg hover:from-[#368DB1] hover:to-[#368DB1] hover:scale-105 hover:shadow-xl active:scale-95 w-fit',
+        ghost: 
+          'text-[#313E4E] hover:bg-[#B0DEE6]/10 hover:text-[#368DB1] hover:scale-105 active:scale-95',
+        link: 
+          'text-[#368DB1] transition-all duration-300 ease-in-out hover:text-[#313E4E] hover:underline underline-offset-4 hover:scale-105',
         'link-external':
-          "text-zinc-900 hocus:text-zinc-700 after:content-['_↗']",
-        'link-interactive': 'text-zinc-900 hocus:text-zinc-700 interactable',
+          "text-[#368DB1] hover:text-[#313E4E] after:content-['_↗'] hover:scale-105 transition-transform duration-200",
+        'link-interactive': 
+          'text-[#313E4E] hover:text-[#368DB1] interactable hover:scale-105 transition-transform duration-200',
         'link-light':
-          'text-zinc-100 hocus:text-zinc-200 hocus:underline underline-offset-4',
+          'text-white hover:text-[#B0DEE6] hover:underline underline-offset-4 hover:scale-105 transition-transform duration-200',
+        'gradient':
+          'bg-gradient-to-r from-[#368DB1] via-[#B0DEE6] to-[#FFE48C] text-[#313E4E] border-0 shadow-lg hover:from-[#FFE48C] hover:via-[#B0DEE6] hover:to-[#368DB1] w-fit hover:scale-105 hover:shadow-xl active:scale-95 transition-all duration-300',
+        'bounce':
+          'bg-gradient-to-r from-[#368DB1] to-[#368DB1] text-white border border-[#368DB1] shadow-lg hover:from-[#313E4E] hover:to-[#368DB1] w-fit hover:scale-110 hover:shadow-xl active:scale-95 hover:animate-bounce',
+        'glow':
+          'bg-gradient-to-r from-[#368DB1] to-[#368DB1] text-white border border-[#368DB1] shadow-lg hover:from-[#313E4E] hover:to-[#368DB1] w-fit hover:scale-105 hover:shadow-2xl hover:shadow-[#368DB1]/25 active:scale-95',
+        'shimmer':
+          'bg-gradient-to-r from-[#368DB1] via-[#B0DEE6] to-[#FFE48C] text-[#313E4E] border-0 shadow-lg hover:scale-105 hover:shadow-xl active:scale-95 button-shimmer',
+        'pulse':
+          'bg-gradient-to-r from-[#368DB1] to-[#368DB1] text-white border border-[#368DB1] shadow-lg hover:from-[#313E4E] hover:to-[#368DB1] w-fit hover:scale-105 hover:shadow-xl active:scale-95 button-pulse',
+        'enhanced':
+          'bg-gradient-to-r from-[#368DB1] to-[#368DB1] text-white border border-[#368DB1] shadow-lg hover:from-[#313E4E] hover:to-[#368DB1] w-fit hover:scale-105 hover:shadow-xl active:scale-95 button-enhanced',
+        'umi-primary':
+          'bg-gradient-to-r from-[#368DB1] to-[#368DB1] text-white border border-[#368DB1] shadow-lg hover:from-[#313E4E] hover:to-[#368DB1] w-fit hover:scale-105 hover:shadow-xl active:scale-95',
+        'umi-secondary':
+          'bg-gradient-to-r from-[#B0DEE6] to-[#B0DEE6] text-[#313E4E] border border-[#B0DEE6] shadow-lg hover:from-[#368DB1] hover:to-[#368DB1] hover:text-white w-fit hover:scale-105 hover:shadow-xl active:scale-95',
+        'umi-accent':
+          'bg-gradient-to-r from-[#FFE48C] to-[#ECCD7F] text-[#313E4E] border border-[#FFE48C] shadow-lg hover:from-[#368DB1] hover:to-[#368DB1] hover:text-white w-fit hover:scale-105 hover:shadow-xl active:scale-95',
       },
       size: {
         default: 'px-6 py-3',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-10 rounded-md px-8',
-        icon: 'h-9 w-9',
+        sm: 'h-8 rounded-lg px-3 text-xs',
+        lg: 'h-12 rounded-xl px-8 text-base',
+        icon: 'h-10 w-10 rounded-lg',
         link: 'w-fit h-fit',
       },
     },

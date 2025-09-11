@@ -27,7 +27,7 @@ export default function FormBlock({ data }: Props) {
       <FormBuilderBlock
         form={form}
         uid={form._key}
-        className="w-full max-w-lg"
+        className="w-full max-w-[800px] mx-auto"
       />
     </Container>
   );

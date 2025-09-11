@@ -14,12 +14,12 @@ export default function FIELDSET({
       id={id}
       name={name}
       className={clsx(
-        'w-full text-black *:placeholder:text-gray-400',
+        'w-full space-y-2',
         classNames
       )}
       {...props}
     >
-      <label htmlFor={id} className="sr-only">
+      <label htmlFor={id} className="block text-sm font-semibold text-[#313E4E] mb-2">
         {name}
       </label>
       {children}

@@ -30,16 +30,20 @@ export default async function MeetTheTeamSection({ data }: Props) {
       <section
         id="MeetTheTeam"
         className={cn(
-          'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible py-10 md:gap-12 md:py-32 lg:gap-y-16'
+          'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible py-20 md:gap-12 md:py-32 lg:gap-y-16'
         )}
       >
         <div className="flex-center flex-col gap-y-10 px-6 text-center">
           {data.separator && <EyebrowSVG className="" />}
-          <h1>{data.title}</h1>
-          <p>{data.description}</p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
+            {data.title}
+          </h1>
+          <p className="text-xl text-[#313E4E]/80 max-w-3xl leading-relaxed">{data.description}</p>
         </div>
 
-        <MeetTheTeamFilterableBlock />
+        <div className="w-full">
+          <MeetTheTeamFilterableBlock />
+        </div>
       </section>
     </HydrationBoundary>
   );

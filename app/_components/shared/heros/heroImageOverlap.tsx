@@ -1,48 +1,164 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import { HeroImageOverlapProps } from '@/types/components/heroImageOverlap';
 import Image from 'next/image';
 import Link from '@/app/_components/ui/link';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
+import { motion, useInView } from 'motion/react';
+import { cn } from '@/app/_utils';
+import { BackgroundGradientAnimation, UmiGradientPresets } from '@/app/_components/ui/background-gradient-animation';
 
 export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
+  const containerRef = useRef<HTMLElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
   return (
-    <section className="relative mx-auto mt-16 grid min-h-[860px] w-full max-w-7xl grid-flow-dense grid-cols-1 grid-rows-2 gap-4 px-8 py-10 md:mt-0 md:grid-cols-5 md:grid-rows-1 lg:px-10">
-      <div className="flex flex-col items-center justify-center gap-y-10 text-center md:col-span-2 md:items-start md:text-left">
-        {data.separator && <EyebrowSVG className="" />}
-        <div className="flex flex-col items-center justify-center gap-y-6 md:items-start">
-          <h5 className="text-sm uppercase text-primary-accent">
-            {data.subtitle}
-          </h5>
-          <h1>{data.title}</h1>
-        </div>
-        <CustomPortableText value={data.content} />
-        <div className="flex w-full items-center justify-center gap-6 md:flex-row md:items-start md:justify-start">
-          {data?.buttons?.map((button, i) => (
-            <Link
-              key={i}
-              link={button.link}
-              size="default"
-              variant={button.type}
-              className=""
-            >
-              {button.title}
-            </Link>
-          ))}
-        </div>
+    <>
+      {/* Full-width subtle gradient background */}
+      <div className="fixed top-0 left-0 right-0 bottom-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#B0DEE6]/3 via-[#368DB1]/2 to-[#FFE48C]/3" />
+        <div className="absolute inset-0 bg-gradient-to-tl from-[#313E4E]/2 via-transparent to-[#368DB1]/3" />
       </div>
-      <div className="relative flex items-center justify-center md:col-span-3">
-        <BackgroundSVG className="absolute inset-0 -z-10 size-full" />
-        {data.image.asset?.url && (
-          <Image
-            src={data.image.asset?.url || ''}
-            width={data.image.asset?.metadata?.dimensions.width}
-            height={data.image.asset?.metadata?.dimensions.height}
-            alt={data.image.asset?.altText ? data.image.asset?.altText : ''}
-          />
+      
+      <section 
+        ref={containerRef}
+        className="relative mx-auto mt-16 grid min-h-[860px] w-full max-w-7xl grid-flow-dense grid-cols-1 grid-rows-2 gap-8 px-8 py-10 md:mt-0 md:grid-cols-5 md:grid-rows-1 lg:px-10"
+      >
+      {/* Content Section */}
+      <motion.div 
+        className="flex flex-col items-center justify-center gap-y-12 text-center md:col-span-2 md:items-start md:text-left"
+        initial={{ opacity: 0, x: -50 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+      >
+        {/* Separator */}
+        {data.separator && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          >
+            <EyebrowSVG className="" />
+          </motion.div>
         )}
-      </div>
+
+        {/* Title Section */}
+        <motion.div 
+          className="flex flex-col items-center justify-center gap-y-6 md:items-start"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        >
+          <motion.h5 
+            className="text-sm uppercase font-semibold tracking-wider bg-gradient-to-r from-[#368DB1] to-[#B0DEE6] bg-clip-text text-transparent"
+            whileHover={{ scale: 1.05 }}
+          >
+            {data.subtitle}
+          </motion.h5>
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent leading-tight"
+            whileHover={{ scale: 1.02 }}
+          >
+            {data.title}
+          </motion.h1>
+        </motion.div>
+
+        {/* Content */}
+        <motion.div
+          className="max-w-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+        >
+          <CustomPortableText 
+            value={data.content} 
+            paragraphClasses="text-lg text-[#313E4E]/80 leading-relaxed"
+          />
+        </motion.div>
+
+        {/* Buttons */}
+        {data?.buttons && data.buttons.length > 0 && (
+          <motion.div 
+            className="flex w-full flex-col items-center justify-center gap-6 md:flex-row md:items-start md:justify-start"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          >
+            {data.buttons.map((button, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.7 + (i * 0.1), 
+                  ease: "easeOut" 
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  link={button.link}
+                  size="default"
+                  variant={button.type}
+                  className=""
+                >
+                  {button.title}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </motion.div>
+
+      {/* Image Section */}
+      <motion.div 
+        className="relative flex items-center justify-center md:col-span-3 group"
+        initial={{ opacity: 0, x: 50 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        whileHover={{ scale: 1.02 }}
+      >
+        {/* Enhanced Background SVG */}
+        <motion.div
+          className="absolute inset-0 -z-10"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+        >
+          <BackgroundSVG className="size-full" />
+        </motion.div>
+
+        {/* Image Container */}
+        {data.image.asset?.url && (
+          <motion.div
+            className="relative overflow-hidden rounded-2xl shadow-2xl"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <Image
+              src={data.image.asset?.url || ''}
+              width={data.image.asset?.metadata?.dimensions.width}
+              height={data.image.asset?.metadata?.dimensions.height}
+              alt={data.image.asset?.altText ? data.image.asset?.altText : ''}
+              className="w-full h-auto object-cover"
+            />
+            
+            {/* Hover shine effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out">
+              <div className="h-full w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-[#FFE48C] to-[#ECCD7F] rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 delay-100" />
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-[#B0DEE6] to-[#368DB1] rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 delay-200" />
+          </motion.div>
+        )}
+      </motion.div>
     </section>
+    </>
   );
 }
 
@@ -56,14 +172,28 @@ const BackgroundSVG = (props: React.HTMLAttributes<HTMLOrSVGElement>) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      <defs>
+        <linearGradient id="backgroundGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#B0DEE6" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="#368DB1" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#FFE48C" stopOpacity="0.1" />
+        </linearGradient>
+        <linearGradient id="backgroundGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#368DB1" stopOpacity="0.2" />
+          <stop offset="50%" stopColor="#B0DEE6" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="#ECCD7F" stopOpacity="0.1" />
+        </linearGradient>
+      </defs>
       <path
         d="M698.986 487.537C948.656 327.553 641.464 186.83 516.629 86.3037C213.047 -185.638 21.2656 248.897 128.599 508.785C228.835 769.73 541.963 618.009 698.986 487.475"
-        fill="#EBF7F9"
+        fill="url(#backgroundGradient1)"
+        className="group-hover:opacity-100 opacity-80 transition-opacity duration-500"
       />
       <path
         opacity="0.8"
         d="M12.2655 364.629C29.2011 167.98 339.376 191.143 482.603 148.06C798.178 58.1972 597.501 685.772 447.277 733.373C254.845 798.315 21.991 592.916 12.2655 364.629ZM659.021 316.578C716.409 26.8866 400.193 154.489 240.154 176.959C-168.935 212.938 13.8141 646.79 277.681 745.084C537.13 849.25 644.707 519.123 659.021 316.578Z"
-        fill="#D8EFF3"
+        fill="url(#backgroundGradient2)"
+        className="group-hover:opacity-100 opacity-60 transition-opacity duration-500"
       />
     </svg>
   );

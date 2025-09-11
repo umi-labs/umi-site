@@ -17,7 +17,7 @@ function Team({ data }: TeamProps) {
         <SchemaMarkup schema={data.metaData.schemaMarkup} />
       )}
 
-      <div className="mb-14">
+      <div className="relative">
         {/* Hero */}
         {data && <TeamHero {...data} />}
 

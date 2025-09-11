@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import StandardArchiveCard, { FeaturedArchiveCard } from '@/app/_components/ui/card/archive-card';
 import { PostPayload, ProjectPayload } from '@/types';
 import { Button } from '@/app/_components/ui/button';
 import { getPaginatedProjects } from '@/app/_actions/paginationQueries';
+import { motion } from 'motion/react';
 
 type PostProps = {
   archives: PostPayload[] | undefined;
@@ -19,7 +20,7 @@ type Props = {
   index?: number;
 } & (ProjectProps | PostProps);
 
-export default function ArchivesGrid({
+const ArchivesGrid = memo(function ArchivesGrid({
   archives: archiveArray,
   postType,
 }: Props) {
@@ -35,7 +36,7 @@ export default function ArchivesGrid({
     lastId: '',
   });
 
-  const updateArchives = async () => {
+  const updateArchives = useCallback(async () => {
     const { lastCreatedAt, lastId } = paginationConfig;
     const newArchives = await getPaginatedProjects({
       lastCreatedAt: lastCreatedAt,
@@ -50,7 +51,7 @@ export default function ArchivesGrid({
     );
 
     setArchives(allArchives);
-  };
+  }, [archives, paginationConfig]);
 
   return (
     <div className="w-full">
@@ -58,7 +59,7 @@ export default function ArchivesGrid({
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6 w-full">
         {archives?.map((archive, i) => (
           <StandardArchiveCard 
-            key={i} 
+            key={archive._id || i} 
             archive={archive} 
             postType={postType} 
             index={i} 
@@ -68,10 +69,16 @@ export default function ArchivesGrid({
 
       {/* Pagination */}
       {archives?.length! > 9 && (
-        <div className="mt-16 flex w-full justify-center">
+        <motion.div 
+          className="mt-16 flex w-full justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+        >
           <Button
-            variant="outline"
-            className="px-8 py-3 text-sm font-medium hover:bg-primary-accent hover:text-white transition-colors"
+            variant="umi-primary"
+            size="lg"
+            className="px-8 py-3 text-sm font-semibold"
             onClick={() => {
               setPaginationConfig({
                 lastCreatedAt: archives![0]?._createdAt!,
@@ -80,10 +87,12 @@ export default function ArchivesGrid({
               updateArchives();
             }}
           >
-            Load More Projects
+            Load More {postType === 'post' ? 'Posts' : 'Projects'}
           </Button>
-        </div>
+        </motion.div>
       )}
     </div>
   );
-}
+});
+
+export default ArchivesGrid;

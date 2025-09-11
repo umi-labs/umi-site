@@ -42,8 +42,8 @@ export default function MeetTheTeamGrid({ team: teamArray }: Props) {
 
   return (
     <div className="size-full">
-      {/* Archives */}
-      <div className="grid h-full w-full grid-cols-1 items-center justify-center gap-16 px-6 py-10 md:grid-cols-2 lg:grid-cols-3">
+      {/* Team Grid */}
+      <div className="grid h-full w-full grid-cols-1 items-center justify-center gap-8 px-6 py-10 md:grid-cols-2 lg:grid-cols-3">
         {team?.map((member, i) => <TeamCard team={member} key={i} />)}
       </div>
     </div>

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import type { Image as ImageType } from '@/types/generics';
 import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
@@ -7,6 +7,8 @@ import { getLogos, LogosPayload } from '@/app/_actions/logos';
 import { useQuery } from '@tanstack/react-query';
 import Container from '@/app/_components/ui/container';
 import Link from '@/app/_components/ui/link';
+import { motion, useInView } from 'motion/react';
+import { cn } from '@/app/_utils';
 
 interface LogoCloudProps {
   data: {
@@ -18,6 +20,8 @@ interface LogoCloudProps {
 }
 
 export default function LogoCloud({ data }: LogoCloudProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
   const [logos, setLogos] = React.useState<LogosPayload[]>([]);
 
   React.useEffect(() => {
@@ -41,31 +45,61 @@ export default function LogoCloud({ data }: LogoCloudProps) {
     <Container
       id="LogoCloud"
       options={{
-        colour: 'dark',
+        colour: 'light',
         buffers: {
           top: false,
           bottom: false,
         },
         maxWidth: true,
       }}
-      className="gap-y-12"
+      className="gap-y-16 py-20 md:py-32 bg-transparent"
     >
-      <div className="flex w-full flex-col items-center justify-center mx-auto max-w-7xl gap-6">
-        {data.separator && <EyebrowSVG className="" />}
-        <h2 className="max-w-full">{data.title}</h2>
+      <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
+        <motion.div 
+          className="mb-16 flex w-full flex-col items-center justify-center gap-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {data.separator && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            >
+              <EyebrowSVG className="" />
+            </motion.div>
+          )}
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          >
+            {data.title}
+          </motion.h2>
+        </motion.div>
+        {logos && logos.length > 0 && (
+          <motion.div 
+            className="grid w-full grid-cols-2 place-items-center items-center justify-center gap-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          >
+            {logos.map((logo, i) => (
+              <Logo key={i} logo={logo} index={i} />
+            ))}
+          </motion.div>
+        )}
       </div>
-      {logos && logos.length > 0 && (
-        <div className="grid w-full grid-cols-2 place-items-center items-center justify-center mx-auto max-w-7xl gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {logos.map((logo, i) => (
-            <Logo key={i} logo={logo} />
-          ))}
-        </div>
-      )}
     </Container>
   );
 }
 
-const Logo = ({ logo }: { logo: LogoCloudProps['data']['logos'][0] }) => {
+const Logo = ({ logo, index = 0 }: { logo: LogoCloudProps['data']['logos'][0]; index: number }) => {
+  const logoRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(logoRef, { once: true, margin: "-50px" });
+
   if (!logo?.logo?.asset?.url) {
     return null;
   }
@@ -75,23 +109,65 @@ const Logo = ({ logo }: { logo: LogoCloudProps['data']['logos'][0] }) => {
   const width = logo.logo.asset.metadata?.dimensions?.width || 150;
   const height = logo.logo.asset.metadata?.dimensions?.height || 150;
 
-  const image = (
-    <Image
-      src={imageUrl}
-      alt={altText}
-      width={width}
-      height={height}
-      className="aspect-square max-h-40 w-auto p-4"
-    />
+  const logoContent = (
+    <motion.div 
+      ref={logoRef}
+      className="group relative flex h-32 w-full items-center justify-center overflow-hidden rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-500"
+      initial={{ opacity: 0, y: 40, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.8 }}
+      transition={{ 
+        duration: 0.8, 
+        delay: index * 0.1, 
+        ease: "easeOut" 
+      }}
+      whileHover={{ 
+        scale: 1.05,
+        y: -8
+      }}
+    >
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#B0DEE6]/5 via-[#368DB1]/5 to-[#FFE48C]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      {/* Decorative elements */}
+      <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-[#FFE48C] to-[#ECCD7F] rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 delay-100" />
+      <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-br from-[#B0DEE6] to-[#368DB1] rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 delay-200" />
+      
+      {/* Logo image */}
+      <motion.div
+        className="relative z-10 flex items-center justify-center p-6"
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
+        <Image
+          src={imageUrl}
+          alt={altText}
+          width={width}
+          height={height}
+          className="max-h-20 w-auto object-contain object-center filter grayscale group-hover:grayscale-0 transition-all duration-500"
+          loading="lazy"
+        />
+      </motion.div>
+
+      {/* Hover shine effect */}
+      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out">
+        <div className="h-full w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
+      </div>
+
+      {/* Border accent */}
+      <div className="absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-[#B0DEE6]/20 via-[#368DB1]/20 to-[#FFE48C]/20 bg-clip-border opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </motion.div>
   );
 
   return logo.link?.url ? (
-    <a href={logo.link.url} className="flex items-center justify-center">
-      {image}
-    </a>
+    <Link 
+      href={logo.link.url} 
+      className="block h-full w-full"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {logoContent}
+    </Link>
   ) : (
-    <div className="flex items-center justify-center">
-      {image}
-    </div>
+    logoContent
   );
 };

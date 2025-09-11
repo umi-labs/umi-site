@@ -198,7 +198,7 @@ const Nav = ({ menu }) => {
       </NavigationMenu.List>
       <div
         className={cn(
-          'perspective-[2000px] absolute top-3/4 flex w-full',
+          'perspective-[2000px] absolute top-full flex w-full mt-4',
           activeMenu === 'About' ||
             (activeMenu === '' && lastActiveMenu.current === 'About')
             ? 'justify-start md:-translate-x-[60px]'
