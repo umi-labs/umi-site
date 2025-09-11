@@ -5,6 +5,7 @@ import Link from '@/app/_components/ui/link';
 import React from 'react';
 import { PortableTextBlock } from 'next-sanity';
 import { motion } from 'motion/react';
+import { BackgroundGradientAnimation, UmiGradientPresets } from '@/app/_components/ui/background-gradient-animation';
 
 export interface BasicHeroProps {
   data: {
@@ -20,7 +21,7 @@ export default function BasicHero({ data }: BasicHeroProps) {
   return (
     <>
       {/* Full-width subtle gradient background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="fixed top-0 left-0 right-0 bottom-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#B0DEE6]/3 via-[#368DB1]/2 to-[#FFE48C]/3" />
         <div className="absolute inset-0 bg-gradient-to-tl from-[#313E4E]/2 via-transparent to-[#368DB1]/3" />
       </div>

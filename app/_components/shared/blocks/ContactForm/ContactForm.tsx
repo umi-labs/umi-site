@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { STATUS, STATUS_TYPE } from './types';
 
 import { INPUT, TEXTAREA, FIELDSET } from '@/app/_components/ui/Forms';
+import { Button } from '@/app/_components/ui/button';
 
 export default function ContactForm() {
   const [formData, setFormData] = React.useState({
@@ -74,13 +75,23 @@ export default function ContactForm() {
             register={register}
           />
         </FIELDSET>
-        <button
-          className="hover:text-isabelline border border-black bg-transparent px-10 py-4 text-black transition-colors duration-300 ease-in-out hover:bg-black"
+        <Button
           type="submit"
+          variant="umi-primary"
+          size="lg"
+          className="px-12 py-4 text-lg font-semibold"
         >
-          Send
-        </button>
-        <p>{status?.MESSAGE}</p>
+          Send Message
+        </Button>
+        {status?.MESSAGE && (
+          <p className={`text-center font-medium ${
+            status === STATUS[2] ? 'text-green-600' : 
+            status === STATUS[3] ? 'text-red-600' : 
+            'text-[#368DB1]'
+          }`}>
+            {status?.MESSAGE}
+          </p>
+        )}
       </form>
     </section>
   );

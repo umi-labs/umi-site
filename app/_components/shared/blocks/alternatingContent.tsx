@@ -2,7 +2,6 @@
 
 import React, { useRef } from 'react';
 import { cn } from '@/app/_utils';
-import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 import Image from 'next/image';
 import { PortableTextBlock } from 'next-sanity';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
@@ -47,14 +46,16 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
     <Container
       id="AlternatingContent"
       options={{
-        colour: 'dark',
+        colour: 'light',
         buffers: {
-          top: data.buffers?.top,
-          bottom: data.buffers?.bottom,
+          top: false,
+          bottom: false,
         },
         maxWidth: true,
       }}
+      className="py-16 md:py-40"
     >
+      
       <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
         <motion.div 
           className="mb-16 flex w-full flex-col items-center justify-center gap-8"
@@ -62,17 +63,8 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {data.separator && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            >
-              <EyebrowSVG className="" />
-            </motion.div>
-          )}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#313E4E] via-[#368DB1] to-[#368DB1] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -169,9 +161,6 @@ const Card = ({
             </motion.div>
           </div>
 
-          {/* Decorative elements */}
-          <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-[#368DB1]/20 to-[#B0DEE6]/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700" />
-          <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-[#B0DEE6]/20 to-[#FFE48C]/20 rounded-full blur-lg group-hover:scale-125 transition-transform duration-700" />
         </motion.div>
 
         {/* Image Section */}
@@ -187,12 +176,12 @@ const Card = ({
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             {/* Image container with enhanced styling */}
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl p-6">
               {/* Background gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#B0DEE6]/10 via-[#368DB1]/10 to-[#FFE48C]/10 rounded-2xl" />
               
               {/* Image */}
-              <div className={`relative flex aspect-[${aspectRatio}] h-fit w-full items-center justify-center p-8`}>
+              <div className={`relative flex aspect-[${aspectRatio}] h-fit w-full items-center justify-center p-12`}>
                 <Image
                   src={url || ''}
                   alt={altText || ''}
@@ -212,9 +201,6 @@ const Card = ({
               </div>
             </div>
 
-            {/* Floating decorative elements */}
-            <div className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-[#368DB1] to-[#B0DEE6] rounded-full opacity-0 group-hover/image:opacity-100 group-hover/image:scale-110 transition-all duration-500 delay-100" />
-            <div className="absolute -bottom-6 -left-6 w-8 h-8 bg-gradient-to-br from-[#FFE48C] to-[#ECCD7F] rounded-full opacity-0 group-hover/image:opacity-100 group-hover/image:scale-110 transition-all duration-500 delay-200" />
           </motion.div>
         )}
       </div>

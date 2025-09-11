@@ -15,10 +15,20 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
 
   return (
     <>
-      {/* Full-width subtle gradient background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#B0DEE6]/3 via-[#368DB1]/2 to-[#FFE48C]/3" />
-        <div className="absolute inset-0 bg-gradient-to-tl from-[#313E4E]/2 via-transparent to-[#368DB1]/3" />
+      {/* Aurora Dream Vivid Bloom */}
+      <div className="fixed top-0 left-0 right-0 bottom-0 -z-10 overflow-hidden">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 60% at 70% 20%, rgba(54, 141, 177, 0.85), transparent 68%),
+              radial-gradient(ellipse 70% 60% at 20% 80%, rgba(255, 228, 140, 0.75), transparent 68%),
+              radial-gradient(ellipse 60% 50% at 60% 65%, rgba(176, 222, 230, 0.98), transparent 68%),
+              radial-gradient(ellipse 65% 40% at 50% 60%, rgba(236, 205, 127, 0.3), transparent 68%),
+              linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)
+            `,
+          }}
+        />
       </div>
       
       <section
@@ -30,7 +40,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
       >
       <div
         className={cn(
-          'relative z-10 flex w-full flex-col items-center justify-center gap-y-10 py-10 text-center md:py-32',
+          'relative z-10 flex w-full flex-col items-center justify-center gap-y-10 pt-10 text-center md:pt-32',
           data?.background === 'light' ? 'text-[#313E4E]' : 'text-white'
         )}
       >
@@ -59,7 +69,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
         )}
         <div
           className={cn(
-            'relative flex w-full flex-col items-center justify-center gap-y-16 px-6 md:px-28'
+            'relative flex w-full flex-col items-center justify-center gap-y-8 md:gap-y-16 px-6 md:px-28'
           )}
         >
           {/* Separator */}
@@ -79,7 +89,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             className={cn(
               "text-5xl md:text-6xl lg:text-7xl font-bold text-center leading-tight",
               data?.background === 'light' 
-                ? "bg-gradient-to-r from-[#313E4E] via-[#368DB1] to-[#368DB1] bg-clip-text text-transparent"
+                ? "bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
                 : "text-white"
             )}
             initial={{ opacity: 0, y: 30 }}
@@ -179,7 +189,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#313E4E] via-[#368DB1] to-[#368DB1] bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
               {data.bottomContent.title}
             </h2>
             <CustomPortableText 

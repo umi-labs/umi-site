@@ -5,6 +5,7 @@ import StandardArchiveCard, { FeaturedArchiveCard } from '@/app/_components/ui/c
 import { PostPayload, ProjectPayload } from '@/types';
 import { Button } from '@/app/_components/ui/button';
 import { getPaginatedProjects } from '@/app/_actions/paginationQueries';
+import { motion } from 'motion/react';
 
 type PostProps = {
   archives: PostPayload[] | undefined;
@@ -68,10 +69,16 @@ const ArchivesGrid = memo(function ArchivesGrid({
 
       {/* Pagination */}
       {archives?.length! > 9 && (
-        <div className="mt-16 flex w-full justify-center">
+        <motion.div 
+          className="mt-16 flex w-full justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+        >
           <Button
-            variant="outline"
-            className="px-8 py-3 text-sm font-medium hover:bg-primary-accent hover:text-white transition-colors"
+            variant="umi-primary"
+            size="lg"
+            className="px-8 py-3 text-sm font-semibold"
             onClick={() => {
               setPaginationConfig({
                 lastCreatedAt: archives![0]?._createdAt!,
@@ -80,9 +87,9 @@ const ArchivesGrid = memo(function ArchivesGrid({
               updateArchives();
             }}
           >
-            Load More Projects
+            Load More {postType === 'post' ? 'Posts' : 'Projects'}
           </Button>
-        </div>
+        </motion.div>
       )}
     </div>
   );

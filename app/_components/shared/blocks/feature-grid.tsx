@@ -26,7 +26,18 @@ export default function FeatureGrid({ data }: Props) {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <Container id="FeatureGrid">
+    <Container 
+      id="FeatureGrid"
+      options={{
+        colour: 'light',
+        buffers: {
+          top: false,
+          bottom: false,
+        },
+        maxWidth: true,
+      }}
+      className="bg-transparent py-16 md:py-40"
+    >
       <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
         <motion.div 
           className="mb-16 flex w-full flex-col items-center justify-center gap-8"
@@ -44,7 +55,7 @@ export default function FeatureGrid({ data }: Props) {
             </motion.div>
           )}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#313E4E] via-[#368DB1] to-[#368DB1] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}

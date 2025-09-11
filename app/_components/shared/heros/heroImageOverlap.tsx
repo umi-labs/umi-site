@@ -6,6 +6,7 @@ import Link from '@/app/_components/ui/link';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import { motion, useInView } from 'motion/react';
 import { cn } from '@/app/_utils';
+import { BackgroundGradientAnimation, UmiGradientPresets } from '@/app/_components/ui/background-gradient-animation';
 
 export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
   const containerRef = useRef<HTMLElement>(null);
@@ -14,7 +15,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
   return (
     <>
       {/* Full-width subtle gradient background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="fixed top-0 left-0 right-0 bottom-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#B0DEE6]/3 via-[#368DB1]/2 to-[#FFE48C]/3" />
         <div className="absolute inset-0 bg-gradient-to-tl from-[#313E4E]/2 via-transparent to-[#368DB1]/3" />
       </div>
@@ -55,7 +56,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
             {data.subtitle}
           </motion.h5>
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#313E4E] via-[#368DB1] to-[#368DB1] bg-clip-text text-transparent leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent leading-tight"
             whileHover={{ scale: 1.02 }}
           >
             {data.title}

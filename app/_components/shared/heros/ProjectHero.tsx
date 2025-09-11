@@ -11,7 +11,7 @@ interface ProjectHeroProps {
 
 export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
   return (
-    <section className="relative h-[50vh] min-h-[400px] bg-gray-900">
+    <section className="relative h-[60vh] min-h-[500px] overflow-hidden">
       {/* Hero Image */}
       <div className="absolute inset-0">
         <Image
@@ -43,7 +43,7 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
                 </div>
               )}
               
-              <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent md:text-5xl lg:text-6xl">
                 {project?.clientName || project?.title}
               </h1>
               

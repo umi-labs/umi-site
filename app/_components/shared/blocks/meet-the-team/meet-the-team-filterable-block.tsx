@@ -38,26 +38,28 @@ export default function MeetTheTeamFilterableBlock() {
 
   return (
     <>
-      {/* Type */}
+      {/* Department Filters */}
       {departments.length > 0 && (
-        <div className="flex flex-wrap items-center justify-center gap-4 py-6 text-xs text-gray-600">
+        <div className="flex flex-wrap items-center justify-center gap-4 py-8">
           {departments.map((department, i) => {
             const isActive =
               reformatTag(currentDepartment).toLowerCase() ===
               department.toLowerCase();
             return (
-              <span
+              <button
                 key={i}
                 className={cn(
-                  'interactable border-b-2 border-gray-200 px-5 py-2 text-center text-sm uppercase text-primary-foreground transition-colors duration-300 ease-in-out',
-                  isActive && 'border-primary-foreground'
+                  'px-6 py-3 rounded-full text-sm font-medium uppercase tracking-wider transition-all duration-300 ease-in-out',
+                  isActive 
+                    ? 'bg-[#313E4E] text-white border border-[#313E4E] shadow-lg' 
+                    : 'bg-white text-[#313E4E] border border-[#313E4E]/20 hover:bg-[#313E4E] hover:text-white hover:border-[#313E4E]'
                 )}
                 onClick={() => {
                   setCurrentDepartment(department);
                 }}
               >
                 {department}
-              </span>
+              </button>
             );
           })}
         </div>
@@ -72,11 +74,11 @@ export default function MeetTheTeamFilterableBlock() {
       ) : null}
 
       {isSuccess && data?.length === 0 && (
-        <div className="flex size-full flex-col items-center justify-center gap-y-6">
-          <h2 className="text-6xl font-semibold italic">
+        <div className="flex size-full flex-col items-center justify-center gap-y-6 py-16">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
             No Team Members Found
           </h2>
-          <p className="text-wrap text-center md:w-1/2">
+          <p className="text-wrap text-center md:w-1/2 text-[#313E4E]/80 text-lg">
             There are no team members to display at this time.
           </p>
         </div>
@@ -84,11 +86,11 @@ export default function MeetTheTeamFilterableBlock() {
 
       {/* Pagination */}
       {isSuccess && data?.length !== 0 && (
-        <div className="flex w-full justify-between px-6">
+        <div className="flex w-full justify-center gap-4 px-6 py-8">
           <Button
             variant="outline"
             disabled={!prevId.current?.prevId}
-            className=""
+            className="bg-white text-[#313E4E] border-[#313E4E]/20 hover:bg-[#313E4E] hover:text-white hover:border-[#313E4E] disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => {
               // This will need to be updated to use the actual lastId if we reach 18 people in the team
               // setLastId(prevId.current?.prevId!); something similar to this but correct :)
@@ -99,7 +101,7 @@ export default function MeetTheTeamFilterableBlock() {
           </Button>
           <Button
             variant="outline"
-            className=""
+            className="bg-white text-[#313E4E] border-[#313E4E]/20 hover:bg-[#313E4E] hover:text-white hover:border-[#313E4E]"
             onClick={() => {
               setLastId(data![data!.length - 1]?._id!);
               // @ts-ignore
@@ -118,9 +120,11 @@ export default function MeetTheTeamFilterableBlock() {
 
 function ErrorMessage() {
   return (
-    <div className="flex size-full flex-col items-center justify-center gap-y-6">
-      <h2 className="text-6xl font-semibold italic">Error</h2>
-      <p className="text-wrap text-center md:w-1/2">
+    <div className="flex size-full flex-col items-center justify-center gap-y-6 py-16">
+      <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent">
+        Error
+      </h2>
+      <p className="text-wrap text-center md:w-1/2 text-white/80 text-lg">
         There seems to have been a small issue. Please refresh your browser or
         return home if issue persists.
       </p>

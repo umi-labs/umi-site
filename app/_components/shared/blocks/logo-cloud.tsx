@@ -45,14 +45,14 @@ export default function LogoCloud({ data }: LogoCloudProps) {
     <Container
       id="LogoCloud"
       options={{
-        colour: 'dark',
+        colour: 'light',
         buffers: {
           top: false,
           bottom: false,
         },
         maxWidth: true,
       }}
-      className="gap-y-16"
+      className="gap-y-16 py-20 md:py-32 bg-transparent"
     >
       <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
         <motion.div 
@@ -71,7 +71,7 @@ export default function LogoCloud({ data }: LogoCloudProps) {
             </motion.div>
           )}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#313E4E] via-[#368DB1] to-[#368DB1] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}

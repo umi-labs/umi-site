@@ -17,7 +17,7 @@ interface MenuProps {
 
 const MenuStyles = {
   default: cn(
-    'bg-primary-secondary-accent h-[calc(100vh-80px)] w-full fixed bottom-0 inset-x-0 overflow-hidden z-[90] transition-all duration-500 ease-out'
+    'bg-white h-[calc(100vh-80px)] w-full fixed top-[96px] inset-x-0 overflow-hidden z-[1001] transition-all duration-500 ease-out shadow-2xl'
   ),
   closed: cn('translate-x-[100%] opacity-0'),
   innerClosed: cn('translate-x-[-100%]'),

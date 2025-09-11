@@ -26,14 +26,23 @@ export default function TeamInsightsGrid({ slug, name }: Props) {
   });
 
   return (
-    <Container id="TeamInsightsGrid">
-      <h2 id={slug}>Insight By:&nbsp;{name}</h2>
+    <Container 
+      id="TeamInsightsGrid" 
+      options={{ 
+        colour: 'transparent',
+        buffers: { top: true, bottom: true }
+      }}
+      className="py-16 md:py-32"
+    >
+      <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent text-center mb-12">
+        Insight By:&nbsp;{name}
+      </h2>
       {isLoading ? (
         <Loader />
       ) : isError ? (
         <ErrorMessage />
       ) : isSuccess ? (
-        <div className="grid w-full grid-cols-1 items-center justify-center gap-16 px-6 py-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid w-full grid-cols-1 items-center justify-center gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts?.map((post, i) => (
             <PostCard key={i} archive={post} index={i} />
           ))}

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   * {
     @apply border-border;
@@ -163,6 +164,12 @@
 /* Special button variants */
 .button-gradient {
   background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+  background-size: 300% 300%;
+  animation: buttonShimmer 3s ease infinite;
+}
+
+.button-shimmer {
+  background: linear-gradient(45deg, #368DB1, #B0DEE6, #FFE48C);
   background-size: 300% 300%;
   animation: buttonShimmer 3s ease infinite;
 }
