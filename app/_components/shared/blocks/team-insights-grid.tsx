@@ -34,7 +34,7 @@ export default function TeamInsightsGrid({ slug, name }: Props) {
       }}
       className="py-16 md:py-32"
     >
-      <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent text-center mb-12">
+      <h2 className="text-4xl md:text-5xl font-light bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent text-center mb-12">
         Insight By:&nbsp;{name}
       </h2>
       {isLoading ? (

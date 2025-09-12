@@ -45,7 +45,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
     <Container
       id="PortfolioFullWidth"
       options={{
-        colour: 'light',
+        colour: 'transparent',
         buffers: {
           top: data.buffers?.top,
           bottom: false,
@@ -54,16 +54,6 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
       }}
       className="relative overflow-hidden py-20 md:py-32"
     >
-      {/* Custom gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#313E4E] via-[#368DB1] to-[#B0DEE6] opacity-95" />
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#FFE48C]/20 via-transparent to-[#ECCD7F]/30" />
-      
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#B0DEE6]/30 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-[#FFE48C]/30 to-transparent rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-[#368DB1]/20 to-[#B0DEE6]/20 rounded-full blur-2xl" />
-      </div>
 
       <div ref={containerRef} className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-16 px-6 text-center lg:grid lg:grid-cols-3 lg:grid-rows-1 lg:gap-20 lg:px-10">
         <motion.div 
@@ -82,7 +72,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             </motion.div>
           )}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight bg-gradient-to-r from-[#1a2332] via-[#368DB1] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -97,12 +87,12 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             >
               <CustomPortableText 
                 value={data.content} 
-                paragraphClasses="text-lg md:text-xl text-white/90 leading-relaxed" 
+                paragraphClasses="text-lg md:text-xl text-[#313E4E]/90 leading-relaxed" 
               />
             </motion.div>
           )}
           <motion.div 
-            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-center"
+            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-start"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -179,8 +169,8 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
                 </SliderContent>
                 <SliderIndicators className="space-x-8" />
                 <div className="absolute -bottom-12 left-6 flex items-center justify-center gap-4">
-                  <SliderPrevious className="size-10 border border-white/30 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300" />
-                  <SliderNext className="size-10 border border-white/30 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300" />
+                  <SliderPrevious className="size-10 border border-[#B0DEE6]/30 bg-white/80 hover:bg-[#B0DEE6]/10 hover:border-[#368DB1]/50 transition-all duration-300" />
+                  <SliderNext className="size-10 border border-[#B0DEE6]/30 bg-white/80 hover:bg-[#B0DEE6]/10 hover:border-[#368DB1]/50 transition-all duration-300" />
                 </div>
               </Slider>
             </div>

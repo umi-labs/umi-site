@@ -17,7 +17,7 @@ interface MenuProps {
 
 const MenuStyles = {
   default: cn(
-    'bg-white h-[calc(100vh-80px)] w-full fixed top-[96px] inset-x-0 overflow-hidden z-[1001] transition-all duration-500 ease-out shadow-2xl'
+    'bg-white border border-gray-200 rounded-2xl h-[calc(100vh-80px)] fixed top-[96px] inset-x-0 px-4 overflow-hidden z-[1001] transition-all duration-500 ease-out shadow-lg'
   ),
   closed: cn('translate-x-[100%] opacity-0'),
   innerClosed: cn('translate-x-[-100%]'),
@@ -88,15 +88,16 @@ export default function Menu({ data, show, setShow }: MenuProps) {
       id="mobile-menu"
       className={cn(MenuStyles.default, !show && MenuStyles.closed)}
     >
-      <div
-        className={cn(
-          'absolute inset-0 transition-all duration-500 ease-out',
-          {
-            'translate-x-[-100%] opacity-0': history.length > 0,
-          }
-        )}
-      >
-        <div className="grid h-full grid-rows-[1fr_auto] items-start px-8 pt-16 pb-8 uppercase animate-in fade-in-0 duration-300">
+      <div className="mx-auto w-full max-w-7xl h-full">
+        <div
+          className={cn(
+            'absolute inset-0 transition-all duration-500 ease-out',
+            {
+              'translate-x-[-100%] opacity-0': history.length > 0,
+            }
+          )}
+        >
+          <div className="grid h-full grid-rows-[1fr_auto] items-start px-8 pt-16 pb-8 uppercase animate-in fade-in-0 duration-300">
           <ul className="ml-0 flex list-none flex-col gap-y-2 divide-y divide-gray-200/50">
             {menu.map((item, key) => (
               <div
@@ -149,6 +150,7 @@ export default function Menu({ data, show, setShow }: MenuProps) {
           />
         </div>
       )}
+      </div>
     </div>
   );
 }

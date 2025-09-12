@@ -31,10 +31,23 @@ export default function TestimonialsCarousel({
   });
 
   return (
-    <Container id="TestimonialsCarousel">
+    <Container 
+      id="TestimonialsCarousel"
+      options={{
+        colour: 'transparent',
+        buffers: {
+          top: false,
+          bottom: false,
+        },
+        maxWidth: true,
+      }}
+      className="relative overflow-hidden py-20 md:py-32"
+    >
       <div className="flex h-fit w-full flex-col items-center justify-center gap-y-10 place-self-start text-center">
         {data.separator && <EyebrowSVG className="" />}
-        <h2>{data.title}</h2>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight bg-gradient-to-r from-[#1a2332] via-[#368DB1] to-[#1a2332] bg-clip-text text-transparent">
+          {data.title}
+        </h2>
       </div>
       <Slider
         className=""
@@ -57,28 +70,32 @@ export default function TestimonialsCarousel({
                       height={
                         testimonial.image?.asset?.metadata?.dimensions.height
                       }
+                      className="rounded-full"
                     />
                     <div className="flex flex-col items-center justify-center gap-y-6">
                       <div className="flex flex-col items-center justify-center gap-y-2">
-                        <h4 className="text-lg font-semibold">
+                        <h4 className="text-lg font-semibold text-[#1a2332]">
                           {testimonial.name}
                         </h4>
-                        <span className="text-center text-xs font-light text-gray-400">
+                        <span className="text-center text-xs font-light text-[#313E4E]/80">
                           {testimonial.position}, {testimonial.company}
                         </span>
                       </div>
-                      <Button variant="link" className="text-[#368DB1]">
+                      <Button variant="link" className="text-[#368DB1] hover:text-[#B0DEE6]">
                         Find Out More
                       </Button>
                     </div>
                   </div>
                 </div>
-                <div className="relative col-span-2 flex items-center justify-center p-8 text-center font-light text-gray-400">
+                <div className="relative col-span-2 flex items-center justify-center p-8 text-center font-light text-[#313E4E]/90">
                   <QuotationMark
                     orientation="left"
                     className="absolute left-0 top-0"
                   />
-                  <CustomPortableText value={testimonial.review} />
+                  <CustomPortableText 
+                    value={testimonial.review} 
+                    paragraphClasses="text-[#313E4E]/90 leading-relaxed"
+                  />
                   <QuotationMark className="absolute bottom-0 right-0" />
                 </div>
               </div>
@@ -86,8 +103,8 @@ export default function TestimonialsCarousel({
           ))}
         </SliderContent>
         <SliderIndicators className="space-x-8" />
-        <SliderPrevious className="size-9 border border-[#C5C7C9] bg-[#F9F9FA]" />
-        <SliderNext className="size-9 border border-[#C5C7C9] bg-[#F9F9FA]" />
+        <SliderPrevious className="size-9 border border-[#B0DEE6]/30 bg-white/80 hover:bg-[#B0DEE6]/10 hover:border-[#368DB1]/50 transition-all duration-300" />
+        <SliderNext className="size-9 border border-[#B0DEE6]/30 bg-white/80 hover:bg-[#B0DEE6]/10 hover:border-[#368DB1]/50 transition-all duration-300" />
       </Slider>
     </Container>
   );

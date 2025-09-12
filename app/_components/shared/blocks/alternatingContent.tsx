@@ -46,7 +46,7 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
     <Container
       id="AlternatingContent"
       options={{
-        colour: 'light',
+        colour: 'transparent',
         buffers: {
           top: false,
           bottom: false,
@@ -64,7 +64,7 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-light text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -137,13 +137,10 @@ const Card = ({
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          {/* Background decoration */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#B0DEE6]/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          
           {/* Content wrapper */}
           <div className="relative z-10 space-y-6">
             <motion.h3 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#313E4E] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#368DB1] group-hover:to-[#368DB1] group-hover:bg-clip-text transition-all duration-500"
+              className="text-3xl md:text-4xl lg:text-5xl font-light text-[#313E4E] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#368DB1] group-hover:to-[#368DB1] group-hover:bg-clip-text transition-all duration-500"
               whileHover={{ x: orientation === 'rtl' ? -10 : 10 }}
             >
               {title}

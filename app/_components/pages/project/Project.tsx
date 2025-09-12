@@ -66,7 +66,7 @@ function Project({ data }: ProjectProps) {
               <div className="sticky top-24 space-y-8">
                 {/* Client Info */}
                 <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/20 p-8">
-                  <h3 className="mb-6 text-xl font-bold text-[#313E4E]">Project Details</h3>
+                  <h3 className="mb-6 text-xl font-light text-[#313E4E]">Project Details</h3>
                   
                   <div className="space-y-6">
                     <div>
@@ -116,7 +116,7 @@ function Project({ data }: ProjectProps) {
                 {/* Related Projects */}
                 {data?.relatedProjects && data.relatedProjects.length > 0 && (
                   <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/20 p-8">
-                    <h3 className="mb-6 text-xl font-bold text-[#313E4E]">Related Projects</h3>
+                    <h3 className="mb-6 text-xl font-light text-[#313E4E]">Related Projects</h3>
                     <div className="space-y-4">
                       {data.relatedProjects.slice(0, 3).map((project, index) => (
                         <Link

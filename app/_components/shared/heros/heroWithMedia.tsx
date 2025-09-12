@@ -189,7 +189,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-light text-left bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
               {data.bottomContent.title}
             </h2>
             <div className="relative">

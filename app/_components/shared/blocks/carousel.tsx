@@ -64,7 +64,7 @@ export default function Carousel({ data }: Props) {
                 <div className="flex flex-col gap-y-9 bg-primary-background pl-1 shadow-md md:gap-x-9 lg:pl-4">
                   <div className="col-span-1 p-4 md:p-8">
                     <div className="flex flex-col items-start justify-start gap-y-8">
-                      <h2 className="text-2xl font-semibold text-primary-foreground hover:no-underline">
+                      <h2 className="text-2xl font-light text-primary-foreground hover:no-underline">
                         {item.title}
                       </h2>
                       <p className="text-sm text-gray-600">
