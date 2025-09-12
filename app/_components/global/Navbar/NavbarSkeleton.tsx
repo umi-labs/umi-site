@@ -1,3 +1,3 @@
 export default function NavbarSkeleton() {
-  return <section>Navbar</section>;
+  return <section className="h-20 bg-white"></section>;
 }

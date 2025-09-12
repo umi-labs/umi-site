@@ -22,7 +22,7 @@ export async function generateMetadata(
       ? project.metaData.title
       : project?.name
         ? project.name
-        : 'UMI',
+        : 'Umi',
     description: project?.metaData?.description
       ? project?.metaData?.description
       : (await parent).description,

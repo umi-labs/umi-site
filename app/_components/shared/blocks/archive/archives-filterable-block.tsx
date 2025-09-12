@@ -9,6 +9,7 @@ import {
 } from '@/app/_actions/archive-queries';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Loader from '@/app/_components/ui/loader';
+import { ArchiveGridSkeleton } from '@/app/_components/ui/skeleton/archive-card-skeleton';
 import { useQueryState } from 'nuqs';
 
 interface Props {
@@ -189,7 +190,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
         {/* Main Content */}
         <div className="col-span-3">
           {archivesIsLoading ? (
-            <Loader />
+            <ArchiveGridSkeleton count={6} hasFeatured={Boolean(featuredArchives?.length)} />
           ) : archivesIsError ? (
             <ErrorMessage error={archivesError} />
           ) : archivesIsSuccess ? (
@@ -224,7 +225,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
       {/* Mobile Content */}
       <div className="lg:hidden w-full">
         {archivesIsLoading ? (
-          <Loader />
+          <ArchiveGridSkeleton count={6} hasFeatured={Boolean(featuredArchives?.length)} />
         ) : archivesIsError ? (
           <ErrorMessage error={archivesError} />
         ) : archivesIsSuccess ? (

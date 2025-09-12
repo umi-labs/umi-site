@@ -138,25 +138,27 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
                       name={field.name!}
                       render={({ field: controllerField }) => (
                         <FormItem>
-                          <FormLabel>{field.name}</FormLabel>
+                          <FormLabel className="text-[#313E4E] font-semibold text-sm mb-2 block">
+                            {field.name}
+                          </FormLabel>
                           <FormControl>
                             <Select
                               onValueChange={controllerField.onChange}
                               defaultValue={controllerField.value}
                             >
-                              <SelectTrigger>
+                              <SelectTrigger className="h-12 rounded-xl border-2 border-[#B0DEE6]/30 bg-white/90 backdrop-blur-sm shadow-lg transition-all duration-300 focus:ring-2 focus:ring-[#368DB1]/50 focus:border-[#368DB1] hover:border-[#368DB1]/50 hover:shadow-xl">
                                 <SelectValue
                                   placeholder={
                                     field.placeholder || 'Select an option'
                                   }
                                 />
                               </SelectTrigger>
-                              <SelectContent className="bg-white">
+                              <SelectContent className="bg-white rounded-xl border border-[#B0DEE6]/20 shadow-xl">
                                 {field.options.map((option: string) => (
                                   <SelectItem
                                     key={option}
                                     value={option}
-                                    className="transition-colors duration-75 ease-in-out hover:cursor-pointer data-[highlighted]:bg-gray-200 data-[state=checked]:bg-primary-accent data-[state=checked]:text-white"
+                                    className="transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-[#B0DEE6]/10 data-[highlighted]:bg-[#368DB1]/10 data-[state=checked]:bg-[#368DB1] data-[state=checked]:text-white rounded-lg"
                                   >
                                     {option}
                                   </SelectItem>
@@ -165,11 +167,11 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
                             </Select>
                           </FormControl>
                           {field.description && (
-                            <FormDescription>
+                            <FormDescription className="text-[#313E4E]/70 text-sm mt-2">
                               {field.description}
                             </FormDescription>
                           )}
-                          <FormMessage />
+                          <FormMessage className="text-red-600 text-sm mt-1" />
                         </FormItem>
                       )}
                     />
@@ -184,22 +186,22 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
                       /* @ts-ignore */
                       name={field.name!}
                       render={({ field: controllerField }) => (
-                        <FormItem className="flex items-center gap-x-2 space-y-0">
+                        <FormItem className="flex items-center gap-x-3 space-y-0 p-4 rounded-xl bg-gradient-to-r from-[#B0DEE6]/5 to-[#FFE48C]/5 border border-[#B0DEE6]/20">
                           <FormControl>
                             <Checkbox
                               checked={controllerField.value}
                               onCheckedChange={controllerField.onChange}
-                              className="transition-colors duration-75 ease-in-out hover:cursor-pointer data-[state=checked]:border-primary-accent data-[state=checked]:bg-primary-accent data-[state=checked]:text-white"
+                              className="transition-all duration-300 ease-in-out hover:cursor-pointer data-[state=checked]:border-[#368DB1] data-[state=checked]:bg-[#368DB1] data-[state=checked]:text-white hover:scale-110"
                             />
                           </FormControl>
                           {!field?.description ? (
-                            <FormLabel>{field.name}</FormLabel>
+                            <FormLabel className="text-[#313E4E] font-medium cursor-pointer">{field.name}</FormLabel>
                           ) : (
-                            <FormDescription className="">
+                            <FormDescription className="text-[#313E4E]/70 text-sm">
                               {field.description}
                             </FormDescription>
                           )}
-                          <FormMessage />
+                          <FormMessage className="text-red-600 text-sm" />
                         </FormItem>
                       )}
                     />
@@ -218,7 +220,9 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
                     name={field.name!}
                     render={({ field: controllerField }) => (
                       <FormItem>
-                        <FormLabel>{field.name}</FormLabel>
+                        <FormLabel className="text-[#313E4E] font-semibold text-sm mb-2 block">
+                          {field.name}
+                        </FormLabel>
                         <FormControl>
                           {field.type === 'select' ? (
                             <Component {...controllerField}>
@@ -239,9 +243,11 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
                           )}
                         </FormControl>
                         {field.description && (
-                          <FormDescription>{field.description}</FormDescription>
+                          <FormDescription className="text-[#313E4E]/70 text-sm mt-2">
+                            {field.description}
+                          </FormDescription>
                         )}
-                        <FormMessage />
+                        <FormMessage className="text-red-600 text-sm mt-1" />
                       </FormItem>
                     )}
                   />
@@ -253,7 +259,9 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
             form={formID}
             disabled={isLoading}
             type="submit"
-            variant="default"
+            variant="umi-primary"
+            size="lg"
+            className="px-12 py-4 text-lg font-semibold"
           >
             {submitButtonLabel}
           </Button>

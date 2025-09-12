@@ -18,7 +18,7 @@ export default function TEXTAREA({
       value={value}
       onChange={onChange}
       className={clsx(
-        'w-full border border-black bg-transparent px-4 py-2 text-black placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-500',
+        'w-full min-h-[120px] rounded-xl border-2 border-[#B0DEE6]/30 bg-white/90 backdrop-blur-sm px-4 py-3 text-base font-medium text-[#313E4E] shadow-lg transition-all duration-300 placeholder:text-[#313E4E]/60 focus:outline-none focus:ring-2 focus:ring-[#368DB1]/50 focus:border-[#368DB1] hover:border-[#368DB1]/50 hover:shadow-xl resize-none',
         classNames
       )}
       {...register(id)}

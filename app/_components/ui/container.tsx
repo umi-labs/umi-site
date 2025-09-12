@@ -39,20 +39,21 @@ export default function Container({
         colour === 'light' && 'bg-primary-background text-primary-foreground',
         colour === 'dark' && 'bg-[#FAFAFA]',
         colour === 'accent' && 'bg-primary-foreground text-primary-background',
+        colour === 'transparent' && 'bg-transparent',
         className
       )}
       {...props}
     >
       <TopBuffer
         colour={
-          colour === 'light' ? 'light' : colour === 'dark' ? 'dark' : 'accent'
+          colour === 'light' ? 'light' : colour === 'dark' ? 'dark' : colour === 'transparent' ? 'light' : 'accent'
         }
         visible={buffers?.top}
       />
       {children}
       <BottomBuffer
         colour={
-          colour === 'light' ? 'light' : colour === 'dark' ? 'dark' : 'accent'
+          colour === 'light' ? 'light' : colour === 'dark' ? 'dark' : colour === 'transparent' ? 'light' : 'accent'
         }
         visible={buffers?.bottom}
       />

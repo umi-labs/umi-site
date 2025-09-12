@@ -129,9 +129,17 @@ export const IconBackground = (
       fill="none"
       {...props}
     >
+      <defs>
+        <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#B0DEE6" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="#368DB1" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#FFE48C" stopOpacity="0.1" />
+        </linearGradient>
+      </defs>
       <path
         d="M20.9928 105.784C-32.8563 71.2947 33.3992 40.9578 60.3237 19.2866C125.801 -39.3381 167.164 54.3381 144.014 110.364C122.395 166.618 54.8596 133.911 20.9928 105.77"
-        fill="#EBF7F9"
+        fill="url(#iconGradient)"
+        className="group-hover:opacity-100 opacity-60 transition-opacity duration-500"
       />
     </svg>
   );

@@ -29,7 +29,7 @@ const NavMenuController = ({
             aria-label="menu-button"
             onClick={() => setMenu(!menu)}
             className={cn(
-              'interactable ease group z-[100] flex w-8 flex-col items-center justify-center gap-[4px] bg-transparent p-4 transition-all duration-500 ease-out lg:items-start lg:justify-start hover:scale-110',
+              'interactable ease group z-[1002] flex w-8 flex-col items-center justify-center gap-[4px] bg-transparent p-4 transition-all duration-500 ease-out lg:items-start lg:justify-start hover:scale-110',
               menu
                 ? 'open gap-[6px] lg:items-center lg:justify-center'
                 : 'closed'
