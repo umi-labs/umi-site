@@ -151,8 +151,8 @@ const Card = ({
         'group relative h-full w-full overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/20',
         feature.icon ? 'justify-between' : 'justify-center'
       )}
-      initial={{ opacity: 0, y: 60, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.9 }}
+      initial={{ opacity: 0.8, y: 10, scale: 0.98 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0.8, y: 10, scale: 0.98 }}
       transition={{ 
         duration: 0.8, 
         delay: index * 0.15, 

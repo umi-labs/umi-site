@@ -190,7 +190,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
         {/* Main Content */}
         <div className="col-span-3">
           {archivesIsLoading ? (
-            <ArchiveGridSkeleton count={6} hasFeatured={featuredArchives.length > 0} />
+            <ArchiveGridSkeleton count={6} hasFeatured={Boolean(featuredArchives?.length)} />
           ) : archivesIsError ? (
             <ErrorMessage error={archivesError} />
           ) : archivesIsSuccess ? (
@@ -225,7 +225,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
       {/* Mobile Content */}
       <div className="lg:hidden w-full">
         {archivesIsLoading ? (
-          <ArchiveGridSkeleton count={6} hasFeatured={featuredArchives.length > 0} />
+          <ArchiveGridSkeleton count={6} hasFeatured={Boolean(featuredArchives?.length)} />
         ) : archivesIsError ? (
           <ErrorMessage error={archivesError} />
         ) : archivesIsSuccess ? (

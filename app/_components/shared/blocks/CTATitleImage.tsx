@@ -72,7 +72,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
               {data.points.map((point, i) => (
                 <motion.li 
                   key={i} 
-                  className="group flex items-start justify-start gap-x-4 p-3 rounded-lg hover:bg-[#B0DEE6]/10 transition-all duration-300"
+                  className="flex items-start justify-start gap-x-4 p-3 rounded-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   transition={{ 
@@ -80,20 +80,15 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
                     delay: 0.7 + i * 0.1, 
                     ease: "easeOut" 
                   }}
-                  whileHover={{ scale: 1.02, x: 4 }}
                 >
-                  <motion.div
-                    className="flex-shrink-0 mt-1 p-2 rounded-full bg-gradient-to-br from-[#B0DEE6]/20 to-[#368DB1]/20 group-hover:from-[#368DB1]/30 group-hover:to-[#B0DEE6]/30 transition-all duration-500"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
+                  <div className="flex-shrink-0 mt-1 p-2 rounded-full bg-gradient-to-br from-[#B0DEE6]/20 to-[#368DB1]/20">
                     <Icon
                       type={point.icon.type}
                       weight={point.icon.weight}
-                      className="size-5 text-[#368DB1] group-hover:text-[#313E4E] transition-colors duration-300"
+                      className="size-5 text-[#368DB1]"
                     />
-                  </motion.div>
-                  <span className="text-lg font-medium text-[#313E4E] group-hover:text-[#313E4E] transition-colors duration-300">
+                  </div>
+                  <span className="text-lg font-medium text-[#313E4E]">
                     {point.content}
                   </span>
                 </motion.li>

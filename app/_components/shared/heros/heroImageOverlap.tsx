@@ -22,7 +22,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
       
       <section 
         ref={containerRef}
-        className="relative mx-auto mt-16 grid min-h-[860px] w-full max-w-7xl grid-flow-dense grid-cols-1 grid-rows-2 gap-8 px-8 py-10 md:mt-0 md:grid-cols-5 md:grid-rows-1 lg:px-10"
+        className="relative mx-auto mt-16 grid min-h-[860px] w-full max-w-7xl grid-flow-dense grid-cols-1 grid-rows-2 gap-8 px-8 py-10 md:mt-0 md:grid-cols-5 md:grid-rows-1 md:py-6 lg:px-10"
       >
       {/* Content Section */}
       <motion.div 
@@ -56,7 +56,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
             {data.subtitle}
           </motion.h5>
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-light bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent leading-tight"
             whileHover={{ scale: 1.02 }}
           >
             {data.title}

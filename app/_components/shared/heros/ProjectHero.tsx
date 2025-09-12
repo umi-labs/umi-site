@@ -27,7 +27,7 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
 
       {/* Hero Content */}
       <div className="relative z-10 flex h-full items-center">
-        <div className="mx-auto w-full max-w-5xl px-6 py-20 md:px-8">
+        <div className="mx-auto w-full max-w-5xl px-6 py-20 md:px-8 md:py-12">
           <div className="grid gap-8 md:grid-cols-2 md:items-center">
             {/* Left Column - Project Info */}
             <div className="space-y-6">
@@ -43,7 +43,7 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
                 </div>
               )}
               
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent md:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-light bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent md:text-5xl lg:text-6xl">
                 {project?.clientName || project?.title}
               </h1>
               

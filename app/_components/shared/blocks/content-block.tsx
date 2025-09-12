@@ -38,7 +38,17 @@ export default function ContentBlock({ data }: ContentBlockProps) {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <Container id="ContentBlock">
+    <Container 
+      id="ContentBlock"
+      options={{
+        colour: 'transparent',
+        buffers: {
+          top: false,
+          bottom: false,
+        },
+        maxWidth: false,
+      }}
+    >
       <div ref={containerRef} className="flex w-full flex-col gap-6">
         <motion.h2 
           className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
@@ -60,8 +70,8 @@ export default function ContentBlock({ data }: ContentBlockProps) {
             <motion.div
               key={i}
               className="group relative flex size-full items-center justify-center gap-y-6 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 md:first-of-type:col-span-2 md:first-of-type:row-span-2"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0.3, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0.3, scale: 0.95 }}
               transition={{ 
                 duration: 0.8, 
                 delay: 0.3 + i * 0.1, 
@@ -167,8 +177,8 @@ export default function ContentBlock({ data }: ContentBlockProps) {
             <motion.div
               key={i}
               className="group relative flex flex-col items-center justify-center gap-y-6 overflow-hidden rounded-2xl bg-white/90 backdrop-blur-sm text-center shadow-lg hover:shadow-2xl transition-all duration-500"
-              initial={{ opacity: 0, y: 60, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.9 }}
+              initial={{ opacity: 0.3, y: 20, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0.3, y: 20, scale: 0.95 }}
               transition={{ 
                 duration: 0.8, 
                 delay: 0.5 + i * 0.15, 
