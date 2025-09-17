@@ -28,11 +28,11 @@ export default function BasicHero({ data }: BasicHeroProps) {
       
       <section
         id="BasicHero"
-        className="relative mx-auto mb-8 mt-24 flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-10 px-6 md:px-28"
+        className="relative mx-auto mb-8 mt-24 flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-y-10 px-6 md:px-28 md:mt-16"
       >
       {/* @ts-expect-error - type casting is not defined */}
       {separator && <WaveSVG />}
-      <h1>{heading}</h1>
+      <h1 className="font-light">{heading}</h1>
       {description && (
         <CustomPortableText
           value={description}

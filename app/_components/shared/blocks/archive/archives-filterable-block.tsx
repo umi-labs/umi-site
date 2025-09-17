@@ -190,7 +190,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
         {/* Main Content */}
         <div className="col-span-3">
           {archivesIsLoading ? (
-            <ArchiveGridSkeleton count={6} hasFeatured={featuredArchives.length > 0} />
+            <ArchiveGridSkeleton count={6} hasFeatured={Boolean(featuredArchives?.length)} />
           ) : archivesIsError ? (
             <ErrorMessage error={archivesError} />
           ) : archivesIsSuccess ? (
@@ -200,7 +200,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
 
           {archivesIsSuccess && archives?.length === 0 && (
             <div className="flex size-full flex-col items-center justify-center gap-y-6">
-              <h2 className="text-6xl font-semibold italic">No Archives Found</h2>
+              <h2 className="text-6xl font-light italic">No Archives Found</h2>
               <p className="text-wrap text-center md:w-1/2">
                 There are no archives to display at this time.
               </p>
@@ -225,7 +225,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
       {/* Mobile Content */}
       <div className="lg:hidden w-full">
         {archivesIsLoading ? (
-          <ArchiveGridSkeleton count={6} hasFeatured={featuredArchives.length > 0} />
+          <ArchiveGridSkeleton count={6} hasFeatured={Boolean(featuredArchives?.length)} />
         ) : archivesIsError ? (
           <ErrorMessage error={archivesError} />
         ) : archivesIsSuccess ? (
@@ -235,7 +235,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
 
         {archivesIsSuccess && archives?.length === 0 && (
           <div className="flex size-full flex-col items-center justify-center gap-y-6">
-            <h2 className="text-4xl font-semibold italic">No Archives Found</h2>
+            <h2 className="text-4xl font-light italic">No Archives Found</h2>
             <p className="text-wrap text-center">
               There are no archives to display at this time.
             </p>
@@ -249,7 +249,7 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
 export function ErrorMessage({ error }: { error?: Error }) {
   return (
     <div className="flex size-full flex-col items-center justify-center gap-y-6">
-      <h2 className="text-6xl font-semibold italic">Error</h2>
+      <h2 className="text-6xl font-light italic">Error</h2>
       <p className="text-wrap text-center md:w-1/2">
         {error
           ? error.message

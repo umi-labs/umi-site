@@ -11,9 +11,7 @@ interface GradientShowcaseProps {
 export const GradientShowcase = ({ className }: GradientShowcaseProps) => {
   const presets = [
     { name: "Primary", preset: UmiGradientPresets.primary, description: "Umi brand colors" },
-    { name: "Ocean", preset: UmiGradientPresets.ocean, description: "Deep blue ocean theme" },
-    { name: "Sunset", preset: UmiGradientPresets.sunset, description: "Warm sunset colors" },
-    { name: "Aurora", preset: UmiGradientPresets.aurora, description: "Northern lights effect" },
+    { name: "Soft", preset: UmiGradientPresets.soft, description: "Soft gradient theme" },
   ];
 
   return (
@@ -62,7 +60,7 @@ export const GradientExamples = {
   
   // For cards or smaller elements
   card: {
-    ...UmiGradientPresets.ocean,
+    ...UmiGradientPresets.soft,
     size: "80%",
     blendingValue: "hard-light",
     interactive: true,
@@ -71,7 +69,7 @@ export const GradientExamples = {
   
   // For call-to-action sections
   cta: {
-    ...UmiGradientPresets.sunset,
+    ...UmiGradientPresets.primary,
     size: "100%",
     blendingValue: "multiply",
     interactive: true,

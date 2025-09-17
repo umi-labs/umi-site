@@ -35,12 +35,12 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
         ref={containerRef}
         id="HeroWithMedia"
         className={cn(
-          'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible pt-20 pb-10 md:gap-12 md:pt-32 md:pb-16 lg:gap-y-16'
+          'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible pt-20 pb-10 md:gap-12 md:pt-44 md:pb-16 lg:gap-y-16'
         )}
       >
       <div
         className={cn(
-          'relative z-10 flex w-full flex-col items-center justify-center gap-y-10 pt-10 text-center md:pt-32',
+          'relative z-10 flex w-full flex-col items-center justify-center gap-y-10 pt-10 text-center md:pt-0',
           data?.background === 'light' ? 'text-[#313E4E]' : 'text-white'
         )}
       >
@@ -69,7 +69,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
         )}
         <div
           className={cn(
-            'relative flex w-full flex-col items-center justify-center gap-y-8 md:gap-y-16 px-6 md:px-28'
+            'relative flex w-full flex-col items-center justify-center gap-y-8 md:gap-y-16 px-6 md:px-28 pt-16 md:pt-0'
           )}
         >
           {/* Separator */}
@@ -87,7 +87,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
           {/* Title */}
           <motion.h1 
             className={cn(
-              "text-5xl md:text-6xl lg:text-7xl font-bold text-center leading-tight",
+              "text-5xl md:text-6xl lg:text-7xl font-light text-center leading-tight",
               data?.background === 'light' 
                 ? "bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
                 : "text-white"
@@ -184,18 +184,28 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
         {/* Bottom content */}
         {data?.bottomContent && (
           <motion.div 
-            className="flex flex-col items-center justify-center gap-y-4 px-6 text-primary-foreground md:px-28"
+            className="group mx-auto flex w-full max-w-4xl flex-col items-start justify-start gap-y-4 px-6 text-primary-foreground md:px-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-light text-left bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
               {data.bottomContent.title}
             </h2>
-            <CustomPortableText 
-              value={data.bottomContent.content} 
-              paragraphClasses="text-center text-lg text-[#313E4E]/80"
-            />
+            <div className="relative">
+              {/* Decorative left border */}
+              <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#368DB1] via-[#B0DEE6] to-[#FFE48C] rounded-full opacity-60"></div>
+              
+              <div className="pl-8">
+                <CustomPortableText 
+                  value={data.bottomContent.content} 
+                  paragraphClasses="text-left text-lg text-[#313E4E]/90 leading-relaxed font-medium tracking-wide"
+                />
+              </div>
+              
+              {/* Subtle background highlight */}
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#B0DEE6]/5 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
           </motion.div>
         )}
       </div>

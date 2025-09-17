@@ -50,7 +50,7 @@ export default function JobVacancies({ data }: Props) {
             <div className="absolute inset-0 size-full bg-[url('/assets/images/job-svg-pattern.svg')] bg-cover bg-no-repeat" />
             <div className="z-10 flex size-full flex-col items-center justify-between gap-6 px-10 py-12 md:flex-row lg:px-20 lg:py-24">
               <div className="flex flex-col justify-between gap-y-3 md:gap-y-10">
-                <h3 className="text-2xl font-semibold">{job.name}</h3>
+                <h3 className="text-2xl font-light">{job.name}</h3>
                 <span>
                   {job.location} | {job.type}
                 </span>

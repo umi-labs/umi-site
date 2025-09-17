@@ -61,7 +61,7 @@ export default function FAQs({ data, tag = 'advertising' }: Props) {
               value={`item-${i}`}
             >
               <AccordionTrigger className="flex items-center justify-between gap-x-4 bg-[#FAFAFA] px-4 text-left transition-all duration-300 ease-in-out data-[state=open]:bg-primary-background data-[state=open]:text-primary-accent">
-                <h3 className="text-2xl font-semibold">{faq.question}</h3>
+                <h3 className="text-2xl font-light">{faq.question}</h3>
                 {/*<CaretDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />*/}
               </AccordionTrigger>
               <AccordionContent className="p-4 text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">

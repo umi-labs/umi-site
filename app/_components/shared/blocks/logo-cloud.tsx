@@ -71,7 +71,7 @@ export default function LogoCloud({ data }: LogoCloudProps) {
             </motion.div>
           )}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-light text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -113,8 +113,8 @@ const Logo = ({ logo, index = 0 }: { logo: LogoCloudProps['data']['logos'][0]; i
     <motion.div 
       ref={logoRef}
       className="group relative flex h-32 w-full items-center justify-center overflow-hidden rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-500"
-      initial={{ opacity: 0, y: 40, scale: 0.8 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.8 }}
+      initial={{ opacity: 0.3, y: 20, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0.3, y: 20, scale: 0.95 }}
       transition={{ 
         duration: 0.8, 
         delay: index * 0.1, 

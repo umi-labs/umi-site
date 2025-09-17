@@ -54,7 +54,7 @@ export default function MoreTeamMembers({ currentMember }: Props) {
       />
       
       <div className="relative z-10 flex w-full items-center justify-between gap-6 mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-5xl font-light bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent">
           More Team Members
         </h2>
         <Link
@@ -98,7 +98,7 @@ export default function MoreTeamMembers({ currentMember }: Props) {
                     <span className="uppercase text-[#313E4E] font-medium text-sm tracking-wider">
                       {member.role}
                     </span>
-                    <h3 className="text-2xl font-bold text-[#1a2332] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#B0DEE6] group-hover:to-[#FFE48C] group-hover:bg-clip-text transition-all duration-500">
+                    <h3 className="text-2xl font-light text-[#1a2332] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#B0DEE6] group-hover:to-[#FFE48C] group-hover:bg-clip-text transition-all duration-500">
                       {member.name}
                     </h3>
                   </div>

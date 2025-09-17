@@ -12,7 +12,7 @@ import {
 
 export default function TeamHero(props: TeamPayload) {
   return (
-    <section className="relative mx-auto mt-14 flex min-h-[60svh] w-full flex-col items-center justify-center gap-y-12 overflow-clip px-10 py-20 text-white md:px-16 lg:max-w-7xl lg:px-32">
+    <section className="relative mx-auto mt-14 flex min-h-[60svh] w-full flex-col items-center justify-center gap-y-12 overflow-clip px-10 py-20 text-white md:px-16 md:py-12 lg:max-w-7xl lg:px-32">
       {/* Dark Umi Aurora Background */}
       <div
         className="absolute inset-0 z-0"
@@ -44,7 +44,7 @@ export default function TeamHero(props: TeamPayload) {
             </div>
           </div>
         )}
-        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent text-center">
+        <h1 className="text-5xl md:text-6xl font-light bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent text-center">
           {props.name}
         </h1>
         <p className="text-xl text-white/90 text-center max-w-2xl leading-relaxed">{props.description}</p>

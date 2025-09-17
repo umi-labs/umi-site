@@ -40,7 +40,7 @@ export default function RelatedProjects({ data }: Props) {
             )}
             <div className="flex-center z-10 size-full flex-col gap-y-6 text-primary-background">
               <div className="flex flex-col gap-y-6">
-                <h3 className="text-2xl font-semibold">{project.title}</h3>
+                <h3 className="text-2xl font-light">{project.title}</h3>
               </div>
               <div className="flex items-center justify-center gap-x-6">
                 <Link

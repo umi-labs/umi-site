@@ -75,7 +75,7 @@ export default function MeetTheTeamFilterableBlock() {
 
       {isSuccess && data?.length === 0 && (
         <div className="flex size-full flex-col items-center justify-center gap-y-6 py-16">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-light bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
             No Team Members Found
           </h2>
           <p className="text-wrap text-center md:w-1/2 text-[#313E4E]/80 text-lg">
@@ -121,7 +121,7 @@ export default function MeetTheTeamFilterableBlock() {
 function ErrorMessage() {
   return (
     <div className="flex size-full flex-col items-center justify-center gap-y-6 py-16">
-      <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent">
+      <h2 className="text-4xl md:text-5xl font-light bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent">
         Error
       </h2>
       <p className="text-wrap text-center md:w-1/2 text-white/80 text-lg">

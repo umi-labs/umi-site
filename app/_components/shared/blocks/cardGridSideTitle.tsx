@@ -35,7 +35,7 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
     <Container
       id="CardGridSideTitle"
       options={{
-        colour: 'light',
+        colour: 'transparent',
         buffers: {
           top: false,
         },
@@ -43,20 +43,6 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
       }}
       className="relative overflow-hidden py-20 md:py-32"
     >
-      {/* Dark Umi Aurora Background */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background: `
-            radial-gradient(ellipse 80% 60% at 70% 20%, rgba(49, 62, 78, 0.9), transparent 68%),
-            radial-gradient(ellipse 70% 60% at 20% 80%, rgba(54, 141, 177, 0.8), transparent 68%),
-            radial-gradient(ellipse 60% 50% at 60% 65%, rgba(176, 222, 230, 0.6), transparent 68%),
-            radial-gradient(ellipse 65% 40% at 50% 60%, rgba(255, 228, 140, 0.4), transparent 68%),
-            radial-gradient(ellipse 50% 30% at 30% 40%, rgba(236, 205, 127, 0.3), transparent 68%),
-            linear-gradient(180deg, #1e293b 0%, #0f172a 100%)
-          `,
-        }}
-      />
       <div ref={containerRef} className="relative z-10 flex w-full flex-col items-center justify-center mx-auto max-w-7xl gap-16 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-20 md:px-10">
         <motion.div 
           className="relative flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-12 place-self-start text-center md:items-start md:justify-start md:text-start"
@@ -74,7 +60,7 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
             </motion.div>
           )}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight bg-gradient-to-r from-[#1a2332] via-[#368DB1] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -88,11 +74,11 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
           >
             <CustomPortableText 
               value={data.content} 
-              paragraphClasses="text-lg md:text-xl text-white/90 leading-relaxed" 
+              paragraphClasses="text-lg md:text-xl text-[#313E4E]/90 leading-relaxed" 
             />
           </motion.div>
           <motion.div 
-            className="flex w-full flex-col items-start justify-start gap-6 lg:flex-row lg:items-center"
+            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-start"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -151,8 +137,8 @@ const Card = ({
         'group relative h-full w-full overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/20',
         feature.icon ? 'justify-between' : 'justify-center'
       )}
-      initial={{ opacity: 0, y: 60, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.9 }}
+      initial={{ opacity: 0.8, y: 10, scale: 0.98 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0.8, y: 10, scale: 0.98 }}
       transition={{ 
         duration: 0.8, 
         delay: index * 0.15, 
@@ -185,13 +171,13 @@ const Card = ({
             <Icon
               type={feature.icon.type}
               weight={feature.icon.weight}
-              className="relative z-10 size-10 text-[#313E4E] group-hover:text-[#B0DEE6] transition-colors duration-500"
+              className="relative z-10 size-10 text-[#368DB1] group-hover:text-[#B0DEE6] transition-colors duration-500"
             />
           </motion.div>
         )}
         
         <motion.h3 
-          className="mb-0 text-xl font-bold text-[#1a2332] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#B0DEE6] group-hover:to-[#FFE48C] group-hover:bg-clip-text transition-all duration-500 leading-tight"
+          className="mb-0 text-xl font-bold text-[#1a2332] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#368DB1] group-hover:to-[#B0DEE6] group-hover:bg-clip-text transition-all duration-500 leading-tight"
           whileHover={{ scale: 1.02 }}
         >
           {feature.title}
@@ -199,7 +185,7 @@ const Card = ({
         
         {feature.content && (
           <motion.p 
-            className="text-sm text-[#313E4E]/80 leading-relaxed group-hover:text-[#1a2332] transition-colors duration-500"
+            className="text-sm text-[#313E4E]/90 leading-relaxed group-hover:text-[#1a2332] transition-colors duration-500"
             whileHover={{ scale: 1.01 }}
           >
             {feature.content}
@@ -214,7 +200,7 @@ const Card = ({
             <Link
               link={feature.button.link}
               variant={feature.button.type}
-              className="w-full uppercase text-[#313E4E] hover:font-bold hover:text-[#B0DEE6] md:w-fit transition-all duration-300"
+              className="w-full uppercase text-[#368DB1] hover:font-bold hover:text-[#B0DEE6] md:w-fit transition-all duration-300"
             >
               {feature.button.title}
             </Link>

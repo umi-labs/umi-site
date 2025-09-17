@@ -96,8 +96,8 @@ const Feature = ({ feature, index = 0 }: { feature: Props['data']['features'][0]
     <motion.div 
       ref={cardRef}
       className="group relative h-full w-full overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-500"
-      initial={{ opacity: 0, y: 60, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.9 }}
+      initial={{ opacity: 0.3, y: 20, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0.3, y: 20, scale: 0.95 }}
       transition={{ 
         duration: 0.8, 
         delay: index * 0.15, 

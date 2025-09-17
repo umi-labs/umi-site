@@ -15,14 +15,7 @@ const config = {
     /// Set this to false if you want production builds to abort if there's lint errors
     ignoreDuringBuilds: process.env.VERCEL_ENV === 'production',
   },
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
-  experimental: {
-    taint: true,
-  },
+  // appDir is now stable in Next.js 14, no need for experimental flag
   compiler: {
     removeConsole:
       process.env.NODE_ENV === 'production'
