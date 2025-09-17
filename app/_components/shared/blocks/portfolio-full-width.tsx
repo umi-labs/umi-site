@@ -25,10 +25,6 @@ interface PortfolioFullWidthProps {
     title: string;
     content?: PortableTextBlock[];
     buttons?: Button[] | undefined;
-    buffers?: {
-      top?: boolean | undefined;
-      bottom?: boolean | undefined;
-    };
   };
 }
 
@@ -46,10 +42,6 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
       id="PortfolioFullWidth"
       options={{
         colour: 'transparent',
-        buffers: {
-          top: data.buffers?.top,
-          bottom: false,
-        },
         maxWidth: true,
       }}
       className="relative overflow-hidden py-20 md:py-32"
@@ -92,7 +84,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             </motion.div>
           )}
           <motion.div 
-            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-start"
+            className="flex w-full flex-col items-start justify-center gap-6 lg:flex-row lg:items-start"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -180,3 +172,4 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
     </Container>
   );
 }
+

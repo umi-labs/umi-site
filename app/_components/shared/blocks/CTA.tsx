@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '@/app/_components/ui/container';
 import { PortableTextBlock } from 'next-sanity';
-import type { Buffers, Layout } from '@/types/generics';
+import type { Layout } from '@/types/generics';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import { cn } from '@/lib/utils';
 
@@ -18,12 +18,10 @@ type Column = {
 
 interface Props {
   columns: Column[];
-  layout?: Layout;
-  buffers?: Buffers;
 }
 
 export default function CTA(props: Props) {
-  const { columns, layout, buffers } = props;
+  const { columns } = props;
 
   const colsSpanClasses = {
     full: 'col-span-12',
@@ -35,7 +33,7 @@ export default function CTA(props: Props) {
   };
 
   return (
-    <Container id="CTA" options={{ colour: layout?.colour, buffers }}>
+    <Container id="CTA" options={{ colour: 'light' }}>
       <div className="grid w-full grid-cols-4 gap-x-16 gap-y-8 lg:grid-cols-12">
         {columns &&
           columns.length > 0 &&

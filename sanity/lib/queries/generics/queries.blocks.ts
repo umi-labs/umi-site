@@ -1,11 +1,11 @@
 import { groq } from 'next-sanity';
-import { cardGrid, cta, form, logos } from '@/sanity/lib/queries/blocks';
+import { cardGrid, cta, form, logos, quotationBlock } from '@/sanity/lib/queries/blocks';
 import { button, buttons } from '@/sanity/lib/queries/generics/queries.button';
 
 export const blocks = groq`
   blocks[] {
       ...,
-      ${[form, cta, logos, cardGrid, buttons, button].join(',')},
+      ${[form, cta, logos, cardGrid, quotationBlock, buttons, button].join(',')},
       features[] {
             ...,
             ${button},

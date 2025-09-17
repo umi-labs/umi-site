@@ -36,9 +36,6 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
       id="CardGridSideTitle"
       options={{
         colour: 'transparent',
-        buffers: {
-          top: false,
-        },
         maxWidth: true,
       }}
       className="relative overflow-hidden py-20 md:py-32"
@@ -218,3 +215,4 @@ const Card = ({
     </motion.div>
   );
 };
+

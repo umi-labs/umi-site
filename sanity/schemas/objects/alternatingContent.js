@@ -65,11 +65,6 @@ export default defineType({
       title: 'Separator',
       initialValue: true,
     }),
-    defineField({
-      name: 'buffers',
-      title: 'Buffers',
-      type: 'buffers',
-    }),
   ],
   preview: {
     select: {

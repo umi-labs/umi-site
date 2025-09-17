@@ -8,7 +8,6 @@ import { Layout } from '@/types/generics';
 interface Props {
   data: {
     content: PortableTextBlock[];
-    layout?: Layout;
   };
 }
 

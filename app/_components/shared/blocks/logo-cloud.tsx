@@ -46,10 +46,6 @@ export default function LogoCloud({ data }: LogoCloudProps) {
       id="LogoCloud"
       options={{
         colour: 'light',
-        buffers: {
-          top: false,
-          bottom: false,
-        },
         maxWidth: true,
       }}
       className="gap-y-16 py-20 md:py-32 bg-transparent"
@@ -171,3 +167,4 @@ const Logo = ({ logo, index = 0 }: { logo: LogoCloudProps['data']['logos'][0]; i
     logoContent
   );
 };
+

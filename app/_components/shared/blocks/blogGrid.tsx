@@ -24,10 +24,6 @@ export default function BlogGrid({ data }: BlogGridProps) {
       id="BlogGrid"
       options={{
         colour: 'transparent',
-        buffers: {
-          top: false,
-          bottom: false,
-        },
         maxWidth: false,
       }}
       className="py-20 md:py-32"
@@ -42,4 +38,5 @@ export default function BlogGrid({ data }: BlogGridProps) {
     </Container>
   );
 }
+
 

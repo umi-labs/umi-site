@@ -32,6 +32,7 @@ import BasicHero from '@/app/_components/shared/heros/BasicHero';
 import CTABlock from '@/app/_components/shared/blocks/cta-block';
 import FormBlock from '@/app/_components/shared/blocks/form-block';
 import CTA from '@/app/_components/shared/blocks/CTA';
+import QuotationBlock from '@/app/_components/shared/blocks/quotation-block';
 import { cn } from '@/app/_utils';
 
 export function CustomPortableText({
@@ -183,6 +184,9 @@ export function CustomPortableText({
       },
       ctaTitleImage: ({ value }) => {
         return <CTATitleImage data={value} />;
+      },
+      quotationBlock: ({ value }) => {
+        return <QuotationBlock data={value} />;
       },
       meetTheTeam: ({ value }) => {
         return <MeetTheTeamSection data={value} />;

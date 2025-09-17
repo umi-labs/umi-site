@@ -30,10 +30,6 @@ export default function FeatureGrid({ data }: Props) {
       id="FeatureGrid"
       options={{
         colour: 'light',
-        buffers: {
-          top: false,
-          bottom: false,
-        },
         maxWidth: true,
       }}
       className="bg-transparent py-16 md:py-40"
@@ -190,3 +186,4 @@ const IconBackground = (props: React.HTMLAttributes<HTMLOrSVGElement>) => {
     </svg>
   );
 };
+
