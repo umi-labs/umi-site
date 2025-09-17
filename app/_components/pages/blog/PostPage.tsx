@@ -26,7 +26,7 @@ export function Post({ data, encodeDataAttribute }: PostProps) {
       {/* Article Content */}
       <div className="mx-auto max-w-4xl px-6 pt-32 pb-16">
         {/* Title */}
-        <h1 className="mb-8 leading-tight text-gray-900 md:text-5xl lg:text-6xl">
+        <h1 className="mb-8 leading-[1.2] text-gray-900 md:text-5xl lg:text-6xl">
           {title}
         </h1>
 

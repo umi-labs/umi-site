@@ -60,7 +60,7 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
             </motion.div>
           )}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight bg-gradient-to-r from-[#1a2332] via-[#368DB1] to-[#1a2332] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.2] bg-gradient-to-r from-[#1a2332] via-[#368DB1] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -78,7 +78,7 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
             />
           </motion.div>
           <motion.div 
-            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-start"
+            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-start lg:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -177,7 +177,7 @@ const Card = ({
         )}
         
         <motion.h3 
-          className="mb-0 text-xl font-bold text-[#1a2332] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#368DB1] group-hover:to-[#B0DEE6] group-hover:bg-clip-text transition-all duration-500 leading-tight"
+          className="mb-0 text-xl font-bold text-[#1a2332] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#368DB1] group-hover:to-[#B0DEE6] group-hover:bg-clip-text transition-all duration-500 leading-[1.2]"
           whileHover={{ scale: 1.02 }}
         >
           {feature.title}

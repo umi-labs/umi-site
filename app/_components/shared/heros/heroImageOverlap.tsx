@@ -56,7 +56,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
             {data.subtitle}
           </motion.h5>
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-light bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-light bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent leading-[1.2]"
             whileHover={{ scale: 1.02 }}
           >
             {data.title}

@@ -58,7 +58,7 @@ export function CustomPortableText({
         const HeadingTag = headingLevel as keyof JSX.IntrinsicElements;
         return (
           <HeadingTag
-            className={`${paragraphClasses} mb-4 font-heading text-3xl md:text-5xl font-normal tracking-reduced`}
+            className={`${paragraphClasses} mb-4 font-heading text-3xl md:text-5xl font-normal leading-[1.2] tracking-reduced`}
           >
             {children}
           </HeadingTag>
@@ -67,7 +67,7 @@ export function CustomPortableText({
       h2: ({ children }) => {
         return (
           <h2
-            className={`${paragraphClasses} mb-4 font-heading text-4xl font-normal leading-[110%] tracking-reduced`}
+            className={`${paragraphClasses} mb-4 font-heading text-4xl font-normal leading-[1.2] tracking-reduced`}
           >
             {children}
           </h2>
@@ -76,7 +76,7 @@ export function CustomPortableText({
       h3: ({ children }) => {
         return (
           <h3
-            className={`${paragraphClasses} mb-4 font-heading text-2xl font-normal leading-6 tracking-reduced`}
+            className={`${paragraphClasses} mb-4 font-heading text-2xl font-normal leading-[1.2] tracking-reduced`}
           >
             {children}
           </h3>
@@ -85,7 +85,7 @@ export function CustomPortableText({
       h4: ({ children }) => {
         return (
           <h4
-            className={`${paragraphClasses} mb-4 font-heading text-xl font-normal leading-6 tracking-reduced`}
+            className={`${paragraphClasses} mb-4 font-heading text-xl font-normal leading-[1.2] tracking-reduced`}
           >
             {children}
           </h4>
@@ -94,7 +94,7 @@ export function CustomPortableText({
       h5: ({ children }) => {
         return (
           <h5
-            className={`${paragraphClasses} mb-4 font-subtitle text-xs font-bold leading-6 tracking-expanded`}
+            className={`${paragraphClasses} mb-4 font-subtitle text-xs font-bold leading-[1.2] tracking-expanded`}
           >
             {children}
           </h5>
@@ -103,7 +103,7 @@ export function CustomPortableText({
       h6: ({ children }) => {
         return (
           <h6
-            className={`${paragraphClasses} mb-4 font-heading text-lg font-normal leading-6 tracking-normal`}
+            className={`${paragraphClasses} mb-4 font-heading text-lg font-normal leading-[1.2] tracking-normal`}
           >
             {children}
           </h6>

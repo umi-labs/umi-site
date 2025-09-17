@@ -30,7 +30,7 @@ export default async function MeetTheTeamSection({ data }: Props) {
       <section
         id="MeetTheTeam"
         className={cn(
-          'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible py-20 md:gap-12 md:py-32 lg:gap-y-16'
+          'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible py-32 md:gap-12 md:py-64 lg:gap-y-16'
         )}
       >
         <div className="flex-center flex-col gap-y-10 px-6 text-center">

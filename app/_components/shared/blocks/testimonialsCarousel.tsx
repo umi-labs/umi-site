@@ -45,7 +45,7 @@ export default function TestimonialsCarousel({
     >
       <div className="flex h-fit w-full flex-col items-center justify-center gap-y-10 place-self-start text-center">
         {data.separator && <EyebrowSVG className="" />}
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight bg-gradient-to-r from-[#1a2332] via-[#368DB1] to-[#1a2332] bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.2] bg-gradient-to-r from-[#1a2332] via-[#368DB1] to-[#1a2332] bg-clip-text text-transparent">
           {data.title}
         </h2>
       </div>
