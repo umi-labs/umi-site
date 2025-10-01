@@ -2,7 +2,9 @@
 import React, { useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { HeroWithMediaProps } from '@/types/components/heroWithMedia';
-import Link from '@/app/_components/ui/link';
+import Link from 'next/link';
+import useResolvedHref from '@/app/_utils/hooks/useResolvedHref';
+import { buttonVariants } from '@/app/_components/ui/button';
 import Image from 'next/image';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import Video from '@/app/_components/ui/video';
@@ -123,7 +125,13 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             >
-              {data.buttons.map((button, i) => (
+              {data.buttons.map((button, i) => {
+                console.log('HeroWithMedia button data:', button);
+                console.log('Button link data:', button.link);
+                const resolvedHref = useResolvedHref({ link: button.link });
+                console.log('Resolved href:', resolvedHref);
+                
+                return (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
@@ -137,15 +145,14 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    link={button.link}
-                    size="default"
-                    variant={button.type}
-                    className="w-full md:w-fit"
+                    href={resolvedHref.href}
+                    className={cn(buttonVariants({ variant: button.type, size: "default" }), "w-full md:w-fit")}
                   >
                     {button.title}
                   </Link>
                 </motion.div>
-              ))}
+                );
+              })}
             </motion.div>
           )}
 
@@ -189,7 +196,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-4xl font-light text-left bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-light text-left leading-[1.2] bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
               {data.bottomContent.title}
             </h2>
             <div className="relative">

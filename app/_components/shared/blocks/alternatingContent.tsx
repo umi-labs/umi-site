@@ -82,9 +82,9 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
             </motion.p>
           )}
         </motion.div>
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-20 md:gap-32">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-16">
           {data.content.map((item, i) => (
-            <Card key={i} item={item} orientation={i % 2 ? 'rtl' : 'ltr'} index={i} />
+            <Card key={i} item={item} index={i} />
           ))}
         </div>
       </div>
@@ -94,112 +94,118 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
 
 const Card = ({
   item: { title, description, image },
-  orientation = 'rtl',
   index = 0,
 }: {
   item: AlternatingContentProps['data']['content'][0];
-  orientation: 'rtl' | 'ltr';
   index: number;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-50px" });
+  const isInView = useInView(cardRef, { once: true, margin: "-100px" });
   
   const { asset } = image || {};
   const { url, metadata, altText } = image?.asset || {};
   const { dimensions } = metadata || {};
 
-  const aspectRatio =
-    dimensions?.width && dimensions?.height
-      ? `${dimensions?.width! / 100}/${dimensions?.height! / 100}`
-      : '8/7';
-
   return (
     <motion.div 
       ref={cardRef}
-      className="group relative"
-      initial={{ opacity: 0, y: 60 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+      className="group relative w-full"
+      initial={{ opacity: 0, y: 80 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ 
         duration: 0.8, 
-        delay: index * 0.2, 
+        delay: index * 0.15, 
         ease: "easeOut" 
       }}
     >
-      <div className="grid grid-cols-1 grid-rows-2 place-items-center gap-12 md:grid-cols-2 md:grid-rows-1 md:gap-20">
-        {/* Content Section */}
-        <motion.div
-          className={cn(
-            'relative flex flex-col items-center justify-center gap-8 text-center md:items-start md:text-start p-8 md:p-12',
-            orientation === 'rtl'
-              ? 'md:col-start-1 md:row-start-1'
-              : 'md:col-start-2 md:row-start-1'
-          )}
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        >
-          {/* Content wrapper */}
-          <div className="relative z-10 space-y-6">
-            <motion.h3 
-              className="text-3xl md:text-4xl lg:text-5xl font-light text-[#313E4E] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#368DB1] group-hover:to-[#368DB1] group-hover:bg-clip-text transition-all duration-500"
-              whileHover={{ x: orientation === 'rtl' ? -10 : 10 }}
-            >
-              {title}
-            </motion.h3>
-            
-            <motion.div 
-              className="prose prose-lg max-w-none"
-              whileHover={{ x: orientation === 'rtl' ? -5 : 5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <CustomPortableText
-                value={description}
-                paragraphClasses={cn('text-[#313E4E]/80 leading-relaxed text-left')}
-              />
-            </motion.div>
-          </div>
-
-        </motion.div>
-
-        {/* Image Section */}
+      <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
+        {/* Image Section - Left Side */}
         {asset && url && (
           <motion.div
-            className={cn(
-              'relative group/image',
-              orientation === 'rtl'
-                ? 'md:col-start-2 md:row-start-1'
-                : 'md:col-start-1 md:row-start-1'
-            )}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="relative group/image flex-shrink-0 w-full lg:w-64"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.15 + 0.2, 
+              ease: "easeOut" 
+            }}
           >
-            {/* Image container with enhanced styling */}
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl p-6">
-              {/* Background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#B0DEE6]/10 via-[#368DB1]/10 to-[#FFE48C]/10 rounded-2xl" />
+            {/* Image container */}
+            <div className="relative overflow-hidden rounded-xl shadow-lg bg-gradient-to-br from-[#B0DEE6]/5 to-[#368DB1]/5 p-8">
+              {/* Decorative border */}
+              <div className="absolute inset-0 rounded-xl border border-[#B0DEE6]/20" />
               
               {/* Image */}
-              <div className={`relative flex aspect-[${aspectRatio}] h-fit w-full items-center justify-center p-12`}>
+              <div className="relative w-full">
                 <Image
                   src={url || ''}
                   alt={altText || ''}
-                  width={dimensions?.width || 0}
-                  height={dimensions?.height || 0}
-                  className="relative z-10 object-contain object-center group-hover/image:scale-110 transition-transform duration-700 ease-out"
+                  width={dimensions?.width || 200}
+                  height={dimensions?.height || 200}
+                  className="relative z-10 w-full h-auto object-contain object-center rounded-lg group-hover/image:scale-105 transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
               </div>
 
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#313E4E]/20 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
+              {/* Hover effects */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#313E4E]/10 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 rounded-xl" />
               
               {/* Shine effect */}
-              <div className="absolute inset-0 -translate-x-full group-hover/image:translate-x-full transition-transform duration-1000 ease-out">
-                <div className="h-full w-1/2 bg-gradient-to-r from-transparent via-[#B0DEE6]/20 to-transparent skew-x-12" />
+              <div className="absolute inset-0 -translate-x-full group-hover/image:translate-x-full transition-transform duration-700 ease-out rounded-xl">
+                <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
               </div>
             </div>
-
           </motion.div>
         )}
+
+        {/* Content Section - Right Side */}
+        <motion.div
+          className="flex-1 space-y-6"
+          initial={{ opacity: 0, x: 50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+          transition={{ 
+            duration: 0.8, 
+            delay: index * 0.15 + 0.3, 
+            ease: "easeOut" 
+          }}
+        >
+          {/* Title */}
+          <motion.h3 
+            className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#313E4E] leading-tight"
+            whileHover={{ 
+              scale: 1.02,
+              x: 10
+            }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            {title}
+          </motion.h3>
+          
+          {/* Description */}
+          <motion.div 
+            className="prose prose-lg max-w-none"
+            whileHover={{ x: 5 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CustomPortableText
+              value={description}
+              paragraphClasses="text-[#313E4E]/80 leading-relaxed text-left"
+            />
+          </motion.div>
+
+          {/* Decorative line */}
+          <motion.div 
+            className="w-16 h-1 bg-gradient-to-r from-[#368DB1] to-[#B0DEE6] rounded-full"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 64 } : { width: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.15 + 0.5, 
+              ease: "easeOut" 
+            }}
+          />
+        </motion.div>
       </div>
     </motion.div>
   );

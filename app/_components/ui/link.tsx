@@ -24,17 +24,41 @@ export function Link({
   className,
   ...props
 }: LinkProps) {
-  if (!link) return;
+  // If we have href, use it directly
+  if (href) {
+    return (
+      <NextLink
+        href={href}
+        className={cn(buttonVariants({ variant, size, className }))}
+        {...props}
+      >
+        {children}
+      </NextLink>
+    );
+  }
 
-  const url = href
-    ? href
-    : link.displayExternal
-      ? link.url!
-      : link.hasParent
-        ? `/${link.parentSlug}/${link.slug}`
-        : link.type !== 'page'
-          ? `/${link.type}/${link.slug}`
-          : `/${link.slug}`;
+  // If no link data at all, return null
+  if (!link) {
+    return null;
+  }
+
+  // If we have link data, construct URL
+  const url = link.displayExternal
+    ? link.url || '#'
+    : link.hasParent
+      ? `/${link.parentSlug || ''}/${link.slug || ''}`
+      : link.type !== 'page'
+        ? `/${link.type || ''}/${link.slug || ''}`
+        : `/${link.slug || ''}`;
+
+  // If URL is just '/' or contains 'undefined', use fallback
+  if (url === '/' || url.includes('undefined') || !url || url === '//') {
+    return (
+      <span className={cn(buttonVariants({ variant, size, className }))}>
+        {children}
+      </span>
+    );
+  }
 
   return (
     <NextLink

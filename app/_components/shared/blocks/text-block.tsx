@@ -14,7 +14,17 @@ interface Props {
 
 export default function TextBlock({ data }: Props) {
   return (
-    <Container id="TextBlock">
+    <Container 
+      id="TextBlock"
+      options={{
+        colour: 'transparent',
+        maxWidth: true,
+        buffers: {
+          top: false,
+          bottom: false,
+        },
+      }}
+    >
       <div className={cn('mx-auto my-4 flex max-w-3xl flex-col px-6')}>
         <CustomPortableText
           value={data.content}

@@ -16,7 +16,18 @@ interface Props {
 export default function FormBlock({ data }: Props) {
   const { enableIntro, introContent, form } = data;
   return (
-    <Container id="FormBlock" className="gap-y-4">
+    <Container 
+      id="FormBlock" 
+      options={{
+        colour: 'transparent',
+        maxWidth: true,
+        buffers: {
+          top: false,
+          bottom: false,
+        },
+      }}
+      className="gap-y-4 py-16 md:py-24 max-w-[900px]"
+    >
       {enableIntro && introContent && (
         <CustomPortableText
           value={introContent}
@@ -27,7 +38,7 @@ export default function FormBlock({ data }: Props) {
       <FormBuilderBlock
         form={form}
         uid={form._key}
-        className="w-full max-w-[800px] mx-auto"
+        className="w-full max-w-[900px] mx-auto"
       />
     </Container>
   );
