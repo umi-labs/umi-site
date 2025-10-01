@@ -20,6 +20,7 @@ interface ContentBlockProps {
 
     description: PortableTextBlock[];
     type: 'umiCulture' | 'standardVideo' | 'standardImage';
+    layout?: Layout;
     imageGrid: ImageType[];
     cardGrid: {
       image: ImageType;
@@ -41,6 +42,10 @@ export default function ContentBlock({ data }: ContentBlockProps) {
       id="ContentBlock"
       options={{
         colour: 'transparent',
+        buffers: {
+          top: false,
+          bottom: false,
+        },
         maxWidth: false,
       }}
     >
@@ -252,4 +257,3 @@ export default function ContentBlock({ data }: ContentBlockProps) {
     </Container>
   );
 }
-

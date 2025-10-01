@@ -21,7 +21,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-            className={`${poppins.variable} ${nunito.variable} ${tenorSans.variable} ${cormorantGaramond.variable} font-sans`}
+      className={`${poppins.variable} ${nunito.variable} ${tenorSans.variable} ${cormorantGaramond.variable} font-sans`}
       style={styles}
     >
       <head>

@@ -9,21 +9,24 @@ import Link from '@/app/_components/ui/link';
 import Container from '@/app/_components/ui/container';
 
 export default function CTASimple({ data }: CTASimpleProps) {
-  const { image, title, content, buttons, subtitle, _type } =
+  const { buffers, layout, image, title, content, buttons, subtitle, _type } =
     data || {};
 
   return (
     <Container
       id="CTASimple"
       options={{
-        colour: 'light',
+        colour: layout?.colour,
+        buffers,
       }}
     >
       <div className="relative mx-auto grid min-h-[35svh] w-screen max-w-7xl grid-cols-1 grid-rows-6 place-items-center gap-x-36 overflow-clip px-8 py-10 md:grid-cols-5 md:grid-rows-1 lg:px-10">
         <BackgroundPatternSVG
           className={cn(
             'absolute -left-1/2 bottom-0 -z-0 h-full w-auto md:left-0 md:h-auto md:w-full',
-            'fill-primary-foreground'
+            layout?.colour === 'dark'
+              ? 'fill-primary-secondary-accent'
+              : 'fill-primary-foreground'
           )}
         />
         {image && (

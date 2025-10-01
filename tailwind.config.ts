@@ -43,7 +43,7 @@ const config = {
       fontFamily: {
         heading: ['var(--font-cormorant-garamond)'],
         subtitle: ['var(--font-poppins)'],
-            body: ['var(--font-nunito)'],
+        body: ['var(--font-nunito)'],
         switzer: ['var(--font-switzer)'],
         switzerItalic: ['var(--font-switzer-italic)'],
       },

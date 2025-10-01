@@ -1,10 +1,12 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Layout } from '@/types/generics';
+import { BottomBuffer, TopBuffer } from '@/app/_components/ui/buffers';
+import { Buffers, Layout } from '@/types/generics';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   options?: {
     colour?: Layout['colour'];
+    buffers?: Buffers;
     maxWidth?: boolean;
   };
   children?: React.ReactNode;
@@ -13,6 +15,10 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const DEFAULT_OPTIONS = {
   colour: 'light',
+  buffers: {
+    top: false,
+    bottom: false,
+  },
   maxWidth: false,
 };
 
@@ -22,11 +28,13 @@ export default function Container({
   children,
   ...props
 }: Props) {
-  const { colour, maxWidth } = options || DEFAULT_OPTIONS;
+  const { colour, buffers, maxWidth } = options || DEFAULT_OPTIONS;
   return (
     <section
       className={cn(
         'relative mx-auto flex min-h-full w-full flex-col items-center justify-center gap-y-16 px-10 py-10 md:py-30',
+        buffers?.top && 'mt-20 md:mt-44',
+        buffers?.bottom && 'mb-44',
         !maxWidth && 'mx-auto max-w-7xl',
         colour === 'light' && 'bg-primary-background text-primary-foreground',
         colour === 'dark' && 'bg-[#FAFAFA]',
@@ -36,7 +44,19 @@ export default function Container({
       )}
       {...props}
     >
+      <TopBuffer
+        colour={
+          colour === 'light' ? 'light' : colour === 'dark' ? 'dark' : colour === 'transparent' ? 'light' : 'accent'
+        }
+        visible={buffers?.top}
+      />
       {children}
+      <BottomBuffer
+        colour={
+          colour === 'light' ? 'light' : colour === 'dark' ? 'dark' : colour === 'transparent' ? 'light' : 'accent'
+        }
+        visible={buffers?.bottom}
+      />
     </section>
   );
 }

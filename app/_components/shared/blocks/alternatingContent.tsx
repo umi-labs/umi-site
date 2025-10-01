@@ -13,6 +13,10 @@ interface AlternatingContentProps {
     separator?: boolean | undefined;
     title: string;
     description?: string | undefined;
+    buffers?: {
+      top?: boolean | undefined;
+      bottom?: boolean | undefined;
+    };
     content: {
       title: string;
       description: PortableTextBlock[];
@@ -43,6 +47,10 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
       id="AlternatingContent"
       options={{
         colour: 'transparent',
+        buffers: {
+          top: false,
+          bottom: false,
+        },
         maxWidth: true,
       }}
       className="py-16 md:py-40"
@@ -196,4 +204,3 @@ const Card = ({
     </motion.div>
   );
 };
-

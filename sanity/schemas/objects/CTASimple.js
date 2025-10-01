@@ -38,6 +38,8 @@ export default defineType({
         }),
       ],
     }),
+    defineField({ name: 'buffers', title: 'Buffers', type: 'buffers' }),
+    defineField({ name: 'layout', title: 'Layout', type: 'layout' }),
   ],
   preview: {
     select: {

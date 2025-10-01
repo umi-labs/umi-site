@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ProjectPayload } from '@/types';
 import Link from '@/app/_components/ui/link';
 import { Download } from '@phosphor-icons/react/dist/ssr';
+import { BottomBuffer } from '@/app/_components/ui/buffers';
 
 interface ProjectHeroProps {
   project: ProjectPayload;
@@ -93,4 +94,3 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
     </section>
   );
 }
-

@@ -35,6 +35,10 @@ export default function TestimonialsCarousel({
       id="TestimonialsCarousel"
       options={{
         colour: 'transparent',
+        buffers: {
+          top: false,
+          bottom: false,
+        },
         maxWidth: true,
       }}
       className="relative overflow-hidden py-20 md:py-32"
@@ -184,4 +188,3 @@ const QuotationMark = ({
       );
   }
 };
-

@@ -97,9 +97,5 @@ export default defineType({
       name: 'archiveBlock',
       type: 'archiveBlock',
     }),
-      defineArrayMember({
-        name: 'quotationBlock',
-        type: 'quotationBlock',
-      }),
   ],
 });

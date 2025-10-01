@@ -87,12 +87,11 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
           {/* Title */}
           <motion.h1 
             className={cn(
-              "text-5xl md:text-6xl lg:text-7xl font-light text-center",
+              "text-5xl md:text-6xl lg:text-7xl font-light text-center leading-[1.2]",
               data?.background === 'light' 
                 ? "bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
                 : "text-white"
             )}
-            style={{ lineHeight: '1.2' }}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}

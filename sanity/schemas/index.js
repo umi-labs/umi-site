@@ -23,7 +23,6 @@ import review from '@/sanity/schemas/documents/review';
 import job from '@/sanity/schemas/documents/job';
 import faq from '@/sanity/schemas/documents/faq';
 import ctas from '@/sanity/schemas/documents/ctas';
-import quotations from '@/sanity/schemas/documents/quotations';
 
 // Objects
 import CTATitleImage from '@/sanity/schemas/objects/CTATitleImage';
@@ -57,6 +56,7 @@ import button from '@/sanity/schemas/objects/globals/button';
 import icon from '@/sanity/schemas/objects/globals/icon';
 import portfolioFullWidth from '@/sanity/schemas/objects/portfolio-full-width';
 import archiveBlock from '@/sanity/schemas/objects/archive-block';
+import buffers from '@/sanity/schemas/objects/globals/buffers';
 import faqBlock from '@/sanity/schemas/objects/faq-block';
 import carousel from '@/sanity/schemas/objects/carousel';
 import featureGrid from '@/sanity/schemas/objects/feature-grid';
@@ -65,12 +65,11 @@ import contentBlock from '@/sanity/schemas/objects/content-block';
 import meetTheTeam from '@/sanity/schemas/objects/meet-the-team';
 import video from '@/sanity/schemas/objects/globals/video';
 import jsonLd from '@/sanity/schemas/objects/globals/json-ld';
+import layout from '@/sanity/schemas/objects/globals/layout';
 import textBlock from '@/sanity/schemas/objects/text-block';
 import ctaBlock from '@/sanity/schemas/objects/cta-block';
 import formBlock from '@/sanity/schemas/objects/form-block';
 import cta from '@/sanity/schemas/objects/cta';
-import requestQuotation from '@/sanity/schemas/objects/requestQuotation';
-import quotationBlock from '@/sanity/schemas/objects/quotation-block';
 
 export const schema = [
   // Singletons
@@ -97,7 +96,6 @@ export const schema = [
   job,
   faq,
   ctas,
-  quotations,
 
   // Objects
   primaryHero,
@@ -134,6 +132,7 @@ export const schema = [
   CTATitleImage,
   archiveBlock,
   portfolioFullWidth,
+  buffers,
   faqBlock,
   carousel,
   featureGrid,
@@ -141,9 +140,8 @@ export const schema = [
   contentBlock,
   video,
   jsonLd,
+  layout,
   textBlock,
-  requestQuotation,
-  quotationBlock,
 ];
 
 export const singletons = [
