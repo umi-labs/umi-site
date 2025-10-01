@@ -92,7 +92,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             </motion.div>
           )}
           <motion.div 
-            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-start"
+            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-start lg:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}

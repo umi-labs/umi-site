@@ -16,7 +16,7 @@ interface Props {
     features: {
       title: string;
       description: string;
-      icon: IconType;
+      icon?: IconType;
     }[];
   };
 }
@@ -55,7 +55,7 @@ export default function FeatureGrid({ data }: Props) {
             </motion.div>
           )}
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-light text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -126,11 +126,13 @@ const Feature = ({ feature, index = 0 }: { feature: Props['data']['features'][0]
           <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-[#FFE48C] to-[#ECCD7F] rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 delay-100" />
           <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-br from-[#B0DEE6] to-[#368DB1] rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 delay-200" />
           
-          <Icon
-            type={feature.icon.type}
-            weight={feature.icon.weight}
-            className="relative z-10 size-12 text-[#313E4E] group-hover:text-[#368DB1] transition-colors duration-500"
-          />
+          {feature.icon && (
+            <Icon
+              type={feature.icon.type}
+              weight={feature.icon.weight}
+              className="relative z-10 size-12 text-[#313E4E] group-hover:text-[#368DB1] transition-colors duration-500"
+            />
+          )}
         </motion.div>
 
         {/* Text content */}

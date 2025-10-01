@@ -53,6 +53,14 @@ export interface NavItem {
   hasParent: boolean;
   parentSlug?: string;
   type: string;
+  internalLink?: {
+    _type: string;
+    slug: string;
+    title: string;
+    hasParent?: boolean;
+    parentSlug?: string;
+    type?: string;
+  };
 }
 
 export interface NavLinks {

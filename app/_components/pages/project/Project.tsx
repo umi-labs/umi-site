@@ -64,17 +64,30 @@ function Project({ data }: ProjectProps) {
             {/* Sidebar - Right Side */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-8">
+                {/* Client Logo */}
+                {data?.clientLogo?.asset?.url && (
+                  <div className="flex justify-center mb-6">
+                    <Image
+                      src={data.clientLogo.asset.url}
+                      alt={data.clientLogo.asset.altText || data?.clientName || 'Client logo'}
+                      width={data.clientLogo.asset.metadata?.dimensions.width || 240}
+                      height={data.clientLogo.asset.metadata?.dimensions.height || 120}
+                      className="h-32 w-auto object-contain"
+                    />
+                  </div>
+                )}
+
                 {/* Client Info */}
                 <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-white/95 backdrop-blur-sm shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/20 p-8">
                   <h3 className="mb-6 text-xl font-light text-[#313E4E]">Project Details</h3>
-                  
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="mb-2 text-sm font-medium text-[#313E4E]/70 uppercase tracking-wider">Client Name</h4>
-                      <p className="text-xl font-bold text-[#313E4E]">{data?.clientName}</p>
-                    </div>
                     
-                    {data?.tags && data.tags.length > 0 && (
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="mb-2 text-sm font-medium text-[#313E4E]/70 uppercase tracking-wider">Client Name</h4>
+                        <p className="text-xl font-bold text-[#313E4E]">{data?.clientName}</p>
+                      </div>
+                      
+                      {data?.tags && data.tags.length > 0 && (
                       <div>
                         <h4 className="mb-3 text-sm font-medium text-[#313E4E]/70 uppercase tracking-wider">Services</h4>
                         <div className="flex flex-wrap gap-2">
@@ -89,7 +102,7 @@ function Project({ data }: ProjectProps) {
                         </div>
                       </div>
                     )}
-                  </div>
+                    </div>
                 </div>
 
                 {/* Actions */}
@@ -97,7 +110,7 @@ function Project({ data }: ProjectProps) {
                   {data?.clientUrl && (
                     <Link
                       href={data.clientUrl}
-                      className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#368DB1] to-[#368DB1] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:from-[#313E4E] hover:to-[#368DB1] hover:scale-105 hover:shadow-xl active:scale-95"
+                      className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#368DB1] to-[#368DB1] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:from-[#313E4E] hover:to-[#368DB1] hover:scale-105 hover:shadow-xl active:scale-95"
                     >
                       Visit Website
                     </Link>

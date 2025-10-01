@@ -31,18 +31,6 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
           <div className="grid gap-8 md:grid-cols-2 md:items-center">
             {/* Left Column - Project Info */}
             <div className="space-y-6">
-              {project?.clientLogo && (
-                <div className="mb-6">
-                  <Image
-                    src={project.clientLogo.asset?.url || ''}
-                    alt={project.clientLogo.asset?.altText || ''}
-                    width={project.clientLogo.asset?.metadata?.dimensions.width}
-                    height={project.clientLogo.asset?.metadata?.dimensions.height}
-                    className="h-12 w-auto object-contain"
-                  />
-                </div>
-              )}
-              
               <h1 className="text-4xl font-light bg-gradient-to-r from-white via-[#B0DEE6] to-[#FFE48C] bg-clip-text text-transparent md:text-5xl lg:text-6xl">
                 {project?.clientName || project?.title}
               </h1>
@@ -69,14 +57,6 @@ export default function ProjectHero({ project, ...props }: ProjectHeroProps) {
 
             {/* Right Column - Actions */}
             <div className="flex flex-col gap-4 md:items-end">
-              {project?.clientUrl && (
-                <Link
-                  href={project.clientUrl}
-                  className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-lg font-semibold text-gray-900 transition-all hover:bg-gray-100 hover:shadow-lg"
-                >
-                  Visit Website
-                </Link>
-              )}
               {project?.caseStudyUrl && (
                 <Link
                   href={project.caseStudyUrl}
