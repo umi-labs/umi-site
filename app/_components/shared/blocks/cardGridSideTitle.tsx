@@ -38,7 +38,7 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
         colour: 'transparent',
         maxWidth: true,
       }}
-      className="relative overflow-hidden py-20 md:py-24"
+      className="relative overflow-hidden py-16 md:py-24"
     >
       <div ref={containerRef} className="relative z-10 flex w-full flex-col items-center justify-center mx-auto max-w-7xl gap-16 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-20 md:px-10">
         <motion.div 

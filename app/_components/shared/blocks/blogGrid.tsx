@@ -26,7 +26,7 @@ export default function BlogGrid({ data }: BlogGridProps) {
         colour: 'transparent',
         maxWidth: false,
       }}
-      className="py-20 md:py-24"
+      className="py-16 md:py-24"
     >
       <div className="flex w-full flex-col items-center justify-center gap-6">
         {data.separator && <EyebrowSVG className="" />}

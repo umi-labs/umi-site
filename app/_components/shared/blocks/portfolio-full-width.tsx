@@ -44,10 +44,10 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
         colour: 'transparent',
         maxWidth: true,
       }}
-      className="relative overflow-hidden py-20 md:py-24"
+      className="relative overflow-hidden py-16 md:py-24"
     >
 
-      <div ref={containerRef} className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-16 px-6 text-center lg:grid lg:grid-cols-3 lg:grid-rows-1 lg:gap-20 lg:px-10">
+      <div ref={containerRef} className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-16 text-center lg:grid lg:grid-cols-3 lg:grid-rows-1 lg:gap-20">
         <motion.div 
           className="flex h-fit w-full flex-col items-center justify-center gap-y-12 place-self-start text-center lg:items-start lg:justify-start lg:text-start"
           initial={{ opacity: 0, x: -50 }}

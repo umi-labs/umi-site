@@ -1,0 +1,89 @@
+{
+  "redirects": [
+    {
+      "source": "/blog/project/the-peligoni-club",
+      "destination": "/our-work/the-peligoni-club",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/hurley-house-hotel",
+      "destination": "/our-work/hurley-house-hotel",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/no-ten-manchester-street",
+      "destination": "/our-work/no-ten-manchester-street",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/virunga-national-park",
+      "destination": "/our-work/virunga-national-park",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/the-landmark-london",
+      "destination": "/our-work/the-landmark-london",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/the-oberoi",
+      "destination": "/our-work/the-oberoi",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/fullers",
+      "destination": "/our-work/fullers",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/rbh-hospitality",
+      "destination": "/our-work/rbh-hospitality",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/the-other-house",
+      "destination": "/our-work/the-other-house",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/the-stafford",
+      "destination": "/our-work/the-stafford-hotel",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/kirker-travel",
+      "destination": "/our-work/kirker-travel",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/the-store-oxford",
+      "destination": "/our-work/the-store-oxford",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/the-resident",
+      "destination": "/our-work/the-resident",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/kula",
+      "destination": "/our-work/stay-kula",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/one-aldwych",
+      "destination": "/our-work/one-aldwych",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/the-athenaeum-hotel",
+      "destination": "/our-work/the-athenaeum",
+      "permanent": true
+    },
+    {
+      "source": "/blog/project/the-good-hotel-guide",
+      "destination": "/our-work/good-hotel-guide",
+      "permanent": true
+    }
+  ]
+}

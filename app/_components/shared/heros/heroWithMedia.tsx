@@ -126,10 +126,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             >
               {data.buttons.map((button, i) => {
-                console.log('HeroWithMedia button data:', button);
-                console.log('Button link data:', button.link);
                 const resolvedHref = useResolvedHref({ link: button.link });
-                console.log('Resolved href:', resolvedHref);
                 
                 return (
                 <motion.div
