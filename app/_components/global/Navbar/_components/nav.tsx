@@ -167,7 +167,7 @@ const Nav = ({ menu }) => {
                 key={i}
                 className="group flex select-none items-center justify-between px-4 py-2 text-xs font-medium leading-none text-black rounded-lg transition-all duration-200 hover:bg-primary-accent/10 hover:text-primary-accent"
               >
-                <NavigationMenu.Link
+                <Link
                   href={
                     nav.hasParent && nav.parentSlug
                       ? `/${nav.parentSlug}/${nav.slug}`
@@ -178,7 +178,7 @@ const Nav = ({ menu }) => {
                   className="transition-colors duration-200"
                 >
                   {title}
-                </NavigationMenu.Link>
+                </Link>
               </NavigationMenu.Item>
             ) : (
               <NavigationMenu.Item key={i} value={title}>

@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { Button } from '@/app/_components/ui/button';
 import { FormBuilderProps } from '@/types/components/form';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
+import { sendGTMEvent } from '@next/third-parties/google';
 import {
   Form,
   FormControl,
@@ -96,6 +97,16 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
       if (req.status >= 400) {
         setIsLoading(false);
 
+        // Send GTM event for failed form submission
+        sendGTMEvent({
+          event: 'form_submit',
+          form_id: actualFormID || 'unknown',
+          form_title: form?.title || 'Contact Form',
+          form_type: 'contact',
+          success: false,
+          error_message: res.errors?.[0]?.message || 'Internal Server Error'
+        });
+
         setError({
           message: res.errors?.[0]?.message || 'Internal Server Error',
           status: res.status,
@@ -107,12 +118,32 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
       setIsLoading(false);
       setHasSubmitted(true);
 
+      // Send GTM event for successful form submission
+      sendGTMEvent({
+        event: 'form_submit',
+        form_id: actualFormID || 'unknown',
+        form_title: form?.title || 'Contact Form',
+        form_type: 'contact',
+        success: true
+      });
+
       if (confirmationType === 'redirect' && redirect) {
         router.push(redirect);
       }
     } catch (error) {
       console.warn(error);
       setIsLoading(false);
+
+      // Send GTM event for form submission error
+      sendGTMEvent({
+        event: 'form_submit',
+        form_id: actualFormID || 'unknown',
+        form_title: form?.title || 'Contact Form',
+        form_type: 'contact',
+        success: false,
+        error_message: 'Something went wrong.'
+      });
+
       setError({
         message: 'Something went wrong.',
       });
