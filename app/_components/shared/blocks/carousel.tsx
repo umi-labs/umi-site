@@ -24,10 +24,6 @@ interface Props {
         content: string;
       }[];
     }[];
-    buffers?: {
-      top?: boolean | undefined;
-      bottom?: boolean | undefined;
-    };
   };
 }
 
@@ -37,10 +33,6 @@ export default function Carousel({ data }: Props) {
       id="Carousel"
       options={{
         colour: 'dark',
-        buffers: {
-          top: data.buffers?.top,
-          bottom: data.buffers?.bottom,
-        },
       }}
     >
       <div className="mx-auto max-w-7xl">

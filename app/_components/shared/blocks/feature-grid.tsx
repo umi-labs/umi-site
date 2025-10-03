@@ -30,13 +30,9 @@ export default function FeatureGrid({ data }: Props) {
       id="FeatureGrid"
       options={{
         colour: 'light',
-        buffers: {
-          top: false,
-          bottom: false,
-        },
         maxWidth: true,
       }}
-      className="bg-transparent py-16 md:py-40"
+      className="bg-transparent py-16 md:py-24"
     >
       <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
         <motion.div 

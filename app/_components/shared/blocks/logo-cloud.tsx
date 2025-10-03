@@ -46,13 +46,9 @@ export default function LogoCloud({ data }: LogoCloudProps) {
       id="LogoCloud"
       options={{
         colour: 'light',
-        buffers: {
-          top: false,
-          bottom: false,
-        },
         maxWidth: true,
       }}
-      className="gap-y-16 py-20 md:py-32 bg-transparent"
+      className="gap-y-16 py-20 md:py-24 bg-transparent"
     >
       <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
         <motion.div 

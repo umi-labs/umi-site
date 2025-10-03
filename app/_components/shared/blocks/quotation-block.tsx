@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Icon } from '@/app/_components/ui/icon';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import { FormBuilderBlock } from '@/app/_components/global/FormBuilder/Component';
-import { useResolvedHref } from '@/app/_utils/hooks/useResolvedHref';
+import useResolvedHref from '@/app/_utils/hooks/useResolvedHref';
 import { buttonVariants } from '@/app/_components/ui/button';
 import Container from '@/app/_components/ui/container';
 import Image from 'next/image';
@@ -85,11 +85,7 @@ export default function QuotationBlock({ data }: Props) {
       id="QuotationBlock"
       options={{
         colour: 'transparent',
-        maxWidth: true,
-        buffers: {
-          top: false,
-          bottom: false,
-        },
+        maxWidth: true
       }}
       className="py-16 md:py-24"
     >
@@ -157,7 +153,7 @@ export default function QuotationBlock({ data }: Props) {
         {quotationData.form && (
           <div className="mb-8">
             <FormBuilderBlock
-              form={quotationData.form}
+              form={quotationData.form as any}
               uid={quotationData.form._id}
               className="max-w-2xl mx-auto"
             />
@@ -168,7 +164,7 @@ export default function QuotationBlock({ data }: Props) {
         {quotationData.buttons && quotationData.buttons.length > 0 && (
           <div className="flex flex-wrap gap-4 justify-center mb-8">
             {quotationData.buttons.map((button, index) => {
-              const resolvedHref = useResolvedHref(button.link);
+              const resolvedHref = useResolvedHref({ link: button.link as any });
               
               if (!resolvedHref) {
                 return null;

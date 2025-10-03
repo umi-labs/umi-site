@@ -1,5 +1,5 @@
 import { PortableTextBlock } from 'next-sanity';
-import { Buffers, Button, Image } from '@/types/generics';
+import { Button, Image } from '@/types/generics';
 
 export interface CTAWithFormProps {
   data: {
@@ -8,6 +8,5 @@ export interface CTAWithFormProps {
     content: PortableTextBlock[];
     buttons: Button[];
     image: Image;
-    buffers?: Buffers;
   };
 }

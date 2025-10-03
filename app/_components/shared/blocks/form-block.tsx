@@ -32,10 +32,6 @@ export default function FormBlock({ data }: Props) {
       options={{
         colour: 'transparent',
         maxWidth: false,
-        buffers: {
-          top: false,
-          bottom: false,
-        },
       }}
       className="gap-y-4 py-16 md:py-24"
     >

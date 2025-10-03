@@ -57,7 +57,6 @@ import button from '@/sanity/schemas/objects/globals/button';
 import icon from '@/sanity/schemas/objects/globals/icon';
 import portfolioFullWidth from '@/sanity/schemas/objects/portfolio-full-width';
 import archiveBlock from '@/sanity/schemas/objects/archive-block';
-import buffers from '@/sanity/schemas/objects/globals/buffers';
 import faqBlock from '@/sanity/schemas/objects/faq-block';
 import carousel from '@/sanity/schemas/objects/carousel';
 import featureGrid from '@/sanity/schemas/objects/feature-grid';
@@ -136,7 +135,6 @@ export const schema = [
   CTATitleImage,
   archiveBlock,
   portfolioFullWidth,
-  buffers,
   faqBlock,
   carousel,
   featureGrid,

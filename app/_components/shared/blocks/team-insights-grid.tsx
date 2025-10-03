@@ -30,7 +30,6 @@ export default function TeamInsightsGrid({ slug, name }: Props) {
       id="TeamInsightsGrid" 
       options={{ 
         colour: 'transparent',
-        buffers: { top: true, bottom: true }
       }}
       className="py-16 md:py-32"
     >

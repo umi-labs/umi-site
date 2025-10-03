@@ -31,10 +31,6 @@ export default function MoreTeamMembers({ currentMember }: Props) {
       id="MoreTeamMembers"
       options={{
         colour: 'light',
-        buffers: {
-          top: true,
-          bottom: true,
-        },
       }}
       className="relative overflow-hidden py-20 md:py-32"
     >

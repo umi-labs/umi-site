@@ -34,9 +34,6 @@ export default function CardGridSideTitleSimple({
       id="CardGridSideTitleSimple"
       options={{
         colour: 'dark',
-        buffers: {
-          top: data.topBuffer,
-        },
       }}
     >
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-16 md:px-10">

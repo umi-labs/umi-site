@@ -71,7 +71,7 @@ export default function Video({
     >
       <MediaProvider>
         {controls && (
-          <Controls.Root className="pointer-events-none absolute inset-0 z-10 flex h-full w-full flex-col bg-black/40 opacity-0 transition-opacity data-[visible]:opacity-100">
+          <Controls.Root className="pointer-events-none absolute inset-0 z-10 flex h-full w-full flex-col opacity-0 transition-opacity data-[visible]:opacity-100">
             <Controls.Group className="pointer-events-auto flex w-full items-center justify-end p-2">
               <MuteButton className="group relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md text-zinc-50 outline-none ring-inset ring-sky-400 hover:bg-white/20 data-[focus]:ring-4">
                 <SpeakerNone className="hidden h-8 w-8 group-data-[state='muted']:block" />
@@ -103,7 +103,7 @@ export default function Video({
           </Controls.Root>
         )}
         <Poster
-          className="absolute inset-0 block h-full w-full rounded-md bg-black opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+          className="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
           src={image.asset?.url}
           alt={image.asset?.altText}
         />

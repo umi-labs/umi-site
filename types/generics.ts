@@ -32,10 +32,6 @@ export interface Layout {
   colour?: 'light' | 'dark' | 'accent' | 'transparent';
 }
 
-export interface Buffers {
-  top?: boolean | undefined;
-  bottom?: boolean | undefined;
-}
 
 export interface Image {
   asset: {

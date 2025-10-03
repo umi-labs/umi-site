@@ -7,16 +7,13 @@ import { PortableTextBlock } from 'next-sanity';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import Container from '@/app/_components/ui/container';
 import { motion, useInView } from 'motion/react';
+import { EyebrowSVG } from '@/app/_components/ui/svg-comps';
 
 interface AlternatingContentProps {
   data: {
     separator?: boolean | undefined;
     title: string;
     description?: string | undefined;
-    buffers?: {
-      top?: boolean | undefined;
-      bottom?: boolean | undefined;
-    };
     content: {
       title: string;
       description: PortableTextBlock[];
@@ -47,13 +44,9 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
       id="AlternatingContent"
       options={{
         colour: 'transparent',
-        buffers: {
-          top: false,
-          bottom: false,
-        },
         maxWidth: true,
       }}
-      className="py-16 md:py-40"
+      className="py-16 md:py-24"
     >
       
       <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
@@ -63,6 +56,15 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          {data.separator && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            >
+              <EyebrowSVG className="" />
+            </motion.div>
+          )}
           <motion.h2 
             className="text-4xl md:text-5xl lg:text-6xl font-light text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}

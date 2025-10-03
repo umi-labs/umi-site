@@ -25,10 +25,6 @@ interface PortfolioFullWidthProps {
     title: string;
     content?: PortableTextBlock[];
     buttons?: Button[] | undefined;
-    buffers?: {
-      top?: boolean | undefined;
-      bottom?: boolean | undefined;
-    };
   };
 }
 
@@ -46,13 +42,9 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
       id="PortfolioFullWidth"
       options={{
         colour: 'transparent',
-        buffers: {
-          top: data.buffers?.top,
-          bottom: false,
-        },
         maxWidth: true,
       }}
-      className="relative overflow-hidden py-20 md:py-32"
+      className="relative overflow-hidden py-20 md:py-24"
     >
 
       <div ref={containerRef} className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-16 px-6 text-center lg:grid lg:grid-cols-3 lg:grid-rows-1 lg:gap-20 lg:px-10">

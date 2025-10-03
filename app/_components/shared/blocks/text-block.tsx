@@ -19,10 +19,6 @@ export default function TextBlock({ data }: Props) {
       options={{
         colour: 'transparent',
         maxWidth: true,
-        buffers: {
-          top: false,
-          bottom: false,
-        },
       }}
     >
       <div className={cn('mx-auto my-4 flex max-w-3xl flex-col px-6')}>

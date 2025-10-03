@@ -9,7 +9,7 @@ import Link from '@/app/_components/ui/link';
 import Container from '@/app/_components/ui/container';
 
 export default function CTASimple({ data }: CTASimpleProps) {
-  const { buffers, layout, image, title, content, buttons, subtitle, _type } =
+  const { layout, image, title, content, buttons, subtitle, _type } =
     data || {};
 
   return (
@@ -17,7 +17,6 @@ export default function CTASimple({ data }: CTASimpleProps) {
       id="CTASimple"
       options={{
         colour: layout?.colour,
-        buffers,
       }}
     >
       <div className="relative mx-auto grid min-h-[35svh] w-screen max-w-7xl grid-cols-1 grid-rows-6 place-items-center gap-x-36 overflow-clip px-8 py-10 md:grid-cols-5 md:grid-rows-1 lg:px-10">

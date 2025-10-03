@@ -1,4 +1,4 @@
-import type { Buffers, Button, Image, Layout } from '@/types/generics';
+import type { Button, Image, Layout } from '@/types/generics';
 import { PortableTextBlock } from 'next-sanity';
 
 export interface CTASimpleProps {
@@ -9,7 +9,6 @@ export interface CTASimpleProps {
     content: PortableTextBlock[];
     buttons: Button[];
     image: Image;
-    buffers?: Buffers;
     layout?: Layout;
   };
 }

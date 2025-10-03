@@ -42,10 +42,6 @@ export default function ContentBlock({ data }: ContentBlockProps) {
       id="ContentBlock"
       options={{
         colour: 'transparent',
-        buffers: {
-          top: false,
-          bottom: false,
-        },
         maxWidth: false,
       }}
     >
