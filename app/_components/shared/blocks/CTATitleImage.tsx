@@ -17,6 +17,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
       className={cn(
         'relative mx-auto flex w-full max-w-7xl auto-rows-min grid-cols-1 grid-rows-2 flex-col-reverse items-center justify-center gap-10 py-16 md:grid md:grid-cols-2 md:grid-rows-1 md:gap-24 md:py-24'
       )}
+      style={{ contain: 'layout style' }}
     >
       {/* Content Section */}
       <div 
@@ -93,6 +94,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
       {/* Image Section */}
       <div 
         className="group relative flex aspect-square w-full max-w-md items-center justify-center overflow-hidden rounded-2xl shadow-2xl mx-auto"
+        style={{ contain: 'layout style paint' }}
       >
         {data.image?.asset?.url ? (
           <Image
@@ -112,7 +114,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#313E4E]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Hover shine effect */}
-        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out">
+        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out overflow-hidden">
           <div className="h-full w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
         </div>
         
