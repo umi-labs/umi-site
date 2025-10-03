@@ -18,6 +18,10 @@ const tagFormatter = (tag: string) => {
   return tag?.toLowerCase().split(' ').join('-');
 };
 
+const capitalizeFirstLetter = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 export default function ArchiveSidebar({ 
   postType, 
   tags, 
@@ -77,7 +81,7 @@ export default function ArchiveSidebar({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 + i * 0.05, ease: "easeOut" }}
               >
-                {tag === 'all' ? 'All' : tag?.split('-').join(' ')}
+                {tag === 'all' ? 'All' : capitalizeFirstLetter(tag?.split('-').join(' '))}
               </motion.button>
             ))}
           </div>

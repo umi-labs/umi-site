@@ -138,13 +138,19 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
         transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
         whileHover={{ scale: 1.02 }}
       >
-        <Image
-          src={data.image.asset?.url || ''}
-          alt={data.image.asset?.altText || ''}
-          width={data.image.asset?.metadata?.dimensions.width}
-          height={data.image.asset?.metadata?.dimensions.height}
-          className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-        />
+        {data.image?.asset?.url ? (
+          <Image
+            src={data.image.asset.url}
+            alt={data.image.asset.altText || data.title || 'CTA Image'}
+            width={data.image.asset.metadata?.dimensions?.width || 400}
+            height={data.image.asset.metadata?.dimensions?.height || 400}
+            className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#B0DEE6]/20 to-[#368DB1]/20 text-[#313E4E]/60">
+            <span className="text-lg font-medium">No image available</span>
+          </div>
+        )}
         
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#313E4E]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

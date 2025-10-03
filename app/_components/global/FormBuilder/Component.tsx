@@ -37,14 +37,23 @@ const fieldComponents: Record<string, any> = {
 export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
   const {
     _key: formID,
+    _id: formId,
     fields,
+    formFields,
     email,
     subject,
+    subjectLine,
     submitButtonLabel = 'Submit',
     confirmationMessage,
     confirmationType,
     redirect,
   } = form || {};
+  
+  // Use formFields if fields is not available (for backward compatibility)
+  const actualFields = formFields || fields;
+  
+  // Use _id if _key is not available
+  const actualFormID = formID || formId;
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [hasSubmitted, setHasSubmitted] = React.useState<boolean>();
@@ -54,7 +63,7 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
   const router = useRouter();
 
   const formMethods = useForm({
-    defaultValues: buildInitialFormState(fields),
+    defaultValues: buildInitialFormState(actualFields || []),
   });
 
   const {
@@ -78,7 +87,7 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
         body: JSON.stringify({
           data: data,
           email,
-          subject: subject || 'You have mail',
+          subject: subject || subjectLine || 'You have mail',
         }),
       });
 
@@ -122,13 +131,13 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
 
       {!hasSubmitted && !isLoading && (
         <form
-          id={formID}
+          id={actualFormID}
           onSubmit={handleSubmit(onSubmit)}
-          className={cn('mx-auto w-full')}
+          className={cn('mx-auto w-full min-w-full')}
         >
           <div className="mb-6 space-y-6 last:mb-0">
-            {fields &&
-              fields?.map((field, i) => {
+            {actualFields &&
+              actualFields?.map((field, i) => {
                 if (field.type === 'select') {
                   return (
                     <FormField
@@ -256,7 +265,7 @@ export const FormBuilderBlock = ({ form }: FormBuilderProps) => {
           </div>
 
           <Button
-            form={formID}
+            form={actualFormID}
             disabled={isLoading}
             type="submit"
             variant="umi-primary"

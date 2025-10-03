@@ -15,15 +15,18 @@ export type FieldType = {
 };
 
 export type FormType = {
-  _key: string;
+  _key?: string;
+  _id?: string;
   email: string;
   title: string;
-  subject: string;
+  subject?: string;
+  subjectLine?: string;
   confirmationType: 'message' | 'redirect';
   confirmationMessage: PortableTextBlock[];
   redirect: string;
   submitButtonLabel: string;
-  fields: FieldType[];
+  fields?: FieldType[];
+  formFields?: FieldType[];
 };
 
 export interface FormBuilderProps {

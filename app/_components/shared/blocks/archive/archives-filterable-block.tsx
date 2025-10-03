@@ -104,10 +104,6 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
 
   const [isFiltersOpen, setIsFiltersOpen] = React.useState(false);
 
-  const tagFormatter = (tag: string) => {
-    return tag?.toLowerCase().split(' ').join('-');
-  };
-
   return (
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-0">
       {/* Mobile Filter Toggle */}

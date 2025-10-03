@@ -23,6 +23,7 @@ import review from '@/sanity/schemas/documents/review';
 import job from '@/sanity/schemas/documents/job';
 import faq from '@/sanity/schemas/documents/faq';
 import ctas from '@/sanity/schemas/documents/ctas';
+import quotations from '@/sanity/schemas/documents/quotations';
 
 // Objects
 import CTATitleImage from '@/sanity/schemas/objects/CTATitleImage';
@@ -70,6 +71,8 @@ import textBlock from '@/sanity/schemas/objects/text-block';
 import ctaBlock from '@/sanity/schemas/objects/cta-block';
 import formBlock from '@/sanity/schemas/objects/form-block';
 import cta from '@/sanity/schemas/objects/cta';
+import quotationBlock from '@/sanity/schemas/objects/quotation-block';
+import requestQuotation from '@/sanity/schemas/objects/request-quotation';
 
 export const schema = [
   // Singletons
@@ -96,6 +99,7 @@ export const schema = [
   job,
   faq,
   ctas,
+  quotations,
 
   // Objects
   primaryHero,
@@ -142,6 +146,8 @@ export const schema = [
   jsonLd,
   layout,
   textBlock,
+  quotationBlock,
+  requestQuotation,
 ];
 
 export const singletons = [

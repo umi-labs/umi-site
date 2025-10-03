@@ -1,9 +1,12 @@
-import React from 'react';
+'use client';
+
+import React, { useRef } from 'react';
 import { PortableTextBlock } from 'next-sanity';
 import { FormBuilderBlock } from '@/app/_components/global/FormBuilder/Component';
 import { CustomPortableText } from '@/app/_components/shared/CustomPortableText';
 import { FormType } from '@/types/components/form';
 import Container from '@/app/_components/ui/container';
+import { motion, useInView } from 'motion/react';
 
 interface Props {
   data: {
@@ -14,32 +17,61 @@ interface Props {
 }
 
 export default function FormBlock({ data }: Props) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  
   const { enableIntro, introContent, form } = data;
+  
+  if (!form) {
+    return <div>FormBlock: No form data found</div>;
+  }
+  
   return (
     <Container 
       id="FormBlock" 
       options={{
         colour: 'transparent',
-        maxWidth: true,
+        maxWidth: false,
         buffers: {
           top: false,
           bottom: false,
         },
       }}
-      className="gap-y-4 py-16 md:py-24 max-w-[900px]"
+      className="gap-y-4 py-16 md:py-24"
     >
-      {enableIntro && introContent && (
-        <CustomPortableText
-          value={introContent}
-          paragraphClasses="text-center"
-        />
-      )}
+      <motion.div
+        ref={containerRef}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="space-y-8 max-w-[900px] mx-auto w-full"
+      >
+        {enableIntro && introContent && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
+            <CustomPortableText
+              value={introContent}
+              paragraphClasses="text-center"
+            />
+          </motion.div>
+        )}
 
-      <FormBuilderBlock
-        form={form}
-        uid={form._key}
-        className="w-full max-w-[900px] mx-auto"
-      />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="w-full"
+        >
+          <FormBuilderBlock
+            form={form}
+            uid={form._key || form._id || 'form'}
+            className="w-full"
+          />
+        </motion.div>
+      </motion.div>
     </Container>
   );
 }

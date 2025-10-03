@@ -1,4 +1,5 @@
 import { groq } from 'next-sanity';
+import { blocks } from '@/sanity/lib/queries/generics/queries.blocks';
 
 export const servicesBySlugQuery = groq`
   *[_type == "service" && slug.current == $slug][0] {
@@ -35,39 +36,7 @@ export const servicesBySlugQuery = groq`
         }
       },
     },
-    blocks[] {
-      ...,
-      inbox->,
-      image{
-        ...,
-        asset->
-      },
-      content[] {
-        ...,
-        image{
-          ...,
-          asset->
-        }
-      },
-      selectedArchives[]->,
-      "archive": *[_type == ^.postType] | order(_createdAt desc)[0..8]{ 
-        ..., 
-        coverImage {
-          ...,
-          asset->
-        },
-        "slug": slug.current,
-        author->{
-          ...,
-          "slug": slug.current,
-        },
-        time{
-          ...,
-          timeTaken,
-          timeType
-        }
-       }
-    },
+    ${blocks},
     metaData,
     "postType": *[_type=='postType' && references(^._id)]{
       title,

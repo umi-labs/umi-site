@@ -45,9 +45,9 @@ export default function TeamCard({ team }: Props) {
         <Link
           /* @ts-ignore */
           href={slug}
-          variant="secondary"
+          variant="umi-primary"
           size="default"
-          className="bg-[#313E4E] text-white hover:bg-[#B0DEE6] hover:text-[#1a2332] transition-all duration-300 w-full text-center"
+          className="text-center"
         >
           Find Out More
         </Link>
