@@ -49,7 +49,7 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
       className="py-16 md:py-24"
     >
       
-      <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
+      <div ref={containerRef} className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center overflow-hidden">
         <motion.div 
           className="mb-16 flex w-full flex-col items-center justify-center gap-8"
           initial={{ opacity: 0, y: 30 }}
@@ -84,7 +84,7 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
             </motion.p>
           )}
         </motion.div>
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-16">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-16 overflow-hidden">
           {data.content.map((item, i) => (
             <Card key={i} item={item} index={i} />
           ))}
@@ -111,7 +111,7 @@ const Card = ({
   return (
     <motion.div 
       ref={cardRef}
-      className="group relative w-full"
+      className="group relative w-full overflow-hidden"
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ 
@@ -124,9 +124,9 @@ const Card = ({
         {/* Image Section - Left Side */}
         {asset && url && (
           <motion.div
-            className="relative group/image flex-shrink-0 w-full lg:w-64"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            className="relative group/image flex-shrink-0 w-full lg:w-64 overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ 
               duration: 0.8, 
               delay: index * 0.15 + 0.2, 
@@ -154,7 +154,7 @@ const Card = ({
               <div className="absolute inset-0 bg-gradient-to-t from-[#313E4E]/10 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 rounded-xl" />
               
               {/* Shine effect */}
-              <div className="absolute inset-0 -translate-x-full group-hover/image:translate-x-full transition-transform duration-700 ease-out rounded-xl">
+              <div className="absolute inset-0 -translate-x-full group-hover/image:translate-x-full transition-transform duration-700 ease-out rounded-xl overflow-hidden">
                 <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
               </div>
             </div>
@@ -163,9 +163,9 @@ const Card = ({
 
         {/* Content Section - Right Side */}
         <motion.div
-          className="flex-1 space-y-6"
-          initial={{ opacity: 0, x: 50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+          className="flex-1 space-y-6 overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ 
             duration: 0.8, 
             delay: index * 0.15 + 0.3, 
@@ -176,8 +176,7 @@ const Card = ({
           <motion.h3 
             className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#313E4E] leading-tight"
             whileHover={{ 
-              scale: 1.02,
-              x: 10
+              scale: 1.02
             }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
@@ -187,7 +186,7 @@ const Card = ({
           {/* Description */}
           <motion.div 
             className="prose prose-lg max-w-none"
-            whileHover={{ x: 5 }}
+            whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.3 }}
           >
             <CustomPortableText
