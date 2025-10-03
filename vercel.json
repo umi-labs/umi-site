@@ -84,6 +84,46 @@
       "source": "/blog/project/the-good-hotel-guide",
       "destination": "/our-work/good-hotel-guide",
       "permanent": true
+    },
+    {
+      "source": "/development/websites",
+      "destination": "/service/website-design-development",
+      "permanent": true
+    },
+    {
+      "source": "/marketing/seo/",
+      "destination": "/service/seo",
+      "permanent": true
+    },
+    {
+      "source": "/development/custom-software",
+      "destination": "/service/custom-software",
+      "permanent": true
+    },
+    {
+      "source": "/marketing/website-optimisation",
+      "destination": "/service/website-optimisation",
+      "permanent": true
+    },
+    {
+      "source": "/marketing/metasearch-management",
+      "destination": "/service/metasearch",
+      "permanent": true
+    },
+    {
+      "source": "/strategy-workshops",
+      "destination": "/service/technology-audits-and-consulting",
+      "permanent": true
+    },
+    {
+      "source": "/marketing/website-optimisation",
+      "destination": "/service/website-optimisation",
+      "permanent": true
+    },
+    {
+      "source": "/growth-driven-design",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

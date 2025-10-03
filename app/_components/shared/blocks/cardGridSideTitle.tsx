@@ -38,11 +38,11 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
         colour: 'transparent',
         maxWidth: true,
       }}
-      className="relative overflow-hidden py-16 md:py-24"
+      className="relative overflow-hidden py-8 md:py-24"
     >
-      <div ref={containerRef} className="relative z-10 flex w-full flex-col items-center justify-center mx-auto max-w-7xl gap-16 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-20 md:px-10">
+      <div ref={containerRef} className="relative z-10 flex w-full flex-col items-center justify-center mx-auto max-w-7xl gap-8 px-6 text-center md:grid md:grid-cols-3 md:grid-rows-1 md:gap-20 md:px-10">
         <motion.div 
-          className="relative flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-12 place-self-start text-center md:items-start md:justify-start md:text-start"
+          className="relative flex h-fit w-full grid-flow-row-dense flex-col items-center justify-center gap-y-6 place-self-start text-center md:items-start md:justify-start md:text-start md:gap-y-12"
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -101,7 +101,7 @@ export default function CardGridSideTitle({ data }: CardGridSideTitleProps) {
         </motion.div>
         <motion.div
           className={cn(
-            'col-span-2 grid w-full grid-flow-row items-center justify-center gap-12 md:grid-cols-2 lg:grid-cols-3'
+            'col-span-2 grid w-full grid-flow-row items-center justify-center gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-12'
           )}
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}

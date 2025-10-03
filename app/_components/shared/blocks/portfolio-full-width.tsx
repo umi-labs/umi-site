@@ -84,7 +84,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             </motion.div>
           )}
           <motion.div 
-            className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-start lg:justify-start"
+            className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6 lg:items-start lg:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -100,7 +100,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
                   link={button.link}
                   size="default"
                   variant={button.type}
-                  className="w-full lg:w-auto"
+                  className="w-full sm:w-auto"
                 >
                   {button.title}
                 </CustomLink>
@@ -135,36 +135,23 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
               ))}
             </div>
 
-            {/* Mobile/Tablet: Use slider */}
-            <div className="lg:hidden">
-              <Slider
-                opts={{
-                  loop: true,
-                  align: "start",
-                  slidesToScroll: 1,
-                }}
-                className="relative w-full"
-              >
-                <SliderContent className="-ml-4">
-                  {projects?.map((project, i) => (
-                    <SliderItem
-                      key={i}
-                      className="relative ml-4"
-                    >
-                      <StandardArchiveCard
-                        archive={project}
-                        index={i}
-                        postType="project"
-                      />
-                    </SliderItem>
-                  ))}
-                </SliderContent>
-                <SliderIndicators className="space-x-8" />
-                <div className="absolute -bottom-12 left-6 flex items-center justify-center gap-4">
-                  <SliderPrevious className="size-10 border border-[#B0DEE6]/30 bg-white/80 hover:bg-[#B0DEE6]/10 hover:border-[#368DB1]/50 transition-all duration-300" />
-                  <SliderNext className="size-10 border border-[#B0DEE6]/30 bg-white/80 hover:bg-[#B0DEE6]/10 hover:border-[#368DB1]/50 transition-all duration-300" />
-                </div>
-              </Slider>
+            {/* Mobile/Tablet: Show top 3 stacked */}
+            <div className="lg:hidden grid grid-cols-1 gap-6">
+              {projects?.slice(0, 3).map((project, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.6, delay: 0.8 + i * 0.1, ease: "easeOut" }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <StandardArchiveCard
+                    archive={project}
+                    index={i}
+                    postType="project"
+                  />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         )}
