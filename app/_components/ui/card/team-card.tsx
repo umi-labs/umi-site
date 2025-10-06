@@ -34,7 +34,7 @@ export default function TeamCard({ team }: Props) {
         </div>
         
         <div className="flex flex-col items-center justify-center gap-y-3 text-center">
-          <h3 className="text-2xl font-light text-[#1a2332] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#B0DEE6] group-hover:to-[#FFE48C] group-hover:bg-clip-text transition-all duration-500">
+          <h3 className="text-2xl font-light text-[#1a2332]">
             {team.name}
           </h3>
           <span className="text-[#313E4E]/80 font-medium text-sm uppercase tracking-wider">
