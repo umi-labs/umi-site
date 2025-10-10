@@ -24,7 +24,6 @@ export default async function RootLayout({
       lang="en"
       className={`${poppins.variable} ${nunito.variable} ${tenorSans.variable} ${cormorantGaramond.variable} font-sans`}
       style={styles}
-      suppressHydrationWarning={true}
     >
       <head>
         {/* Load jQuery before GTM */}
