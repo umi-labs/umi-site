@@ -187,13 +187,12 @@ export function PostCard({ archive, index }: PostCardProps) {
           {/* Author */}
           {archive.author && (
             <div className="mb-2">
-              <Link 
+              <span 
                 id='post-card__author-link' 
-                href={archive.author.slug} 
-                className="text-xs text-[#313E4E]/70 hover:text-[#368DB1] transition-colors duration-300"
+                className="text-xs text-[#313E4E]/70 group-hover:text-[#368DB1] transition-colors duration-300"
               >
                 By {archive.author.name}
-              </Link>
+              </span>
             </div>
           )}
 

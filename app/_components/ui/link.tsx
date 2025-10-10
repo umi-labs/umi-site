@@ -24,6 +24,7 @@ export function Link({
   className,
   ...props
 }: LinkProps) {
+
   // If we have href, use it directly
   if (href) {
     return (
@@ -43,13 +44,36 @@ export function Link({
   }
 
   // If we have link data, construct URL
-  const url = link.displayExternal
-    ? link.url || '#'
-    : link.hasParent
-      ? `/${link.parentSlug || ''}/${link.slug || ''}`
-      : link.type !== 'page'
-        ? `/${link.type || ''}/${link.slug || ''}`
-        : `/${link.slug || ''}`;
+  let url: string;
+  
+  if (link.displayExternal) {
+    // Use externalUrl from Sanity schema
+    url = (link as any).externalUrl || '#';
+  } else if (link.internalLink) {
+    // Handle internal links from Sanity schema
+    const internalLink = link.internalLink;
+    const slug = typeof internalLink.slug === 'object' 
+      ? (internalLink.slug as any)?.current 
+      : internalLink.slug;
+    const type = internalLink._type;
+    
+    if (internalLink.hasParent) {
+      url = `/${internalLink.parentSlug || ''}/${slug || ''}`;
+    } else if (type !== 'page') {
+      url = `/${type || ''}/${slug || ''}`;
+    } else {
+      url = `/${slug || ''}`;
+    }
+  } else if (link.hasParent) {
+    // Fallback to old structure for backward compatibility
+    url = `/${link.parentSlug || ''}/${link.slug || ''}`;
+  } else if (link.type !== 'page') {
+    // Fallback to old structure for backward compatibility
+    url = `/${link.type || ''}/${link.slug || ''}`;
+  } else {
+    // Fallback to old structure for backward compatibility
+    url = `/${link.slug || ''}`;
+  }
 
   // If URL is just '/' or contains 'undefined', use fallback
   if (url === '/' || url.includes('undefined') || !url || url === '//') {

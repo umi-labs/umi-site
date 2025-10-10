@@ -3,6 +3,7 @@ import './globals.css';
 import { cormorantGaramond, nunito, poppins, tenorSans } from '@/app/_utils/fonts';
 import { loadThemeSettings } from '@/sanity/loader/loadQuery';
 import React from 'react';
+import Script from 'next/script';
 
 export default async function RootLayout({
   children,
@@ -23,8 +24,14 @@ export default async function RootLayout({
       lang="en"
       className={`${poppins.variable} ${nunito.variable} ${tenorSans.variable} ${cormorantGaramond.variable} font-sans`}
       style={styles}
+      suppressHydrationWarning={true}
     >
       <head>
+        {/* Load jQuery before GTM */}
+        <Script
+          src="https://code.jquery.com/jquery-3.7.1.min.js"
+          strategy="beforeInteractive"
+        />
         <link
           rel="apple-touch-icon"
           href={themeSettings?.favicon?.appleTouchIcon?.asset?.url}
