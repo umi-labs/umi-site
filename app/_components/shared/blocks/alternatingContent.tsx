@@ -54,13 +54,13 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
           className="mb-16 flex w-full flex-col items-center justify-center gap-8"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.56, ease: "easeOut" }}
         >
           {data.separator && (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.42, delay: 0.14, ease: "easeOut" }}
             >
               <EyebrowSVG className="" />
             </motion.div>
@@ -69,7 +69,7 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
             className="text-4xl md:text-5xl lg:text-6xl font-light text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.21, ease: "easeOut" }}
           >
             {data.title}
           </motion.h2>
@@ -78,7 +78,7 @@ export default function AlternatingContent({ data }: AlternatingContentProps) {
               className="max-w-4xl text-center text-lg md:text-xl text-[#313E4E] leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.56, delay: 0.28, ease: "easeOut" }}
             >
               {data.description}
             </motion.p>
@@ -115,8 +115,8 @@ const Card = ({
       initial={{ opacity: 0, y: 80 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
       transition={{ 
-        duration: 0.8, 
-        delay: index * 0.15, 
+        duration: 0.56, 
+        delay: index * 0.105, 
         ease: "easeOut" 
       }}
     >
@@ -128,8 +128,8 @@ const Card = ({
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ 
-              duration: 0.8, 
-              delay: index * 0.15 + 0.2, 
+              duration: 0.56, 
+              delay: index * 0.105 + 0.14, 
               ease: "easeOut" 
             }}
           >
@@ -145,16 +145,16 @@ const Card = ({
                   alt={altText || ''}
                   width={dimensions?.width || 200}
                   height={dimensions?.height || 200}
-                  className="relative z-10 w-full h-auto object-contain object-center rounded-lg group-hover/image:scale-105 transition-transform duration-500 ease-out"
+                  className="relative z-10 w-full h-auto object-contain object-center rounded-lg group-hover/image:scale-105 transition-transform duration-350 ease-out"
                   loading="lazy"
                 />
               </div>
 
               {/* Hover effects */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#313E4E]/10 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 rounded-xl" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#313E4E]/10 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-350 rounded-xl" />
               
               {/* Shine effect */}
-              <div className="absolute inset-0 -translate-x-full group-hover/image:translate-x-full transition-transform duration-700 ease-out rounded-xl overflow-hidden">
+              <div className="absolute inset-0 -translate-x-full group-hover/image:translate-x-full transition-transform duration-490 ease-out rounded-xl overflow-hidden">
                 <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
               </div>
             </div>
@@ -167,8 +167,8 @@ const Card = ({
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ 
-            duration: 0.8, 
-            delay: index * 0.15 + 0.3, 
+            duration: 0.56, 
+            delay: index * 0.105 + 0.21, 
             ease: "easeOut" 
           }}
         >
@@ -201,8 +201,8 @@ const Card = ({
             initial={{ width: 0 }}
             animate={isInView ? { width: 64 } : { width: 0 }}
             transition={{ 
-              duration: 0.8, 
-              delay: index * 0.15 + 0.5, 
+              duration: 0.56, 
+              delay: index * 0.105 + 0.35, 
               ease: "easeOut" 
             }}
           />

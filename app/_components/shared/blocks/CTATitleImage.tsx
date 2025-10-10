@@ -27,7 +27,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
             className="flex flex-col justify-center space-y-8 text-center md:text-left"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.56, ease: "easeOut" }}
           >
             
             {/* Header */}
@@ -35,7 +35,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
               className="space-y-6"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.56, delay: 0.14, ease: "easeOut" }}
             >
               <span className="text-sm font-semibold uppercase tracking-wider text-[#368DB1]">
                 {data.subtitle}
@@ -50,7 +50,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
               className="space-y-6"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.56, delay: 0.21, ease: "easeOut" }}
             >
               <CustomPortableText 
                 value={data.content} 
@@ -66,7 +66,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
                       className="flex items-start gap-4 justify-center md:justify-start"
                       initial={{ opacity: 0, y: 15 }}
                       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                      transition={{ duration: 0.6, delay: 0.4 + i * 0.1, ease: "easeOut" }}
+                      transition={{ duration: 0.42, delay: 0.28 + i * 0.07, ease: "easeOut" }}
                     >
                       <div className="mt-1 flex-shrink-0 rounded-full bg-gradient-to-br from-[#B0DEE6]/20 to-[#368DB1]/20 p-2">
                         <Icon
@@ -90,7 +90,7 @@ export default function CTATitleImage({ data }: CTATitleImageProps) {
                 className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center md:justify-start"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.56, delay: 0.35, ease: "easeOut" }}
               >
                 {data.buttons.map((button, i) => (
                   <motion.div

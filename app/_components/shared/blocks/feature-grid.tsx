@@ -39,13 +39,13 @@ export default function FeatureGrid({ data }: Props) {
           className="mb-16 flex w-full flex-col items-center justify-center gap-8"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.56, ease: "easeOut" }}
         >
           {data.separator && (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.42, delay: 0.14, ease: "easeOut" }}
             >
               <EyebrowSVG className="" />
             </motion.div>
@@ -54,7 +54,7 @@ export default function FeatureGrid({ data }: Props) {
             className="text-4xl md:text-5xl lg:text-6xl font-light text-center bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.21, ease: "easeOut" }}
           >
             {data.title}
           </motion.h2>
@@ -63,7 +63,7 @@ export default function FeatureGrid({ data }: Props) {
               className="max-w-4xl text-center text-lg md:text-xl text-[#313E4E] leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.56, delay: 0.28, ease: "easeOut" }}
             >
               {data.description}
             </motion.p>
@@ -73,7 +73,7 @@ export default function FeatureGrid({ data }: Props) {
           className="grid w-full grid-cols-1 grid-rows-2 items-center justify-center gap-8 md:grid-cols-2 md:grid-rows-1 lg:grid-flow-row lg:grid-cols-3"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.56, delay: 0.35, ease: "easeOut" }}
         >
           {data.features.map((feature, i) => (
             <Feature key={i} feature={feature} index={i} />
@@ -95,8 +95,8 @@ const Feature = ({ feature, index = 0 }: { feature: Props['data']['features'][0]
       initial={{ opacity: 0.3, y: 20, scale: 0.95 }}
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0.3, y: 20, scale: 0.95 }}
       transition={{ 
-        duration: 0.8, 
-        delay: index * 0.15, 
+        duration: 0.56, 
+        delay: index * 0.105, 
         ease: "easeOut" 
       }}
       whileHover={{ 

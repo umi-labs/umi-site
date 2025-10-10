@@ -40,13 +40,13 @@ export default function ArchiveSidebar({
       className="bg-white/90 backdrop-blur-sm border border-[#B0DEE6]/20 rounded-2xl p-6 sticky top-8 shadow-lg"
       initial={{ opacity: 0, x: 20 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.56, ease: "easeOut" }}
     >
       <motion.h3 
         className="text-xl font-bold text-[#1a2332] mb-6 bg-gradient-to-r from-[#1a2332] to-[#2c5a73] bg-clip-text text-transparent"
         initial={{ opacity: 0, y: 10 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        transition={{ duration: 0.42, delay: 0.14, ease: "easeOut" }}
       >
         Filters
       </motion.h3>
@@ -57,7 +57,7 @@ export default function ArchiveSidebar({
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.42, delay: 0.21, ease: "easeOut" }}
         >
           <h4 className="text-sm font-semibold text-[#313E4E] mb-4">
             {postType === 'project' ? 'Filter by Technology' : 'Filter by Category'}
@@ -79,7 +79,7 @@ export default function ArchiveSidebar({
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 + i * 0.05, ease: "easeOut" }}
+                transition={{ duration: 0.28, delay: 0.28 + i * 0.035, ease: "easeOut" }}
               >
                 {tag === 'all' ? 'All' : capitalizeFirstLetter(tag?.split('-').join(' '))}
               </motion.button>

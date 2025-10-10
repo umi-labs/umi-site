@@ -73,7 +73,7 @@ const ArchivesGrid = memo(function ArchivesGrid({
           className="mt-16 flex w-full justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.56, delay: 0.35, ease: "easeOut" }}
         >
           <Button
             variant="umi-primary"

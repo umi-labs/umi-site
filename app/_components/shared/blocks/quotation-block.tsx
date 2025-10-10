@@ -93,7 +93,7 @@ export default function QuotationBlock({ data }: Props) {
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.42 }}
         className="max-w-4xl mx-auto"
       >
         {/* Header */}

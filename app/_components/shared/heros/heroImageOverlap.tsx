@@ -29,14 +29,14 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
         className="flex flex-col items-center justify-center gap-y-12 text-center md:col-span-2 md:items-start md:text-left"
         initial={{ opacity: 0, x: -50 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        transition={{ duration: 0.56, delay: 0.14, ease: "easeOut" }}
       >
         {/* Separator */}
         {data.separator && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.42, delay: 0.21, ease: "easeOut" }}
           >
             <EyebrowSVG className="" />
           </motion.div>
@@ -47,7 +47,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
           className="flex flex-col items-center justify-center gap-y-6 md:items-start"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.56, delay: 0.28, ease: "easeOut" }}
         >
           <motion.h5 
             className="text-sm uppercase font-semibold tracking-wider bg-gradient-to-r from-[#368DB1] to-[#B0DEE6] bg-clip-text text-transparent"
@@ -68,7 +68,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
           className="max-w-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.56, delay: 0.35, ease: "easeOut" }}
         >
           <CustomPortableText 
             value={data.content} 
@@ -82,7 +82,7 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
             className="flex w-full flex-col items-center justify-center gap-6 md:flex-row md:items-start md:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.42, ease: "easeOut" }}
           >
             {data.buttons.map((button, i) => (
               <motion.div
@@ -90,8 +90,8 @@ export default function HeroImageOverlap({ data }: HeroImageOverlapProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ 
-                  duration: 0.6, 
-                  delay: 0.7 + (i * 0.1), 
+                  duration: 0.42, 
+                  delay: 0.49 + (i * 0.07), 
                   ease: "easeOut" 
                 }}
                 whileHover={{ scale: 1.05 }}

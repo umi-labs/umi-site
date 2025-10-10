@@ -39,14 +39,14 @@ export default function FormBlock({ data }: Props) {
         ref={containerRef}
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.56, ease: "easeOut" }}
         className="space-y-8 max-w-[900px] mx-auto w-full"
       >
         {enableIntro && introContent && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.42, delay: 0.14, ease: "easeOut" }}
           >
             <CustomPortableText
               value={introContent}
@@ -58,7 +58,7 @@ export default function FormBlock({ data }: Props) {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.56, delay: 0.28, ease: "easeOut" }}
           className="w-full"
         >
           <FormBuilderBlock

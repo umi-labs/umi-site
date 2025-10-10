@@ -27,12 +27,29 @@ export default function ArchivesSection({ data }: Props) {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section
-      ref={containerRef}
-      className={cn(
-        'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible pt-32 md:pt-32 lg:pt-40 pb-16 md:gap-12 md:pb-24 lg:gap-y-16'
-      )}
-    >
+    <>
+      {/* Aurora Dream Vivid Bloom Gradient Background */}
+      <div className="fixed top-0 left-0 right-0 bottom-0 -z-10 overflow-hidden">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 60% at 70% 20%, rgba(54, 141, 177, 0.85), transparent 68%),
+              radial-gradient(ellipse 70% 60% at 20% 80%, rgba(255, 228, 140, 0.75), transparent 68%),
+              radial-gradient(ellipse 60% 50% at 60% 65%, rgba(176, 222, 230, 0.98), transparent 68%),
+              radial-gradient(ellipse 65% 40% at 50% 60%, rgba(236, 205, 127, 0.3), transparent 68%),
+              linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)
+            `,
+          }}
+        />
+      </div>
+      
+      <section
+        ref={containerRef}
+        className={cn(
+          'relative mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center gap-0 overflow-visible pt-32 md:pt-32 lg:pt-40 pb-16 md:gap-12 md:pb-24 lg:gap-y-16'
+        )}
+      >
       <motion.div 
         className="flex-center flex-col gap-y-10 px-6 text-center"
         initial={{ opacity: 0, y: 20 }}
@@ -78,5 +95,6 @@ export default function ArchivesSection({ data }: Props) {
         />
       </motion.div>
     </section>
+    </>
   );
 }

@@ -52,13 +52,13 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
           className="flex h-fit w-full flex-col items-center justify-center gap-y-12 place-self-start text-center lg:items-start lg:justify-start lg:text-start"
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.56, ease: "easeOut" }}
         >
           {data.separator && (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.42, delay: 0.14, ease: "easeOut" }}
             >
               <EyebrowSVG className="" />
             </motion.div>
@@ -67,7 +67,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             className="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.2] bg-gradient-to-r from-[#1a2332] via-[#368DB1] to-[#1a2332] bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.21, ease: "easeOut" }}
           >
             {data.title}
           </motion.h2>
@@ -75,7 +75,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.56, delay: 0.28, ease: "easeOut" }}
             >
               <CustomPortableText 
                 value={data.content} 
@@ -87,14 +87,14 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
             className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6 lg:items-start lg:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.35, ease: "easeOut" }}
           >
             {data?.buttons?.map((button, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.6 + i * 0.1, ease: "easeOut" }}
+                transition={{ duration: 0.56, delay: 0.42 + i * 0.07, ease: "easeOut" }}
               >
                 <CustomLink
                   link={button.link}

@@ -42,7 +42,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
       >
       <div
         className={cn(
-          'relative z-10 flex w-full flex-col items-center justify-center gap-y-10 pt-10 text-center md:pt-0',
+          'relative z-10 flex w-full flex-col items-center justify-center gap-y-10 text-center',
           data?.background === 'light' ? 'text-[#313E4E]' : 'text-white'
         )}
       >
@@ -79,7 +79,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.42, delay: 0.14, ease: "easeOut" }}
             >
               {/* @ts-expect-error - type casting is not defined */}
               <WaveSVG />
@@ -96,7 +96,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             )}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.21, ease: "easeOut" }}
           >
             {data.title}
           </motion.h1>
@@ -106,7 +106,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             className="max-w-4xl"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.28, ease: "easeOut" }}
           >
             <CustomPortableText 
               value={data.content} 
@@ -123,7 +123,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
               className="flex w-full flex-col items-center justify-center gap-6 sm:flex-row"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.56, delay: 0.35, ease: "easeOut" }}
             >
               {data.buttons.map((button, i) => {
                 const resolvedHref = useResolvedHref({ link: button.link });
@@ -134,8 +134,8 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ 
-                    duration: 0.6, 
-                    delay: 0.6 + (i * 0.1), 
+                    duration: 0.42, 
+                    delay: 0.42 + (i * 0.07), 
                     ease: "easeOut" 
                   }}
                   whileHover={{ scale: 1.05 }}
@@ -158,7 +158,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             className="relative"
             initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.9 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.49, ease: "easeOut" }}
             whileHover={{ scale: 1.02 }}
           >
             {data?.mediaType === 'image' ? (
@@ -173,7 +173,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
                     className="w-full h-auto object-cover"
                   />
                   {/* Hover shine effect */}
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out">
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out">
                     <div className="h-full w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
             className="group mx-auto flex w-full max-w-4xl flex-col items-start justify-start gap-y-4 px-6 text-primary-foreground md:px-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.56, delay: 0.56, ease: "easeOut" }}
           >
             <h2 className="text-3xl md:text-4xl font-light text-left leading-[1.2] bg-gradient-to-r from-[#1a2332] via-[#2c5a73] to-[#1a2332] bg-clip-text text-transparent">
               {data.bottomContent.title}
@@ -208,7 +208,7 @@ export default function HeroWithMedia({ data }: HeroWithMediaProps) {
               </div>
               
               {/* Subtle background highlight */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#B0DEE6]/5 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#B0DEE6]/5 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-350"></div>
             </div>
           </motion.div>
         )}
