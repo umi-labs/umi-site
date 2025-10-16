@@ -75,20 +75,39 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
   }, [archives]);
 
   const [tags, setTags] = React.useState<string[]>([]);
+  const [topTags, setTopTags] = React.useState<string[]>([]);
+  const [otherTags, setOtherTags] = React.useState<string[]>([]);
   const [types, setTypes] = React.useState<string[]>([]);
+  const [isAccordionOpen, setIsAccordionOpen] = React.useState(false);
 
   React.useEffect(() => {
     if (filtersIsError || filtersIsLoading || filters.length === 0) return;
-    const tagsSet: Set<string> = new Set(
-      filters?.map((archive) => archive.tags).flat()
-    );
+    
+    // Calculate tag counts
+    const tagCounts: { [key: string]: number } = {};
+    filters?.forEach((archive) => {
+      archive.tags?.forEach((tag) => {
+        if (tag) {
+          tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+        }
+      });
+    });
 
-    if (tagsSet.size === 0) return;
+    // Sort tags by count (descending) and exclude 'all'
+    const sortedTags = Object.keys(tagCounts)
+      .filter(tag => tag !== 'all')
+      .sort((a, b) => tagCounts[b] - tagCounts[a]);
 
-    // Convert the Set to an Array
-    const tagsArray = ['all', ...tagsSet];
+    // Add 'all' at the beginning
+    const allTags = ['all', ...sortedTags];
+    setTags(allTags.filter((tag) => tag !== null));
 
-    setTags(tagsArray.filter((tag) => tag !== null));
+    // Split into top 5 and others
+    const topFive = ['all', ...sortedTags.slice(0, 5)];
+    const others = sortedTags.slice(5);
+    
+    setTopTags(topFive.filter((tag) => tag !== null));
+    setOtherTags(others.filter((tag) => tag !== null));
 
     const typesSet: Set<string> = new Set(
       filters?.map((archive) => archive.type).flat()
@@ -152,13 +171,14 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
               )}
 
               {/* Tags Filter */}
-              {tags.length > 0 && (
+              {topTags.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-gray-700 mb-3">
                     {postType === 'project' ? 'Filter by Service' : 'Filter by Category'}
                   </h4>
                   <div className="space-y-2">
-                    {tags.map((tag, i) => (
+                    {/* Top 5 Categories */}
+                    {topTags.map((tag, i) => (
                       <button
                         key={i}
                         className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
@@ -173,6 +193,46 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
                         {tag === 'all' ? 'All' : tag?.split('-').join(' ')}
                       </button>
                     ))}
+                    
+                    {/* Accordion for Other Categories */}
+                    {otherTags.length > 0 && (
+                      <div>
+                        <button
+                          onClick={() => setIsAccordionOpen(!isAccordionOpen)}
+                          className="w-full flex items-center justify-between px-3 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                        >
+                          <span>Other Categories ({otherTags.length})</span>
+                          <svg
+                            className={`w-4 h-4 transition-transform duration-200 ${isAccordionOpen ? 'rotate-180' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                        
+                        {isAccordionOpen && (
+                          <div className="mt-2 space-y-2 pl-4">
+                            {otherTags.map((tag, i) => (
+                              <button
+                                key={i}
+                                className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
+                                  currentTag === tagFormatter(tag)
+                                    ? 'bg-primary-accent text-white'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                }`}
+                                onClick={() => {
+                                  setCurrentTag(tagFormatter(tag));
+                                }}
+                              >
+                                {tag?.split('-').join(' ')}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
@@ -209,11 +269,15 @@ export default function ArchivesFilterableBlock({ postType }: Props) {
           <ArchiveSidebar
             postType={postType}
             tags={tags}
+            topTags={topTags}
+            otherTags={otherTags}
             types={types}
             currentTag={currentTag}
             currentType={currentType}
             setCurrentTag={setCurrentTag}
             setCurrentType={setCurrentType}
+            isAccordionOpen={isAccordionOpen}
+            setIsAccordionOpen={setIsAccordionOpen}
           />
         </div>
       </div>

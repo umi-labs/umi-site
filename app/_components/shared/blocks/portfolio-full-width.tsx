@@ -37,6 +37,22 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
     queryFn: () => getFeaturedProjects(),
   });
 
+  // Randomize the projects array
+  const randomizedProjects = React.useMemo(() => {
+    if (!projects) return [];
+    
+    // Create a copy of the array to avoid mutating the original
+    const shuffled = [...projects];
+    
+    // Fisher-Yates shuffle algorithm
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
+    return shuffled;
+  }, [projects]);
+
   return (
     <Container
       id="PortfolioFullWidth"
@@ -109,7 +125,7 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
           </motion.div>
         </motion.div>
         
-        {projects && (
+        {randomizedProjects && randomizedProjects.length > 0 && (
           <motion.div
             className="col-span-2 w-full"
             initial={{ opacity: 0, y: 40 }}
@@ -118,9 +134,9 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
           >
             {/* Desktop: Show multiple cards in a grid */}
             <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
-              {projects?.slice(0, 6).map((project, i) => (
+              {randomizedProjects.slice(0, 6).map((project, i) => (
                 <motion.div
-                  key={i}
+                  key={project._id || i}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 0.8 + i * 0.1, ease: "easeOut" }}
@@ -137,9 +153,9 @@ export default function PortfolioFullWidth({ data }: PortfolioFullWidthProps) {
 
             {/* Mobile/Tablet: Show top 3 stacked */}
             <div className="lg:hidden grid grid-cols-1 gap-6">
-              {projects?.slice(0, 3).map((project, i) => (
+              {randomizedProjects.slice(0, 3).map((project, i) => (
                 <motion.div
-                  key={i}
+                  key={project._id || i}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 0.8 + i * 0.1, ease: "easeOut" }}
